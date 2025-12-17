@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import PublishProjectPage from './pages/PublishProjectPage';
 import FundingProjectsPage from './pages/FundingProjectsPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
 import ProfilePage from './pages/ProfilePage';
 import './styles/App.css';
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/profil" element={<ProfilePage />} />
         <Route path="/projets-financement" element={<FundingProjectsPage />} />
+        <Route path="/projet/:id" element={<ProjectDetailPage />} />
         <Route path="/publier-projet" element={<PublishProjectPage />} />
       </Route>
       <Route path="/connexion" element={<LoginPage />} />

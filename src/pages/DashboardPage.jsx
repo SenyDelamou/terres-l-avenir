@@ -4,6 +4,13 @@ import '../styles/DashboardPage.css';
 
 function DashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [newProject, setNewProject] = useState({
+    title: '',
+    category: '',
+    budget: '',
+    description: ''
+  });
+  const [isSubmittingNewProject, setIsSubmittingNewProject] = useState(false);
 
   const stats = {
     projects: 3,
@@ -204,7 +211,6 @@ function DashboardPage() {
                 <div className="dashboard-tab">
                   <div className="tab-header">
                     <h2>Mes Projets</h2>
-                    <Link to="/nouveau-projet" className="btn-primary">+ Nouveau Projet</Link>
                   </div>
                   <div className="projects-grid">
                     {recentProjects.map(project => (
@@ -241,6 +247,107 @@ function DashboardPage() {
                         </div>
                       </div>
                     ))}
+                  </div>
+
+                  <div className="new-project-form-card">
+                    <h3>Créer un nouveau projet</h3>
+                    <p className="new-project-text">
+                      Remplissez ce formulaire rapide pour préparer un nouveau projet. Pour une fiche complète,
+                      vous pourrez ensuite le publier dans la section financement.
+                    </p>
+                    <form
+                      className="new-project-form"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        if (!newProject.title.trim() || !newProject.category || !newProject.budget) {
+                          alert('Veuillez renseigner au minimum le titre, la catégorie et le budget estimé.');
+                          return;
+                        }
+                        setIsSubmittingNewProject(true);
+                        setTimeout(() => {
+                          setIsSubmittingNewProject(false);
+                          alert('Votre projet a été créé dans votre espace. Vous pourrez le publier pour financement via la section Financement.');
+                          setNewProject({
+                            title: '',
+                            category: '',
+                            budget: '',
+                            description: ''
+                          });
+                        }, 1200);
+                      }}
+                    >
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label htmlFor="newProjectTitle">Titre du projet *</label>
+                          <input
+                            id="newProjectTitle"
+                            type="text"
+                            value={newProject.title}
+                            onChange={(e) =>
+                              setNewProject((prev) => ({ ...prev, title: e.target.value }))
+                            }
+                            placeholder="Ex : Serre maraîchère bio"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="newProjectCategory">Catégorie *</label>
+                          <select
+                            id="newProjectCategory"
+                            value={newProject.category}
+                            onChange={(e) =>
+                              setNewProject((prev) => ({ ...prev, category: e.target.value }))
+                            }
+                          >
+                            <option value="">Sélectionner</option>
+                            <option value="Agriculture Biologique">Agriculture Biologique</option>
+                            <option value="Élevage">Élevage</option>
+                            <option value="Agroforesterie">Agroforesterie</option>
+                            <option value="Technologies Agricoles">Technologies Agricoles</option>
+                            <option value="Transformation de Produits">Transformation de Produits</option>
+                            <option value="Commerce & Distribution">Commerce & Distribution</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label htmlFor="newProjectBudget">Budget estimé (€) *</label>
+                          <input
+                            id="newProjectBudget"
+                            type="number"
+                            min="0"
+                            value={newProject.budget}
+                            onChange={(e) =>
+                              setNewProject((prev) => ({ ...prev, budget: e.target.value }))
+                            }
+                            placeholder="Ex : 25 000"
+                          />
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="newProjectDescription">Description (bref résumé)</label>
+                        <textarea
+                          id="newProjectDescription"
+                          rows="3"
+                          value={newProject.description}
+                          onChange={(e) =>
+                            setNewProject((prev) => ({ ...prev, description: e.target.value }))
+                          }
+                          placeholder="Expliquez en quelques lignes votre idée de projet..."
+                        ></textarea>
+                      </div>
+                      <div className="form-actions">
+                        <button
+                          type="submit"
+                          className="btn-primary"
+                          disabled={isSubmittingNewProject}
+                        >
+                          {isSubmittingNewProject ? 'Création en cours...' : 'Enregistrer le projet'}
+                        </button>
+                        <Link to="/publier-projet" className="btn-secondary">
+                          Passer au formulaire complet
+                        </Link>
+                      </div>
+                    </form>
                   </div>
                 </div>
               )}

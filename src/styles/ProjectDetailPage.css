@@ -1,0 +1,370 @@
+.project-detail-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.project-detail-page .page-header {
+  position: relative;
+  color: white;
+  padding: 6rem 0;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.project-detail-page .page-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(45, 80, 22, 0.85) 0%, rgba(74, 124, 42, 0.85) 100%);
+}
+
+.project-detail-page .page-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+.project-detail-page .page-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.project-detail-page .page-header p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.project-detail-content {
+  padding: 3rem 0;
+}
+
+.project-detail-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.project-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.project-summary-card,
+.project-chat-card,
+.invest-card,
+.new-project-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.project-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.project-category-tag {
+  background: rgba(74, 124, 42, 0.1);
+  color: #2d5016;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.project-days-left {
+  color: #155724;
+  background: rgba(23, 162, 184, 0.1);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.project-description {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.project-funding-summary .funding-amounts {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.project-funding-summary .label {
+  display: block;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.project-funding-summary .value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d5016;
+}
+
+.project-funding-summary .progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e9ecef;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+
+.project-funding-summary .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2d5016, #4a7c2a);
+  border-radius: 999px;
+}
+
+.project-funding-summary .progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.project-chat-card h2 {
+  font-size: 1.6rem;
+  color: #2d5016;
+  margin-bottom: 0.4rem;
+}
+
+.chat-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
+}
+
+.chat-messages {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chat-message {
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  background: #f8f9fa;
+}
+
+.chat-message.owner {
+  border-left: 4px solid #4a7c2a;
+}
+
+.chat-message.investor {
+  border-left: 4px solid #17a2b8;
+}
+
+.chat-message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.chat-sender {
+  font-weight: 600;
+  color: #2d5016;
+}
+
+.chat-message.investor .chat-sender {
+  color: #0c5460;
+}
+
+.chat-time {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.chat-content {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.chat-empty {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
+
+.chat-form {
+  border-top: 1px solid #e9ecef;
+  padding-top: 1.2rem;
+}
+
+.chat-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d5016;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4a7c2a;
+  box-shadow: 0 0 0 3px rgba(74, 124, 42, 0.15);
+}
+
+.chat-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.chat-help-text {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.project-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.invest-card h3,
+.new-project-card h3 {
+  font-size: 1.4rem;
+  color: #2d5016;
+  margin-bottom: 0.5rem;
+}
+
+.invest-card p,
+.new-project-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.invest-form .form-group textarea {
+  resize: vertical;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  border: none;
+  background: #17a2b8;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #138496;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(19, 132, 150, 0.3);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(74, 124, 42, 0.4);
+}
+
+.no-project .btn-primary {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .project-detail-layout {
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  .chat-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-detail-page .page-header {
+    padding: 4rem 0;
+  }
+
+  .project-detail-page .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .project-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .project-sidebar {
+    order: -1;
+  }
+
+  .project-summary-card,
+  .project-chat-card,
+  .invest-card,
+  .new-project-card {
+    padding: 1.5rem 1.4rem;
+  }
+}
+
+
