@@ -71,7 +71,7 @@ function Layout() {
     <div className="app-shell">
       <header>
         <nav className="navbar">
-          <div className="navbar-left">
+          <div className="navbar-section navbar-section--brand">
             <NavLink className="brand" to="/">
               <div className="brand-icon" aria-hidden="true">
                 <span />
@@ -83,6 +83,7 @@ function Layout() {
               </div>
             </NavLink>
           </div>
+
           <button
             type="button"
             className={`menu-toggle ${menuOpen ? 'open' : ''}`}
@@ -95,34 +96,47 @@ function Layout() {
             <span />
             <span />
           </button>
-          <div className={`navbar-actions ${menuOpen ? 'visible' : ''}`} id="main-navigation">
-            <div className="nav-pill">
-              <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                {navLinks.map(({ to, label, end, cta }) => (
+
+          <div className={`navbar-section navbar-section--nav ${menuOpen ? 'visible' : ''}`} id="main-navigation">
+            <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+              {navLinks
+                .filter(({ cta }) => !cta)
+                .map(({ to, label, end }) => (
                   <li key={to}>
                     <NavLink
                       to={to}
                       end={end}
                       onClick={handleNavLinkClick}
-                      className={({ isActive }) =>
-                        ['nav-link', cta ? 'cta-link' : '', isActive ? 'active' : ''].filter(Boolean).join(' ')
-                      }
+                      className={({ isActive }) => ['nav-link', isActive ? 'active' : ''].filter(Boolean).join(' ')}
                     >
                       {label}
                     </NavLink>
                   </li>
                 ))}
-              </ul>
+            </ul>
+          </div>
+
+          <div className={`navbar-section navbar-section--actions ${menuOpen ? 'visible' : ''}`}>
+            <div className="navbar-cta">
+              {navLinks
+                .filter(({ cta }) => cta)
+                .map(({ to, label }) => (
+                  <NavLink key={to} to={to} onClick={handleNavLinkClick} className={({ isActive }) => ['nav-link', 'cta-link', isActive ? 'active' : ''].filter(Boolean).join(' ')}>
+                    {label}
+                  </NavLink>
+                ))}
             </div>
-            <div className="nav-actions">
-              <LanguageSwitcher />
-              <NotificationBell />
-              <button type="button" className="profile-button" aria-label="Profil">
-                <span>TA</span>
-                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+            <div className="nav-utilities">
+              <div className="nav-utility-group">
+                <LanguageSwitcher />
+                <NotificationBell />
+                <button type="button" className="profile-button" aria-label="Profil">
+                  <span>TA</span>
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </nav>

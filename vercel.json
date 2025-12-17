@@ -1,6 +1,5 @@
 {
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
-    "ignoreCommand": "echo 'Skipping ignore'",
     "installCommand": "npm install"
 }
