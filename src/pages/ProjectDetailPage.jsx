@@ -19,7 +19,20 @@ function ProjectDetailPage() {
       daysLeft: 25,
       location: 'Normandie, France',
       image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&h=600&fit=crop',
-      description: 'Installation d\'une serre solaire de 500m² pour la production de légumes bio toute l\'année.'
+      description: 'Installation d\'une serre solaire de 500m² pour la production de légumes bio toute l\'année.',
+      highlights: [
+        'Production locale et durable',
+        'Réduction de l\'empreinte carbone',
+        'Zéro pesticides chimiques',
+        'Marché en pleine expansion'
+      ],
+      milestones: [
+        { date: 'Juin 2024', label: 'Acquisition du terrain' },
+        { date: 'Septembre 2024', label: 'Installation de la structure' },
+        { date: 'Janvier 2025', label: 'Première récolte' }
+      ],
+      roi: 'Retour sur investissement prévu en 3 ans.',
+      impact: 'Alimentation saine pour 200 familles locales.'
     },
     {
       id: 2,
@@ -32,7 +45,20 @@ function ProjectDetailPage() {
       daysLeft: 42,
       location: 'Auvergne, France',
       image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1200&h=600&fit=crop',
-      description: 'Création d\'un élevage de 50 chèvres laitières avec fromagerie artisanale.'
+      description: 'Création d\'un élevage de 50 chèvres laitières avec fromagerie artisanale.',
+      highlights: [
+        'Fromagerie certifiée AOP',
+        'Vente directe à la ferme',
+        'Bien-être animal garanti',
+        'Circuits courts locaux'
+      ],
+      milestones: [
+        { date: 'Août 2024', label: 'Construction du bâtiment' },
+        { date: 'Octobre 2024', label: 'Arrivée du cheptel' },
+        { date: 'Mars 2025', label: 'Lancement des fromages' }
+      ],
+      roi: 'Dividendes prévus dès la 2ème année.',
+      impact: 'Préservation du patrimoine fromager local.'
     },
     {
       id: 3,
@@ -45,7 +71,20 @@ function ProjectDetailPage() {
       daysLeft: 18,
       location: 'Provence, France',
       image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=600&fit=crop',
-      description: 'Plantation d\'arbres fruitiers et installation de ruches pour production de miel.'
+      description: 'Plantation d\'arbres fruitiers et installation de ruches pour production de miel.',
+      highlights: [
+        'Protection de la biodiversité',
+        'Synergie arbres-abeilles',
+        'Produits 100% naturels',
+        'Projet écologique fort'
+      ],
+      milestones: [
+        { date: 'Novembre 2024', label: 'Plantation des fruitiers' },
+        { date: 'Printemps 2025', label: 'Installation des ruches' },
+        { date: 'Eté 2025', label: 'Première miellée' }
+      ],
+      roi: 'Croissance de valeur des terres de 15%.',
+      impact: 'Restauration des écosystèmes et pollinisation.'
     },
     {
       id: 4,
@@ -58,7 +97,20 @@ function ProjectDetailPage() {
       daysLeft: 30,
       location: 'Centre, France',
       image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&h=600&fit=crop',
-      description: 'Installation d\'un système d\'irrigation connecté avec capteurs IoT pour optimiser la consommation d\'eau.'
+      description: 'Installation d\'un système d\'irrigation connecté with capteurs IoT pour optimiser la consommation d\'eau.',
+      highlights: [
+        'Economie d\'eau de 40%',
+        'Technologie IoT de pointe',
+        'Solution évolutive',
+        'Haute rentabilité technique'
+      ],
+      milestones: [
+        { date: 'Juillet 2024', label: 'Tests pilotes terminés' },
+        { date: 'Décembre 2024', label: 'Déploiement généralisé' },
+        { date: 'Avril 2025', label: 'Optimisation data IA' }
+      ],
+      roi: 'Economies opérationnelles immédiates.',
+      impact: 'Préservation des ressources en eau potable.'
     },
     {
       id: 5,
@@ -71,7 +123,20 @@ function ProjectDetailPage() {
       daysLeft: 35,
       location: 'Aquitaine, France',
       image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200&h=600&fit=crop',
-      description: 'Création d\'un atelier de transformation de fruits locaux en confitures et conserves.'
+      description: 'Création d\'un atelier de transformation de fruits locaux en confitures et conserves.',
+      highlights: [
+        'Valorisation des invendus',
+        'Recettes traditionnelles',
+        'Label Artisanal',
+        'Zéro gaspillage'
+      ],
+      milestones: [
+        { date: 'Septembre 2024', label: 'Aménagement du laboratoire' },
+        { date: 'Novembre 2024', label: 'Certification hygiène' },
+        { date: 'Décembre 2024', label: 'Première gamme en vente' }
+      ],
+      roi: 'Marché B2B déjà sécurisé.',
+      impact: 'Soutien aux producteurs de fruits régionaux.'
     },
     {
       id: 6,
@@ -84,7 +149,20 @@ function ProjectDetailPage() {
       daysLeft: 20,
       location: 'Île-de-France, France',
       image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&h=600&fit=crop',
-      description: 'Ouverture d\'un marché local dédié aux produits bio de la région.'
+      description: 'Ouverture d\'un marché local dédié aux produits bio de la région.',
+      highlights: [
+        'Produits 100% locaux',
+        'Zéro emballage plastique',
+        'Prix justes pour les producteurs',
+        'Lieu de vie communautaire'
+      ],
+      milestones: [
+        { date: 'Octobre 2024', label: 'Bail commercial signé' },
+        { date: 'Décembre 2024', label: 'Travaux d\'aménagement' },
+        { date: 'Février 2025', label: 'Inauguration' }
+      ],
+      roi: 'Point mort atteint après 18 mois.',
+      impact: 'Accès facilité au bio pour tout un quartier.'
     }
   ];
 
@@ -95,14 +173,14 @@ function ProjectDetailPage() {
       id: 1,
       senderType: 'investor',
       senderName: 'Investisseur Marie',
-      content: 'Bonjour, votre projet de serre solaire m\'intéresse beaucoup. Pouvez-vous détailler l\'utilisation des fonds ?',
+      content: 'Bonjour, votre projet me paraît très prometteur. Quelles sont vos garanties en termes de durabilité ?',
       time: 'Il y a 2 heures'
     },
     {
       id: 2,
       senderType: 'owner',
-      senderName: 'Marie Dubois',
-      content: 'Bonjour, merci pour votre intérêt ! Les fonds serviront à financer la structure de la serre, le système d\'irrigation et l\'achat des premiers plants.',
+      senderName: project?.entrepreneur || 'Porteur de projet',
+      content: 'Bonjour, merci pour votre intérêt ! Nous utilisons exclusivement des techniques certifiées bio et nous sommes accompagnés par des experts agronomes.',
       time: 'Il y a 1 heure'
     }
   ];
@@ -194,7 +272,40 @@ function ProjectDetailPage() {
                 <span className="project-days-left">{project.daysLeft} jours restants</span>
               </div>
 
-              <p className="project-description">{project.description}</p>
+              <p className="project-description-large">{project.description}</p>
+
+              <div className="project-details-grid">
+                <div className="detail-section">
+                  <h3>🌟 Points forts</h3>
+                  <ul className="highlights-list">
+                    {project.highlights?.map((h, i) => (
+                      <li key={i}>✅ {h}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="detail-section">
+                  <h3>📅 Étapes clés</h3>
+                  <div className="milestones-timeline">
+                    {project.milestones?.map((m, i) => (
+                      <div key={i} className="milestone-item">
+                        <span className="milestone-date">{m.date}</span>
+                        <span className="milestone-label">{m.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="detail-section">
+                  <h3>💰 Rentabilité (ROI)</h3>
+                  <p className="roi-text">{project.roi}</p>
+                </div>
+
+                <div className="detail-section">
+                  <h3>🌍 Impact Social & Écolo</h3>
+                  <p className="impact-text">{project.impact}</p>
+                </div>
+              </div>
 
               <div className="project-funding-summary">
                 <div className="funding-amounts">
@@ -222,9 +333,9 @@ function ProjectDetailPage() {
             </div>
 
             <div className="project-chat-card">
-              <h2>Espace de discussion</h2>
+              <h2>💬 Espace de discussion</h2>
               <p className="chat-subtitle">
-                Permettez au porteur de projet et aux investisseurs d’échanger directement.
+                Posez vos questions directement au porteur de projet.
               </p>
 
               <div className="chat-messages">
@@ -243,13 +354,6 @@ function ProjectDetailPage() {
                     <p className="chat-content">{msg.content}</p>
                   </div>
                 ))}
-
-                {messages.length === 0 && (
-                  <p className="chat-empty">
-                    Aucune discussion pour le moment. Soyez le premier à poser une question ou à
-                    donner une réponse.
-                  </p>
-                )}
               </div>
 
               <form className="chat-form" onSubmit={handleSendMessage}>
@@ -266,13 +370,13 @@ function ProjectDetailPage() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label>Nom (optionnel)</label>
+                    <label>Nom</label>
                     <input
                       type="text"
                       name="senderName"
                       value={newMessage.senderName}
                       onChange={handleMessageChange}
-                      placeholder="Votre nom ou société"
+                      placeholder="Votre nom"
                     />
                   </div>
                 </div>
@@ -283,66 +387,48 @@ function ProjectDetailPage() {
                     rows="3"
                     value={newMessage.content}
                     onChange={handleMessageChange}
-                    placeholder="Écrivez votre question, commentaire ou réponse..."
+                    placeholder="Écrivez votre message..."
                     required
                   ></textarea>
                 </div>
-                <div className="chat-form-actions">
-                  <button type="submit" className="btn-primary">
-                    Envoyer le message
-                  </button>
-                  <span className="chat-help-text">
-                    Cet espace est une messagerie simplifiée pour faciliter les échanges autour du
-                    projet.
-                  </span>
-                </div>
+                <button type="submit" className="btn-primary">
+                  Envoyer le message
+                </button>
               </form>
             </div>
           </div>
 
           <aside className="project-sidebar">
             <div className="invest-card">
-              <h3>Investir dans ce projet</h3>
-              <p>
-                Indiquez le montant que vous souhaitez investir et envoyez un message au porteur de
-                projet.
-              </p>
+              <h3>💎 Investir maintenant</h3>
+              <p>Soutenez ce projet et participez à l'agriculture de demain.</p>
               <form
                 className="invest-form"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  alert(
-                    'Votre intention d’investissement a été envoyée au porteur de projet. Il vous répondra prochainement.'
-                  );
+                  alert('Merci ! Votre intention d’investissement a été transmise.');
                   e.target.reset();
                 }}
               >
                 <div className="form-group">
-                  <label>Montant envisagé (€)</label>
-                  <input type="number" min="100" step="50" placeholder="Ex : 1 000" required />
+                  <label>Montant (€)</label>
+                  <input type="number" min="100" step="50" placeholder="Ex : 1000" required />
                 </div>
                 <div className="form-group">
-                  <label>Message au porteur de projet</label>
-                  <textarea
-                    rows="3"
-                    placeholder="Présentez-vous et expliquez votre intérêt pour ce projet..."
-                    required
-                  ></textarea>
+                  <label>Message (optionnel)</label>
+                  <textarea rows="3" placeholder="Un mot pour le porteur ?"></textarea>
                 </div>
                 <button type="submit" className="btn-secondary">
-                  Envoyer ma proposition
+                  Proposer mon aide
                 </button>
               </form>
             </div>
 
             <div className="new-project-card">
-              <h3>Publier un nouveau projet</h3>
-              <p>
-                Vous êtes porteur de projet ? Présentez votre initiative et trouvez des
-                investisseurs.
-              </p>
+              <h3>🚀 Un projet ?</h3>
+              <p>Publiez votre initiative gratuitement.</p>
               <Link to="/publier-projet" className="btn-primary">
-                + Créer un nouveau projet
+                Publier un projet
               </Link>
             </div>
           </aside>
@@ -353,5 +439,3 @@ function ProjectDetailPage() {
 }
 
 export default ProjectDetailPage;
-
-
