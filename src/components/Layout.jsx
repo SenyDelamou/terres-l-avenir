@@ -1,186 +1,184 @@
-import { useEffect, useMemo, useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { useApp } from '../context/AppContext.jsx';
-import NotificationBell from './NotificationBell.jsx';
-import LanguageSwitcher from './LanguageSwitcher.jsx';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import '../styles/Layout.css';
 
 function Layout() {
-  const { t } = useApp();
   const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleNavToggle = () => {
-    setMenuOpen((prev) => !prev);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleNavLinkClick = () => {
-    setMenuOpen(false);
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
-  const navLinks = useMemo(
-    () => [
-      { to: '/', label: t('nav.home'), end: true },
-      { to: '/diagnostic', label: t('nav.diagnostic') },
-      { to: '/formations', label: t('nav.formations') },
-      { to: '/communaute', label: t('nav.communaute') },
-      { to: '/marche', label: t('nav.marche') },
-      { to: '/investisseurs', label: t('nav.investisseurs') },
-      { to: '/ressources', label: t('nav.ressources') },
-      { to: '/contact', label: t('nav.contact') },
-      { to: '/connexion', label: t('nav.connexion'), cta: true },
-    ],
-    [t]
-  );
-
+  // Fermer le menu quand on change de page
   useEffect(() => {
-    const elements = document.querySelectorAll(
-      '.card, .highlight, .banner, .team-card, .timeline-step, .section, .hero, .columns, .contact-grid, .metrics, .partners, .form-card, .responsive-media'
-    );
-    elements.forEach((element) => {
-      if (!element.classList.contains('reveal')) {
-        element.classList.add('reveal');
-      }
-    });
-
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    revealElements.forEach((element) => {
-      element.classList.remove('visible');
-      observer.observe(element);
-    });
-
-    return () => observer.disconnect();
+    setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Empêcher le scroll du body quand le menu est ouvert
   useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  const navLinks = [
+    { path: '/', label: 'Accueil', icon: '🏠' },
+    { path: '/a-propos', label: 'À propos', icon: 'ℹ️' },
+    { path: '/services', label: 'Services', icon: '🛠️' },
+    { path: '/techniques', label: 'Techniques', icon: '🌾' },
+    { path: '/actualites', label: 'Actualités', icon: '📰' },
+    { path: '/forum', label: 'Forum', icon: '💬' },
+    { path: '/assistant-ia', label: 'IA', icon: '🤖' },
+    { path: '/contact', label: 'Contact', icon: '📞' }
+  ];
 
   return (
-    <div className="app-shell">
-      <header>
-        <nav className="navbar">
-          <div className="navbar-section navbar-section--brand">
-            <NavLink className="brand" to="/">
-              <div className="brand-icon" aria-hidden="true">
-                <span />
-                <span />
-              </div>
-              <div className="brand-text">
-                <strong>Terres d'Avenir</strong>
-                <small>Plateforme</small>
-              </div>
-            </NavLink>
-          </div>
+    <div className="layout">
+      <header className="header">
+        <div className="container">
+          <Link to="/" className="logo" onClick={closeMobileMenu}>
+            <span className="logo-icon">🌾</span>
+            <span className="logo-text">AgriCulture</span>
+          </Link>
+          
+          {isMobileMenuOpen && (
+            <div 
+              className="mobile-menu-overlay"
+              onClick={closeMobileMenu}
+              aria-label="Close menu"
+            ></div>
+          )}
 
-          <button
-            type="button"
-            className={`menu-toggle ${menuOpen ? 'open' : ''}`}
-            onClick={handleNavToggle}
-            aria-controls="main-navigation"
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          <nav className={`nav ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+            <div className="mobile-menu-header">
+              <span className="mobile-menu-title">Menu</span>
+              <button 
+                className="mobile-menu-close"
+                onClick={closeMobileMenu}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
+            
+            {navLinks.map((link) => (
+              <Link 
+                key={link.path}
+                to={link.path} 
+                className={location.pathname === link.path ? 'active' : ''}
+                onClick={closeMobileMenu}
+              >
+                <span className="nav-icon">{link.icon}</span>
+                <span className="nav-label">{link.label}</span>
+              </Link>
+            ))}
+            
+            <div className="nav-auth">
+              <Link to="/connexion" className="btn-login" onClick={closeMobileMenu}>
+                <span>🔐</span>
+                <span>Connexion</span>
+              </Link>
+            </div>
+          </nav>
+
+          <button 
+            className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
-            <span />
-            <span />
-            <span />
+            <span className={isMobileMenuOpen ? 'open' : ''}></span>
+            <span className={isMobileMenuOpen ? 'open' : ''}></span>
+            <span className={isMobileMenuOpen ? 'open' : ''}></span>
           </button>
-
-          <div className={`navbar-section navbar-section--nav ${menuOpen ? 'visible' : ''}`} id="main-navigation">
-            <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-              {navLinks
-                .filter(({ cta }) => !cta)
-                .map(({ to, label, end }) => (
-                  <li key={to}>
-                    <NavLink
-                      to={to}
-                      end={end}
-                      onClick={handleNavLinkClick}
-                      className={({ isActive }) => ['nav-link', isActive ? 'active' : ''].filter(Boolean).join(' ')}
-                    >
-                      {label}
-                    </NavLink>
-                  </li>
-                ))}
-            </ul>
-          </div>
-
-          <div className={`navbar-section navbar-section--actions ${menuOpen ? 'visible' : ''}`}>
-            <div className="navbar-cta">
-              {navLinks
-                .filter(({ cta }) => cta)
-                .map(({ to, label }) => (
-                  <NavLink key={to} to={to} onClick={handleNavLinkClick} className={({ isActive }) => ['nav-link', 'cta-link', isActive ? 'active' : ''].filter(Boolean).join(' ')}>
-                    {label}
-                  </NavLink>
-                ))}
-            </div>
-            <div className="nav-utilities">
-              <div className="nav-utility-group">
-                <LanguageSwitcher />
-                <NotificationBell />
-                <button type="button" className="profile-button" aria-label="Profil">
-                  <span>TA</span>
-                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </nav>
+        </div>
       </header>
-      <main>
+
+      <main className="main-content">
         <Outlet />
       </main>
-      <footer>
-        <div className="footer-content">
-          <div>
-            <h4>Terres d'Avenir</h4>
-            <p>
-              Un collectif d'ingénieurs agronomes, d'agriculteurs et de designers de services pour faire émerger une agriculture
-              régénératrice, résiliente et inclusive.
-            </p>
+
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-section footer-about">
+              <div className="footer-logo">
+                <span className="logo-icon">🌾</span>
+                <span className="logo-text">AgriCulture</span>
+              </div>
+              <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>
+              <div className="footer-social">
+                <a href="#" className="social-link" aria-label="Facebook">📘</a>
+                <a href="#" className="social-link" aria-label="Twitter">🐦</a>
+                <a href="#" className="social-link" aria-label="LinkedIn">💼</a>
+                <a href="#" className="social-link" aria-label="Instagram">📷</a>
+              </div>
+            </div>
+            <div className="footer-section">
+              <h4>Navigation</h4>
+              <Link to="/">Accueil</Link>
+              <Link to="/a-propos">À propos</Link>
+              <Link to="/services">Services</Link>
+              <Link to="/techniques">Techniques</Link>
+              <Link to="/actualites">Actualités</Link>
+              <Link to="/forum">Forum</Link>
+              <Link to="/assistant-ia">Assistant IA</Link>
+              <Link to="/contact">Contact</Link>
+            </div>
+            <div className="footer-section">
+              <h4>Services</h4>
+              <Link to="/services">Diagnostic Agricole</Link>
+              <Link to="/services">Formation & Conseil</Link>
+              <Link to="/services">Gestion de l'Irrigation</Link>
+              <Link to="/services">Conversion Bio</Link>
+              <Link to="/services">Analyse de Données</Link>
+            </div>
+            <div className="footer-section footer-contact">
+              <h4>Contact</h4>
+              <div className="footer-contact-item">
+                <span className="footer-icon">📍</span>
+                <span>123 Rue de l'Agriculture<br />75000 Paris, France</span>
+              </div>
+              <div className="footer-contact-item">
+                <span className="footer-icon">📞</span>
+                <span>+33 1 23 45 67 89</span>
+              </div>
+              <div className="footer-contact-item">
+                <span className="footer-icon">✉️</span>
+                <span>contact@agriculture.fr</span>
+              </div>
+              <div className="footer-contact-item">
+                <span className="footer-icon">🕒</span>
+                <span>Lun-Ven: 9h-18h<br />Sam: 9h-12h</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4>Navigation</h4>
-            <ul>
-              {navLinks
-                .filter(({ to, cta }) => !cta && to !== '/')
-                .slice(0, 4)
-                .map(({ to, label }) => (
-                <li key={to}>
-                  <NavLink to={to}>{label}</NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li>
-                <a href="mailto:contact@terresdavenir.org">contact@terresdavenir.org</a>
-              </li>
-              <li>+33 1 84 25 62 90</li>
-              <li>45 Rue des Horizons, 75011 Paris</li>
-            </ul>
+          <div className="footer-bottom">
+            <div className="footer-bottom-content">
+              <p>&copy; 2024 AgriCulture. Tous droits réservés.</p>
+              <div className="footer-links">
+                <Link to="/">Mentions légales</Link>
+                <Link to="/">Politique de confidentialité</Link>
+                <Link to="/">CGV</Link>
+              </div>
+            </div>
           </div>
         </div>
-        <p className="footer-bottom">© 2025 Terres d'Avenir – Tous droits réservés.</p>
       </footer>
     </div>
   );
 }
 
 export default Layout;
+

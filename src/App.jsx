@@ -1,39 +1,30 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout.jsx';
-import HomePage from './pages/HomePage.jsx';
-import DiagnosticPage from './pages/DiagnosticPage.jsx';
-import FormationsPage from './pages/FormationsPage.jsx';
-import CommunautePage from './pages/CommunautePage.jsx';
-import MarchePage from './pages/MarchePage.jsx';
-import InvestisseursPage from './pages/InvestisseursPage.jsx';
-import RessourcesPage from './pages/RessourcesPage.jsx';
-import ContactPage from './pages/ContactPage.jsx';
-import LoginPage from './pages/LoginPage.jsx';
-import RegisterPage from './pages/RegisterPage.jsx';
-import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx';
-import ProgrammesPage from './pages/ProgrammesPage.jsx';
-import VisionPage from './pages/VisionPage.jsx';
-import ProjetsPage from './pages/ProjetsPage.jsx';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import TechniquesPage from './pages/TechniquesPage';
+import NewsPage from './pages/NewsPage';
+import ContactPage from './pages/ContactPage';
+import ForumPage from './pages/ForumPage';
+import AIPage from './pages/AIPage';
+import LoginPage from './pages/LoginPage';
+import './styles/App.css';
 
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="diagnostic" element={<DiagnosticPage />} />
-        <Route path="formations" element={<FormationsPage />} />
-        <Route path="communaute" element={<CommunautePage />} />
-        <Route path="marche" element={<MarchePage />} />
-        <Route path="investisseurs" element={<InvestisseursPage />} />
-        <Route path="ressources" element={<RessourcesPage />} />
-        <Route path="programmes" element={<ProgrammesPage />} />
-        <Route path="vision" element={<VisionPage />} />
-        <Route path="projets" element={<ProjetsPage />} />
-        <Route path="contact" element={<ContactPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/a-propos" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/techniques" element={<TechniquesPage />} />
+        <Route path="/actualites" element={<NewsPage />} />
+        <Route path="/forum" element={<ForumPage />} />
+        <Route path="/assistant-ia" element={<AIPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Route>
-      <Route path="connexion" element={<LoginPage />} />
-      <Route path="inscription" element={<RegisterPage />} />
-      <Route path="mot-de-passe-oublie" element={<ForgotPasswordPage />} />
+      <Route path="/connexion" element={<LoginPage />} />
     </Routes>
   );
 }

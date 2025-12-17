@@ -1,112 +1,198 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '../styles/LoginPage.css';
 
 function LoginPage() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    rememberMe: false
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+    // Effacer l'erreur du champ modifié
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' });
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.email) {
+      newErrors.email = 'L\'email est requis';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'L\'email n\'est pas valide';
+    }
+
+    if (!formData.password) {
+      newErrors.password = 'Le mot de passe est requis';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validate()) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    // Simuler une connexion
+    setTimeout(() => {
+      setIsLoading(false);
+      alert('Connexion réussie ! Bienvenue sur AgriCulture.');
+      navigate('/');
+    }, 1500);
+  };
+
   return (
-    <div className="auth-container">
-      <div className="auth-side">
-        <div className="auth-side-content">
-          <span className="auth-eyebrow">Terres d'Avenir</span>
-          <h2>Faites éclore votre projet agricole.</h2>
-          <p>
-            Rejoignez les agricultrices et agriculteurs qui pilotent leurs cultures, leurs ventes et leur financement dans une
-            seule plateforme éco-conçue.
-          </p>
-
-          <div className="auth-badges">
-            <span className="auth-badge">🌱 Agroécologie guidée</span>
-            <span className="auth-badge">🛰️ Données satellite</span>
-            <span className="auth-badge">🤝 Réseau mentor</span>
-          </div>
-
-          <div className="auth-metrics">
-            <div className="auth-metric">
-              <strong>4 200+</strong>
-              <span>agriculteurs accompagnés</span>
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-left">
+          <div className="login-image">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=1200&fit=crop" alt="Agriculture" />
+            <div className="login-overlay">
+              <div className="login-content-overlay">
+                <h2>Bienvenue sur AgriCulture</h2>
+                <p>Rejoignez notre communauté d'agriculteurs passionnés et accédez à des ressources exclusives.</p>
+                <div className="login-features">
+                  <div className="feature-item">
+                    <span className="feature-icon">🌾</span>
+                    <span>Accès aux guides techniques</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">💬</span>
+                    <span>Participation au forum</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">🤖</span>
+                    <span>Assistant IA personnalisé</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">📊</span>
+                    <span>Suivi de vos projets</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="auth-metric">
-              <strong>28</strong>
-              <span>territoires régénérés</span>
-            </div>
-            <div className="auth-metric">
-              <strong>92%</strong>
-              <span>parcours complétés</span>
-            </div>
-          </div>
-
-          <div className="auth-side-card">
-            <p>« Terres d&apos;Avenir m&apos;a permis d&apos;équilibrer biodiversité et rendement sans tâtonner. »</p>
-            <span>— Aïcha, agroforesterie urbaine</span>
           </div>
         </div>
-      </div>
 
-      <div className="auth-form-container">
-        <div className="auth-form-wrapper">
-          <Link to="/" className="auth-backlink">
-            ← Retour au site
-          </Link>
-
-          <div className="auth-form-header">
-            <span className="auth-pill">Connexion</span>
-            <h1>Bon retour sur vos terres digitales</h1>
-            <span className="auth-subtitle">
-              Pas encore de compte ? <Link to="/inscription">Créer un compte gratuitement</Link>
-            </span>
-          </div>
-
-          <form onSubmit={(event) => event.preventDefault()}>
-            <div className="form-group">
-              <label htmlFor="login-email">Adresse e-mail</label>
-              <input
-                type="email"
-                id="login-email"
-                className="input"
-                placeholder="nicolas.dupont@ferme.fr"
-                required
-              />
+        <div className="login-right">
+          <div className="login-form-container">
+            <div className="login-header">
+              <Link to="/" className="login-logo">
+                <span className="logo-icon">🌾</span>
+                <span className="logo-text">AgriCulture</span>
+              </Link>
+              <h1>Connexion</h1>
+              <p>Connectez-vous à votre compte pour continuer</p>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="login-password">Mot de passe</label>
-              <input
-                type="password"
-                id="login-password"
-                className="input"
-                placeholder="••••••••"
-                required
-              />
-            </div>
+            <form onSubmit={handleSubmit} className="login-form">
+              <div className="form-group">
+                <label htmlFor="email">Adresse email</label>
+                <div className="input-wrapper">
+                  <span className="input-icon">✉️</span>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={errors.email ? 'error' : ''}
+                    placeholder="votre@email.com"
+                  />
+                </div>
+                {errors.email && <span className="error-message">{errors.email}</span>}
+              </div>
 
-            <div className="auth-actions">
-              <label className="checkbox-group">
-                <input type="checkbox" name="remember" />
-                Se souvenir de moi
-              </label>
-              <Link to="/mot-de-passe-oublie" className="forgot-link">Mot de passe oublié ?</Link>
-            </div>
+              <div className="form-group">
+                <label htmlFor="password">Mot de passe</label>
+                <div className="input-wrapper">
+                  <span className="input-icon">🔒</span>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className={errors.password ? 'error' : ''}
+                    placeholder="••••••••"
+                  />
+                </div>
+                {errors.password && <span className="error-message">{errors.password}</span>}
+              </div>
 
-            <button className="btn btn-primary" type="submit">
-              Se connecter
-            </button>
+              <div className="form-options">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="rememberMe"
+                    checked={formData.rememberMe}
+                    onChange={handleChange}
+                  />
+                  <span>Se souvenir de moi</span>
+                </label>
+                <Link to="/mot-de-passe-oublie" className="forgot-password">
+                  Mot de passe oublié ?
+                </Link>
+              </div>
 
-            <div className="divider">ou</div>
-
-            <div className="social-grid">
-              <button type="button" className="social-btn">
-                Continuer avec Google
+              <button 
+                type="submit" 
+                className="login-button"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <span className="spinner"></span>
+                    Connexion...
+                  </>
+                ) : (
+                  'Se connecter'
+                )}
               </button>
-              <button type="button" className="social-btn">
-                Continuer avec Facebook
-              </button>
-            </div>
-          </form>
 
-          <div className="auth-note">
-            <span className="auth-note-icon" aria-hidden="true">🌿</span>
-            <p>
-              Vos données sont protégées et hébergées en France. Chaque connexion alimente notre observatoire des pratiques
-              régénératrices.
-            </p>
+              <div className="login-divider">
+                <span>ou</span>
+              </div>
+
+              <div className="social-login">
+                <button type="button" className="social-button google">
+                  <span>🔍</span>
+                  Continuer avec Google
+                </button>
+                <button type="button" className="social-button facebook">
+                  <span>📘</span>
+                  Continuer avec Facebook
+                </button>
+              </div>
+
+              <div className="login-footer">
+                <p>
+                  Pas encore de compte ?{' '}
+                  <Link to="/inscription" className="register-link">
+                    Créer un compte
+                  </Link>
+                </p>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -115,3 +201,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
