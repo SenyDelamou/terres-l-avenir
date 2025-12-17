@@ -87,7 +87,7 @@ function HomePage() {
 
       <section className="why-choose">
         <div className="container">
-          <h2 className="section-title">Pourquoi Choisir AgriCulture ?</h2>
+          <h2 className="section-title">Pourquoi Choisir AgriPulse ?</h2>
           <div className="why-choose-grid">
             <div className="why-item">
               <div className="why-icon">🎯</div>
@@ -208,7 +208,7 @@ function HomePage() {
                 </div>
               </div>
               <p className="testimonial-text">
-                "Grâce à AgriCulture, j'ai pu convertir mon exploitation en bio avec un accompagnement exceptionnel. 
+                "Grâce à AgriPulse, j'ai pu convertir mon exploitation en bio avec un accompagnement exceptionnel. 
                 Les conseils personnalisés et le forum m'ont beaucoup aidé. Mes rendements ont même augmenté de 15% !"
               </p>
             </div>
@@ -272,7 +272,7 @@ function HomePage() {
                 </div>
               </div>
               <p className="testimonial-text">
-                "Le système d'irrigation optimisé que j'ai mis en place grâce aux conseils d'AgriCulture m'a permis 
+                "Le système d'irrigation optimisé que j'ai mis en place grâce aux conseils d'AgriPulse m'a permis 
                 d'économiser 30% d'eau. C'est impressionnant et très bénéfique pour l'environnement !"
               </p>
             </div>

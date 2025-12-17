@@ -55,7 +55,7 @@ function LoginPage() {
     // Simuler une connexion
     setTimeout(() => {
       setIsLoading(false);
-      alert('Connexion réussie ! Bienvenue sur AgriCulture.');
+      alert('Connexion réussie ! Bienvenue sur AgriPulse.');
       navigate('/');
     }, 1500);
   };
@@ -68,7 +68,7 @@ function LoginPage() {
             <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=1200&fit=crop" alt="Agriculture" />
             <div className="login-overlay">
               <div className="login-content-overlay">
-                <h2>Bienvenue sur AgriCulture</h2>
+                <h2>Bienvenue sur AgriPulse</h2>
                 <p>Rejoignez notre communauté d'agriculteurs passionnés et accédez à des ressources exclusives.</p>
                 <div className="login-features">
                   <div className="feature-item">
@@ -98,7 +98,7 @@ function LoginPage() {
             <div className="login-header">
               <Link to="/" className="login-logo">
                 <span className="logo-icon">🌾</span>
-                <span className="logo-text">AgriCulture</span>
+                <span className="logo-text">AgriPulse</span>
               </Link>
               <h1>Connexion</h1>
               <p>Connectez-vous à votre compte pour continuer</p>

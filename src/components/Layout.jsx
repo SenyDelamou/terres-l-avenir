@@ -55,7 +55,7 @@ function Layout() {
         <div className="container">
           <Link to="/" className="logo" onClick={closeMobileMenu}>
             <span className="logo-icon">🌾</span>
-            <span className="logo-text">AgriCulture</span>
+            <span className="logo-text">AgriPulse</span>
           </Link>
           
           {isMobileMenuOpen && (
@@ -269,7 +269,7 @@ function Layout() {
             <div className="footer-section footer-about">
               <div className="footer-logo">
                 <span className="logo-icon">🌾</span>
-                <span className="logo-text">AgriCulture</span>
+                <span className="logo-text">AgriPulse</span>
               </div>
               <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>
               <div className="footer-social">
@@ -320,7 +320,7 @@ function Layout() {
           </div>
           <div className="footer-bottom">
             <div className="footer-bottom-content">
-              <p>&copy; 2024 AgriCulture. Tous droits réservés.</p>
+              <p>&copy; 2024 AgriPulse. Tous droits réservés.</p>
               <div className="footer-links">
                 <Link to="/">Mentions légales</Link>
                 <Link to="/">Politique de confidentialité</Link>
