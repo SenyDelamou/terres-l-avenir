@@ -12,7 +12,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&h=600&fit=crop');
+  background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=600&fit=crop');
 }
 
 .page-header::before {
@@ -460,8 +460,16 @@
 }
 
 @media (max-width: 768px) {
+  .page-header {
+    padding: 4rem 0;
+  }
+
   .page-header h1 {
     font-size: 2rem;
+  }
+
+  .page-header p {
+    font-size: 1rem;
   }
 
   .info-grid {

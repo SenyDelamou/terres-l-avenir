@@ -209,30 +209,35 @@ function DashboardPage() {
                   <div className="projects-grid">
                     {recentProjects.map(project => (
                       <div key={project.id} className="project-card">
-                        <h3>{project.title}</h3>
-                        <div className="project-meta">
-                          <span className={`status-badge ${project.status.toLowerCase().replace(' ', '-')}`}>
-                            {project.status}
-                          </span>
-                          <span className="project-date">{project.date}</span>
+                        <div className="project-card-image">
+                          <img src={project.image} alt={project.title} />
                         </div>
-                        {project.progress > 0 && (
-                          <div className="progress-section">
-                            <div className="progress-info">
-                              <span>Progression</span>
-                              <span>{project.progress}%</span>
-                            </div>
-                            <div className="progress-bar">
-                              <div 
-                                className="progress-fill" 
-                                style={{ width: `${project.progress}%` }}
-                              ></div>
-                            </div>
+                        <div className="project-card-content">
+                          <h3>{project.title}</h3>
+                          <div className="project-meta">
+                            <span className={`status-badge ${project.status.toLowerCase().replace(' ', '-')}`}>
+                              {project.status}
+                            </span>
+                            <span className="project-date">{project.date}</span>
                           </div>
-                        )}
-                        <div className="project-actions">
-                          <button className="btn-secondary">Voir détails</button>
-                          <button className="btn-edit">Modifier</button>
+                          {project.progress > 0 && (
+                            <div className="progress-section">
+                              <div className="progress-info">
+                                <span>Progression</span>
+                                <span>{project.progress}%</span>
+                              </div>
+                              <div className="progress-bar">
+                                <div 
+                                  className="progress-fill" 
+                                  style={{ width: `${project.progress}%` }}
+                                ></div>
+                              </div>
+                            </div>
+                          )}
+                          <div className="project-actions">
+                            <button className="btn-secondary">Voir détails</button>
+                            <button className="btn-edit">Modifier</button>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -248,9 +253,14 @@ function DashboardPage() {
                   </div>
                   <div className="funding-info">
                     <div className="info-card">
-                      <h3>💡 Vous avez un projet agricole ?</h3>
-                      <p>Publiez votre projet et trouvez des investisseurs pour le financer. Notre plateforme connecte les jeunes entrepreneurs avec des investisseurs passionnés par l'agriculture.</p>
-                      <Link to="/publier-projet" className="btn-primary">Créer un projet</Link>
+                      <div className="info-card-image">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&h=300&fit=crop" alt="Financement" />
+                      </div>
+                      <div className="info-card-content">
+                        <h3>💡 Vous avez un projet agricole ?</h3>
+                        <p>Publiez votre projet et trouvez des investisseurs pour le financer. Notre plateforme connecte les jeunes entrepreneurs avec des investisseurs passionnés par l'agriculture.</p>
+                        <Link to="/publier-projet" className="btn-primary">Créer un projet</Link>
+                      </div>
                     </div>
                   </div>
                   <div className="my-funding-projects">

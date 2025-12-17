@@ -108,7 +108,12 @@ function FundingProjectsPage() {
 
   return (
     <div className="funding-projects-page">
-      <section className="page-header">
+      <section className="page-header" style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1920&h=600&fit=crop)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
+        <div className="page-header-overlay"></div>
         <div className="container">
           <h1>Projets de Financement</h1>
           <p>Découvrez et soutenez les projets agricoles innovants</p>

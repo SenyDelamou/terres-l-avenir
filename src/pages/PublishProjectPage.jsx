@@ -104,7 +104,12 @@ function PublishProjectPage() {
 
   return (
     <div className="publish-project-page">
-      <section className="page-header">
+      <section className="page-header" style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&h=600&fit=crop)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
+        <div className="page-header-overlay"></div>
         <div className="container">
           <h1>Publier un Projet de Financement</h1>
           <p>Partagez votre projet agricole et trouvez des investisseurs</p>
@@ -114,23 +119,28 @@ function PublishProjectPage() {
       <section className="publish-content">
         <div className="container">
           <div className="publish-guide">
-            <h2>💡 Guide de Publication</h2>
-            <div className="guide-steps">
-              <div className="guide-step">
-                <span className="step-number">1</span>
-                <p>Remplissez tous les champs obligatoires avec des informations détaillées</p>
-              </div>
-              <div className="guide-step">
-                <span className="step-number">2</span>
-                <p>Ajoutez des photos de qualité pour illustrer votre projet</p>
-              </div>
-              <div className="guide-step">
-                <span className="step-number">3</span>
-                <p>Joignez un business plan si disponible</p>
-              </div>
-              <div className="guide-step">
-                <span className="step-number">4</span>
-                <p>Votre projet sera examiné sous 48h avant publication</p>
+            <div className="guide-image">
+              <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=300&fit=crop" alt="Guide publication" />
+            </div>
+            <div className="guide-content">
+              <h2>💡 Guide de Publication</h2>
+              <div className="guide-steps">
+                <div className="guide-step">
+                  <span className="step-number">1</span>
+                  <p>Remplissez tous les champs obligatoires avec des informations détaillées</p>
+                </div>
+                <div className="guide-step">
+                  <span className="step-number">2</span>
+                  <p>Ajoutez des photos de qualité pour illustrer votre projet</p>
+                </div>
+                <div className="guide-step">
+                  <span className="step-number">3</span>
+                  <p>Joignez un business plan si disponible</p>
+                </div>
+                <div className="guide-step">
+                  <span className="step-number">4</span>
+                  <p>Votre projet sera examiné sous 48h avant publication</p>
+                </div>
               </div>
             </div>
           </div>
