@@ -18,21 +18,24 @@ function DashboardPage() {
       title: 'Projet d\'irrigation solaire',
       status: 'En cours',
       progress: 65,
-      date: '15 Mars 2024'
+      date: '15 Mars 2024',
+      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=250&fit=crop'
     },
     {
       id: 2,
       title: 'Conversion vers le bio',
       status: 'Terminé',
       progress: 100,
-      date: '10 Février 2024'
+      date: '10 Février 2024',
+      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=250&fit=crop'
     },
     {
       id: 3,
       title: 'Installation serre moderne',
       status: 'En attente',
       progress: 0,
-      date: '1 Avril 2024'
+      date: '1 Avril 2024',
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=250&fit=crop'
     }
   ];
 
@@ -53,7 +56,12 @@ function DashboardPage() {
 
   return (
     <div className="dashboard-page">
-      <section className="page-header">
+      <section className="page-header" style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1920&h=600&fit=crop)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
+        <div className="page-header-overlay"></div>
         <div className="container">
           <h1>Mon Tableau de Bord</h1>
           <p>Gérez vos projets et suivez votre activité</p>
@@ -147,6 +155,9 @@ function DashboardPage() {
                       <div className="projects-list">
                         {recentProjects.map(project => (
                           <div key={project.id} className="project-item">
+                            <div className="project-image-small">
+                              <img src={project.image} alt={project.title} />
+                            </div>
                             <div className="project-info">
                               <h4>{project.title}</h4>
                               <p className="project-date">{project.date}</p>

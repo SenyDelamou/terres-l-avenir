@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import PublishProjectPage from './pages/PublishProjectPage';
 import FundingProjectsPage from './pages/FundingProjectsPage';
+import ProfilePage from './pages/ProfilePage';
 import './styles/App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/assistant-ia" element={<AIPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/profil" element={<ProfilePage />} />
         <Route path="/projets-financement" element={<FundingProjectsPage />} />
         <Route path="/publier-projet" element={<PublishProjectPage />} />
       </Route>
