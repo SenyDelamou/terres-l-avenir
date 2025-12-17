@@ -115,6 +115,87 @@
   display: inline-block;
 }
 
+.nav-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 10000;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.9);
+}
+
+.nav a {
+  position: relative;
+}
+
+.nav a:hover .nav-tooltip,
+.nav a:active .nav-tooltip,
+.nav a:focus .nav-tooltip,
+.nav-more-toggle:hover .nav-tooltip,
+.nav-more-toggle:active .nav-tooltip,
+.nav-more-toggle:focus .nav-tooltip,
+.btn-dashboard:hover .nav-tooltip,
+.btn-dashboard:active .nav-tooltip,
+.btn-dashboard:focus .nav-tooltip,
+.btn-login:hover .nav-tooltip,
+.btn-login:active .nav-tooltip,
+.btn-login:focus .nav-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(5px);
+}
+
+/* Améliorer les tooltips sur mobile */
+@media (max-width: 768px) {
+  .nav-tooltip {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    top: calc(100% + 8px);
+  }
+
+  /* Afficher les tooltips au tap sur mobile */
+  .nav a:active .nav-tooltip,
+  .nav-more-toggle:active .nav-tooltip,
+  .btn-dashboard:active .nav-tooltip,
+  .btn-login:active .nav-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(5px);
+    transition-delay: 0s;
+  }
+
+  /* Garder le tooltip visible un peu plus longtemps sur mobile */
+  .nav a.tooltip-active .nav-tooltip,
+  .nav-more-toggle.tooltip-active .nav-tooltip,
+  .btn-dashboard.tooltip-active .nav-tooltip,
+  .btn-login.tooltip-active .nav-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(5px);
+  }
+}
+
 .nav-more-menu {
   position: relative;
 }

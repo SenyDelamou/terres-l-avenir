@@ -84,10 +84,33 @@ function Layout() {
                   key={link.path}
                   to={link.path} 
                   className={location.pathname === link.path ? 'active' : ''}
-                  onClick={closeMobileMenu}
+                  onClick={(e) => {
+                    closeMobileMenu();
+                    // Afficher le tooltip au tap sur mobile
+                    if (window.innerWidth <= 768) {
+                      e.currentTarget.classList.add('tooltip-active');
+                      setTimeout(() => {
+                        e.currentTarget.classList.remove('tooltip-active');
+                      }, 2000);
+                    }
+                  }}
+                  onTouchStart={(e) => {
+                    // Afficher le tooltip au touch sur mobile
+                    if (window.innerWidth <= 768) {
+                      e.currentTarget.classList.add('tooltip-active');
+                    }
+                  }}
+                  onTouchEnd={(e) => {
+                    // Garder le tooltip visible un peu plus longtemps
+                    setTimeout(() => {
+                      e.currentTarget.classList.remove('tooltip-active');
+                    }, 1500);
+                  }}
+                  title={link.label}
                 >
                   <span className="nav-icon">{link.icon}</span>
                   <span className="nav-label">{link.label}</span>
+                  <span className="nav-tooltip">{link.label}</span>
                 </Link>
               ))}
             </div>
@@ -95,13 +118,34 @@ function Layout() {
             <div className="nav-more-menu">
               <button 
                 className={`nav-more-toggle ${isMoreMenuOpen ? 'active' : ''}`}
-                onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+                onClick={(e) => {
+                  setIsMoreMenuOpen(!isMoreMenuOpen);
+                  // Afficher le tooltip au tap sur mobile
+                  if (window.innerWidth <= 768) {
+                    e.currentTarget.classList.add('tooltip-active');
+                    setTimeout(() => {
+                      e.currentTarget.classList.remove('tooltip-active');
+                    }, 2000);
+                  }
+                }}
                 onMouseEnter={() => setIsMoreMenuOpen(true)}
                 onMouseLeave={() => setIsMoreMenuOpen(false)}
+                onTouchStart={(e) => {
+                  if (window.innerWidth <= 768) {
+                    e.currentTarget.classList.add('tooltip-active');
+                  }
+                }}
+                onTouchEnd={(e) => {
+                  setTimeout(() => {
+                    e.currentTarget.classList.remove('tooltip-active');
+                  }, 1500);
+                }}
+                title="Plus d'options"
               >
                 <span>☰</span>
                 <span className="nav-label">Plus</span>
                 <span className="dropdown-arrow">▼</span>
+                <span className="nav-tooltip">Plus</span>
               </button>
               <div className={`nav-dropdown ${isMoreMenuOpen ? 'open' : ''}`}
                    onMouseEnter={() => setIsMoreMenuOpen(true)}
@@ -112,26 +156,92 @@ function Layout() {
                     key={link.path}
                     to={link.path} 
                     className={location.pathname === link.path ? 'active' : ''}
-                    onClick={() => {
+                    onClick={(e) => {
                       closeMobileMenu();
                       setIsMoreMenuOpen(false);
+                      if (window.innerWidth <= 768) {
+                        e.currentTarget.classList.add('tooltip-active');
+                        setTimeout(() => {
+                          e.currentTarget.classList.remove('tooltip-active');
+                        }, 2000);
+                      }
                     }}
+                    onTouchStart={(e) => {
+                      if (window.innerWidth <= 768) {
+                        e.currentTarget.classList.add('tooltip-active');
+                      }
+                    }}
+                    onTouchEnd={(e) => {
+                      setTimeout(() => {
+                        e.currentTarget.classList.remove('tooltip-active');
+                      }, 1500);
+                    }}
+                    title={link.label}
                   >
                     <span className="nav-icon">{link.icon}</span>
                     <span className="nav-label">{link.label}</span>
+                    <span className="nav-tooltip">{link.label}</span>
                   </Link>
                 ))}
               </div>
             </div>
             
             <div className="nav-auth">
-              <Link to="/dashboard" className="btn-dashboard" onClick={closeMobileMenu}>
+              <Link 
+                to="/dashboard" 
+                className="btn-dashboard" 
+                onClick={(e) => {
+                  closeMobileMenu();
+                  if (window.innerWidth <= 768) {
+                    e.currentTarget.classList.add('tooltip-active');
+                    setTimeout(() => {
+                      e.currentTarget.classList.remove('tooltip-active');
+                    }, 2000);
+                  }
+                }}
+                onTouchStart={(e) => {
+                  if (window.innerWidth <= 768) {
+                    e.currentTarget.classList.add('tooltip-active');
+                  }
+                }}
+                onTouchEnd={(e) => {
+                  setTimeout(() => {
+                    e.currentTarget.classList.remove('tooltip-active');
+                  }, 1500);
+                }}
+                title="Dashboard"
+              >
                 <span>📊</span>
                 <span>Dashboard</span>
+                <span className="nav-tooltip">Dashboard</span>
               </Link>
-              <Link to="/connexion" className="btn-login" onClick={closeMobileMenu}>
+              <Link 
+                to="/connexion" 
+                className="btn-login" 
+                onClick={(e) => {
+                  closeMobileMenu();
+                  if (window.innerWidth <= 768) {
+                    e.currentTarget.classList.add('tooltip-active');
+                    setTimeout(() => {
+                      e.currentTarget.classList.remove('tooltip-active');
+                    }, 2000);
+                  }
+                }}
+                onTouchStart={(e) => {
+                  if (window.innerWidth <= 768) {
+                    e.currentTarget.classList.add('tooltip-active');
+                  }
+                }}
+                onTouchEnd={(e) => {
+                  setTimeout(() => {
+                    e.currentTarget.classList.remove('tooltip-active');
+                  }, 1500);
+                }}
+                title="Connexion"
+              >
                 <span>🔐</span>
                 <span>Connexion</span>
+                <span className="nav-tooltip">Connexion</span>
               </Link>
             </div>
           </nav>
