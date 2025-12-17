@@ -32,15 +32,20 @@ function Layout() {
     };
   }, [isMobileMenuOpen]);
 
-  const navLinks = [
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+
+  const mainNavLinks = [
     { path: '/', label: 'Accueil', icon: '🏠' },
-    { path: '/a-propos', label: 'À propos', icon: 'ℹ️' },
     { path: '/services', label: 'Services', icon: '🛠️' },
     { path: '/techniques', label: 'Techniques', icon: '🌾' },
-    { path: '/actualites', label: 'Actualités', icon: '📰' },
     { path: '/forum', label: 'Forum', icon: '💬' },
     { path: '/projets-financement', label: 'Financement', icon: '💰' },
-    { path: '/assistant-ia', label: 'IA', icon: '🤖' },
+    { path: '/assistant-ia', label: 'IA', icon: '🤖' }
+  ];
+
+  const moreNavLinks = [
+    { path: '/a-propos', label: 'À propos', icon: 'ℹ️' },
+    { path: '/actualites', label: 'Actualités', icon: '📰' },
     { path: '/contact', label: 'Contact', icon: '📞' }
   ];
 
@@ -73,17 +78,51 @@ function Layout() {
               </button>
             </div>
             
-            {navLinks.map((link) => (
-              <Link 
-                key={link.path}
-                to={link.path} 
-                className={location.pathname === link.path ? 'active' : ''}
-                onClick={closeMobileMenu}
+            <div className="nav-main-links">
+              {mainNavLinks.map((link) => (
+                <Link 
+                  key={link.path}
+                  to={link.path} 
+                  className={location.pathname === link.path ? 'active' : ''}
+                  onClick={closeMobileMenu}
+                >
+                  <span className="nav-icon">{link.icon}</span>
+                  <span className="nav-label">{link.label}</span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="nav-more-menu">
+              <button 
+                className={`nav-more-toggle ${isMoreMenuOpen ? 'active' : ''}`}
+                onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+                onMouseEnter={() => setIsMoreMenuOpen(true)}
+                onMouseLeave={() => setIsMoreMenuOpen(false)}
               >
-                <span className="nav-icon">{link.icon}</span>
-                <span className="nav-label">{link.label}</span>
-              </Link>
-            ))}
+                <span>☰</span>
+                <span className="nav-label">Plus</span>
+                <span className="dropdown-arrow">▼</span>
+              </button>
+              <div className={`nav-dropdown ${isMoreMenuOpen ? 'open' : ''}`}
+                   onMouseEnter={() => setIsMoreMenuOpen(true)}
+                   onMouseLeave={() => setIsMoreMenuOpen(false)}
+              >
+                {moreNavLinks.map((link) => (
+                  <Link 
+                    key={link.path}
+                    to={link.path} 
+                    className={location.pathname === link.path ? 'active' : ''}
+                    onClick={() => {
+                      closeMobileMenu();
+                      setIsMoreMenuOpen(false);
+                    }}
+                  >
+                    <span className="nav-icon">{link.icon}</span>
+                    <span className="nav-label">{link.label}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
             
             <div className="nav-auth">
               <Link to="/dashboard" className="btn-dashboard" onClick={closeMobileMenu}>
