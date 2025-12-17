@@ -39,6 +39,7 @@ function Layout() {
     { path: '/techniques', label: 'Techniques', icon: '🌾' },
     { path: '/actualites', label: 'Actualités', icon: '📰' },
     { path: '/forum', label: 'Forum', icon: '💬' },
+    { path: '/projets-financement', label: 'Financement', icon: '💰' },
     { path: '/assistant-ia', label: 'IA', icon: '🤖' },
     { path: '/contact', label: 'Contact', icon: '📞' }
   ];
@@ -85,6 +86,10 @@ function Layout() {
             ))}
             
             <div className="nav-auth">
+              <Link to="/dashboard" className="btn-dashboard" onClick={closeMobileMenu}>
+                <span>📊</span>
+                <span>Dashboard</span>
+              </Link>
               <Link to="/connexion" className="btn-login" onClick={closeMobileMenu}>
                 <span>🔐</span>
                 <span>Connexion</span>
