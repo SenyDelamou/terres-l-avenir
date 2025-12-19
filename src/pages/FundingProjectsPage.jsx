@@ -111,9 +111,9 @@ function FundingProjectsPage() {
   return (
     <div className="funding-projects-page">
       <PageHeader
-        title="Projets de Financement"
-        subtitle="Découvrez et soutenez les projets agricoles innovants"
-        icon="💰"
+        title="Soutenez l'Innovation Agricole"
+        subtitle="Participez à l'essor des projets les plus prometteurs et investissez dans l'avenir du sol."
+        icon="💎"
         buttons={[
           {
             label: "Publier un Projet",

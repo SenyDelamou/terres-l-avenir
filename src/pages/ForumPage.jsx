@@ -95,8 +95,8 @@ function ForumPage() {
   return (
     <div className="forum-page">
       <PageHeader
-        title="Forum Agricole"
-        subtitle="Échangez avec la communauté et partagez vos expériences"
+        title="Cercle d'Échange & de Savoir"
+        subtitle="Partagez vos connaissances, posez vos questions et grandissez au sein de notre communauté."
         icon="💬"
         buttons={[
           {

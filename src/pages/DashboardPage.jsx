@@ -65,8 +65,9 @@ function DashboardPage() {
   return (
     <div className="dashboard-page">
       <PageHeader
-        title="Mon Tableau de Bord"
-        subtitle="Gérez vos projets et suivez votre activité"
+        title="Votre Exploitation Connectée"
+        subtitle="Suivez vos progrès, gérez vos récoltes et optimisez vos performances en un coup d'œil."
+        icon="📊"
         images={[
           'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=600&fit=crop',
           'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&h=600&fit=crop',

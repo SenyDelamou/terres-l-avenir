@@ -119,9 +119,9 @@ function MarketplacePage() {
     return (
         <div className="marketplace-page">
             <PageHeader
-                title="Marketplace Agricole"
-                subtitle="Achetez et vendez des produits agricoles locaux"
-                icon="🛒"
+                title="Le Marché de la Qualité Supérieure"
+                subtitle="Connectez-vous aux meilleurs producteurs locaux et accédez à des produits d'exception."
+                icon="🌽"
                 buttons={[
                     {
                         label: "Vendre un Produit",

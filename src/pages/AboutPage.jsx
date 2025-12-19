@@ -51,8 +51,9 @@ function AboutPage() {
   return (
     <div className="about-page">
       <PageHeader
-        title="À Propos de Nous"
-        subtitle="Bâtir ensemble l'agriculture de demain, durable et innovante."
+        title="Bâtissons l'Agriculture de Demain"
+        subtitle="Notre mission : allier tradition et innovation pour nourrir les générations futures avec excellence."
+        icon="🏛️"
         images={[
           'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&h=600&fit=crop',
           'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=1920&h=600&fit=crop',

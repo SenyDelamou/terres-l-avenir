@@ -38,9 +38,9 @@ function TechniquesPage() {
   return (
     <div className="techniques-page">
       <PageHeader
-        title="Conseils & Techniques Agricoles"
-        subtitle="Découvrez les méthodes modernes et durables pour améliorer votre production"
-        icon="🌾"
+        title="Maîtrisez l'Art de la Terre"
+        subtitle="Des techniques ancestrales aux technologies de pointe, cultivez l'excellence durable."
+        icon="🌱"
         images={[
           'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=1920&h=600&fit=crop',
           'https://images.unsplash.com/photo-1595841696677-5f80e037466d?w=1920&h=600&fit=crop',

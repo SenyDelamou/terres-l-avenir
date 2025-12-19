@@ -165,8 +165,9 @@ function AIPage() {
   return (
     <div className="ai-page">
       <PageHeader
-        title="🤖 Assistant IA Agricole"
-        subtitle="Obtenez des réponses instantanées à vos questions sur l'agriculture"
+        title="L'Intelligence au Service du Sol"
+        subtitle="Diagnostic instantané et conseils personnalisés : votre assistant agricole intelligent."
+        icon="🧠"
         images={[
           'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1920&h=600&fit=crop',
           'https://images.unsplash.com/photo-1595841696677-5f80e037466d?w=1920&h=600&fit=crop',

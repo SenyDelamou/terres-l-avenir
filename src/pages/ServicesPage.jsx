@@ -45,8 +45,9 @@ function ServicesPage() {
   return (
     <div className="services-page">
       <PageHeader
-        title="Nos Services"
-        subtitle="Des solutions complètes pour votre exploitation agricole"
+        title="L'Excellence de l'Accompagnement"
+        subtitle="De la logistique au conseil stratégique, nous sommes le partenaire de votre réussite agricole."
+        icon="🤝"
         images={[
           'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&h=600&fit=crop',
           'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&h=600&fit=crop',
