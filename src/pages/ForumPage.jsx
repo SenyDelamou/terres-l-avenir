@@ -7,8 +7,10 @@ function ForumPage() {
   const [activeCategory, setActiveCategory] = useState('tous');
   const [showNewTopic, setShowNewTopic] = useState(false);
   const [showDetailModal, setShowDetailModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [newTopic, setNewTopic] = useState({ title: '', category: '', content: '' });
+  const [paidTopics, setPaidTopics] = useState([]);
+  const [newTopic, setNewTopic] = useState({ title: '', category: '', content: '', price: '' });
 
   useEffect(() => {
     const userData = localStorage.getItem('userData');
@@ -39,6 +41,7 @@ function ForumPage() {
       views: 245,
       lastActivity: 'Il y a 2 heures',
       image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=300&fit=crop',
+      price: 0,
       fullContent: 'La fertilité des sols est le pilier d\'une production agricole durable. Cette discussion explore les méthodes organiques pour restaurer la vie microbienne du sol, l\'utilisation du compostage aérobie et l\'intégration des légumineuses fixatrices d\'azote. Idéal pour les petits exploitants cherchant à réduire leur dépendance aux engrais chimiques.',
       conferenciers: [
         { name: 'Dr. Thierno Diallo', role: 'Agronome', expertise: 'Santé des sols', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
@@ -54,6 +57,7 @@ function ForumPage() {
       views: 189,
       lastActivity: 'Il y a 5 heures',
       image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop',
+      price: 25000,
       fullContent: 'Découvrez comment planifier vos cycles de culture pour briser le cycle des ravageurs et optimiser l\'utilisation des nutriments. Nous aborderons les associations céréales-légumineuses et les cultures de couverture.',
       conferenciers: [
         { name: 'Ibrahima Sory Camara', role: 'Ingénieur Rural', expertise: 'Planification', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' }
@@ -68,6 +72,7 @@ function ForumPage() {
       views: 312,
       lastActivity: 'Il y a 1 jour',
       image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop',
+      price: 50000,
       fullContent: 'La transition vers l\'agriculture biologique est un défi technique et administratif. Ce sujet traite des normes de certification en vigueur en Guinée, des techniques de lutte biologique et de la valorisation commerciale des produits certifiés.',
       conferenciers: [
         { name: 'Saran Kéita', role: 'Certificatrice', expertise: 'Normes Bio', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop' },
@@ -83,6 +88,7 @@ function ForumPage() {
       views: 156,
       lastActivity: 'Il y a 2 jours',
       image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&h=300&fit=crop',
+      price: 0,
       fullContent: 'L\'irrigation de précision est la clé face au changement climatique. Nous discutons de l\'installation de kits solaires, de la maintenance des tuyaux et de l\'économie d\'eau réalisée sur une saison maraîchère.',
       conferenciers: [
         { name: 'Ansoumane Bangoura', role: 'Hydrologue', expertise: 'Énergie Solaire', image: 'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop' }
@@ -97,6 +103,7 @@ function ForumPage() {
       views: 201,
       lastActivity: 'Il y a 3 jours',
       image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop',
+      price: 0,
       fullContent: 'L\'élevage moderne demande une attention particulière au confort des bovins. Ce sujet explore l\'aménagement des étables, la santé vétérinaire préventive et l\'impact du bien-être sur la production laitière.',
       conferenciers: [
         { name: 'Dr. Ousmane Sow', role: 'Vétérinaire', expertise: 'Pathologie Bovine', image: 'https://images.unsplash.com/photo-1492562080023-ab3dbdf9bbbd?w=100&h=100&fit=crop' }
@@ -111,6 +118,7 @@ function ForumPage() {
       views: 278,
       lastActivity: 'Il y a 4 jours',
       image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop',
+      price: 150000,
       fullContent: 'La mécanisation est un investissement lourd. Guide sur le choix de la puissance, la disponibilité des pièces de rechange localement et le calcul du retour sur investissement.',
       conferenciers: [
         { name: 'Alpha Touré', role: 'Expert Mécanisation', expertise: 'Maintenance', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop' }
@@ -125,13 +133,29 @@ function ForumPage() {
   const handleNewTopic = (e) => {
     e.preventDefault();
     alert(`Nouveau sujet créé : ${newTopic.title}`);
-    setNewTopic({ title: '', category: '', content: '' });
+    setNewTopic({ title: '', category: '', content: '', price: '' });
     setShowNewTopic(false);
   };
 
   const handleViewTopic = (topic) => {
     setSelectedTopic(topic);
     setShowDetailModal(true);
+  };
+
+  const handleParticipate = (topic) => {
+    if (topic.price === 0 || paidTopics.includes(topic.id)) {
+      alert('Redirection vers la discussion...');
+      // Logique réelle de participation ici
+    } else {
+      setShowPaymentModal(true);
+    }
+  };
+
+  const confirmPayment = () => {
+    // Dans une app réelle, on intègre une API de paiement ici
+    setPaidTopics([...paidTopics, selectedTopic.id]);
+    setShowPaymentModal(false);
+    alert('Paiement réussi ! Vous avez désormais accès à ce sujet.');
   };
 
   return (
@@ -159,7 +183,7 @@ function ForumPage() {
                 className="btn-new-topic"
                 onClick={() => setShowNewTopic(!showNewTopic)}
               >
-                + Nouveau sujet
+                + Lancer un sujet
               </button>
             )}
           </div>
@@ -201,8 +225,17 @@ function ForumPage() {
                     placeholder="Décrivez votre question ou votre sujet de discussion..."
                   ></textarea>
                 </div>
+                <div className="form-group">
+                  <label>Prix de participation (GNF) - 0 pour gratuit</label>
+                  <input
+                    type="number"
+                    value={newTopic.price}
+                    onChange={(e) => setNewTopic({ ...newTopic, price: e.target.value })}
+                    placeholder="Ex: 50000"
+                  />
+                </div>
                 <div className="form-actions">
-                  <button type="submit" className="btn-submit">Publier</button>
+                  <button type="submit" className="btn-submit">Publier le sujet</button>
                   <button
                     type="button"
                     className="btn-cancel"
@@ -242,10 +275,15 @@ function ForumPage() {
                     <div className="topic-content">
                       <div className="topic-header">
                         <h3>{topic.title}</h3>
-                        <span className="topic-category">
-                          {categories.find(c => c.id === topic.category)?.icon}
-                          {categories.find(c => c.id === topic.category)?.name}
-                        </span>
+                        <div className="topic-badges">
+                          <span className="topic-category">
+                            {categories.find(c => c.id === topic.category)?.icon}
+                            {categories.find(c => c.id === topic.category)?.name}
+                          </span>
+                          <span className={`price-badge ${topic.price === 0 ? 'free' : 'paid'}`}>
+                            {topic.price === 0 ? 'Gratuit' : `${topic.price.toLocaleString()} GNF`}
+                          </span>
+                        </div>
                       </div>
                       <div className="topic-meta">
                         <span className="topic-author">Par {topic.author}</span>
@@ -319,7 +357,60 @@ function ForumPage() {
             </div>
 
             <div className="modal-footer">
-              <button className="btn-participate">Rejoindre la discussion</button>
+              <div className="modal-pricing">
+                {selectedTopic.price > 0 && !paidTopics.includes(selectedTopic.id) ? (
+                  <div className="price-info">
+                    <span className="label">Frais de participation :</span>
+                    <span className="value">{selectedTopic.price.toLocaleString()} GNF</span>
+                  </div>
+                ) : (
+                  <span className="access-info">✓ Accès autorisé</span>
+                )}
+              </div>
+              <button
+                className={`btn-participate ${paidTopics.includes(selectedTopic.id) ? 'joined' : ''}`}
+                onClick={() => handleParticipate(selectedTopic)}
+              >
+                {selectedTopic.price === 0 || paidTopics.includes(selectedTopic.id)
+                  ? 'Accéder à la discussion'
+                  : `Payer et Participer (${selectedTopic.price.toLocaleString()} GNF)`}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showPaymentModal && selectedTopic && (
+        <div className="modal-overlay" onClick={() => setShowPaymentModal(false)}>
+          <div className="payment-modal" onClick={(e) => e.stopPropagation()}>
+            <h2>Confirmer la participation</h2>
+            <div className="payment-summary">
+              <div className="summary-item">
+                <span>Sujet :</span>
+                <strong>{selectedTopic.title}</strong>
+              </div>
+              <div className="summary-item">
+                <span>Montant à payer :</span>
+                <strong className="amount">{selectedTopic.price.toLocaleString()} GNF</strong>
+              </div>
+            </div>
+
+            <div className="payment-methods">
+              <p>Choisissez votre mode de paiement :</p>
+              <div className="methods-grid">
+                <button className="method-btn">Orange Money</button>
+                <button className="method-btn">MTN Mobile Money</button>
+                <button className="method-btn">Carte Bancaire</button>
+              </div>
+            </div>
+
+            <div className="modal-actions">
+              <button className="btn-confirm-pay" onClick={confirmPayment}>
+                Confirmer le paiement
+              </button>
+              <button className="btn-cancel" onClick={() => setShowPaymentModal(false)}>
+                Annuler
+              </button>
             </div>
           </div>
         </div>
