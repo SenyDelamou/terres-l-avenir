@@ -535,9 +535,12 @@
 
 .footer-section h3,
 .footer-section h4 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   color: var(--color-accent);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
 }
 
 .footer-about {
@@ -570,16 +573,19 @@
 }
 
 .social-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(74, 124, 42, 0.2);
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  /* Darker, more professional circle */
   border-radius: 50%;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: all 0.3s;
+  font-size: 1.3rem;
+  line-height: 1;
+  /* Critical for emoji centering */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .social-link:hover {
@@ -595,11 +601,12 @@
 
 .footer-section a {
   display: block;
-  color: #ccc;
+  color: #a0aec0;
   text-decoration: none;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
   transition: all 0.3s;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  font-weight: 400;
 }
 
 .footer-section a:hover {

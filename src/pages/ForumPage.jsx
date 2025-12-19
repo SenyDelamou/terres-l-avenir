@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageHeader from '../components/PageHeader';
 import '../styles/ForumPage.css';
 
 function ForumPage() {
+  const [isAdmin, setIsAdmin] = useState(false);
   const [activeCategory, setActiveCategory] = useState('tous');
   const [showNewTopic, setShowNewTopic] = useState(false);
+  const [showDetailModal, setShowDetailModal] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState(null);
   const [newTopic, setNewTopic] = useState({ title: '', category: '', content: '' });
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const user = JSON.parse(userData);
+      setIsAdmin(user.role === 'Admin' || user.email === 'admin@agripulse.com');
+    }
+  }, []);
 
   const categories = [
     { id: 'tous', name: 'Tous les sujets', icon: '📋' },
@@ -27,7 +38,12 @@ function ForumPage() {
       replies: 12,
       views: 245,
       lastActivity: 'Il y a 2 heures',
-      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=100&h=100&fit=crop'
+      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=300&fit=crop',
+      fullContent: 'La fertilité des sols est le pilier d\'une production agricole durable. Cette discussion explore les méthodes organiques pour restaurer la vie microbienne du sol, l\'utilisation du compostage aérobie et l\'intégration des légumineuses fixatrices d\'azote. Idéal pour les petits exploitants cherchant à réduire leur dépendance aux engrais chimiques.',
+      conferenciers: [
+        { name: 'Dr. Thierno Diallo', role: 'Agronome', expertise: 'Santé des sols', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
+        { name: 'Mme. Fatoumata Condé', role: 'Experte Bio', expertise: 'Compostage', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' }
+      ]
     },
     {
       id: 2,
@@ -37,7 +53,11 @@ function ForumPage() {
       replies: 8,
       views: 189,
       lastActivity: 'Il y a 5 heures',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=100&h=100&fit=crop'
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop',
+      fullContent: 'Découvrez comment planifier vos cycles de culture pour briser le cycle des ravageurs et optimiser l\'utilisation des nutriments. Nous aborderons les associations céréales-légumineuses et les cultures de couverture.',
+      conferenciers: [
+        { name: 'Ibrahima Sory Camara', role: 'Ingénieur Rural', expertise: 'Planification', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' }
+      ]
     },
     {
       id: 3,
@@ -47,7 +67,12 @@ function ForumPage() {
       replies: 15,
       views: 312,
       lastActivity: 'Il y a 1 jour',
-      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=100&h=100&fit=crop'
+      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop',
+      fullContent: 'La transition vers l\'agriculture biologique est un défi technique et administratif. Ce sujet traite des normes de certification en vigueur en Guinée, des techniques de lutte biologique et de la valorisation commerciale des produits certifiés.',
+      conferenciers: [
+        { name: 'Saran Kéita', role: 'Certificatrice', expertise: 'Normes Bio', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop' },
+        { name: 'Moussa Sylla', role: 'Agriculteur Pilote', expertise: 'Transition terrain', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' }
+      ]
     },
     {
       id: 4,
@@ -57,7 +82,11 @@ function ForumPage() {
       replies: 6,
       views: 156,
       lastActivity: 'Il y a 2 jours',
-      image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=100&h=100&fit=crop'
+      image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&h=300&fit=crop',
+      fullContent: 'L\'irrigation de précision est la clé face au changement climatique. Nous discutons de l\'installation de kits solaires, de la maintenance des tuyaux et de l\'économie d\'eau réalisée sur une saison maraîchère.',
+      conferenciers: [
+        { name: 'Ansoumane Bangoura', role: 'Hydrologue', expertise: 'Énergie Solaire', image: 'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop' }
+      ]
     },
     {
       id: 5,
@@ -67,7 +96,11 @@ function ForumPage() {
       replies: 9,
       views: 201,
       lastActivity: 'Il y a 3 jours',
-      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=100&h=100&fit=crop'
+      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop',
+      fullContent: 'L\'élevage moderne demande une attention particulière au confort des bovins. Ce sujet explore l\'aménagement des étables, la santé vétérinaire préventive et l\'impact du bien-être sur la production laitière.',
+      conferenciers: [
+        { name: 'Dr. Ousmane Sow', role: 'Vétérinaire', expertise: 'Pathologie Bovine', image: 'https://images.unsplash.com/photo-1492562080023-ab3dbdf9bbbd?w=100&h=100&fit=crop' }
+      ]
     },
     {
       id: 6,
@@ -77,7 +110,11 @@ function ForumPage() {
       replies: 11,
       views: 278,
       lastActivity: 'Il y a 4 jours',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=100&h=100&fit=crop'
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop',
+      fullContent: 'La mécanisation est un investissement lourd. Guide sur le choix de la puissance, la disponibilité des pièces de rechange localement et le calcul du retour sur investissement.',
+      conferenciers: [
+        { name: 'Alpha Touré', role: 'Expert Mécanisation', expertise: 'Maintenance', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop' }
+      ]
     }
   ];
 
@@ -92,32 +129,39 @@ function ForumPage() {
     setShowNewTopic(false);
   };
 
+  const handleViewTopic = (topic) => {
+    setSelectedTopic(topic);
+    setShowDetailModal(true);
+  };
+
   return (
     <div className="forum-page">
       <PageHeader
         title="Cercle d'Échange & de Savoir"
         subtitle="Partagez vos connaissances, posez vos questions et grandissez au sein de notre communauté."
         icon="💬"
-        buttons={[
+        buttons={isAdmin ? [
           {
             label: "Nouveau Sujet",
             icon: "✍️",
             variant: "primary",
             onClick: () => setShowNewTopic(!showNewTopic)
           }
-        ]}
+        ] : []}
       />
 
       <section className="forum-content">
         <div className="container">
           <div className="forum-header">
             <h2>Discussions</h2>
-            <button
-              className="btn-new-topic"
-              onClick={() => setShowNewTopic(!showNewTopic)}
-            >
-              + Nouveau sujet
-            </button>
+            {isAdmin && (
+              <button
+                className="btn-new-topic"
+                onClick={() => setShowNewTopic(!showNewTopic)}
+              >
+                + Nouveau sujet
+              </button>
+            )}
           </div>
 
           {showNewTopic && (
@@ -214,7 +258,12 @@ function ForumPage() {
                         <span className="topic-time">{topic.lastActivity}</span>
                       </div>
                     </div>
-                    <button className="btn-view-topic">Voir le sujet →</button>
+                    <button
+                      className="btn-view-topic"
+                      onClick={() => handleViewTopic(topic)}
+                    >
+                      Voir le sujet →
+                    </button>
                   </div>
                 ))}
               </div>
@@ -222,9 +271,61 @@ function ForumPage() {
           </div>
         </div>
       </section>
+
+      {showDetailModal && selectedTopic && (
+        <div className="modal-overlay" onClick={() => setShowDetailModal(false)}>
+          <div className="topic-detail-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowDetailModal(false)}>×</button>
+            <div className="modal-header">
+              <span className="topic-category">
+                {categories.find(c => c.id === selectedTopic.category)?.icon}
+                {categories.find(c => c.id === selectedTopic.category)?.name}
+              </span>
+              <h2>{selectedTopic.title}</h2>
+              <div className="topic-meta">
+                <span>👤 Par {selectedTopic.author}</span>
+                <span>🕒 {selectedTopic.lastActivity}</span>
+                <span>💬 {selectedTopic.replies} réponses</span>
+              </div>
+            </div>
+
+            <div className="modal-body">
+              <div className="topic-full-image">
+                <img src={selectedTopic.image} alt={selectedTopic.title} />
+              </div>
+
+              <div className="topic-description">
+                <h3>À propos de ce sujet</h3>
+                <p>{selectedTopic.fullContent}</p>
+              </div>
+
+              <div className="conferenciers-section">
+                <h3>🎤 Experts & Conférenciers</h3>
+                <div className="conferenciers-grid">
+                  {selectedTopic.conferenciers.map((conf, idx) => (
+                    <div key={idx} className="conferencier-card">
+                      <div className="conf-image">
+                        <img src={conf.image} alt={conf.name} />
+                      </div>
+                      <div className="conf-info">
+                        <h4>{conf.name}</h4>
+                        <span className="conf-role">{conf.role}</span>
+                        <span className="conf-expertise">Expertise : {conf.expertise}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button className="btn-participate">Rejoindre la discussion</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export default ForumPage;
-

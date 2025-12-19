@@ -197,7 +197,7 @@ function Layout() {
               <Link to="/contact">Contact</Link>
             </div>
             <div className="footer-section">
-              <h4>Services</h4>
+              <h4>SERVICES</h4>
               <Link to="/services">Diagnostic Agricole</Link>
               <Link to="/services">Formation & Conseil</Link>
               <Link to="/services">Gestion de l'Irrigation</Link>
