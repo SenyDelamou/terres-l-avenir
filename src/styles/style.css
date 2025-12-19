@@ -41,11 +41,9 @@
     --color-white: #ffffff;
 
     /* Typography */
-    --font-display: 'Comfortaa', cursive;
-    /* Luxe Serif */
-    --font-heading: 'Comfortaa', cursive;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    /* Clean Sans */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: var(--font-sans);
+    --font-display: var(--font-sans);
 
     /* Layout */
     --max-width: 1400px;

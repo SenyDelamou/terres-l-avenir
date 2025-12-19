@@ -34,8 +34,14 @@ function LandingPage() {
             <div className="landing-content">
                 <div className="landing-branding">
                     <div className="landing-logo-wrapper">
-                        <span className="landing-logo-icon">🌿</span>
-                        <span className="landing-logo-text">AgriPulse</span>
+                        <span className="landing-logo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </span>
+                        <span className="landing-logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
                     </div>
                     <div className="landing-divider"></div>
                     <h1 className="landing-title">

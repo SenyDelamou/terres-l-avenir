@@ -35,26 +35,32 @@ function ForgotPasswordPage() {
                 <div className="auth-card">
                     <div className="auth-header">
                         <Link to="/" className="auth-logo">
-                            <span className="logo-icon">🌱</span>
-                            <span className="logo-text">AgriPulse</span>
+                            <span className="logo-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                            </span>
+                            <span className="logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
                         </Link>
-                        <h1>Mot de passe oublié ?</h1>
-                        <p>Entrez votre adresse email pour recevoir un lien de réinitialisation.</p>
+                        <h1>Accès Perdu</h1>
+                        <p>Initialisez la procédure de récupération de votre clé d'accès.</p>
                     </div>
 
                     {isSuccess ? (
-                        <div className="success-message">
-                            <div className="success-icon">✅</div>
-                            <h3>Email envoyé !</h3>
-                            <p>Si un compte existe pour <strong>{email}</strong>, vous recevrez des instructions sous peu.</p>
+                        <div className="success-message" style={{ textAlign: 'center', padding: '2rem 0' }}>
+                            <div className="success-icon" style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>✉️</div>
+                            <h3 style={{ color: 'var(--color-primary)', marginBottom: '1rem' }}>Protocole Lancé</h3>
+                            <p style={{ color: 'var(--color-text-muted)', marginBottom: '2rem' }}>Si un profil correspond à <strong>{email}</strong>, vous recevrez vos instructions de réinitialisation sous peu.</p>
                             <Link to="/connexion" className="btn-auth" style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>
-                                Retour à la connexion
+                                RETOUR À LA CONNEXION
                             </Link>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="auth-form">
                             <div className="form-group">
-                                <label htmlFor="email">ADRESSE EMAIL</label>
+                                <label htmlFor="email">Identifiant Professionnel</label>
                                 <div className="input-wrapper">
                                     <span className="input-icon">✉️</span>
                                     <input
@@ -66,7 +72,7 @@ function ForgotPasswordPage() {
                                             if (error) setError('');
                                         }}
                                         className={error ? 'error' : ''}
-                                        placeholder="votre@email.com"
+                                        placeholder="nom@entreprise.com"
                                     />
                                 </div>
                                 {error && <span className="error-message">{error}</span>}
@@ -77,12 +83,12 @@ function ForgotPasswordPage() {
                                 className="btn-auth"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Envoi en cours...' : 'Envoyer le lien'}
+                                {isLoading ? 'Validation du Profil...' : 'Récupérer mes Accès'}
                             </button>
 
-                            <div className="auth-footer" style={{ marginTop: '1rem', paddingTop: '0' }}>
-                                <Link to="/connexion" style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)', fontWeight: '500' }}>
-                                    ← Retour à la connexion
+                            <div className="auth-footer">
+                                <Link to="/connexion" style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                    ← Retourner à la connexion
                                 </Link>
                             </div>
                         </form>
