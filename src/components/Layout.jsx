@@ -77,13 +77,6 @@ function Layout() {
           <nav className={`nav ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
             <div className="mobile-menu-header">
               <span className="mobile-menu-title">Menu</span>
-              <button
-                className="mobile-menu-close"
-                onClick={closeMobileMenu}
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
             </div>
 
             {/* Center Pill for Navigation */}

@@ -4,11 +4,14 @@
     /* Theme: "Royal Agriculture" - Luxury & Nature */
 
     /* Palette Principale - Noble */
+    --color-primary-rgb: 26, 71, 42;
     --color-primary: #1a472a;
     /* British Racing Green - Profond & Prestigieux */
     --color-primary-dark: #0f2b1d;
     --color-primary-light: #2d5a3f;
+    --color-primary-extra-light: #e8f5e9;
 
+    --color-secondary-rgb: 17, 24, 39;
     --color-secondary: #111827;
     /* Charcoal */
     --color-secondary-light: #374151;
@@ -16,6 +19,10 @@
     --color-accent: #d4af37;
     /* Champagne Gold - Élégance discrète */
     --color-accent-glimmer: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #d4af37 100%);
+
+    /* Gradients Unifiés */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    --gradient-soft: linear-gradient(135deg, #f9f9f7 0%, #e8f5e9 100%);
 
     /* Surfaces */
     --color-bg: #f9f9f7;

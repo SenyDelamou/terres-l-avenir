@@ -1,6 +1,6 @@
 .ai-page {
   width: 100%;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+  background: var(--color-bg);
   min-height: 100vh;
 }
 
@@ -22,7 +22,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(45, 80, 22, 0.95) 0%, rgba(74, 124, 42, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.9) 0%, rgba(var(--color-primary-rgb), 0.8) 100%);
   animation: gradientShift 15s ease infinite;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%);
+  background: var(--gradient-primary);
   color: white;
   padding: 1.8rem;
   display: flex;
@@ -285,18 +285,18 @@
 }
 
 .user-message .message-content {
-  background: linear-gradient(135deg, #4a7c2a 0%, #5c8d3e 100%);
+  background: var(--gradient-primary);
   color: white;
   border-radius: 20px 20px 5px 20px;
-  box-shadow: 0 4px 12px rgba(74, 124, 42, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .ai-message .message-avatar {
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  background: var(--color-primary-extra-light);
 }
 
 .user-message .message-avatar {
-  background: linear-gradient(135deg, #4a7c2a 0%, #5c8d3e 100%);
+  background: var(--gradient-primary);
 }
 
 .message-content {
@@ -346,7 +346,7 @@
 .typing-indicator span {
   width: 10px;
   height: 10px;
-  background: #4a7c2a;
+  background: var(--color-primary);
   border-radius: 50%;
   animation: typing 1.4s infinite;
 }
@@ -396,8 +396,8 @@
 }
 
 .chat-input:focus {
-  border-color: #4a7c2a;
-  box-shadow: 0 4px 12px rgba(74, 124, 42, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.15);
   transform: translateY(-1px);
 }
 
@@ -418,8 +418,8 @@
 
 .camera-button {
   background: white;
-  color: #4a7c2a;
-  border: 2px solid #4a7c2a;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .camera-button:hover {
@@ -429,7 +429,7 @@
 }
 
 .send-button {
-  background: linear-gradient(135deg, #4a7c2a 0%, #5c8d3e 100%);
+  background: var(--gradient-primary);
   color: white;
 }
 
@@ -491,7 +491,7 @@
 }
 
 .ai-info-panel h3 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
   display: flex;
@@ -522,7 +522,7 @@
   content: "✓";
   position: absolute;
   left: 0;
-  color: #4a7c2a;
+  color: var(--color-primary);
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -535,7 +535,7 @@
 }
 
 .info-links a {
-  color: #4a7c2a;
+  color: var(--color-primary);
   text-decoration: none;
   padding: 1rem 1.2rem;
   background: rgba(240, 248, 240, 0.8);
@@ -549,11 +549,11 @@
 }
 
 .info-links a:hover {
-  background: linear-gradient(135deg, #4a7c2a 0%, #5c8d3e 100%);
+  background: var(--gradient-primary);
   color: white;
   transform: translateX(8px) scale(1.02);
-  box-shadow: 0 4px 12px rgba(74, 124, 42, 0.3);
-  border-color: #4a7c2a;
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.3);
+  border-color: var(--color-primary);
 }
 
 .ai-disclaimer {

@@ -1,14 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import TestimonialModal from '../components/TestimonialModal';
 import '../styles/HomePage.css';
 
 function HomePage() {
   const [testimonialModalOpen, setTestimonialModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      url: 'https://images.unsplash.com/photo-1595841696677-5f80e037466d?q=80&w=2000&auto=format&fit=crop',
+      alt: 'Agriculteur dans un champ'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=2000&auto=format&fit=crop',
+      alt: 'Cultures verdoyantes'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000&auto=format&fit=crop',
+      alt: 'Récolte'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?q=80&w=2000&auto=format&fit=crop',
+      alt: 'Champ au coucher du soleil'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
+
   return (
     <div className="home-page">
       {/* Hero Section */}
       <section className="hero">
+        <div className="hero-slider">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
+              style={{ backgroundImage: `url(${slide.url})` }}
+              role="img"
+              aria-label={slide.alt}
+            ></div>
+          ))}
+        </div>
         <div className="hero-overlay"></div>
         <div className="container">
           <div className="hero-content">
