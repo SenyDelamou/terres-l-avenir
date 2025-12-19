@@ -339,13 +339,37 @@
 
 .stat-label {
   font-size: 1.1rem;
-  opacity: 0.9;
+  opacity: 1;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Testimonials */
 .testimonials {
   padding: 5rem 0;
   background: #f5f7fa;
+  position: relative;
+}
+
+.btn-add-testimonial {
+  display: block;
+  margin: 0 auto 3rem auto;
+  background: linear-gradient(135deg, #4a7c2a 0%, #5c8d3e 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(74, 124, 42, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-add-testimonial:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(74, 124, 42, 0.4);
 }
 
 .testimonials-grid {

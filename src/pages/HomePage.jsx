@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import TestimonialModal from '../components/TestimonialModal';
 import '../styles/HomePage.css';
 
 function HomePage() {
+  const [testimonialModalOpen, setTestimonialModalOpen] = useState(false);
   return (
     <div className="home-page">
       {/* Hero Section */}
@@ -144,6 +147,12 @@ function HomePage() {
       <section className="testimonials">
         <div className="container">
           <h2 className="section-title">Ce que disent nos utilisateurs</h2>
+          <button
+            className="btn-add-testimonial"
+            onClick={() => setTestimonialModalOpen(true)}
+          >
+            ➕ Donner votre avis
+          </button>
           <div className="testimonials-grid">
             <div className="testimonial-card">
               <div className="testimonial-avatar">AM</div>
@@ -195,6 +204,11 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <TestimonialModal
+        isOpen={testimonialModalOpen}
+        onClose={() => setTestimonialModalOpen(false)}
+      />
     </div>
   );
 }
