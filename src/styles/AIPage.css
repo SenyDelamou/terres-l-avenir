@@ -186,10 +186,14 @@
 }
 
 @keyframes typing {
-  0%, 60%, 100% {
+
+  0%,
+  60%,
+  100% {
     transform: translateY(0);
     opacity: 0.7;
   }
+
   30% {
     transform: translateY(-10px);
     opacity: 1;
@@ -197,39 +201,56 @@
 }
 
 .quick-questions {
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   background: white;
   border-top: 1px solid #e0e0e0;
 }
 
 .quick-questions p {
-  margin: 0 0 0.8rem 0;
-  font-size: 0.9rem;
-  color: #666;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  color: #888;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .quick-questions-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.quick-questions-list::-webkit-scrollbar {
+  height: 4px;
+}
+
+.quick-questions-list::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 4px;
 }
 
 .quick-question-btn {
   background: #f0f8f0;
   color: #4a7c2a;
-  border: 1px solid #4a7c2a;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  border: 1px solid transparent;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .quick-question-btn:hover {
   background: #4a7c2a;
   color: white;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .chat-input-form {
@@ -265,8 +286,43 @@
   cursor: pointer;
   transition: all 0.3s;
   display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.camera-button {
+  width: 45px;
+  height: 45px;
+  background: white;
+  color: #4a7c2a;
+  border: 1px solid #4a7c2a;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-button:hover {
+  background: #f0f8f0;
+  transform: scale(1.1);
+}
+
+.message-image-container {
+  margin-bottom: 0.8rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.message-image {
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
 .send-button:hover:not(:disabled) {
@@ -395,4 +451,3 @@
     text-align: left;
   }
 }
-
