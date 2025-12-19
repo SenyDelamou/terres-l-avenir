@@ -10,7 +10,7 @@
   align-items: center;
   color: white;
   overflow: hidden;
-  background: var(--color-primary-dark);
+  background: #000;
 }
 
 .hero-slider {
