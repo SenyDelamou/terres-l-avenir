@@ -45,7 +45,7 @@ function Layout() {
   }, []);
 
   const mainNavLinks = [
-    { path: '/', label: 'Accueil', icon: '🏠' },
+    { path: '/accueil', label: 'Accueil', icon: '🏠' },
     { path: '/techniques', label: 'Conseils', icon: '🌾' },
     { path: '/forum', label: 'Forum', icon: '💬' },
     { path: '/marketplace', label: 'Marketplace', icon: '🛒' },
@@ -61,7 +61,7 @@ function Layout() {
     <div className="layout">
       <header className="header">
         <div className="container">
-          <Link to="/" className="logo" onClick={closeMobileMenu}>
+          <Link to="/accueil" className="logo" onClick={closeMobileMenu}>
             <span className="logo-icon">🌾</span>
             <span className="logo-text">AgriPulse</span>
           </Link>
@@ -81,7 +81,7 @@ function Layout() {
 
             {/* Center Pill for Navigation */}
             <div className="nav-center-pill">
-              <Link to="/" className={`nav-pill-link ${location.pathname === '/' ? 'active' : ''}`} onClick={closeMobileMenu}>
+              <Link to="/accueil" className={`nav-pill-link ${location.pathname === '/accueil' ? 'active' : ''}`} onClick={closeMobileMenu}>
                 Accueil
               </Link>
               <Link to="/techniques" className={`nav-pill-link ${location.pathname === '/techniques' ? 'active' : ''}`} onClick={closeMobileMenu}>
@@ -129,7 +129,7 @@ function Layout() {
                         onClick={() => {
                           localStorage.removeItem('userToken');
                           localStorage.removeItem('userData');
-                          window.location.href = '/';
+                          window.location.href = '/accueil';
                         }}
                       >
                         <span>🚪</span>
@@ -182,7 +182,7 @@ function Layout() {
             </div>
             <div className="footer-section">
               <h4>Navigation</h4>
-              <Link to="/">Accueil</Link>
+              <Link to="/accueil">Accueil</Link>
               <Link to="/a-propos">À propos</Link>
               <Link to="/services">Services</Link>
               <Link to="/techniques">Techniques</Link>
@@ -223,9 +223,9 @@ function Layout() {
             <div className="footer-bottom-content">
               <p>&copy; 2024 AgriPulse. Tous droits réservés.</p>
               <div className="footer-links">
-                <Link to="/">Mentions légales</Link>
-                <Link to="/">Politique de confidentialité</Link>
-                <Link to="/">CGV</Link>
+                <Link to="/accueil">Mentions légales</Link>
+                <Link to="/accueil">Politique de confidentialité</Link>
+                <Link to="/accueil">CGV</Link>
               </div>
             </div>
           </div>

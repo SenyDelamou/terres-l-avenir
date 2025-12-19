@@ -74,139 +74,85 @@ function LoginPage() {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
-        <div className="login-left">
-          <div className="login-image">
-            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=1200&fit=crop" alt="Agriculture" />
-            <div className="login-overlay">
-              <div className="login-content-overlay">
-                <h2>Bienvenue sur AgriPulse</h2>
-                <p>Rejoignez notre communauté d'agriculteurs passionnés et accédez à des ressources exclusives.</p>
-                <div className="login-features">
-                  <div className="feature-item">
-                    <span className="feature-icon">🌾</span>
-                    <span>Accès aux guides techniques</span>
-                  </div>
-                  <div className="feature-item">
-                    <span className="feature-icon">💬</span>
-                    <span>Participation au forum</span>
-                  </div>
-                  <div className="feature-item">
-                    <span className="feature-icon">🤖</span>
-                    <span>Assistant IA personnalisé</span>
-                  </div>
-                  <div className="feature-item">
-                    <span className="feature-icon">📊</span>
-                    <span>Suivi de vos projets</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div className="auth-page login-page">
+      <div className="auth-container">
+        <div className="auth-card">
+          <div className="auth-header">
+            <Link to="/" className="auth-logo">
+              <span className="logo-icon">🌿</span>
+              <span className="logo-text">AgriPulse</span>
+            </Link>
+            <h1>Connexion</h1>
+            <p>Accédez à votre plateforme d'excellence agricole</p>
           </div>
-        </div>
 
-        <div className="login-right">
-          <div className="login-form-container">
-            <div className="login-header">
-              <Link to="/" className="login-logo">
-                <span className="logo-icon">🌾</span>
-                <span className="logo-text">AgriPulse</span>
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div className="form-group">
+              <label htmlFor="email">Identifiant Professionnel</label>
+              <div className="input-wrapper">
+                <span className="input-icon">✉️</span>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={errors.email ? 'error' : ''}
+                  placeholder="nom@entreprise.com"
+                />
+              </div>
+              {errors.email && <span className="error-message">{errors.email}</span>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Clé d'Accès Sécurisée</label>
+              <div className="input-wrapper">
+                <span className="input-icon">🔑</span>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className={errors.password ? 'error' : ''}
+                  placeholder="••••••••"
+                />
+              </div>
+              {errors.password && <span className="error-message">{errors.password}</span>}
+            </div>
+
+            <div className="auth-options">
+              <label className="auth-checkbox">
+                <input
+                  type="checkbox"
+                  name="rememberMe"
+                  checked={formData.rememberMe}
+                  onChange={handleChange}
+                />
+                <span>Mémoriser ma session</span>
+              </label>
+              <Link to="/mot-de-passe-oublie" className="forgot-password">
+                Accès perdu ?
               </Link>
-              <h1>Connexion</h1>
-              <p>Connectez-vous à votre compte pour continuer</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="login-form">
-              <div className="form-group">
-                <label htmlFor="email">Adresse email</label>
-                <div className="input-wrapper">
-                  <span className="input-icon">✉️</span>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={errors.email ? 'error' : ''}
-                    placeholder="votre@email.com"
-                  />
-                </div>
-                {errors.email && <span className="error-message">{errors.email}</span>}
-              </div>
+            <button
+              type="submit"
+              className="btn-auth"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Authentification...' : 'Se Connecter'}
+            </button>
 
-              <div className="form-group">
-                <label htmlFor="password">Mot de passe</label>
-                <div className="input-wrapper">
-                  <span className="input-icon">🔒</span>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className={errors.password ? 'error' : ''}
-                    placeholder="••••••••"
-                  />
-                </div>
-                {errors.password && <span className="error-message">{errors.password}</span>}
-              </div>
-
-              <div className="form-options">
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="rememberMe"
-                    checked={formData.rememberMe}
-                    onChange={handleChange}
-                  />
-                  <span>Se souvenir de moi</span>
-                </label>
-                <Link to="/mot-de-passe-oublie" className="forgot-password">
-                  Mot de passe oublié ?
+            <div className="auth-footer">
+              <p>
+                NOUVEAU COLLABORATEUR ?
+                <Link to="/inscription">
+                  CRÉER MON PROFIL
                 </Link>
-              </div>
-
-              <button
-                type="submit"
-                className="login-button"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <span className="spinner"></span>
-                    Connexion...
-                  </>
-                ) : (
-                  'Se connecter'
-                )}
-              </button>
-
-              <div className="login-divider">
-                <span>ou</span>
-              </div>
-
-              <div className="social-login">
-                <button type="button" className="social-button google">
-                  <span>🔍</span>
-                  Continuer avec Google
-                </button>
-                <button type="button" className="social-button facebook">
-                  <span>📘</span>
-                  Continuer avec Facebook
-                </button>
-              </div>
-
-              <div className="login-footer">
-                <p>
-                  Pas encore de compte ?{' '}
-                  <Link to="/inscription" className="register-link">
-                    Créer un compte
-                  </Link>
-                </p>
-              </div>
-            </form>
-          </div>
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
