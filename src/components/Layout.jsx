@@ -119,7 +119,7 @@ function Layout() {
                         <span>📊</span>
                         <span>Dashboard</span>
                       </Link>
-                      <Link to="/profile" className="dropdown-item" onClick={closeMobileMenu}>
+                      <Link to="/profil" className="dropdown-item" onClick={closeMobileMenu}>
                         <span>👤</span>
                         <span>Mon Profil</span>
                       </Link>
@@ -208,25 +208,25 @@ function Layout() {
               <h4>Contact</h4>
               <div className="footer-contact-item">
                 <span className="footer-icon">📍</span>
-                <span>123 Rue de l'Agriculture<br />75000 Paris, France</span>
+                <span>Cité Ministérielle, Kaloum<br />BP 1234, Conakry, Guinée</span>
               </div>
               <div className="footer-contact-item">
                 <span className="footer-icon">📞</span>
-                <span>+33 1 23 45 67 89</span>
+                <span>+224 621 00 00 00</span>
               </div>
               <div className="footer-contact-item">
                 <span className="footer-icon">✉️</span>
-                <span>contact@agriculture.fr</span>
+                <span>contact@agripulse-guinee.com</span>
               </div>
               <div className="footer-contact-item">
                 <span className="footer-icon">🕒</span>
-                <span>Lun-Ven: 9h-18h<br />Sam: 9h-12h</span>
+                <span>Lun-Ven: 8h-17h<br />Sam: 9h-13h</span>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
             <div className="footer-bottom-content">
-              <p>&copy; 2024 AgriPulse. Tous droits réservés.</p>
+              <p>&copy; 2025 AgriPulse. Tous droits réservés.</p>
               <div className="footer-links">
                 <Link to="/accueil">Mentions légales</Link>
                 <Link to="/accueil">Politique de confidentialité</Link>

@@ -287,7 +287,7 @@ function SellProductPage() {
                                     name="location"
                                     value={formData.location}
                                     onChange={handleChange}
-                                    placeholder="Ex: Dakar, Sénégal"
+                                    placeholder="Ex: Conakry, Guinée"
                                     className={errors.location ? 'error' : ''}
                                 />
                                 {errors.location && <span className="error-text">{errors.location}</span>}

@@ -200,7 +200,7 @@ function HomePage() {
               </p>
               <div className="testimonial-author">
                 <strong>Amadou M.</strong>
-                <span>Agriculteur, Dakar</span>
+                <span>Agriculteur, Conakry</span>
               </div>
               <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
             </div>
@@ -211,7 +211,7 @@ function HomePage() {
               </p>
               <div className="testimonial-author">
                 <strong>Fatou S.</strong>
-                <span>Productrice, Thiès</span>
+                <span>Productrice, Kindia</span>
               </div>
               <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
             </div>
@@ -222,7 +222,7 @@ function HomePage() {
               </p>
               <div className="testimonial-author">
                 <strong>Ibrahima B.</strong>
-                <span>Entrepreneur agricole, Saint-Louis</span>
+                <span>Entrepreneur agricole, Mamou</span>
               </div>
               <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
             </div>

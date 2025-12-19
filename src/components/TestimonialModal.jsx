@@ -66,7 +66,7 @@ function TestimonialModal({ isOpen, onClose }) {
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
-                            placeholder="Ex: Agriculteur, Dakar"
+                            placeholder="Ex: Agriculteur, Conakry"
                             required
                         />
                     </div>

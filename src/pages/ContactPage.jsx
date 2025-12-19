@@ -55,28 +55,28 @@ function ContactPage() {
                 <div className="info-icon">📍</div>
                 <div>
                   <h3>Adresse</h3>
-                  <p>123 Rue de l'Agriculture<br />75000 Paris, France</p>
+                  <p>Cité Ministérielle, Kaloum<br />BP 1234, Conakry, Guinée</p>
                 </div>
               </div>
               <div className="info-item">
                 <div className="info-icon">📞</div>
                 <div>
                   <h3>Téléphone</h3>
-                  <p>+33 1 23 45 67 89</p>
+                  <p>+224 621 00 00 00</p>
                 </div>
               </div>
               <div className="info-item">
                 <div className="info-icon">✉️</div>
                 <div>
                   <h3>Email</h3>
-                  <p>contact@agriculture.fr</p>
+                  <p>contact@agripulse-guinee.com</p>
                 </div>
               </div>
               <div className="info-item">
                 <div className="info-icon">🕒</div>
                 <div>
                   <h3>Horaires</h3>
-                  <p>Lundi - Vendredi: 9h - 18h<br />Samedi: 9h - 12h</p>
+                  <p>Lundi - Vendredi: 8h - 17h<br />Samedi: 9h - 13h</p>
                 </div>
               </div>
             </div>

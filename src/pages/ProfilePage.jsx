@@ -9,12 +9,12 @@ function ProfilePage() {
     firstName: 'Jean',
     lastName: 'Dupont',
     email: 'jean.dupont@example.com',
-    phone: '+33 6 12 34 56 78',
-    address: '123 Rue de la Ferme',
-    city: 'Rouen',
-    postalCode: '76000',
-    region: 'Normandie',
-    country: 'France',
+    phone: '+224 621 00 00 00',
+    address: 'Cité Ministérielle',
+    city: 'Conakry',
+    postalCode: '1234',
+    region: 'Conakry',
+    country: 'Guinée',
     bio: 'Agriculteur passionné depuis 15 ans, spécialisé dans l\'agriculture biologique et durable.',
     farmType: 'Céréales',
     farmSize: '50',
@@ -92,7 +92,7 @@ function ProfilePage() {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    
+
     if (!validate()) {
       return;
     }
@@ -186,13 +186,13 @@ function ProfilePage() {
               </div>
 
               <div className="profile-menu">
-                <button 
+                <button
                   className={!isEditing ? 'active' : ''}
                   onClick={() => setIsEditing(false)}
                 >
                   <span>👤</span> Informations
                 </button>
-                <button 
+                <button
                   className={isEditing ? 'active' : ''}
                   onClick={() => setIsEditing(true)}
                 >
@@ -509,8 +509,8 @@ function ProfilePage() {
                           'Enregistrer les modifications'
                         )}
                       </button>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         className="btn-cancel"
                         onClick={() => setIsEditing(false)}
                       >
