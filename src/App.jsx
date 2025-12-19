@@ -16,6 +16,8 @@ import PublishProjectPage from './pages/PublishProjectPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import ProfilePage from './pages/ProfilePage';
 import FundingProjectsPage from './pages/FundingProjectsPage';
+import MarketplacePage from './pages/MarketplacePage';
+import SellProductPage from './pages/SellProductPage';
 import './styles/App.css';
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
         <Route path="/projets-financement" element={<FundingProjectsPage />} />
         <Route path="/projet/:id" element={<ProjectDetailPage />} />
         <Route path="/publier-projet" element={<PublishProjectPage />} />
+        <Route path="/marketplace" element={<MarketplacePage />} />
+        <Route path="/vendre-produit" element={<SellProductPage />} />
       </Route>
       <Route path="/connexion" element={<LoginPage />} />
       <Route path="/inscription" element={<RegisterPage />} />
