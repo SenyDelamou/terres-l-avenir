@@ -645,6 +645,9 @@
   .forum-sidebar {
     width: 100%;
     margin-bottom: 2rem;
+    position: static;
+    box-shadow: none;
+    padding: 1rem 0;
   }
 
   .category-list {
@@ -673,9 +676,16 @@
     align-items: flex-start;
   }
 
+  .forum-main {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
   .topic-card {
     grid-template-columns: 1fr;
     height: auto;
+    gap: 1rem;
   }
 
   .topic-image {
