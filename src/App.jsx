@@ -9,11 +9,13 @@ import ContactPage from './pages/ContactPage';
 import ForumPage from './pages/ForumPage';
 import AIPage from './pages/AIPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import DashboardPage from './pages/DashboardPage';
 import PublishProjectPage from './pages/PublishProjectPage';
-import FundingProjectsPage from './pages/FundingProjectsPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import ProfilePage from './pages/ProfilePage';
+import FundingProjectsPage from './pages/FundingProjectsPage';
 import './styles/App.css';
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
         <Route path="/publier-projet" element={<PublishProjectPage />} />
       </Route>
       <Route path="/connexion" element={<LoginPage />} />
+      <Route path="/inscription" element={<RegisterPage />} />
+      <Route path="/mot-de-passe-oublie" element={<ForgotPasswordPage />} />
     </Routes>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
+import '../styles/LoginPage.css';
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -8,12 +8,9 @@ function LoginPage() {
     password: '',
     rememberMe: false
   });
+  const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  // Support context if available, safe fallback
-  const context = useApp ? useApp() : {};
-  const trackEvent = context.trackEvent || (() => { });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -21,103 +18,182 @@ function LoginPage() {
       ...formData,
       [name]: type === 'checkbox' ? checked : value
     });
+    // Effacer l'erreur du champ modifié
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' });
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.email) {
+      newErrors.email = 'L\'email est requis';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'L\'email n\'est pas valide';
+    }
+
+    if (!formData.password) {
+      newErrors.password = 'Le mot de passe est requis';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validate()) {
+      return;
+    }
+
     setIsLoading(true);
 
     // Simuler une connexion
     setTimeout(() => {
       setIsLoading(false);
-      trackEvent('user_login', { method: 'email' });
-      // alert('Connexion réussie !'); 
-      navigate('/dashboard'); // Ou '/'
+      alert('Connexion réussie ! Bienvenue sur AgriPulse.');
+      navigate('/');
     }, 1500);
   };
 
   return (
-    <div className="auth-container">
-      {/* Side Image */}
-      <div className="auth-side" style={{ order: 1 }}> {/* Image à gauche pour Login aussi */}
-        <div className="auth-side-content">
-          <h1>Bienvenue.</h1>
-          <p style={{ fontSize: '1.25rem', opacity: 0.9 }}>
-            Votre portail vers une agriculture de précision et un réseau d'opportunités.
-          </p>
-        </div>
-      </div>
-
-      {/* Form Container */}
-      <div className="auth-form-container" style={{ order: 2 }}>
-        <div style={{ marginBottom: '2.5rem' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'var(--color-primary)' }}>Connexion</h2>
-          <p style={{ color: 'var(--color-text-muted)' }}>Heureux de vous revoir.</p>
-        </div>
-
-        <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
-          <div className="form-group">
-            <label htmlFor="email">Adresse email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="votre@email.com"
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-              <label htmlFor="password">Mot de passe</label>
-              <Link to="/mot-de-passe-oublie" style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                Oublié ?
-              </Link>
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-left">
+          <div className="login-image">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=1200&fit=crop" alt="Agriculture" />
+            <div className="login-overlay">
+              <div className="login-content-overlay">
+                <h2>Bienvenue sur AgriPulse</h2>
+                <p>Rejoignez notre communauté d'agriculteurs passionnés et accédez à des ressources exclusives.</p>
+                <div className="login-features">
+                  <div className="feature-item">
+                    <span className="feature-icon">🌾</span>
+                    <span>Accès aux guides techniques</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">💬</span>
+                    <span>Participation au forum</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">🤖</span>
+                    <span>Assistant IA personnalisé</span>
+                  </div>
+                  <div className="feature-item">
+                    <span className="feature-icon">📊</span>
+                    <span>Suivi de vos projets</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="••••••••"
-              required
-            />
           </div>
+        </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <input
-              type="checkbox"
-              id="rememberMe"
-              name="rememberMe"
-              checked={formData.rememberMe}
-              onChange={handleChange}
-              style={{ width: 'auto' }}
-            />
-            <label htmlFor="rememberMe" style={{ marginBottom: 0, fontWeight: 400, fontSize: '0.9rem', cursor: 'pointer' }}>
-              Se souvenir de moi
-            </label>
+        <div className="login-right">
+          <div className="login-form-container">
+            <div className="login-header">
+              <Link to="/" className="login-logo">
+                <span className="logo-icon">🌾</span>
+                <span className="logo-text">AgriPulse</span>
+              </Link>
+              <h1>Connexion</h1>
+              <p>Connectez-vous à votre compte pour continuer</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="login-form">
+              <div className="form-group">
+                <label htmlFor="email">Adresse email</label>
+                <div className="input-wrapper">
+                  <span className="input-icon">✉️</span>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={errors.email ? 'error' : ''}
+                    placeholder="votre@email.com"
+                  />
+                </div>
+                {errors.email && <span className="error-message">{errors.email}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">Mot de passe</label>
+                <div className="input-wrapper">
+                  <span className="input-icon">🔒</span>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className={errors.password ? 'error' : ''}
+                    placeholder="••••••••"
+                  />
+                </div>
+                {errors.password && <span className="error-message">{errors.password}</span>}
+              </div>
+
+              <div className="form-options">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="rememberMe"
+                    checked={formData.rememberMe}
+                    onChange={handleChange}
+                  />
+                  <span>Se souvenir de moi</span>
+                </label>
+                <Link to="/mot-de-passe-oublie" className="forgot-password">
+                  Mot de passe oublié ?
+                </Link>
+              </div>
+
+              <button
+                type="submit"
+                className="login-button"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <span className="spinner"></span>
+                    Connexion...
+                  </>
+                ) : (
+                  'Se connecter'
+                )}
+              </button>
+
+              <div className="login-divider">
+                <span>ou</span>
+              </div>
+
+              <div className="social-login">
+                <button type="button" className="social-button google">
+                  <span>🔍</span>
+                  Continuer avec Google
+                </button>
+                <button type="button" className="social-button facebook">
+                  <span>📘</span>
+                  Continuer avec Facebook
+                </button>
+              </div>
+
+              <div className="login-footer">
+                <p>
+                  Pas encore de compte ?{' '}
+                  <Link to="/inscription" className="register-link">
+                    Créer un compte
+                  </Link>
+                </p>
+              </div>
+            </form>
           </div>
-
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={isLoading}
-            style={{ marginTop: '0.5rem', width: '100%' }}
-          >
-            {isLoading ? 'Connexion...' : 'Se connecter'}
-          </button>
-        </form>
-
-        <div style={{ marginTop: '2.5rem', textAlign: 'center', borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem' }}>
-          <p style={{ fontSize: '0.95rem', color: 'var(--color-text-muted)' }}>
-            Pas encore membre ?{' '}
-            <Link to="/inscription" style={{ color: 'var(--color-primary)', fontWeight: '700', textDecoration: 'underline' }}>
-              Créer un compte
-            </Link>
-          </p>
         </div>
       </div>
     </div>
@@ -125,4 +201,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-

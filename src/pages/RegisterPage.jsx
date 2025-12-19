@@ -1,141 +1,248 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
+import '../styles/RegisterPage.css';
 
 function RegisterPage() {
-    const navigate = useNavigate();
-    // On supporte optionnellement useApp si disponible, sinon fallback
-    const context = useApp ? useApp() : {};
-    const trackEvent = context.trackEvent || (() => { });
-
     const [formData, setFormData] = useState({
-        fullName: '',
+        name: '',
         email: '',
         password: '',
         confirmPassword: '',
-        role: 'farmer' // farmer, investor, expert
+        role: 'farmer',
+        terms: false
     });
-
+    const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const { name, value, type, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: type === 'checkbox' ? checked : value
+        });
+        // Effacer l'erreur du champ modifié
+        if (errors[name]) {
+            setErrors({ ...errors, [name]: '' });
+        }
+    };
+
+    const validate = () => {
+        const newErrors = {};
+
+        if (!formData.name.trim()) {
+            newErrors.name = 'Le nom complet est requis';
+        }
+
+        if (!formData.email) {
+            newErrors.email = 'L\'email est requis';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = 'L\'email n\'est pas valide';
+        }
+
+        if (!formData.password) {
+            newErrors.password = 'Le mot de passe est requis';
+        } else if (formData.password.length < 6) {
+            newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères';
+        }
+
+        if (formData.password !== formData.confirmPassword) {
+            newErrors.confirmPassword = 'Les mots de passe ne correspondent pas';
+        }
+
+        if (!formData.terms) {
+            newErrors.terms = 'Vous devez accepter les conditions d\'utilisation';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!validate()) {
+            return;
+        }
+
         setIsLoading(true);
 
-        // Simulation d'inscription
+        // Simuler une inscription
         setTimeout(() => {
             setIsLoading(false);
-            trackEvent('user_register', { role: formData.role });
-            // Redirection vers login ou dashboard
+            alert('Inscription réussie ! Bienvenue sur AgriPulse.');
             navigate('/connexion');
         }, 1500);
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-side">
-                <div className="auth-side-content">
-                    <h1>Cultivons l'Excellence.</h1>
-                    <p style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '80%' }}>
-                        Rejoignez le réseau d'élite de l'agriculture de demain.
-                        Semences de qualité, investissements stratégiques et expertises de pointe.
-                    </p>
-                </div>
-            </div>
-
-            <div className="auth-form-container">
-                <div style={{ marginBottom: '2.5rem' }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', color: 'var(--color-primary)' }}>Créer un compte</h2>
-                    <p style={{ color: 'var(--color-text-muted)' }}>Débutez votre parcours avec Terres d'Avenir.</p>
-                </div>
-
-                <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.25rem' }}>
-                    <div className="form-group">
-                        <label htmlFor="fullName">Nom Complet</label>
-                        <input
-                            type="text"
-                            id="fullName"
-                            name="fullName"
-                            placeholder="Ex: Jean Dupont"
-                            value={formData.fullName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="email">Adresse Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="nom@exemple.com"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div className="form-group">
-                            <label htmlFor="password">Mot de passe</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="••••••••"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="confirmPassword">Confirmation</label>
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                placeholder="••••••••"
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                                required
-                            />
+        <div className="register-page">
+            <div className="register-container">
+                <div className="register-left">
+                    <div className="register-image">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=1200&fit=crop" alt="Agriculture durable" />
+                        <div className="register-overlay">
+                            <div className="register-content-overlay">
+                                <h2>Rejoignez AgriPulse</h2>
+                                <p>La plateforme de référence pour l'agriculture moderne et durable.</p>
+                                <div className="register-features">
+                                    <div className="feature-item">
+                                        <span className="feature-icon">🚀</span>
+                                        <span>Développez votre exploitation</span>
+                                    </div>
+                                    <div className="feature-item">
+                                        <span className="feature-icon">🤝</span>
+                                        <span>Connectez-vous aux experts</span>
+                                    </div>
+                                    <div className="feature-item">
+                                        <span className="feature-icon">💰</span>
+                                        <span>Trouvez des financements</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div className="form-group">
-                        <label htmlFor="role">Je suis...</label>
-                        <select
-                            id="role"
-                            name="role"
-                            value={formData.role}
-                            onChange={handleChange}
-                            style={{ background: 'white' }}
-                        >
-                            <option value="farmer">Agriculteur / Producteur</option>
-                            <option value="investor">Investisseur / Bailleur</option>
-                            <option value="expert">Expert Agronome</option>
-                            <option value="student">Étudiant / Curieux</option>
-                        </select>
+                <div className="register-right">
+                    <div className="register-form-container">
+                        <div className="register-header">
+                            <Link to="/" className="register-logo">
+                                <span className="logo-icon">🌾</span>
+                                <span className="logo-text">AgriPulse</span>
+                            </Link>
+                            <h1>Créer un compte</h1>
+                            <p>Remplissez le formulaire ci-dessous pour commencer</p>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="register-form">
+                            <div className="form-group">
+                                <label htmlFor="name">Nom complet</label>
+                                <div className="input-wrapper">
+                                    <span className="input-icon">👤</span>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className={errors.name ? 'error' : ''}
+                                        placeholder="Jean Dupont"
+                                    />
+                                </div>
+                                {errors.name && <span className="error-message">{errors.name}</span>}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="email">Adresse email</label>
+                                <div className="input-wrapper">
+                                    <span className="input-icon">✉️</span>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        className={errors.email ? 'error' : ''}
+                                        placeholder="votre@email.com"
+                                    />
+                                </div>
+                                {errors.email && <span className="error-message">{errors.email}</span>}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="role">Je suis</label>
+                                <div className="input-wrapper">
+                                    <span className="input-icon">💼</span>
+                                    <select
+                                        id="role"
+                                        name="role"
+                                        value={formData.role}
+                                        onChange={handleChange}
+                                        className="select-input"
+                                    >
+                                        <option value="farmer">Agriculteur / Producteur</option>
+                                        <option value="investor">Investisseur</option>
+                                        <option value="expert">Expert / Conseiller</option>
+                                        <option value="student">Étudiant</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="password">Mot de passe</label>
+                                    <div className="input-wrapper">
+                                        <span className="input-icon">🔒</span>
+                                        <input
+                                            type="password"
+                                            id="password"
+                                            name="password"
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                            className={errors.password ? 'error' : ''}
+                                            placeholder="••••••"
+                                        />
+                                    </div>
+                                    {errors.password && <span className="error-message">{errors.password}</span>}
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="confirmPassword">Confirmer</label>
+                                    <div className="input-wrapper">
+                                        <span className="input-icon">🔒</span>
+                                        <input
+                                            type="password"
+                                            id="confirmPassword"
+                                            name="confirmPassword"
+                                            value={formData.confirmPassword}
+                                            onChange={handleChange}
+                                            className={errors.confirmPassword ? 'error' : ''}
+                                            placeholder="••••••"
+                                        />
+                                    </div>
+                                    {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+                                </div>
+                            </div>
+
+                            <div className="form-options">
+                                <label className="checkbox-label">
+                                    <input
+                                        type="checkbox"
+                                        name="terms"
+                                        checked={formData.terms}
+                                        onChange={handleChange}
+                                    />
+                                    <span>J'accepte les <Link to="/cgu">Conditions d'utilisation</Link></span>
+                                </label>
+                            </div>
+                            {errors.terms && <span className="error-message" style={{ marginTop: '-10px' }}>{errors.terms}</span>}
+
+                            <button
+                                type="submit"
+                                className="register-button"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <>
+                                        <span className="spinner"></span>
+                                        Inscription...
+                                    </>
+                                ) : (
+                                    'S\'inscrire'
+                                )}
+                            </button>
+
+                            <div className="register-footer">
+                                <p>
+                                    Déjà un compte ?{' '}
+                                    <Link to="/connexion" className="login-link">
+                                        Se connecter
+                                    </Link>
+                                </p>
+                            </div>
+                        </form>
                     </div>
-
-                    <button type="submit" className="btn btn-primary" disabled={isLoading} style={{ marginTop: '1rem', width: '100%' }}>
-                        {isLoading ? 'Création en cours...' : 'S\'inscrire'}
-                    </button>
-                </form>
-
-                <div style={{ marginTop: '2rem', textAlign: 'center', fontSize: '0.95rem' }}>
-                    <p>
-                        Vous avez déjà un compte ?{' '}
-                        <Link to="/connexion" style={{ color: 'var(--color-primary)', fontWeight: '700', textDecoration: 'underline' }}>
-                            Se connecter
-                        </Link>
-                    </p>
                 </div>
             </div>
         </div>
