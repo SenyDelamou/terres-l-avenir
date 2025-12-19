@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PageHeader from '../components/PageHeader';
 import '../styles/ForumPage.css';
 
 function ForumPage() {
@@ -80,8 +81,8 @@ function ForumPage() {
     }
   ];
 
-  const filteredTopics = activeCategory === 'tous' 
-    ? topics 
+  const filteredTopics = activeCategory === 'tous'
+    ? topics
     : topics.filter(topic => topic.category === activeCategory);
 
   const handleNewTopic = (e) => {
@@ -93,23 +94,25 @@ function ForumPage() {
 
   return (
     <div className="forum-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>Forum Agricole</h1>
-          <p>Échangez avec la communauté et partagez vos expériences</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Forum Agricole"
+        subtitle="Échangez avec la communauté et partagez vos expériences"
+        icon="💬"
+        buttons={[
+          {
+            label: "Nouveau Sujet",
+            icon: "✍️",
+            variant: "primary",
+            onClick: () => setShowNewTopic(!showNewTopic)
+          }
+        ]}
+      />
 
       <section className="forum-content">
         <div className="container">
           <div className="forum-header">
             <h2>Discussions</h2>
-            <button 
+            <button
               className="btn-new-topic"
               onClick={() => setShowNewTopic(!showNewTopic)}
             >
@@ -126,7 +129,7 @@ function ForumPage() {
                   <input
                     type="text"
                     value={newTopic.title}
-                    onChange={(e) => setNewTopic({...newTopic, title: e.target.value})}
+                    onChange={(e) => setNewTopic({ ...newTopic, title: e.target.value })}
                     required
                     placeholder="Ex: Comment améliorer mes rendements ?"
                   />
@@ -135,7 +138,7 @@ function ForumPage() {
                   <label>Catégorie *</label>
                   <select
                     value={newTopic.category}
-                    onChange={(e) => setNewTopic({...newTopic, category: e.target.value})}
+                    onChange={(e) => setNewTopic({ ...newTopic, category: e.target.value })}
                     required
                   >
                     <option value="">Sélectionnez une catégorie</option>
@@ -148,7 +151,7 @@ function ForumPage() {
                   <label>Message *</label>
                   <textarea
                     value={newTopic.content}
-                    onChange={(e) => setNewTopic({...newTopic, content: e.target.value})}
+                    onChange={(e) => setNewTopic({ ...newTopic, content: e.target.value })}
                     required
                     rows="5"
                     placeholder="Décrivez votre question ou votre sujet de discussion..."
@@ -156,8 +159,8 @@ function ForumPage() {
                 </div>
                 <div className="form-actions">
                   <button type="submit" className="btn-submit">Publier</button>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="btn-cancel"
                     onClick={() => setShowNewTopic(false)}
                   >
@@ -173,7 +176,7 @@ function ForumPage() {
               <h3>Catégories</h3>
               <ul className="category-list">
                 {categories.map(category => (
-                  <li 
+                  <li
                     key={category.id}
                     className={activeCategory === category.id ? 'active' : ''}
                     onClick={() => setActiveCategory(category.id)}

@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ChatModal from '../components/ChatModal';
+import PageHeader from '../components/PageHeader';
 import '../styles/MarketplacePage.css';
 
 function MarketplacePage() {
+    const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [chatOpen, setChatOpen] = useState(false);
@@ -116,26 +118,30 @@ function MarketplacePage() {
 
     return (
         <div className="marketplace-page">
-            <section className="marketplace-header">
+            <PageHeader
+                title="Marketplace Agricole"
+                subtitle="Achetez et vendez des produits agricoles locaux"
+                icon="🛒"
+                buttons={[
+                    {
+                        label: "Vendre un Produit",
+                        icon: "📦",
+                        variant: "primary",
+                        onClick: () => navigate('/vendre-produit')
+                    }
+                ]}
+            />
+
+            <section className="marketplace-search-section">
                 <div className="container">
-                    <h1>🛒 Marketplace Agricole</h1>
-                    <p>Achetez et vendez des produits agricoles locaux</p>
-
-                    <div className="header-actions">
-                        <div className="search-bar">
-                            <span className="search-icon">🔍</span>
-                            <input
-                                type="text"
-                                placeholder="Rechercher un produit ou une localisation..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                        </div>
-
-                        <Link to="/vendre-produit" className="btn-sell">
-                            <span>📦</span>
-                            <span>Vendre un Produit</span>
-                        </Link>
+                    <div className="search-bar">
+                        <span className="search-icon">🔍</span>
+                        <input
+                            type="text"
+                            placeholder="Rechercher un produit ou une localisation..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
                     </div>
                 </div>
             </section>

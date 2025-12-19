@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
 import '../styles/FundingProjectsPage.css';
 
 function FundingProjectsPage() {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState('tous');
   const [sortBy, setSortBy] = useState('recent');
 
@@ -95,8 +97,8 @@ function FundingProjectsPage() {
 
   const categories = ['tous', 'Agriculture Biologique', 'Élevage', 'Agroforesterie', 'Technologies Agricoles', 'Transformation de Produits', 'Commerce & Distribution'];
 
-  const filteredProjects = filter === 'tous' 
-    ? projects 
+  const filteredProjects = filter === 'tous'
+    ? projects
     : projects.filter(p => p.category === filter);
 
   const sortedProjects = [...filteredProjects].sort((a, b) => {
@@ -108,17 +110,19 @@ function FundingProjectsPage() {
 
   return (
     <div className="funding-projects-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>Projets de Financement</h1>
-          <p>Découvrez et soutenez les projets agricoles innovants</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Projets de Financement"
+        subtitle="Découvrez et soutenez les projets agricoles innovants"
+        icon="💰"
+        buttons={[
+          {
+            label: "Publier un Projet",
+            icon: "📤",
+            variant: "primary",
+            onClick: () => navigate('/publier-projet')
+          }
+        ]}
+      />
 
       <section className="projects-content">
         <div className="container">
@@ -149,7 +153,7 @@ function FundingProjectsPage() {
           <div className="projects-grid">
             {sortedProjects.map(project => {
               const progress = (project.raised / project.amount) * 100;
-              
+
               return (
                 <div key={project.id} className="project-card">
                   <div className="project-image">
@@ -185,8 +189,8 @@ function FundingProjectsPage() {
                         </div>
                       </div>
                       <div className="progress-bar">
-                        <div 
-                          className="progress-fill" 
+                        <div
+                          className="progress-fill"
                           style={{ width: `${progress}%` }}
                         ></div>
                       </div>

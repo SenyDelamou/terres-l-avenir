@@ -1,3 +1,4 @@
+import PageHeader from '../components/PageHeader';
 import '../styles/TechniquesPage.css';
 
 function TechniquesPage() {
@@ -36,17 +37,11 @@ function TechniquesPage() {
 
   return (
     <div className="techniques-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>Techniques Agricoles</h1>
-          <p>Découvrez les méthodes modernes et durables pour améliorer votre production</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Conseils & Techniques Agricoles"
+        subtitle="Découvrez les méthodes modernes et durables pour améliorer votre production"
+        icon="🌾"
+      />
 
       <section className="techniques-content">
         <div className="container">
