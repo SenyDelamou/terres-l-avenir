@@ -116,7 +116,8 @@
   content: '';
   width: 8px;
   height: 8px;
-  background: #4ade80;
+  background: #e1ff00;
+  /* Plus de peps pour le status online, ou un vert clair contrasté */
   border-radius: 50%;
   display: inline-block;
   animation: blink 2s infinite;
@@ -155,7 +156,8 @@
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
-  background: rgba(74, 124, 42, 0.3);
+  background: var(--color-primary-light);
+  opacity: 0.3;
   border-radius: 10px;
 }
 
@@ -207,6 +209,7 @@
 
 .ai-message .message-avatar {
   background: var(--color-primary-extra-light);
+  color: var(--color-primary);
 }
 
 .user-message .message-avatar {
@@ -238,7 +241,7 @@
 
 .message-text strong {
   font-weight: 600;
-  color: #2d5016;
+  color: var(--color-primary-dark);
 }
 
 .user-message .message-text strong {
@@ -421,7 +424,7 @@
 
 .ai-info-panel li {
   padding: 0.8rem 0;
-  color: #555;
+  color: var(--color-text-main);
   padding-left: 1.8rem;
   position: relative;
   line-height: 1.6;
@@ -452,7 +455,7 @@
   color: var(--color-primary);
   text-decoration: none;
   padding: 1rem 1.2rem;
-  background: rgba(240, 248, 240, 0.8);
+  background: var(--color-primary-extra-light);
   border-radius: 12px;
   transition: all 0.3s ease;
   font-weight: 500;

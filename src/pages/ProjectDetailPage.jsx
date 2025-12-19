@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import InvestmentModal from '../components/InvestmentModal';
 import '../styles/ProjectDetailPage.css';
 
 function ProjectDetailPage() {
   const { id } = useParams();
   const projectId = parseInt(id, 10);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Même base de données que la page des projets de financement (version simplifiée)
   const projects = [
@@ -402,26 +404,14 @@ function ProjectDetailPage() {
             <div className="invest-card">
               <h3>💎 Investir maintenant</h3>
               <p>Soutenez ce projet et participez à l'agriculture de demain.</p>
-              <form
-                className="invest-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert('Merci ! Votre intention d’investissement a été transmise.');
-                  e.target.reset();
-                }}
+              <button
+                className="btn-secondary w-full"
+                style={{ width: '100%', marginTop: '1rem', padding: '1.2rem' }}
+                onClick={() => setIsModalOpen(true)}
               >
-                <div className="form-group">
-                  <label>Montant (€)</label>
-                  <input type="number" min="100" step="50" placeholder="Ex : 1000" required />
-                </div>
-                <div className="form-group">
-                  <label>Message (optionnel)</label>
-                  <textarea rows="3" placeholder="Un mot pour le porteur ?"></textarea>
-                </div>
-                <button type="submit" className="btn-secondary">
-                  Proposer mon aide
-                </button>
-              </form>
+                Commencer l'investissement
+              </button>
+              <p className="sidebar-note">Votre demande sera traitée sous 48h.</p>
             </div>
 
             <div className="new-project-card">
@@ -434,6 +424,12 @@ function ProjectDetailPage() {
           </aside>
         </div>
       </section>
+
+      <InvestmentModal
+        project={project}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

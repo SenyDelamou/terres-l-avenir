@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import InvestmentModal from '../components/InvestmentModal';
 import '../styles/FundingProjectsPage.css';
 
 function FundingProjectsPage() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('tous');
   const [sortBy, setSortBy] = useState('recent');
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // ... (projects data remains the same)
 
   const projects = [
     {
@@ -200,7 +205,15 @@ function FundingProjectsPage() {
                       </div>
                     </div>
                     <div className="project-actions">
-                      <button className="btn-invest">Investir</button>
+                      <button
+                        className="btn-invest"
+                        onClick={() => {
+                          setSelectedProject(project);
+                          setIsModalOpen(true);
+                        }}
+                      >
+                        Investir
+                      </button>
                       <Link to={`/projet/${project.id}`} className="btn-details">
                         Voir détails
                       </Link>
@@ -212,6 +225,14 @@ function FundingProjectsPage() {
           </div>
         </div>
       </section>
+
+      {selectedProject && (
+        <InvestmentModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 }
