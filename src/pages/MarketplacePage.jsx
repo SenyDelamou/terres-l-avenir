@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ChatModal from '../components/ChatModal';
 import '../styles/MarketplacePage.css';
 
 function MarketplacePage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
+    const [chatOpen, setChatOpen] = useState(false);
+    const [selectedSeller, setSelectedSeller] = useState(null);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     // Produits simulés (à remplacer par des données d'API)
     const products = [
@@ -102,6 +106,14 @@ function MarketplacePage() {
         return matchesSearch && matchesCategory;
     });
 
+    const handleContactClick = (e, product) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setSelectedSeller(product.seller);
+        setSelectedProduct(product.name);
+        setChatOpen(true);
+    };
+
     return (
         <div className="marketplace-page">
             <section className="marketplace-header">
@@ -166,48 +178,49 @@ function MarketplacePage() {
 
                             <div className="products-grid">
                                 {filteredProducts.map(product => (
-                                    <Link
-                                        to={`/produit/${product.id}`}
-                                        key={product.id}
-                                        className="product-card"
-                                    >
-                                        <div className="product-image">
-                                            <img src={product.image} alt={product.name} />
-                                            <div className="product-badge">{product.quantity} {product.unit} disponibles</div>
-                                        </div>
-
-                                        <div className="product-info">
-                                            <h3 className="product-name">{product.name}</h3>
-                                            <p className="product-description">{product.description}</p>
-
-                                            <div className="product-meta">
-                                                <div className="product-location">
-                                                    <span>📍</span>
-                                                    <span>{product.location}</span>
-                                                </div>
-                                                <div className="product-rating">
-                                                    <span>⭐</span>
-                                                    <span>{product.rating}</span>
-                                                </div>
+                                    <div key={product.id} className="product-card">
+                                        <Link to={`/produit/${product.id}`} className="product-card-link">
+                                            <div className="product-image">
+                                                <img src={product.image} alt={product.name} />
+                                                <div className="product-badge">{product.quantity} {product.unit} disponibles</div>
                                             </div>
 
-                                            <div className="product-seller">
-                                                <span className="seller-icon">👤</span>
-                                                <span>{product.seller}</span>
-                                            </div>
+                                            <div className="product-info">
+                                                <h3 className="product-name">{product.name}</h3>
+                                                <p className="product-description">{product.description}</p>
 
-                                            <div className="product-footer">
-                                                <div className="product-price">
-                                                    <span className="price-value">{product.price}€</span>
-                                                    <span className="price-unit">/ {product.unit}</span>
+                                                <div className="product-meta">
+                                                    <div className="product-location">
+                                                        <span>📍</span>
+                                                        <span>{product.location}</span>
+                                                    </div>
+                                                    <div className="product-rating">
+                                                        <span>⭐</span>
+                                                        <span>{product.rating}</span>
+                                                    </div>
                                                 </div>
-                                                <button className="btn-contact">
-                                                    <span>💬</span>
-                                                    <span>Contacter</span>
-                                                </button>
+
+                                                <div className="product-seller">
+                                                    <span className="seller-icon">👤</span>
+                                                    <span>{product.seller}</span>
+                                                </div>
+
+                                                <div className="product-footer">
+                                                    <div className="product-price">
+                                                        <span className="price-value">{product.price}€</span>
+                                                        <span className="price-unit">/ {product.unit}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                        <button
+                                            className="btn-contact"
+                                            onClick={(e) => handleContactClick(e, product)}
+                                        >
+                                            <span>💬</span>
+                                            <span>Contacter</span>
+                                        </button>
+                                    </div>
                                 ))}
                             </div>
 
@@ -222,6 +235,13 @@ function MarketplacePage() {
                     </div>
                 </div>
             </section>
+
+            <ChatModal
+                isOpen={chatOpen}
+                onClose={() => setChatOpen(false)}
+                seller={selectedSeller}
+                product={selectedProduct}
+            />
         </div>
     );
 }
