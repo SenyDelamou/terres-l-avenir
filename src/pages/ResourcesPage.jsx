@@ -9,49 +9,60 @@ function ResourcesPage() {
         {
             id: 1,
             title: 'Agriculture de Conservation',
+            type: 'pdf',
             description: 'Techniques qui préservent la structure du sol et réduisent l\'érosion.',
             benefits: ['Amélioration de la fertilité', 'Réduction de l\'érosion', 'Meilleure rétention d\'eau'],
             image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=250&fit=crop'
         },
         {
             id: 2,
+            title: 'Maîtriser l\'Irrigation Solaire',
+            type: 'video',
+            youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            description: 'Découvrez comment installer et maintenir un système d\'irrigation solaire efficace.',
+            benefits: ['Économie d\'énergie', 'Autonomie hydrique', 'Réduction des coûts'],
+            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop'
+        },
+        {
+            id: 3,
             title: 'Rotation des Cultures',
+            type: 'pdf',
             description: 'Planification stratégique de la rotation pour optimiser les rendements.',
             benefits: ['Réduction des maladies', 'Amélioration de la fertilité', 'Diversification des revenus'],
             image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=250&fit=crop'
         },
         {
-            id: 3,
+            id: 4,
+            title: 'Techniques de Maraîchage en Guinée',
+            type: 'video',
+            youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            description: 'Formation complète sur les meilleures pratiques de maraîchage adaptées au climat guinéen.',
+            benefits: ['Calendrier cultural', 'Lutte bio-agressive', 'Optimisation d\'espace'],
+            image: 'https://images.unsplash.com/photo-1595841696677-5f80e037466d?w=400&h=250&fit=crop'
+        },
+        {
+            id: 5,
             title: 'Agroécologie',
+            type: 'pdf',
             description: 'Intégration des principes écologiques dans les systèmes agricoles.',
             benefits: ['Biodiversité accrue', 'Résilience aux changements', 'Réduction des intrants'],
             image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=250&fit=crop'
         },
         {
-            id: 4,
-            title: 'Agriculture de Précision',
-            description: 'Utilisation de technologies pour optimiser chaque zone de votre champ.',
-            benefits: ['Optimisation des intrants', 'Meilleure gestion', 'Augmentation des rendements'],
-            image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&h=250&fit=crop'
-        },
-        {
-            id: 5,
-            title: 'Compostage et Fertilisants Naturels',
-            description: 'Production et utilisation de compost pour enrichir naturellement vos sols.',
-            benefits: ['Amélioration de la structure du sol', 'Réduction des coûts', 'Durabilité'],
-            image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=250&fit=crop'
-        },
-        {
             id: 6,
-            title: 'Gestion Intégrée des Ravageurs',
-            description: 'Approche écologique pour contrôler les ravageurs sans pesticides excessifs.',
-            benefits: ['Réduction des pesticides', 'Protection de la biodiversité', 'Coûts réduits'],
-            image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=250&fit=crop'
+            title: 'Élevage de Volaille Moderne',
+            type: 'video',
+            youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            description: 'Guide vidéo sur la construction de bâtiments et le suivi sanitaire des volailles.',
+            benefits: ['Biosécurité', 'Alimentation optimale', 'Rentabilité'],
+            image: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=400&h=250&fit=crop'
         }
     ]);
 
     const [newResource, setNewResource] = useState({
         title: '',
+        type: 'pdf',
+        youtubeUrl: '',
         description: '',
         benefits: ''
     });
@@ -78,11 +89,13 @@ function ResourcesPage() {
             ...newResource,
             id,
             benefits: newResource.benefits.split(',').map(b => b.trim()),
-            image: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400&h=250&fit=crop'
+            image: newResource.type === 'video'
+                ? 'https://images.unsplash.com/photo-1551500226-b50b653e33e8?w=400&h=250&fit=crop'
+                : 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400&h=250&fit=crop'
         };
         setResources([resourceToAdd, ...resources]);
         setShowAddModal(false);
-        setNewResource({ title: '', description: '', benefits: '' });
+        setNewResource({ title: '', type: 'pdf', youtubeUrl: '', description: '', benefits: '' });
     };
 
     return (
@@ -116,7 +129,11 @@ function ResourcesPage() {
                         {resources.map((resource) => (
                             <div key={resource.id} className="resource-item-card">
                                 <div className="resource-item-image">
+                                    <span className="resource-type-badge">{resource.type === 'video' ? 'VIDEO' : 'PDF'}</span>
                                     <img src={resource.image} alt={resource.title} />
+                                    {resource.type === 'video' && (
+                                        <div className="video-overlay">▶️</div>
+                                    )}
                                 </div>
                                 <h3>{resource.title}</h3>
                                 <p>{resource.description}</p>
@@ -129,9 +146,15 @@ function ResourcesPage() {
                                     </ul>
                                 </div>
                                 <div className="resource-actions">
-                                    <button className="btn-download" onClick={() => handleDownload(resource.title)}>
-                                        <span>📥</span> Télécharger PDF
-                                    </button>
+                                    {resource.type === 'video' ? (
+                                        <a href={resource.youtubeUrl} target="_blank" rel="noopener noreferrer" className="btn-watch">
+                                            <span>▶️</span> Regarder sur YouTube
+                                        </a>
+                                    ) : (
+                                        <button className="btn-download" onClick={() => handleDownload(resource.title)}>
+                                            <span>📥</span> Télécharger PDF
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         ))}
@@ -154,6 +177,29 @@ function ResourcesPage() {
                                     placeholder="Ex: Guide de l'irrigation goutte-à-goutte"
                                 />
                             </div>
+                            <div className="form-group">
+                                <label>Type de ressource</label>
+                                <select
+                                    value={newResource.type}
+                                    onChange={(e) => setNewResource({ ...newResource, type: e.target.value })}
+                                    style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ddd' }}
+                                >
+                                    <option value="pdf">Guide PDF (Document)</option>
+                                    <option value="video">Vidéo YouTube (Lien)</option>
+                                </select>
+                            </div>
+                            {newResource.type === 'video' && (
+                                <div className="form-group">
+                                    <label>Lien YouTube</label>
+                                    <input
+                                        type="url"
+                                        required
+                                        value={newResource.youtubeUrl}
+                                        onChange={(e) => setNewResource({ ...newResource, youtubeUrl: e.target.value })}
+                                        placeholder="https://www.youtube.com/watch?v=..."
+                                    />
+                                </div>
+                            )}
                             <div className="form-group">
                                 <label>Description</label>
                                 <textarea
