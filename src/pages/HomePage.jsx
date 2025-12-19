@@ -4,317 +4,194 @@ import '../styles/HomePage.css';
 function HomePage() {
   return (
     <div className="home-page">
-      <section className="hero" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&h=800&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
+      {/* Hero Section */}
+      <section className="hero">
         <div className="hero-overlay"></div>
         <div className="container">
           <div className="hero-content">
-            <h1 className="hero-title">L'Agriculture de Demain</h1>
+            <h1 className="hero-title">Bienvenue sur AgriPulse</h1>
+            <p className="hero-subtitle">La plateforme complète pour agriculteurs novices</p>
             <p className="hero-description">
-              Découvrez des techniques innovantes et durables pour une agriculture 
-              respectueuse de l'environnement et productive.
+              Apprenez, partagez, vendez, financez vos projets et obtenez de l'aide IA pour diagnostiquer les maladies de vos plantes
             </p>
             <div className="hero-buttons">
-              <Link to="/services" className="btn btn-primary">
-                Nos Services
+              <Link to="/inscription" className="btn-hero-primary">
+                <span>🚀</span>
+                <span>Commencer Gratuitement</span>
               </Link>
-              <Link to="/techniques" className="btn btn-secondary">
-                En savoir plus
+              <Link to="/assistant-ia" className="btn-hero-secondary">
+                <span>🤖</span>
+                <span>Essayer l'Assistant IA</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="features">
+      {/* 5 Main Features */}
+      <section className="main-features">
         <div className="container">
-          <h2 className="section-title">Nos Domaines d'Expertise</h2>
+          <h2 className="section-title">Tout ce dont vous avez besoin, en un seul endroit</h2>
+          <p className="section-subtitle">5 fonctionnalités essentielles pour réussir en agriculture</p>
+
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-image">
-                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=300&fit=crop" alt="Agriculture biologique" />
-              </div>
-              <div className="feature-icon">🌱</div>
-              <h3>Agriculture Biologique</h3>
-              <p>Des méthodes naturelles pour une production saine et respectueuse de l'environnement.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-image">
-                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop" alt="Gestion de l'eau" />
-              </div>
-              <div className="feature-icon">💧</div>
-              <h3>Gestion de l'Eau</h3>
-              <p>Optimisation de l'irrigation et techniques de conservation de l'eau.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-image">
-                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop" alt="Production céréalière" />
-              </div>
-              <div className="feature-icon">🌾</div>
-              <h3>Production Céréalière</h3>
-              <p>Conseils et accompagnement pour améliorer vos rendements céréaliers.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-image">
-                <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&h=300&fit=crop" alt="Élevage durable" />
-              </div>
-              <div className="feature-icon">🐄</div>
-              <h3>Élevage Durable</h3>
-              <p>Pratiques d'élevage respectueuses du bien-être animal et de l'environnement.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-image">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop" alt="Agroforesterie" />
-              </div>
-              <div className="feature-icon">🌳</div>
-              <h3>Agroforesterie</h3>
-              <p>Intégration des arbres dans les systèmes agricoles pour plus de biodiversité.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-image">
-                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop" alt="Conseil agricole" />
-              </div>
-              <div className="feature-icon">📊</div>
-              <h3>Conseil Agricole</h3>
-              <p>Accompagnement personnalisé pour optimiser votre exploitation.</p>
-            </div>
+            <Link to="/techniques" className="feature-card feature-conseils">
+              <div className="feature-icon-large">🌾</div>
+              <h3>Conseils & Techniques</h3>
+              <p>Accédez à des guides pratiques, des tutoriels vidéo et des conseils d'experts pour maîtriser les techniques agricoles modernes</p>
+              <div className="feature-badge">Pour Débutants</div>
+              <span className="feature-arrow">→</span>
+            </Link>
+
+            <Link to="/forum" className="feature-card feature-forum">
+              <div className="feature-icon-large">💬</div>
+              <h3>Forum Communautaire</h3>
+              <p>Posez vos questions, partagez vos expériences et apprenez des autres agriculteurs de la communauté</p>
+              <div className="feature-badge">Entraide</div>
+              <span className="feature-arrow">→</span>
+            </Link>
+
+            <Link to="/marketplace" className="feature-card feature-marketplace">
+              <div className="feature-icon-large">🛒</div>
+              <h3>Marketplace</h3>
+              <p>Vendez vos produits agricoles directement aux acheteurs locaux et développez votre activité commerciale</p>
+              <div className="feature-badge">Nouveau !</div>
+              <span className="feature-arrow">→</span>
+            </Link>
+
+            <Link to="/projets-financement" className="feature-card feature-projets">
+              <div className="feature-icon-large">💰</div>
+              <h3>Financement de Projets</h3>
+              <p>Présentez vos projets agricoles et trouvez des investisseurs prêts à financer vos ambitions</p>
+              <div className="feature-badge">Investisseurs</div>
+              <span className="feature-arrow">→</span>
+            </Link>
+
+            <Link to="/assistant-ia" className="feature-card feature-ia">
+              <div className="feature-icon-large">🤖</div>
+              <h3>Assistant IA Maladies</h3>
+              <p>Prenez une photo de votre plante malade et obtenez un diagnostic instantané avec des solutions de traitement</p>
+              <div className="feature-badge">IA Avancée</div>
+              <span className="feature-arrow">→</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="why-choose">
+      {/* How It Works */}
+      <section className="how-it-works">
         <div className="container">
-          <h2 className="section-title">Pourquoi Choisir AgriPulse ?</h2>
-          <div className="why-choose-grid">
-            <div className="why-item">
-              <div className="why-icon">🎯</div>
-              <h3>Expertise Reconnue</h3>
-              <p>Plus de 15 ans d'expérience dans l'accompagnement des agriculteurs vers des pratiques durables et rentables.</p>
+          <h2 className="section-title">Comment ça marche ?</h2>
+          <div className="steps-grid">
+            <div className="step-card">
+              <div className="step-number">1</div>
+              <div className="step-icon">📝</div>
+              <h3>Créez votre compte</h3>
+              <p>Inscription gratuite en quelques secondes</p>
             </div>
-            <div className="why-item">
-              <div className="why-icon">🤝</div>
-              <h3>Accompagnement Personnalisé</h3>
-              <p>Chaque exploitation est unique. Nous adaptons nos conseils à vos besoins spécifiques et à votre contexte local.</p>
+            <div className="step-card">
+              <div className="step-number">2</div>
+              <div className="step-icon">📚</div>
+              <h3>Explorez les ressources</h3>
+              <p>Guides, forum, marketplace à votre disposition</p>
             </div>
-            <div className="why-item">
-              <div className="why-icon">🌱</div>
-              <h3>Approche Durable</h3>
-              <p>Nous privilégions des solutions respectueuses de l'environnement qui préservent vos terres pour les générations futures.</p>
+            <div className="step-card">
+              <div className="step-number">3</div>
+              <div className="step-icon">🚀</div>
+              <h3>Développez votre activité</h3>
+              <p>Vendez, trouvez des investisseurs, utilisez l'IA</p>
             </div>
-            <div className="why-item">
-              <div className="why-icon">💡</div>
-              <h3>Innovation Continue</h3>
-              <p>Nous restons à la pointe des dernières techniques et technologies agricoles pour vous offrir les meilleures solutions.</p>
-            </div>
-            <div className="why-item">
-              <div className="why-icon">📚</div>
-              <h3>Ressources Complètes</h3>
-              <p>Accédez à une bibliothèque de guides, formations et outils pour développer vos compétences agricoles.</p>
-            </div>
-            <div className="why-item">
-              <div className="why-icon">👥</div>
-              <h3>Communauté Active</h3>
-              <p>Rejoignez un réseau d'agriculteurs passionnés qui partagent leurs expériences et s'entraident.</p>
+            <div className="step-card">
+              <div className="step-number">4</div>
+              <div className="step-icon">🏆</div>
+              <h3>Réussissez ensemble</h3>
+              <p>Rejoignez une communauté d'agriculteurs passionnés</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="functionalities">
+      {/* Statistics */}
+      <section className="statistics">
         <div className="container">
-          <h2 className="section-title">Nos Fonctionnalités</h2>
-          <div className="functionalities-content">
-            <div className="functionality-item">
-              <div className="functionality-image">
-                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=400&fit=crop" alt="Forum communautaire" />
-              </div>
-              <div className="functionality-text">
-                <h3>💬 Forum Communautaire</h3>
-                <p>Échangez avec d'autres agriculteurs, posez vos questions et partagez vos expériences. Une communauté active prête à vous aider.</p>
-                <ul>
-                  <li>Discussions par catégories</li>
-                  <li>Réponses d'experts</li>
-                  <li>Partage de bonnes pratiques</li>
-                </ul>
-                <Link to="/forum" className="btn-functionality">Accéder au Forum</Link>
-              </div>
+          <h2 className="section-title">AgriPulse en chiffres</h2>
+          <div className="stats-grid">
+            <div className="stat-card">
+              <div className="stat-icon">👥</div>
+              <div className="stat-number">5,000+</div>
+              <div className="stat-label">Agriculteurs actifs</div>
             </div>
-            <div className="functionality-item reverse">
-              <div className="functionality-image">
-                <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&h=400&fit=crop" alt="Assistant IA" />
-              </div>
-              <div className="functionality-text">
-                <h3>🤖 Assistant IA Agricole</h3>
-                <p>Obtenez des réponses instantanées à vos questions sur l'agriculture. Notre IA vous guide 24/7 avec des conseils personnalisés.</p>
-                <ul>
-                  <li>Réponses en temps réel</li>
-                  <li>Conseils personnalisés</li>
-                  <li>Disponible 24/7</li>
-                </ul>
-                <Link to="/assistant-ia" className="btn-functionality">Essayer l'Assistant IA</Link>
-              </div>
+            <div className="stat-card">
+              <div className="stat-icon">💰</div>
+              <div className="stat-number">150+</div>
+              <div className="stat-label">Projets financés</div>
             </div>
-            <div className="functionality-item">
-              <div className="functionality-image">
-                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=400&fit=crop" alt="Guides techniques" />
-              </div>
-              <div className="functionality-text">
-                <h3>📖 Guides Techniques</h3>
-                <p>Accédez à une bibliothèque complète de guides pratiques sur toutes les techniques agricoles modernes et durables.</p>
-                <ul>
-                  <li>Guides détaillés</li>
-                  <li>Vidéos tutoriels</li>
-                  <li>Cas pratiques</li>
-                </ul>
-                <Link to="/techniques" className="btn-functionality">Découvrir les Guides</Link>
-              </div>
+            <div className="stat-card">
+              <div className="stat-icon">🛒</div>
+              <div className="stat-number">500+</div>
+              <div className="stat-label">Produits vendus</div>
             </div>
-            <div className="functionality-item reverse">
-              <div className="functionality-image">
-                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop" alt="Actualités" />
-              </div>
-              <div className="functionality-text">
-                <h3>📰 Actualités & Tendances</h3>
-                <p>Restez informé des dernières nouvelles, innovations et tendances du secteur agricole avec notre blog régulièrement mis à jour.</p>
-                <ul>
-                  <li>Articles hebdomadaires</li>
-                  <li>Analyses de marché</li>
-                  <li>Newsletter gratuite</li>
-                </ul>
-                <Link to="/actualites" className="btn-functionality">Lire les Actualités</Link>
-              </div>
+            <div className="stat-card">
+              <div className="stat-icon">🤖</div>
+              <div className="stat-number">1,200+</div>
+              <div className="stat-label">Maladies diagnostiquées</div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Testimonials */}
       <section className="testimonials">
         <div className="container">
-          <h2 className="section-title">Témoignages de Nos Clients</h2>
-          <p className="section-subtitle">Découvrez ce que nos agriculteurs partenaires disent de nous</p>
+          <h2 className="section-title">Ce que disent nos utilisateurs</h2>
           <div className="testimonials-grid">
             <div className="testimonial-card">
-              <div className="testimonial-header">
-                <div className="testimonial-avatar">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Jean Dupont" />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Jean Dupont</h4>
-                  <p className="testimonial-role">Agriculteur Céréalier, Normandie</p>
-                  <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-              </div>
+              <div className="testimonial-avatar">AM</div>
               <p className="testimonial-text">
-                "Grâce à AgriPulse, j'ai pu convertir mon exploitation en bio avec un accompagnement exceptionnel. 
-                Les conseils personnalisés et le forum m'ont beaucoup aidé. Mes rendements ont même augmenté de 15% !"
+                "Grâce à l'assistant IA, j'ai pu identifier et traiter le mildiou sur mes tomates en moins de 24h. Incroyable !"
               </p>
+              <div className="testimonial-author">
+                <strong>Amadou M.</strong>
+                <span>Agriculteur, Dakar</span>
+              </div>
+              <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
             </div>
             <div className="testimonial-card">
-              <div className="testimonial-header">
-                <div className="testimonial-avatar">
-                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Marie Martin" />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Marie Martin</h4>
-                  <p className="testimonial-role">Éleveuse Bovine, Auvergne</p>
-                  <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-              </div>
+              <div className="testimonial-avatar">FS</div>
               <p className="testimonial-text">
-                "L'assistant IA est incroyable ! Je peux poser mes questions à tout moment et obtenir des réponses pertinentes. 
-                La communauté du forum est également très active et bienveillante. Je recommande vivement !"
+                "J'ai vendu toute ma récolte de mangues via la Marketplace. Les prix sont meilleurs qu'au marché local !"
               </p>
+              <div className="testimonial-author">
+                <strong>Fatou S.</strong>
+                <span>Productrice, Thiès</span>
+              </div>
+              <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
             </div>
             <div className="testimonial-card">
-              <div className="testimonial-header">
-                <div className="testimonial-avatar">
-                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Pierre Leroy" />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Pierre Leroy</h4>
-                  <p className="testimonial-role">Maraîcher Bio, Provence</p>
-                  <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-              </div>
+              <div className="testimonial-avatar">IB</div>
               <p className="testimonial-text">
-                "Les guides techniques sont très complets et faciles à comprendre. J'ai appris beaucoup sur l'agroforesterie 
-                et j'ai pu l'appliquer sur mon exploitation. Un vrai gain de temps et d'efficacité !"
+                "Mon projet d'irrigation a été financé en 2 semaines grâce à AgriPulse. Merci à la communauté !"
               </p>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-header">
-                <div className="testimonial-avatar">
-                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Sophie Bernard" />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Sophie Bernard</h4>
-                  <p className="testimonial-role">Viticultrice, Bordeaux</p>
-                  <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
+              <div className="testimonial-author">
+                <strong>Ibrahima B.</strong>
+                <span>Entrepreneur agricole, Saint-Louis</span>
               </div>
-              <p className="testimonial-text">
-                "L'accompagnement personnalisé a transformé ma façon de travailler. Les experts sont à l'écoute et 
-                proposent des solutions adaptées. Mon exploitation est maintenant plus rentable et plus durable."
-              </p>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-header">
-                <div className="testimonial-avatar">
-                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Marc Dubois" />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Marc Dubois</h4>
-                  <p className="testimonial-role">Polyculteur, Centre</p>
-                  <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-              </div>
-              <p className="testimonial-text">
-                "Le système d'irrigation optimisé que j'ai mis en place grâce aux conseils d'AgriPulse m'a permis 
-                d'économiser 30% d'eau. C'est impressionnant et très bénéfique pour l'environnement !"
-              </p>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-header">
-                <div className="testimonial-avatar">
-                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="Luc Moreau" />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Luc Moreau</h4>
-                  <p className="testimonial-role">Jeune Agriculteur, Bretagne</p>
-                  <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-              </div>
-              <p className="testimonial-text">
-                "En tant que jeune agriculteur, j'apprécie énormément les ressources disponibles. Les formations et 
-                le forum m'ont aidé à démarrer mon activité avec les bonnes pratiques dès le début."
-              </p>
+              <div className="testimonial-rating">⭐⭐⭐⭐⭐</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="stats">
+      {/* CTA Final */}
+      <section className="cta-section">
         <div className="container">
-          <div className="stats-grid">
-            <div className="stat-item">
-              <div className="stat-number">500+</div>
-              <div className="stat-label">Exploitations accompagnées</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">15+</div>
-              <div className="stat-label">Années d'expérience</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">98%</div>
-              <div className="stat-label">Clients satisfaits</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">50+</div>
-              <div className="stat-label">Experts à votre service</div>
-            </div>
+          <div className="cta-content">
+            <h2>Prêt à transformer votre agriculture ?</h2>
+            <p>Rejoignez des milliers d'agriculteurs qui utilisent AgriPulse pour réussir</p>
+            <Link to="/inscription" className="btn-cta-large">
+              <span>Créer mon compte gratuit</span>
+              <span>→</span>
+            </Link>
           </div>
         </div>
       </section>
