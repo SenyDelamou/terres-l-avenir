@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
-import TechniquesPage from './pages/TechniquesPage';
+import ResourcesPage from './pages/ResourcesPage';
 import NewsPage from './pages/NewsPage';
 import ContactPage from './pages/ContactPage';
 import ForumPage from './pages/ForumPage';
@@ -29,7 +29,7 @@ function App() {
         <Route path="/accueil" element={<HomePage />} />
         <Route path="/a-propos" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/techniques" element={<TechniquesPage />} />
+        <Route path="/ressources" element={<ResourcesPage />} />
         <Route path="/actualites" element={<NewsPage />} />
         <Route path="/forum" element={<ForumPage />} />
         <Route path="/assistant-ia" element={<AIPage />} />

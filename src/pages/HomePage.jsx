@@ -77,9 +77,9 @@ function HomePage() {
           <p className="section-subtitle">5 fonctionnalités essentielles pour réussir en agriculture</p>
 
           <div className="features-grid">
-            <Link to="/techniques" className="feature-card feature-conseils">
-              <div className="feature-icon-large">🌾</div>
-              <h3>Conseils & Techniques</h3>
+            <Link to="/ressources" className="feature-card feature-conseils">
+              <div className="feature-icon-large">📚</div>
+              <h3>Ressources & Guides</h3>
               <p>Accédez à des guides pratiques, des tutoriels vidéo et des conseils d'experts pour maîtriser les techniques agricoles modernes</p>
               <div className="feature-badge">Pour Débutants</div>
               <span className="feature-arrow">→</span>

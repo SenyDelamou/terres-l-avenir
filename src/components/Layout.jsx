@@ -46,7 +46,7 @@ function Layout() {
 
   const mainNavLinks = [
     { path: '/accueil', label: 'Accueil', icon: '🏠' },
-    { path: '/techniques', label: 'Conseils', icon: '🌾' },
+    { path: '/ressources', label: 'Ressources', icon: '📚' },
     { path: '/forum', label: 'Forum', icon: '💬' },
     { path: '/marketplace', label: 'Marketplace', icon: '🛒' },
     { path: '/projets-financement', label: 'Projets', icon: '💰' },
@@ -83,8 +83,8 @@ function Layout() {
               <Link to="/accueil" className={`nav-pill-link ${location.pathname === '/accueil' ? 'active' : ''}`} onClick={closeMobileMenu}>
                 Accueil
               </Link>
-              <Link to="/techniques" className={`nav-pill-link ${location.pathname === '/techniques' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Conseils
+              <Link to="/ressources" className={`nav-pill-link ${location.pathname === '/ressources' ? 'active' : ''}`} onClick={closeMobileMenu}>
+                Ressources
               </Link>
               <Link to="/forum" className={`nav-pill-link ${location.pathname === '/forum' ? 'active' : ''}`} onClick={closeMobileMenu}>
                 Forum
@@ -190,7 +190,7 @@ function Layout() {
               <Link to="/accueil">Accueil</Link>
               <Link to="/a-propos">À propos</Link>
               <Link to="/services">Services</Link>
-              <Link to="/techniques">Techniques</Link>
+              <Link to="/ressources">Ressources</Link>
               <Link to="/actualites">Actualités</Link>
               <Link to="/forum">Forum</Link>
               <Link to="/assistant-ia">Assistant IA</Link>

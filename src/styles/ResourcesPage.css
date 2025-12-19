@@ -1,0 +1,233 @@
+.resources-page {
+    width: 100%;
+}
+
+.resources-content {
+    padding: 4rem 0;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.resource-item-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.resource-item-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.resource-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.resource-item-card:hover .resource-item-image img {
+    transform: scale(1.1);
+}
+
+.resource-item-card h3,
+.resource-item-card>p,
+.resource-item-card .benefits,
+.resource-actions {
+    padding: 0 2rem;
+}
+
+.resource-item-card h3 {
+    padding-top: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.resource-item-card>p {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.benefits {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0 2rem 1rem;
+}
+
+.benefits h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.benefits ul {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits li {
+    padding: 0.25rem 0;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.resource-actions {
+    padding-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    width: 100%;
+}
+
+.btn-download:hover {
+    background-color: var(--color-primary-dark, #133520);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(26, 71, 42, 0.05);
+    border-radius: 15px;
+    border: 1px dashed var(--color-primary);
+}
+
+.admin-header h2 {
+    margin: 0;
+    color: var(--color-primary);
+}
+
+.btn-add-resource {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-accent, #e67e22);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-add-resource:hover {
+    transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.resource-modal {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.resource-modal h2 {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-cancel {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    padding: 0.8rem 1.5rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+}
