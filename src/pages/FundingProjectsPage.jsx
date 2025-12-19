@@ -19,11 +19,11 @@ function FundingProjectsPage() {
       title: 'Serre Solaire pour Production Bio',
       entrepreneur: 'Marie Dubois',
       category: 'Agriculture Biologique',
-      amount: 45000,
-      raised: 28000,
+      amount: 450000000,
+      raised: 280000000,
       investors: 12,
       daysLeft: 25,
-      location: 'Normandie, France',
+      location: 'Kindia, Guinée',
       image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=400&fit=crop',
       description: 'Installation d\'une serre solaire de 500m² pour la production de légumes bio toute l\'année.',
       verified: true
@@ -33,11 +33,11 @@ function FundingProjectsPage() {
       title: 'Élevage de Chèvres Laitières',
       entrepreneur: 'Jean Martin',
       category: 'Élevage',
-      amount: 60000,
-      raised: 35000,
+      amount: 600000000,
+      raised: 350000000,
       investors: 18,
       daysLeft: 42,
-      location: 'Auvergne, France',
+      location: 'Mamou, Guinée',
       image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&h=400&fit=crop',
       description: 'Création d\'un élevage de 50 chèvres laitières avec fromagerie artisanale.',
       verified: true
@@ -47,11 +47,11 @@ function FundingProjectsPage() {
       title: 'Agroforesterie et Apiculture',
       entrepreneur: 'Sophie Leroy',
       category: 'Agroforesterie',
-      amount: 35000,
-      raised: 12000,
+      amount: 350000000,
+      raised: 120000000,
       investors: 8,
       daysLeft: 18,
-      location: 'Provence, France',
+      location: 'Labé, Guinée',
       image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop',
       description: 'Plantation d\'arbres fruitiers et installation de 30 ruches pour production de miel.',
       verified: false
@@ -61,11 +61,11 @@ function FundingProjectsPage() {
       title: 'Système d\'Irrigation Intelligent',
       entrepreneur: 'Pierre Bernard',
       category: 'Technologies Agricoles',
-      amount: 80000,
-      raised: 55000,
+      amount: 800000000,
+      raised: 550000000,
       investors: 25,
       daysLeft: 30,
-      location: 'Centre, France',
+      location: 'Kankan, Guinée',
       image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop',
       description: 'Installation d\'un système d\'irrigation connecté avec capteurs IoT pour optimiser la consommation d\'eau.',
       verified: true
@@ -75,11 +75,11 @@ function FundingProjectsPage() {
       title: 'Transformation de Fruits en Conserves',
       entrepreneur: 'Luc Moreau',
       category: 'Transformation de Produits',
-      amount: 55000,
-      raised: 20000,
+      amount: 550000000,
+      raised: 200000000,
       investors: 10,
       daysLeft: 35,
-      location: 'Aquitaine, France',
+      location: 'Nzérékoré, Guinée',
       image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=400&fit=crop',
       description: 'Création d\'un atelier de transformation de fruits locaux en confitures et conserves.',
       verified: true
@@ -89,11 +89,11 @@ function FundingProjectsPage() {
       title: 'Marché Local Bio',
       entrepreneur: 'Emma Rousseau',
       category: 'Commerce & Distribution',
-      amount: 40000,
-      raised: 15000,
+      amount: 400000000,
+      raised: 150000000,
       investors: 7,
       daysLeft: 20,
-      location: 'Île-de-France, France',
+      location: 'Conakry, Guinée',
       image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&h=400&fit=crop',
       description: 'Ouverture d\'un marché local dédié aux produits bio de la région.',
       verified: false
@@ -182,11 +182,11 @@ function FundingProjectsPage() {
                       <div className="funding-stats">
                         <div className="funding-stat">
                           <span className="stat-label">Collecté</span>
-                          <span className="stat-value">{project.raised.toLocaleString()} €</span>
+                          <span className="stat-value">{project.raised.toLocaleString()} GNF</span>
                         </div>
                         <div className="funding-stat">
                           <span className="stat-label">Objectif</span>
-                          <span className="stat-value">{project.amount.toLocaleString()} €</span>
+                          <span className="stat-value">{project.amount.toLocaleString()} GNF</span>
                         </div>
                         <div className="funding-stat">
                           <span className="stat-label">Investisseurs</span>

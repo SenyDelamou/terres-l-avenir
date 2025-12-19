@@ -55,21 +55,21 @@ function ContactPage() {
                 <div className="info-icon">📍</div>
                 <div>
                   <h3>Adresse</h3>
-                  <p>Cité Ministérielle, Kaloum<br />BP 1234, Conakry, Guinée</p>
+                  <p>Mamou, Guinée</p>
                 </div>
               </div>
               <div className="info-item">
                 <div className="info-icon">📞</div>
                 <div>
                   <h3>Téléphone</h3>
-                  <p>+224 621 00 00 00</p>
+                  <p>+224 623 59 01 51</p>
                 </div>
               </div>
               <div className="info-item">
                 <div className="info-icon">✉️</div>
                 <div>
                   <h3>Email</h3>
-                  <p>contact@agripulse-guinee.com</p>
+                  <p>samakedelamou858@gmail.com</p>
                 </div>
               </div>
               <div className="info-item">

@@ -310,7 +310,7 @@ function DashboardPage() {
                       </div>
                       <div className="form-row">
                         <div className="form-group">
-                          <label htmlFor="newProjectBudget">Budget estimé (€) *</label>
+                          <label htmlFor="newProjectBudget">Budget estimé (GNF) *</label>
                           <input
                             id="newProjectBudget"
                             type="number"
@@ -319,7 +319,7 @@ function DashboardPage() {
                             onChange={(e) =>
                               setNewProject((prev) => ({ ...prev, budget: e.target.value }))
                             }
-                            placeholder="Ex : 25 000"
+                            placeholder="Ex : 250,000,000"
                           />
                         </div>
                       </div>
@@ -413,11 +413,11 @@ function DashboardPage() {
                       </div>
                       <div className="form-group">
                         <label>Email</label>
-                        <input type="email" defaultValue="jean.dupont@example.com" />
+                        <input type="email" defaultValue="samakedelamou858@gmail.com" />
                       </div>
                       <div className="form-group">
                         <label>Téléphone</label>
-                        <input type="tel" defaultValue="+33 6 12 34 56 78" />
+                        <input type="tel" defaultValue="+224 623 59 01 51" />
                       </div>
                       <button type="submit" className="btn-primary">Enregistrer les modifications</button>
                     </form>

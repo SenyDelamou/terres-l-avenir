@@ -208,15 +208,15 @@ function Layout() {
               <h4>Contact</h4>
               <div className="footer-contact-item">
                 <span className="footer-icon">📍</span>
-                <span>Cité Ministérielle, Kaloum<br />BP 1234, Conakry, Guinée</span>
+                <span>Mamou, Guinée</span>
               </div>
               <div className="footer-contact-item">
                 <span className="footer-icon">📞</span>
-                <span>+224 621 00 00 00</span>
+                <span>+224 623 59 01 51</span>
               </div>
               <div className="footer-contact-item">
                 <span className="footer-icon">✉️</span>
-                <span>contact@agripulse-guinee.com</span>
+                <span>samakedelamou858@gmail.com</span>
               </div>
               <div className="footer-contact-item">
                 <span className="footer-icon">🕒</span>

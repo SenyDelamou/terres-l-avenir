@@ -54,7 +54,7 @@ function InvestmentModal({ project, isOpen, onClose }) {
                                     <h3>Définissez votre participation</h3>
                                     <p>Soutenez ce projet avec le montant de votre choix.</p>
                                     <div className="amount-input-group">
-                                        <span className="currency">€</span>
+                                        <span className="currency">GNF</span>
                                         <input
                                             type="number"
                                             placeholder="Ex: 5000"
@@ -65,14 +65,14 @@ function InvestmentModal({ project, isOpen, onClose }) {
                                         />
                                     </div>
                                     <div className="suggested-amounts">
-                                        {[500, 1000, 5000].map(val => (
+                                        {[100000, 500000, 1000000].map(val => (
                                             <button
                                                 key={val}
                                                 type="button"
                                                 className="btn-suggestion"
                                                 onClick={() => setAmount(val)}
                                             >
-                                                +{val}€
+                                                +{val.toLocaleString()} GNF
                                             </button>
                                         ))}
                                     </div>
@@ -89,7 +89,7 @@ function InvestmentModal({ project, isOpen, onClose }) {
                                         </div>
                                         <div className="info-item">
                                             <span className="label">Montant sélectionné</span>
-                                            <span className="value">{amount} €</span>
+                                            <span className="value">{amount.toLocaleString()} GNF</span>
                                         </div>
                                         <div className="info-item">
                                             <span className="label">Éligibilité</span>
@@ -120,7 +120,7 @@ function InvestmentModal({ project, isOpen, onClose }) {
                                             </div>
                                             <div className="summary-row">
                                                 <span>Montant</span>
-                                                <strong className="text-highlight">{amount} €</strong>
+                                                <strong className="text-highlight">{amount.toLocaleString()} GNF</strong>
                                             </div>
                                         </div>
                                         <p className="summary-note">

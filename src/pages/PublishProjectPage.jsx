@@ -10,7 +10,7 @@ function PublishProjectPage() {
     description: '',
     amount: '',
     duration: '',
-    location: '',
+    location: 'Conakry, Guinée',
     images: [],
     businessPlan: null
   });
@@ -87,7 +87,7 @@ function PublishProjectPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validate()) {
       return;
     }
@@ -148,7 +148,7 @@ function PublishProjectPage() {
           <form onSubmit={handleSubmit} className="publish-form">
             <div className="form-section">
               <h3>Informations Générales</h3>
-              
+
               <div className="form-group">
                 <label htmlFor="title">Titre du Projet *</label>
                 <input
@@ -198,17 +198,17 @@ function PublishProjectPage() {
 
             <div className="form-section">
               <h3>Financement</h3>
-              
+
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="amount">Montant recherché (€) *</label>
+                  <label htmlFor="amount">Montant recherché (GNF) *</label>
                   <input
                     type="number"
                     id="amount"
                     name="amount"
                     value={formData.amount}
                     onChange={handleChange}
-                    placeholder="50000"
+                    placeholder="500,000,000"
                     min="1000"
                     step="1000"
                     className={errors.amount ? 'error' : ''}
@@ -235,7 +235,7 @@ function PublishProjectPage() {
 
             <div className="form-section">
               <h3>Localisation</h3>
-              
+
               <div className="form-group">
                 <label htmlFor="location">Localisation du projet *</label>
                 <input
@@ -244,7 +244,7 @@ function PublishProjectPage() {
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  placeholder="Ex: Normandie, France"
+                  placeholder="Ex: Conakry, Guinée"
                   className={errors.location ? 'error' : ''}
                 />
                 {errors.location && <span className="error-message">{errors.location}</span>}
@@ -253,7 +253,7 @@ function PublishProjectPage() {
 
             <div className="form-section">
               <h3>Médias</h3>
-              
+
               <div className="form-group">
                 <label htmlFor="images">Photos du Projet</label>
                 <input

@@ -18,7 +18,7 @@ function MarketplacePage() {
             id: 1,
             name: 'Tomates Bio',
             category: 'legumes',
-            price: 3.50,
+            price: 35000,
             unit: 'kg',
             quantity: 50,
             location: 'Conakry, Guinée',
@@ -31,7 +31,7 @@ function MarketplacePage() {
             id: 2,
             name: 'Mangues Juteuses',
             category: 'fruits',
-            price: 2.80,
+            price: 28000,
             unit: 'kg',
             quantity: 100,
             location: 'Kindia, Guinée',
@@ -44,7 +44,7 @@ function MarketplacePage() {
             id: 3,
             name: 'Riz Local',
             category: 'cereales',
-            price: 1.20,
+            price: 12000,
             unit: 'kg',
             quantity: 500,
             location: 'Mamou, Guinée',
@@ -57,7 +57,7 @@ function MarketplacePage() {
             id: 4,
             name: 'Oignons Frais',
             category: 'legumes',
-            price: 1.50,
+            price: 15000,
             unit: 'kg',
             quantity: 200,
             location: 'Kankan, Guinée',
@@ -70,7 +70,7 @@ function MarketplacePage() {
             id: 5,
             name: 'Papayes',
             category: 'fruits',
-            price: 2.00,
+            price: 20000,
             unit: 'pièce',
             quantity: 80,
             location: 'Labé, Guinée',
@@ -213,7 +213,7 @@ function MarketplacePage() {
 
                                                 <div className="product-footer">
                                                     <div className="product-price">
-                                                        <span className="price-value">{product.price}€</span>
+                                                        <span className="price-value">{product.price.toLocaleString()} GNF</span>
                                                         <span className="price-unit">/ {product.unit}</span>
                                                     </div>
                                                 </div>

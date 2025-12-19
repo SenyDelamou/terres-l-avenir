@@ -238,7 +238,7 @@ function SellProductPage() {
                                             min="0"
                                             className={errors.price ? 'error' : ''}
                                         />
-                                        <span className="unit-label">€</span>
+                                        <span className="unit-label">GNF</span>
                                     </div>
                                     {errors.price && <span className="error-text">{errors.price}</span>}
                                 </div>
