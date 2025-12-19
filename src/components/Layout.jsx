@@ -46,11 +46,11 @@ function Layout() {
 
   const mainNavLinks = [
     { path: '/', label: 'Accueil', icon: '🏠' },
-    { path: '/services', label: 'Services', icon: '🛠️' },
-    { path: '/techniques', label: 'Techniques', icon: '🌾' },
+    { path: '/techniques', label: 'Conseils', icon: '🌾' },
     { path: '/forum', label: 'Forum', icon: '💬' },
-    { path: '/projets-financement', label: 'Financement', icon: '💰' },
-    { path: '/assistant-ia', label: 'IA', icon: '🤖' }
+    { path: '/marketplace', label: 'Marketplace', icon: '🛒' },
+    { path: '/projets-financement', label: 'Projets', icon: '💰' },
+    { path: '/assistant-ia', label: 'Assistant IA', icon: '🤖' }
   ];
 
   const moreNavLinks = [
@@ -91,20 +91,20 @@ function Layout() {
               <Link to="/" className={`nav-pill-link ${location.pathname === '/' ? 'active' : ''}`} onClick={closeMobileMenu}>
                 Accueil
               </Link>
+              <Link to="/techniques" className={`nav-pill-link ${location.pathname === '/techniques' ? 'active' : ''}`} onClick={closeMobileMenu}>
+                Conseils
+              </Link>
+              <Link to="/forum" className={`nav-pill-link ${location.pathname === '/forum' ? 'active' : ''}`} onClick={closeMobileMenu}>
+                Forum
+              </Link>
+              <Link to="/marketplace" className={`nav-pill-link ${location.pathname === '/marketplace' ? 'active' : ''}`} onClick={closeMobileMenu}>
+                Marketplace
+              </Link>
               <Link to="/projets-financement" className={`nav-pill-link ${location.pathname === '/projets-financement' ? 'active' : ''}`} onClick={closeMobileMenu}>
                 Projets
               </Link>
-              <Link to="/services" className={`nav-pill-link ${location.pathname === '/services' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Services
-              </Link>
-              <Link to="/techniques" className={`nav-pill-link ${location.pathname === '/techniques' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Techniques
-              </Link>
               <Link to="/assistant-ia" className={`nav-pill-link ${location.pathname === '/assistant-ia' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                IA
-              </Link>
-              <Link to="/contact" className={`nav-pill-link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Contact
+                Assistant IA
               </Link>
             </div>
 
