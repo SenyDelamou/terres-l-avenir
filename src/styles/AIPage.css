@@ -200,58 +200,6 @@
   }
 }
 
-.quick-questions {
-  padding: 0.8rem 1.5rem;
-  background: white;
-  border-top: 1px solid #e0e0e0;
-}
-
-.quick-questions p {
-  margin: 0 0 0.5rem 0;
-  font-size: 0.8rem;
-  color: #888;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.quick-questions-list {
-  display: flex;
-  gap: 0.6rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scrollbar-width: thin;
-  scrollbar-color: #ddd transparent;
-  -webkit-overflow-scrolling: touch;
-}
-
-.quick-questions-list::-webkit-scrollbar {
-  height: 4px;
-}
-
-.quick-questions-list::-webkit-scrollbar-thumb {
-  background-color: #ddd;
-  border-radius: 4px;
-}
-
-.quick-question-btn {
-  background: #f0f8f0;
-  color: #4a7c2a;
-  border: 1px solid transparent;
-  padding: 0.4rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.quick-question-btn:hover {
-  background: #4a7c2a;
-  color: white;
-  transform: translateY(-1px);
-}
 
 .chat-input-form {
   display: flex;

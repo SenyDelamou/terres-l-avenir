@@ -234,20 +234,6 @@ function AIPage() {
               <div ref={messagesEndRef} />
             </div>
 
-            <div className="quick-questions">
-              <p>Questions rapides :</p>
-              <div className="quick-questions-list">
-                {quickQuestions.map((question, index) => (
-                  <button
-                    key={index}
-                    className="quick-question-btn"
-                    onClick={() => handleQuickQuestion(question)}
-                  >
-                    {question}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <form className="chat-input-form" onSubmit={handleSendMessage}>
               <input
