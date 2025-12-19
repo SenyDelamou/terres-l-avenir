@@ -55,8 +55,21 @@ function LoginPage() {
     // Simuler une connexion
     setTimeout(() => {
       setIsLoading(false);
+
+      // Sauvegarder les données d'authentification dans localStorage
+      const userData = {
+        name: 'Utilisateur',
+        email: formData.email,
+        role: 'Agriculteur'
+      };
+
+      localStorage.setItem('userToken', 'demo-token-' + Date.now());
+      localStorage.setItem('userData', JSON.stringify(userData));
+
       alert('Connexion réussie ! Bienvenue sur AgriPulse.');
-      navigate('/');
+
+      // Recharger la page pour mettre à jour l'état d'authentification dans la navbar
+      window.location.href = '/';
     }, 1500);
   };
 

@@ -34,6 +34,16 @@ function Layout() {
 
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
+  // Simuler l'état d'authentification (à remplacer par votre vraie logique d'auth)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Vérifier si l'utilisateur est connecté (exemple avec localStorage)
+    const userToken = localStorage.getItem('userToken');
+    const userData = localStorage.getItem('userData');
+    setIsAuthenticated(!!(userToken && userData));
+  }, []);
+
   const mainNavLinks = [
     { path: '/', label: 'Accueil', icon: '🏠' },
     { path: '/services', label: 'Services', icon: '🛠️' },
@@ -98,16 +108,49 @@ function Layout() {
               </Link>
             </div>
 
-            {/* Right Actions: Bell + Profile */}
-            <div className="nav-right-actions">
-              <button className="btn-icon-bell" title="Notifications">
-                🔔
-              </button>
 
-              <Link to="/dashboard" className="btn-profile-circle" title="Mon Profil">
-                <span className="profile-initials">GU</span>
-                <span className="profile-arrow">▼</span>
-              </Link>
+            {/* Right Actions: Conditional based on auth */}
+            <div className="nav-right-actions">
+              {isAuthenticated ? (
+                <>
+                  <button className="btn-icon-bell" title="Notifications">
+                    🔔
+                  </button>
+
+                  <div className="profile-dropdown-wrapper">
+                    <button className="btn-profile-circle" title="Mon Profil">
+                      <span className="profile-initials">GU</span>
+                      <span className="profile-arrow">▼</span>
+                    </button>
+                    <div className="profile-dropdown">
+                      <Link to="/dashboard" className="dropdown-item" onClick={closeMobileMenu}>
+                        <span>📊</span>
+                        <span>Dashboard</span>
+                      </Link>
+                      <Link to="/profile" className="dropdown-item" onClick={closeMobileMenu}>
+                        <span>👤</span>
+                        <span>Mon Profil</span>
+                      </Link>
+                      <button
+                        className="dropdown-item logout-btn"
+                        onClick={() => {
+                          localStorage.removeItem('userToken');
+                          localStorage.removeItem('userData');
+                          window.location.href = '/';
+                        }}
+                      >
+                        <span>🚪</span>
+                        <span>Déconnexion</span>
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <Link to="/connexion" className="btn-login-nav" onClick={closeMobileMenu}>
+                  <span>🔐</span>
+                  <span>Connexion</span>
+                </Link>
+              )}
             </div>
           </nav>
 
