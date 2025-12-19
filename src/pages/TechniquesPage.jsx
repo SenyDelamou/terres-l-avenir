@@ -41,6 +41,11 @@ function TechniquesPage() {
         title="Conseils & Techniques Agricoles"
         subtitle="Découvrez les méthodes modernes et durables pour améliorer votre production"
         icon="🌾"
+        images={[
+          'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1595841696677-5f80e037466d?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=1920&h=600&fit=crop'
+        ]}
       />
 
       <section className="techniques-content">

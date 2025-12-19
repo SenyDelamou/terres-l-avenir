@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import PageHeader from '../components/PageHeader';
 import '../styles/AIPage.css';
 
 function AIPage() {
@@ -163,17 +164,15 @@ function AIPage() {
 
   return (
     <div className="ai-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>🤖 Assistant IA Agricole</h1>
-          <p>Obtenez des réponses instantanées à vos questions sur l'agriculture</p>
-        </div>
-      </section>
+      <PageHeader
+        title="🤖 Assistant IA Agricole"
+        subtitle="Obtenez des réponses instantanées à vos questions sur l'agriculture"
+        images={[
+          'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1595841696677-5f80e037466d?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&h=600&fit=crop'
+        ]}
+      />
 
       <section className="ai-content">
         <div className="container">

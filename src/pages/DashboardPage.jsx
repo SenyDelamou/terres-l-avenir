@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
 import '../styles/DashboardPage.css';
 
 function DashboardPage() {
@@ -63,17 +64,15 @@ function DashboardPage() {
 
   return (
     <div className="dashboard-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>Mon Tableau de Bord</h1>
-          <p>Gérez vos projets et suivez votre activité</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Mon Tableau de Bord"
+        subtitle="Gérez vos projets et suivez votre activité"
+        images={[
+          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&h=600&fit=crop'
+        ]}
+      />
 
       <section className="dashboard-content">
         <div className="container">
@@ -89,31 +88,31 @@ function DashboardPage() {
               </div>
 
               <nav className="dashboard-nav">
-                <button 
+                <button
                   className={activeTab === 'overview' ? 'active' : ''}
                   onClick={() => setActiveTab('overview')}
                 >
                   <span>📊</span> Vue d'ensemble
                 </button>
-                <button 
+                <button
                   className={activeTab === 'projects' ? 'active' : ''}
                   onClick={() => setActiveTab('projects')}
                 >
                   <span>🌾</span> Mes Projets
                 </button>
-                <button 
+                <button
                   className={activeTab === 'funding' ? 'active' : ''}
                   onClick={() => setActiveTab('funding')}
                 >
                   <span>💰</span> Financement
                 </button>
-                <button 
+                <button
                   className={activeTab === 'forum' ? 'active' : ''}
                   onClick={() => setActiveTab('forum')}
                 >
                   <span>💬</span> Forum
                 </button>
-                <button 
+                <button
                   className={activeTab === 'settings' ? 'active' : ''}
                   onClick={() => setActiveTab('settings')}
                 >
@@ -175,8 +174,8 @@ function DashboardPage() {
                               </span>
                               {project.progress > 0 && (
                                 <div className="progress-bar">
-                                  <div 
-                                    className="progress-fill" 
+                                  <div
+                                    className="progress-fill"
                                     style={{ width: `${project.progress}%` }}
                                   ></div>
                                 </div>
@@ -233,8 +232,8 @@ function DashboardPage() {
                                 <span>{project.progress}%</span>
                               </div>
                               <div className="progress-bar">
-                                <div 
-                                  className="progress-fill" 
+                                <div
+                                  className="progress-fill"
                                   style={{ width: `${project.progress}%` }}
                                 ></div>
                               </div>

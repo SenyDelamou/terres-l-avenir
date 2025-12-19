@@ -1,22 +1,51 @@
 .page-header {
     position: relative;
-    min-height: 400px;
+    min-height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     overflow: hidden;
-    background: #2d5016;
+    background: var(--color-primary-dark);
 }
 
-.page-header-background {
+.page-header-slider {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #1e3a1a 0%, #2d5016 50%, #3a632a 100%);
-    opacity: 1;
+    z-index: 0;
+}
+
+.page-header-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out, transform 10s linear;
+    transform: scale(1.1);
+}
+
+.page-header-slide.active {
+    opacity: 0.6;
+    transform: scale(1);
+}
+
+.page-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.7) 100%);
 }
 
 .page-header .container {
@@ -101,25 +130,25 @@
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     border-radius: 50px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     font-family: inherit;
 }
 
 .page-header-btn.primary {
     background: white;
-    color: #2d5016;
+    color: var(--color-primary);
 }
 
 .page-header-btn.primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
 }
 
 .page-header-btn.secondary {
@@ -131,7 +160,7 @@
 
 .page-header-btn.secondary:hover {
     background: white;
-    color: #2d5016;
+    color: var(--color-primary);
     transform: translateY(-3px);
 }
 

@@ -2,40 +2,8 @@
   width: 100%;
 }
 
-.page-header {
-  position: relative;
-  color: white;
-  padding: 6rem 0;
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.page-header-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(45, 80, 22, 0.85) 0%, rgba(74, 124, 42, 0.85) 100%);
-}
-
-.page-header .container {
-  position: relative;
-  z-index: 1;
-}
-
-.page-header h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.page-header p {
-  font-size: 1.2rem;
-  opacity: 0.95;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+.services-content {
+  padding: 4rem 0;
 }
 
 .services-content {
@@ -99,7 +67,7 @@
 
 .service-card h3 {
   font-size: 1.8rem;
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 1rem;
 }
 
@@ -126,12 +94,12 @@
   content: "✓";
   position: absolute;
   left: 0;
-  color: #4a7c2a;
+  color: var(--color-accent);
   font-weight: bold;
 }
 
 .service-button {
-  background: #4a7c2a;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -143,11 +111,11 @@
 }
 
 .service-button:hover {
-  background: #2d5016;
+  background: var(--color-primary-dark);
 }
 
 .cta-section {
-  background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%);
+  background: var(--gradient-primary);
   color: white;
   padding: 4rem 0;
   text-align: center;
@@ -181,4 +149,3 @@
     grid-template-columns: 1fr;
   }
 }
-

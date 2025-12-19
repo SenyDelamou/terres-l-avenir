@@ -1,3 +1,4 @@
+import PageHeader from '../components/PageHeader';
 import '../styles/AboutPage.css';
 
 function AboutPage() {
@@ -49,17 +50,15 @@ function AboutPage() {
 
   return (
     <div className="about-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>À Propos de Nous</h1>
-          <p>Bâtir ensemble l'agriculture de demain, durable et innovante.</p>
-        </div>
-      </section>
+      <PageHeader
+        title="À Propos de Nous"
+        subtitle="Bâtir ensemble l'agriculture de demain, durable et innovante."
+        images={[
+          'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=1920&h=600&fit=crop'
+        ]}
+      />
 
       <section className="about-content">
         <div className="container">
@@ -70,14 +69,14 @@ function AboutPage() {
                 <h2>Notre Histoire</h2>
                 <div className="history-box">
                   <p>
-                    Fondée en 2009, <strong>AgriPulse</strong> est née d'une passion pour l'agriculture 
-                    durable et le respect de l'environnement. Depuis plus de 15 ans, nous 
-                    accompagnons les agriculteurs dans leur transition vers des pratiques 
+                    Fondée en 2009, <strong>AgriPulse</strong> est née d'une passion pour l'agriculture
+                    durable et le respect de l'environnement. Depuis plus de 15 ans, nous
+                    accompagnons les agriculteurs dans leur transition vers des pratiques
                     plus respectueuses et rentables.
                   </p>
                   <p>
-                    Notre équipe d'experts agronomes, d'ingénieurs et de conseillers 
-                    agricoles travaille chaque jour pour développer et partager les meilleures 
+                    Notre équipe d'experts agronomes, d'ingénieurs et de conseillers
+                    agricoles travaille chaque jour pour développer et partager les meilleures
                     pratiques agricoles à travers le monde.
                   </p>
                 </div>

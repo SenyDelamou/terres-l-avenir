@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
 import '../styles/ServicesPage.css';
 
 function ServicesPage() {
@@ -43,17 +44,15 @@ function ServicesPage() {
 
   return (
     <div className="services-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>Nos Services</h1>
-          <p>Des solutions complètes pour votre exploitation agricole</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Nos Services"
+        subtitle="Des solutions complètes pour votre exploitation agricole"
+        images={[
+          'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&h=600&fit=crop'
+        ]}
+      />
 
       <section className="services-content">
         <div className="container">
