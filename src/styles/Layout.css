@@ -70,6 +70,13 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-self: end;
+}
+
 .nav-center-pill::-webkit-scrollbar {
   display: none;
   /* Chrome/Safari */
@@ -1094,7 +1101,8 @@
   }
 
   .nav-right-actions {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
     padding: 1rem;
     gap: 1rem;
