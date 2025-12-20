@@ -335,68 +335,80 @@ function ProjectDetailPage() {
             </div>
 
             <div className="project-chat-card">
-              <h2>💬 Espace de discussion</h2>
-              <p className="chat-subtitle">
-                Posez vos questions directement au porteur de projet.
-              </p>
-
-              <div className="chat-messages">
-                {messages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={`chat-message ${msg.senderType === 'owner' ? 'owner' : 'investor'}`}
-                  >
-                    <div className="chat-message-header">
-                      <span className="chat-sender">
-                        {msg.senderType === 'owner' ? '👨‍🌾 ' : '💼 '}
-                        {msg.senderName}
-                      </span>
-                      <span className="chat-time">{msg.time}</span>
-                    </div>
-                    <p className="chat-content">{msg.content}</p>
-                  </div>
-                ))}
+              <div className="chat-header-standard">
+                <h2>💬 Espace de discussion</h2>
+                <p className="chat-subtitle">
+                  Posez vos questions directement au porteur de projet.
+                </p>
               </div>
-
-              <form className="chat-form" onSubmit={handleSendMessage}>
-                <div className="chat-form-row">
-                  <div className="form-group">
-                    <label>Je suis</label>
-                    <select
-                      name="senderType"
-                      value={newMessage.senderType}
-                      onChange={handleMessageChange}
+              <div className="professional-chat-wrapper">
+                <div className="chat-messages-container">
+                  {messages.map((msg) => (
+                    <div
+                      key={msg.id}
+                      className={`chat-bubble-row ${msg.senderType === 'owner' ? 'owner-row' : 'investor-row'}`}
                     >
-                      <option value="owner">Porteur de projet</option>
-                      <option value="investor">Investisseur</option>
-                    </select>
+                      <div className="chat-avatar">
+                        {msg.senderType === 'owner' ? '👨‍🌾' : '💼'}
+                      </div>
+                      <div className="chat-bubble-content">
+                        <div className="bubble-header">
+                          <span className="bubble-role">{msg.senderType === 'owner' ? 'Porteur de projet' : 'Investisseur'}</span>
+                          <span className="bubble-name">{msg.senderName}</span>
+                        </div>
+                        <div className="bubble-text">
+                          <p>{msg.content}</p>
+                        </div>
+                        <div className="bubble-footer">
+                          <span className="bubble-time">{msg.time}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <form className="professional-chat-form" onSubmit={handleSendMessage}>
+                  <div className="chat-form-top">
+                    <div className="input-group">
+                      <label>JE SUIS</label>
+                      <select
+                        name="senderType"
+                        value={newMessage.senderType}
+                        onChange={handleMessageChange}
+                      >
+                        <option value="owner">Porteur de projet</option>
+                        <option value="investor">Investisseur</option>
+                      </select>
+                    </div>
+                    <div className="input-group">
+                      <label>VOTRE NOM</label>
+                      <input
+                        type="text"
+                        name="senderName"
+                        value={newMessage.senderName}
+                        onChange={handleMessageChange}
+                        placeholder="Ex: Jean Dupont"
+                      />
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label>Nom</label>
-                    <input
-                      type="text"
-                      name="senderName"
-                      value={newMessage.senderName}
+                  <div className="chat-form-bottom">
+                    <textarea
+                      name="content"
+                      rows="2"
+                      value={newMessage.content}
                       onChange={handleMessageChange}
-                      placeholder="Votre nom"
-                    />
+                      placeholder="Écrivez votre message ici..."
+                      required
+                    ></textarea>
+                    <button type="submit" className="btn-chat-send">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                      </svg>
+                    </button>
                   </div>
-                </div>
-                <div className="form-group">
-                  <label>Message</label>
-                  <textarea
-                    name="content"
-                    rows="3"
-                    value={newMessage.content}
-                    onChange={handleMessageChange}
-                    placeholder="Écrivez votre message..."
-                    required
-                  ></textarea>
-                </div>
-                <button type="submit" className="btn-primary">
-                  Envoyer le message
-                </button>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
 
