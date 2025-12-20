@@ -48,6 +48,13 @@
 
 .logo-text {
   font-size: 1.5rem;
+  color: white !important;
+}
+
+.logo-subtext {
+  opacity: 0.9;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 .nav {
@@ -111,11 +118,10 @@
   position: relative;
 }
 
-.btn-icon-bell {
+.btn-icon-bell,
+.btn-icon-messages {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffc107;
-  /* Gold/Yellow bell */
   width: 42px;
   height: 42px;
   border-radius: 12px;
@@ -129,7 +135,18 @@
   backdrop-filter: blur(10px);
 }
 
-.btn-icon-bell:hover {
+.btn-icon-bell {
+  color: #ffc107;
+  /* Gold/Yellow bell */
+}
+
+.btn-icon-messages {
+  color: #00d2ff;
+  /* Light blue for messages */
+}
+
+.btn-icon-bell:hover,
+.btn-icon-messages:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -839,9 +856,19 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+.footer-logo .logo-text {
+  color: white !important;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.footer-logo .logo-subtext {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 400;
 }
 
 .footer-logo .logo-icon {
@@ -1110,10 +1137,12 @@
   }
 
   .btn-profile-circle,
-  .btn-icon-bell {
-    width: 100%;
+  .btn-icon-bell,
+  .btn-icon-messages {
+    width: auto;
+    flex: 1;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 12px;
   }
 
   .nav.mobile-open {

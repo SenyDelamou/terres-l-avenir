@@ -72,6 +72,7 @@ function Layout() {
   ]);
 
   const unreadCount = notifications.filter(n => !n.isRead).length;
+  const [unreadMessages, setUnreadMessages] = useState(3);
 
   const markAllAsRead = () => {
     setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
@@ -95,6 +96,7 @@ function Layout() {
       <header className="header">
         <div className="container">
           <Link to="/accueil" className="logo" onClick={closeMobileMenu}>
+            <span className="logo-icon">🌱</span>
             <span className="logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
           </Link>
 
@@ -142,6 +144,10 @@ function Layout() {
                     <button className="btn-icon-bell" title="Notifications">
                       <span className="bell-icon">🔔</span>
                       {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
+                    </button>
+                    <button className="btn-icon-messages" title="Messages">
+                      <span className="message-icon">💬</span>
+                      {unreadMessages > 0 && <span className="notification-badge">{unreadMessages}</span>}
                     </button>
                     <div className="notification-dropdown">
                       <div className="dropdown-header">
@@ -247,13 +253,7 @@ function Layout() {
           <div className="footer-content">
             <div className="footer-section footer-about">
               <div className="footer-logo">
-                <span className="logo-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                  </svg>
-                </span>
+                <span className="logo-icon">🌱</span>
                 <span className="logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
               </div>
               <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>

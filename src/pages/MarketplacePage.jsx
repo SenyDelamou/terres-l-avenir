@@ -11,6 +11,18 @@ function MarketplacePage() {
     const [chatOpen, setChatOpen] = useState(false);
     const [selectedSeller, setSelectedSeller] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [user, setUser] = useState(null);
+
+    useState(() => {
+        const userData = localStorage.getItem('userData');
+        if (userData) {
+            try {
+                setUser(JSON.parse(userData));
+            } catch (e) {
+                console.error("Error parsing user data", e);
+            }
+        }
+    });
 
     // Produits simulés (à remplacer par des données d'API)
     const products = [
@@ -122,14 +134,14 @@ function MarketplacePage() {
                 title="Le Marché de la Qualité Supérieure"
                 subtitle="Connectez-vous aux meilleurs producteurs locaux et accédez à des produits d'exception."
                 icon="🌽"
-                buttons={[
+                buttons={user?.role === 'farmer' ? [
                     {
                         label: "Vendre un Produit",
                         icon: "📦",
                         variant: "primary",
                         onClick: () => navigate('/vendre-produit')
                     }
-                ]}
+                ] : []}
             />
 
             <section className="marketplace-search-section">
