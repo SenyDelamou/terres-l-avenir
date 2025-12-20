@@ -44,6 +44,39 @@ function Layout() {
     setIsAuthenticated(!!(userToken && userData));
   }, []);
 
+  const [notifications, setNotifications] = useState([
+    {
+      id: 1,
+      type: 'reply',
+      title: 'Nouvelle réponse au forum',
+      message: 'Jean Dupont a répondu à votre sujet "Irrigation solaire".',
+      time: 'Il y a 5 min',
+      isRead: false
+    },
+    {
+      id: 2,
+      type: 'project',
+      title: 'Investissement reçu',
+      message: 'Un investisseur a contribué à votre projet "Serre Solaire".',
+      time: 'Il y a 1 heure',
+      isRead: false
+    },
+    {
+      id: 3,
+      type: 'system',
+      title: 'Profil complété',
+      message: 'Votre profil a été validé par l\'administrateur.',
+      time: 'Il y a 1 jour',
+      isRead: true
+    }
+  ]);
+
+  const unreadCount = notifications.filter(n => !n.isRead).length;
+
+  const markAllAsRead = () => {
+    setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+  };
+
   const mainNavLinks = [
     { path: '/accueil', label: 'Accueil', icon: '🏠' },
     { path: '/ressources', label: 'Ressources', icon: '📚' },
@@ -105,9 +138,50 @@ function Layout() {
             <div className="nav-right-actions">
               {isAuthenticated ? (
                 <>
-                  <button className="btn-icon-bell" title="Notifications">
-                    🔔
-                  </button>
+                  <div className="notification-dropdown-wrapper">
+                    <button className="btn-icon-bell" title="Notifications">
+                      <span className="bell-icon">🔔</span>
+                      {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
+                    </button>
+                    <div className="notification-dropdown">
+                      <div className="dropdown-header">
+                        <div className="header-top">
+                          <strong>Notifications</strong>
+                          {unreadCount > 0 && (
+                            <button className="mark-read-btn" onClick={markAllAsRead}>
+                              Tout marquer comme lu
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                      <div className="notification-list">
+                        {notifications.length > 0 ? (
+                          notifications.map((n) => (
+                            <div key={n.id} className={`notification-item ${n.isRead ? 'read' : 'unread'}`}>
+                              <div className="notification-icon-circle">
+                                {n.type === 'reply' ? '💬' : n.type === 'project' ? '💰' : '✅'}
+                              </div>
+                              <div className="notification-content">
+                                <p className="notification-title">{n.title}</p>
+                                <p className="notification-message">{n.message}</p>
+                                <span className="notification-time">{n.time}</span>
+                              </div>
+                              {!n.isRead && <div className="unread-dot"></div>}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="empty-notifications">
+                            <p>Aucune notification</p>
+                          </div>
+                        )}
+                      </div>
+                      <div className="dropdown-footer">
+                        <Link to="/notifications" className="view-all-link" onClick={closeMobileMenu}>
+                          Voir toutes les notifications
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
 
                   <div className="profile-dropdown-wrapper">
                     <button className="btn-profile-circle" title="Mon Profil">
@@ -115,24 +189,29 @@ function Layout() {
                       <span className="profile-arrow">▼</span>
                     </button>
                     <div className="profile-dropdown">
+                      <div className="dropdown-header">
+                        <strong>Guinée User</strong>
+                        <span>Utilisateur</span>
+                      </div>
+                      <div className="dropdown-divider"></div>
                       <Link to="/dashboard" className="dropdown-item" onClick={closeMobileMenu}>
-                        <span>📊</span>
-                        <span>Dashboard</span>
+                        <span className="dropdown-icon">📊</span>
+                        <span className="dropdown-text">Dashboard</span>
                       </Link>
                       <Link to="/profil" className="dropdown-item" onClick={closeMobileMenu}>
-                        <span>👤</span>
-                        <span>Mon Profil</span>
+                        <span className="dropdown-icon">👤</span>
+                        <span className="dropdown-text">Mon Profil</span>
                       </Link>
+                      <div className="dropdown-divider"></div>
                       <button
                         className="dropdown-item logout-btn"
                         onClick={() => {
-                          localStorage.removeItem('userToken');
-                          localStorage.removeItem('userData');
-                          window.location.href = '/accueil';
+                          setIsAuthenticated(false);
+                          closeMobileMenu();
                         }}
                       >
-                        <span>🚪</span>
-                        <span>Déconnexion</span>
+                        <span className="dropdown-icon">🚪</span>
+                        <span className="dropdown-text">Déconnexion</span>
                       </button>
                     </div>
                   </div>
