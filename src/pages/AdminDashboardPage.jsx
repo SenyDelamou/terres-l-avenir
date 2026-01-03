@@ -7,7 +7,8 @@ import {
     ShieldCheck, Users, Sprout, ShoppingCart, Activity,
     Search, Bell, Plus, Calendar, Filter,
     MoreHorizontal, CheckCircle, XCircle, AlertTriangle,
-    ArrowUpRight, ArrowDownRight, LayoutDashboard, MessageSquare, Settings, LogOut, ChevronRight
+    ArrowUpRight, ArrowDownRight, LayoutDashboard, MessageSquare, Settings, LogOut, ChevronRight,
+    Trash2, Shield, UserX, ExternalLink, RefreshCw, FileText, Eye, Send, X
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import '../styles/AdminDashboardPage.css';
@@ -30,19 +31,86 @@ const categoryData = [
 
 function AdminDashboardPage() {
     const [activeTab, setActiveTab] = useState('overview');
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // Document Verification State
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [docsRead, setDocsRead] = useState(false);
+    const [rejectionMode, setRejectionMode] = useState(false);
+    const [rejectionReason, setRejectionReason] = useState('');
+
+    // Operational State
+    const [users, setUsers] = useState([
+        { id: 1, name: 'Jean Dupont', email: 'jean@agri.com', role: 'Agriculteur', status: 'Actif', joined: '2024-03-15' },
+        { id: 2, name: 'Marie Sy', email: 'marie@market.com', role: 'Acheteur', status: 'Actif', joined: '2024-04-10' },
+        { id: 3, name: 'Kevin Kamano', email: 'kevin@test.com', role: 'Agriculteur', status: 'Suspendu', joined: '2024-01-20' },
+        { id: 4, name: 'Diarra B.', email: 'diarra@expert.com', role: 'Investisseur', status: 'Vérification', joined: '2024-05-02' },
+    ]);
+
+    const [projects, setProjects] = useState([
+        {
+            id: 1, title: 'Irrigation Solaire Fria', owner: 'M. Bangoura', budget: '150M GNF', status: 'Approuvé',
+            documents: ['Plan_Technique.pdf', 'Etude_Impact.pdf', 'Budget_Detaille.xlsx']
+        },
+        {
+            id: 2, title: 'Culture Bananes Coyah', owner: 'A. Diallo', budget: '45M GNF', status: 'En attente',
+            documents: ['Titre_Foncier.pdf', 'Plan_Agronomique.pdf']
+        },
+        {
+            id: 3, title: 'Élevage Volaille Dubréka', owner: 'S. Condé', budget: '80M GNF', status: 'Signalé',
+            documents: ['Permis_Exploitation.pdf']
+        },
+    ]);
+
+    const [marketplaceItems, setMarketplaceItems] = useState([
+        { id: 1, name: 'Tracteur Kubota', seller: 'InterAgri', price: '450M GNF', condition: 'Occasion' },
+        { id: 2, name: 'Semences Maïs', seller: 'BioSeed', price: '250k GNF', condition: 'Neuf' },
+    ]);
 
     const adminStats = [
-        { label: 'Utilisateurs Totaux', value: '1,850', trend: '+24%', icon: <Users size={20} />, color: 'blue' },
-        { label: 'Projets Actifs', value: '84', trend: '+12%', icon: <Sprout size={20} />, color: 'green' },
+        { label: 'Utilisateurs Totaux', value: users.length * 460, trend: '+24%', icon: <Users size={20} />, color: 'blue' },
+        { label: 'Projets Actifs', value: projects.filter(p => p.status === 'Approuvé').length, trend: '+12%', icon: <Sprout size={20} />, color: 'green' },
         { label: 'Ventes Globales', value: '45.2M GNF', trend: '+18%', icon: <ShoppingCart size={20} />, color: 'purple' },
         { label: 'Santé Système', value: '99.9%', trend: 'Stable', icon: <Activity size={20} />, color: 'orange' },
     ];
 
-    const pendingApprovals = [
-        { id: 1, type: 'Projet', title: 'Culture de Bananes à Coyah', user: 'Abdoulaye Diallo', date: 'Il y a 2h' },
-        { id: 2, type: 'Marché', title: 'Tracteur John Deere Occasion', user: 'Moussa Camara', date: 'Il y a 5h' },
-        { id: 3, type: 'Utilisateur', title: 'Vérification Profil Expert', user: 'Dr. Barry Fatoumata', date: 'Hier' },
-    ];
+    const handleUserStatus = (userId, newStatus) => {
+        setUsers(users.map(u => u.id === userId ? { ...u, status: newStatus } : u));
+    };
+
+    const handleProjectAction = (projectId, newStatus) => {
+        if (newStatus === 'Rejeté') {
+            // Just update status for quick actions outside modal if needed,
+            // but typically rejection requires a reason now.
+            setProjects(projects.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
+        } else {
+            setProjects(projects.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
+        }
+    };
+
+    const openProjectReview = (project) => {
+        setSelectedProject(project);
+        setDocsRead(false);
+        setRejectionMode(false);
+        setRejectionReason('');
+    };
+
+    const closeProjectReview = () => {
+        setSelectedProject(null);
+    };
+
+    const confirmRejection = () => {
+        if (!rejectionReason.trim()) return;
+        setProjects(projects.map(p => p.id === selectedProject.id ? { ...p, status: 'Rejeté' } : p));
+        alert(`Message envoyé à ${selectedProject.owner}: "${rejectionReason}"`);
+        closeProjectReview();
+    };
+
+    const confirmApproval = () => {
+        if (!docsRead) return;
+        setProjects(projects.map(p => p.id === selectedProject.id ? { ...p, status: 'Approuvé' } : p));
+        closeProjectReview();
+    };
 
     const renderOverview = () => (
         <div className="admin-overview">
@@ -67,12 +135,6 @@ function AdminDashboardPage() {
                 <div className="main-chart-card">
                     <div className="card-header">
                         <h3>Croissance de la Plateforme</h3>
-                        <div className="card-actions">
-                            <select className="chart-filter">
-                                <option>6 derniers mois</option>
-                                <option>Cette année</option>
-                            </select>
-                        </div>
                     </div>
                     <div className="chart-wrapper">
                         <ResponsiveContainer width="100%" height={300}>
@@ -120,77 +182,112 @@ function AdminDashboardPage() {
                                 <Tooltip />
                             </PieChart>
                         </ResponsiveContainer>
-                        <div className="chart-legend">
-                            {categoryData.map((c, i) => (
-                                <div key={i} className="legend-item">
-                                    <span className="legend-bullet" style={{ backgroundColor: c.color }}></span>
-                                    <span className="legend-label">{c.name}</span>
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="secondary-row">
                 <div className="approvals-section">
-                    <div className="section-header">
-                        <h3>En attente de validation</h3>
-                        <button className="btn-text">Gérer tout <ChevronRight size={16} /></button>
-                    </div>
+                    <h3>Alertes & Signalements</h3>
                     <div className="approvals-list">
-                        {pendingApprovals.map(item => (
+                        {projects.filter(p => p.status === 'En attente' || p.status === 'Signalé').map(item => (
                             <div key={item.id} className="approval-row">
-                                <div className={`approval-type-icon ${item.type.toLowerCase()}`}>
-                                    {item.type === 'Projet' ? <Sprout size={16} /> : item.type === 'Marché' ? <ShoppingCart size={16} /> : <Users size={16} />}
+                                <div className={`approval-type-icon ${item.status === 'Signalé' ? 'system' : 'projet'}`}>
+                                    {item.status === 'Signalé' ? <AlertTriangle size={16} /> : <Sprout size={16} />}
                                 </div>
                                 <div className="approval-info">
                                     <h4>{item.title}</h4>
-                                    <span>Par {item.user} • {item.date}</span>
+                                    <span>Déposé par {item.owner} • {item.budget}</span>
                                 </div>
-                                <div className="approval-actions">
-                                    <button className="action-btn approve"><CheckCircle size={18} /></button>
-                                    <button className="action-btn reject"><XCircle size={18} /></button>
-                                </div>
+                                <button onClick={() => openProjectReview(item)} className="btn-review">Examiner</button>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 <div className="system-health-card">
-                    <div className="section-header">
-                        <h3>Statut Système</h3>
-                        <span className="status-badge live">Live</span>
-                    </div>
+                    <h3>Santé Services</h3>
                     <div className="health-metrics">
-                        <div className="metric-row">
-                            <span>API Gateway</span>
-                            <div className="metric-indicator active"></div>
-                        </div>
-                        <div className="metric-row">
-                            <span>Base de données</span>
-                            <div className="metric-indicator active"></div>
-                        </div>
-                        <div className="metric-row">
-                            <span>Services Images</span>
-                            <div className="metric-indicator active"></div>
-                        </div>
-                        <div className="metric-row">
-                            <span>Serveur Mail</span>
-                            <div className="metric-indicator warning"></div>
-                        </div>
-                    </div>
-                    <div className="uptime-graph">
-                        <div className="uptime-bar active"></div>
-                        <div className="uptime-bar active"></div>
-                        <div className="uptime-bar active"></div>
-                        <div className="uptime-bar active"></div>
-                        <div className="uptime-bar active"></div>
-                        <div className="uptime-bar warning"></div>
-                        <div className="uptime-bar active"></div>
-                        <div className="uptime-bar active"></div>
+                        <div className="metric-row"><span>Auth Service</span><div className="metric-indicator active"></div></div>
+                        <div className="metric-row"><span>Payment API</span><div className="metric-indicator active"></div></div>
+                        <div className="metric-row"><span>Storage</span><div className="metric-indicator active"></div></div>
+                        <div className="metric-row"><span>Email worker</span><div className="metric-indicator warning"></div></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    );
+
+    const renderUsers = () => (
+        <div className="admin-module">
+            <div className="module-header">
+                <h2>Gestion des Utilisateurs</h2>
+                <div className="module-actions">
+                    <div className="search-box-mini">
+                        <Search size={16} />
+                        <input
+                            type="text"
+                            placeholder="Chercher nom, email..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="table-responsive">
+                <table className="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Rôle</th>
+                            <th>Statut</th>
+                            <th>Inscription</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.filter(u => u.name.toLowerCase().includes(searchQuery.toLowerCase())).map(user => (
+                            <tr key={user.id}>
+                                <td><strong>{user.name}</strong></td>
+                                <td>{user.email}</td>
+                                <td><span className="role-tag">{user.role}</span></td>
+                                <td><span className={`status-pill ${user.status.toLowerCase()}`}>{user.status}</span></td>
+                                <td>{user.joined}</td>
+                                <td className="actions-cell">
+                                    <button onClick={() => handleUserStatus(user.id, 'Actif')} title="Activer"><Shield size={16} /></button>
+                                    <button onClick={() => handleUserStatus(user.id, 'Suspendu')} title="Suspendre"><UserX size={16} /></button>
+                                    <button className="delete-btn"><Trash2 size={16} /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const renderProjects = () => (
+        <div className="admin-module">
+            <div className="module-header">
+                <h2>Gestion des Projets</h2>
+            </div>
+            <div className="projects-grid-admin">
+                {projects.map(proj => (
+                    <div key={proj.id} className="project-admin-card">
+                        <div className="card-head">
+                            <h3>{proj.title}</h3>
+                            <span className={`status-badge ${proj.status.toLowerCase().replace(' ', '-')}`}>{proj.status}</span>
+                        </div>
+                        <p>Porteur: <strong>{proj.owner}</strong></p>
+                        <p>Budget: {proj.budget}</p>
+                        <div className="card-actions-row">
+                            <button onClick={() => openProjectReview(proj)} className="btn-review">Détails & Docs</button>
+                            <button className="btn-view-ext"><ExternalLink size={16} /></button>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
@@ -204,42 +301,21 @@ function AdminDashboardPage() {
                 </div>
 
                 <nav className="elite-nav">
-                    <button
-                        className={activeTab === 'overview' ? 'active' : ''}
-                        onClick={() => setActiveTab('overview')}
-                    >
-                        <LayoutDashboard size={20} /> <span>Supervision</span>
+                    <button className={activeTab === 'overview' ? 'active' : ''} onClick={() => setActiveTab('overview')}>
+                        <LayoutDashboard size={20} /> <span className="nav-label">Supervision</span>
                     </button>
-                    <button
-                        className={activeTab === 'users' ? 'active' : ''}
-                        onClick={() => setActiveTab('users')}
-                    >
-                        <Users size={20} /> <span>Utilisateurs</span>
+                    <button className={activeTab === 'users' ? 'active' : ''} onClick={() => setActiveTab('users')}>
+                        <Users size={20} /> <span className="nav-label">Utilisateurs</span>
                     </button>
-                    <button
-                        className={activeTab === 'projects' ? 'active' : ''}
-                        onClick={() => setActiveTab('projects')}
-                    >
-                        <Sprout size={20} /> <span>Projets</span>
+                    <button className={activeTab === 'projects' ? 'active' : ''} onClick={() => setActiveTab('projects')}>
+                        <Sprout size={20} /> <span className="nav-label">Projets</span>
                     </button>
-                    <button
-                        className={activeTab === 'marketplace' ? 'active' : ''}
-                        onClick={() => setActiveTab('marketplace')}
-                    >
-                        <ShoppingCart size={20} /> <span>Marché</span>
-                    </button>
-                    <button
-                        className={activeTab === 'forum' ? 'active' : ''}
-                        onClick={() => setActiveTab('forum')}
-                    >
-                        <MessageSquare size={20} /> <span>Communauté</span>
+                    <button className={activeTab === 'marketplace' ? 'active' : ''} onClick={() => setActiveTab('marketplace')}>
+                        <ShoppingCart size={20} /> <span className="nav-label">Marché</span>
                     </button>
                     <div className="nav-divider"></div>
-                    <button
-                        className={activeTab === 'settings' ? 'active' : ''}
-                        onClick={() => setActiveTab('settings')}
-                    >
-                        <Settings size={20} /> <span>Configuration</span>
+                    <button className={activeTab === 'settings' ? 'active' : ''} onClick={() => setActiveTab('settings')}>
+                        <Settings size={20} /> <span className="nav-label">Configuration</span>
                     </button>
                 </nav>
 
@@ -261,6 +337,7 @@ function AdminDashboardPage() {
                         <input type="text" placeholder="Gérer les comptes, les annonces..." />
                     </div>
                     <div className="top-bar-actions">
+                        <button className="icon-btn" onClick={() => window.location.reload()}><RefreshCw size={20} /></button>
                         <button className="icon-btn"><Bell size={20} /></button>
                         <button className="btn-create-header">
                             <Plus size={18} /> <span>Nouvel Admin</span>
@@ -269,38 +346,88 @@ function AdminDashboardPage() {
                 </header>
 
                 <div className="dashboard-scroll-area">
-                    <div className="welcome-header">
-                        <div>
-                            <h1>Console d'Administration 🛡️</h1>
-                            <p>Outils de gestion et surveillance globale d'AgriPlus.</p>
-                        </div>
-                        <div className="date-display">
-                            <Calendar size={16} /> {new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-                        </div>
-                    </div>
-
                     {activeTab === 'overview' && renderOverview()}
+                    {activeTab === 'users' && renderUsers()}
+                    {activeTab === 'projects' && renderProjects()}
 
-                    {activeTab !== 'overview' && (
+                    {(activeTab === 'marketplace' || activeTab === 'settings') && (
                         <div className="placeholder-tab">
                             <div className="empty-state-modern">
                                 <div className="empty-icon-box">
-                                    {activeTab === 'users' && <Users size={48} />}
-                                    {activeTab === 'projects' && <Sprout size={48} />}
                                     {activeTab === 'marketplace' && <ShoppingCart size={48} />}
-                                    {activeTab === 'forum' && <MessageSquare size={48} />}
                                     {activeTab === 'settings' && <Settings size={48} />}
                                 </div>
-                                <h2>Module {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
-                                <p>Ce module d'administration est en cours d'initialisation pour la console globale.</p>
-                                <button className="btn-primary-elite" onClick={() => setActiveTab('overview')}>
-                                    Retour à la Supervision
-                                </button>
+                                <h2>Module Administrateur</h2>
+                                <p>Le module {activeTab} est en cours de synchronisation avec les services AgriPlus.</p>
+                                <button className="btn-primary-elite" onClick={() => setActiveTab('overview')}>Retour</button>
                             </div>
                         </div>
                     )}
                 </div>
             </div>
+
+            {/* Verification Modal */}
+            {selectedProject && (
+                <div className="modal-overlay">
+                    <div className="modal-content-verification">
+                        <button className="modal-close-btn" onClick={closeProjectReview}><X size={20} /></button>
+                        <div className="modal-header">
+                            <h2>Vérification: {selectedProject.title}</h2>
+                            <span className={`status-pill ${selectedProject.status.toLowerCase()}`}>{selectedProject.status}</span>
+                        </div>
+
+                        <div className="verification-body">
+                            <div className="doc-section">
+                                <h3>Documents Requis</h3>
+                                <p className="instruction-text">Vous devez consulter tous les documents avant de pouvoir valider ce projet.</p>
+                                <div className="doc-list">
+                                    {selectedProject.documents && selectedProject.documents.map((doc, idx) => (
+                                        <div key={idx} className="doc-item" onClick={() => setDocsRead(true)}>
+                                            <FileText size={20} />
+                                            <span>{doc}</span>
+                                            <button className="btn-read">Lire</button>
+                                        </div>
+                                    ))}
+                                    {(!selectedProject.documents || selectedProject.documents.length === 0) && <p>Aucun document soumis.</p>}
+                                </div>
+                                {docsRead && <div className="docs-status success"><CheckCircle size={16} /> Documents consultés</div>}
+                            </div>
+
+                            <div className="action-section">
+                                {!rejectionMode ? (
+                                    <div className="main-actions">
+                                        <button
+                                            className={`btn-validate ${!docsRead ? 'disabled' : ''}`}
+                                            disabled={!docsRead}
+                                            onClick={confirmApproval}
+                                        >
+                                            <CheckCircle size={18} /> Valider le Projet
+                                        </button>
+                                        <button className="btn-reject-mode" onClick={() => setRejectionMode(true)}>
+                                            <XCircle size={18} /> Refuser / Signaler
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="rejection-form">
+                                        <h3>Motif du refus</h3>
+                                        <textarea
+                                            placeholder="Expliquez pourquoi ce projet est refusé (ce message sera envoyé au porteur)..."
+                                            value={rejectionReason}
+                                            onChange={(e) => setRejectionReason(e.target.value)}
+                                        ></textarea>
+                                        <div className="form-actions">
+                                            <button className="btn-cancel" onClick={() => setRejectionMode(false)}>Annuler</button>
+                                            <button className="btn-send-reject" onClick={confirmRejection}>
+                                                <Send size={16} /> Envoyer Notification
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

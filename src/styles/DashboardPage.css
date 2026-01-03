@@ -641,3 +641,264 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* User Dashboard Premium Modules Styles */
+
+.module-content {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.module-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.module-header-row h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+/* Projects Full Grid */
+.projects-full-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.project-card-full {
+  background: var(--color-surface);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-full:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary-light);
+}
+
+.p-card-image {
+  height: 200px;
+  position: relative;
+}
+
+.p-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-card-image .status-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  color: white;
+}
+
+.status-tag.en-cours {
+  background: rgba(34, 197, 94, 0.8);
+}
+
+.status-tag.planifié {
+  background: rgba(59, 130, 246, 0.8);
+}
+
+.status-tag.terminé {
+  background: rgba(16, 185, 129, 0.8);
+}
+
+.p-card-body {
+  padding: 1.5rem;
+}
+
+.p-card-body h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.p-date {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.p-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--color-bg);
+  border-radius: 16px;
+}
+
+.p-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-stat strong {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+.p-stat span {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.p-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-outline {
+  flex: 1;
+  padding: 0.7rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--color-bg);
+  border-color: var(--color-primary);
+}
+
+/* Funding Apps */
+.funding-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.funding-app-card {
+  background: var(--color-surface);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 1fr 1fr 200px;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .funding-app-card {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-main {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.app-icon {
+  color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.app-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.app-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btn-icon-bg {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Existing Dashboard refinements */
+.project-item-mini {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-bg);
+  border-radius: 16px;
+  margin-bottom: 0.8rem;
+}
+
+.project-item-mini img {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.p-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+.p-progress-bar .fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+.logo-sidebar {
+  height: 32px;
+  margin-right: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
