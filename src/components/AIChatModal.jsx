@@ -16,6 +16,7 @@ function AIChatModal() {
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef(null);
     const fileInputRef = useRef(null);
+    const cameraInputRef = useRef(null);
 
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -159,14 +160,30 @@ function AIChatModal() {
                 )}
 
                 <form className="chat-footer-input" onSubmit={handleSendMessage}>
-                    <button type="button" className="action-btn camera" onClick={() => fileInputRef.current.click()}>
+                    {/* Gallery Button */}
+                    <button type="button" className="action-btn gallery" onClick={() => fileInputRef.current.click()} title="Galerie">
+                        <i className="fa-solid fa-image"></i>
+                    </button>
+                    {/* Camera Button */}
+                    <button type="button" className="action-btn camera" onClick={() => cameraInputRef.current.click()} title="Prendre une photo">
                         <i className="fa-solid fa-camera"></i>
                     </button>
+
+                    {/* Hidden Standard File Input (Gallery) */}
                     <input
                         type="file"
                         ref={fileInputRef}
                         onChange={handleImageUpload}
                         accept="image/*"
+                        style={{ display: 'none' }}
+                    />
+                    {/* Hidden Camera Input (Direct Capture) */}
+                    <input
+                        type="file"
+                        ref={cameraInputRef}
+                        onChange={handleImageUpload}
+                        accept="image/*"
+                        capture="environment"
                         style={{ display: 'none' }}
                     />
                     <input

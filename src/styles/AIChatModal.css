@@ -8,7 +8,8 @@
     z-index: 2147483647 !important;
     /* Max safe integer for z-index */
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    /* Stack from bottom up */
     align-items: center;
     pointer-events: none;
     /* Crucial: Allow clicks to pass through the container */
@@ -245,6 +246,12 @@
 .action-btn.camera {
     background: var(--color-bg);
     color: var(--color-primary);
+}
+
+.action-btn.gallery {
+    background: var(--color-bg);
+    color: #8b5cf6;
+    /* A distinct purple color for media */
 }
 
 .action-btn.send {
