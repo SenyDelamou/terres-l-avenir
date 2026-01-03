@@ -108,9 +108,8 @@ function AIChatModal() {
             {/* Floating Trigger Button */}
             {!isOpen && (
                 <button className="chat-trigger" onClick={() => setIsOpen(true)}>
-                    <div className="trigger-icon">🤖</div>
-                    <span className="trigger-text">Assistant IA</span>
-                    <div className="trigger-badge">New</div>
+                    <div className="trigger-icon">🧠</div>
+                    <div className="trigger-badge">Pro</div>
                 </button>
             )}
 

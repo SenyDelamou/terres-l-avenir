@@ -76,8 +76,11 @@
     }
 }
 
-.landing-logo-icon {
-    font-size: 3.5rem;
+.landing-logo-img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
 }
 
 .landing-logo-text {
@@ -97,11 +100,6 @@
     letter-spacing: 0.05em;
 }
 
-.landing-logo-icon svg {
-    width: 60px;
-    height: 60px;
-    stroke: white;
-}
 
 .landing-divider {
     width: 60px;

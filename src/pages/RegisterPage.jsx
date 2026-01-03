@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import logoImg from '../assets/logo.png';
 import '../styles/RegisterPage.css';
 
 function RegisterPage() {
@@ -81,11 +82,7 @@ function RegisterPage() {
                 <div className="auth-card">
                     <div className="auth-header">
                         <Link to="/" className="auth-logo">
-                            <span className="logo-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                                </svg>
-                            </span>
+                            <img src={logoImg} alt="AgriPulse Logo" className="auth-logo-img" />
                             <span className="logo-text">AgriPulse</span>
                         </Link>
                         <h1>Rejoindre l'Elite</h1>

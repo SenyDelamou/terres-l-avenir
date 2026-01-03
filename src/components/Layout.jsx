@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import AIChatModal from './AIChatModal';
+import logoImg from '../assets/logo.png';
 import '../styles/Layout.css';
 
 function Layout() {
@@ -119,11 +120,7 @@ function Layout() {
       <header className="header">
         <div className="container">
           <Link to="/accueil" className="logo" onClick={closeMobileMenu}>
-            <span className="logo-icon-simple">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
-            </span>
+            <img src={logoImg} alt="AgriPulse Logo" className="logo-img-nav" />
             <div className="logo-text-wrapper">
               <span className="logo-title">AgriPulse</span>
               <span className="logo-tagline">DATA & AGRONOMIE AU SERVICE DU TERRAIN</span>
@@ -305,13 +302,7 @@ function Layout() {
           <div className="footer-content">
             <div className="footer-section footer-about">
               <div className="footer-logo">
-                <span className="logo-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                  </svg>
-                </span>
+                <img src={logoImg} alt="AgriPulse Logo" className="logo-img-footer" />
                 <span className="logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
               </div>
               <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>
@@ -330,7 +321,6 @@ function Layout() {
               <Link to="/ressources">Ressources</Link>
               <Link to="/actualites">Actualités</Link>
               <Link to="/forum">Forum</Link>
-              <Link to="/assistant-ia">Assistant IA</Link>
               <Link to="/contact">Contact</Link>
             </div>
             <div className="footer-section">

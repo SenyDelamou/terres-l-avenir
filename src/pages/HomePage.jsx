@@ -61,9 +61,9 @@ function HomePage() {
                 <span>🚀</span>
                 <span>Commencer Gratuitement</span>
               </Link>
-              <Link to="/assistant-ia" className="btn-hero-secondary">
-                <span>🤖</span>
-                <span>Essayer l'Assistant IA</span>
+              <Link to="/ressources" className="btn-hero-secondary">
+                <span>📚</span>
+                <span>Explorer les Ressources</span>
               </Link>
             </div>
           </div>
@@ -109,13 +109,6 @@ function HomePage() {
               <span className="feature-arrow">→</span>
             </Link>
 
-            <Link to="/assistant-ia" className="feature-card feature-ia">
-              <div className="feature-icon-large">🤖</div>
-              <h3>Assistant IA Maladies</h3>
-              <p>Prenez une photo de votre plante malade et obtenez un diagnostic instantané avec des solutions de traitement</p>
-              <div className="feature-badge">IA Avancée</div>
-              <span className="feature-arrow">→</span>
-            </Link>
           </div>
         </div>
       </section>
