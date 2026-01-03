@@ -94,7 +94,7 @@ function TestimonialModal({ isOpen, onClose }) {
                             name="testimonial"
                             value={formData.testimonial}
                             onChange={handleChange}
-                            placeholder="Partagez votre expérience avec AgriPulse..."
+                            placeholder="Partagez votre expérience avec AgriPlus..."
                             rows="5"
                             required
                         ></textarea>

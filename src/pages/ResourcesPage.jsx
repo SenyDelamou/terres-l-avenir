@@ -75,7 +75,7 @@ function ResourcesPage() {
         if (userDataStr) {
             const user = JSON.parse(userDataStr);
             setIsAuthenticated(true);
-            setIsAdmin(user.role === 'Admin' || user.email === 'admin@agripulse.com' || user.role === 'admin');
+            setIsAdmin(user.role === 'Admin' || user.email === 'admin@agriplus.com' || user.role === 'admin');
         }
     }, []);
 

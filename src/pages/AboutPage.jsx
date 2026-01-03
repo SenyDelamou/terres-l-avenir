@@ -70,7 +70,7 @@ function AboutPage() {
                 <h2>Notre Histoire</h2>
                 <div className="history-box">
                   <p>
-                    Fondée en 2009, <strong>AgriPulse</strong> est née d'une passion pour l'agriculture
+                    Fondée en 2009, <strong>AgriPlus</strong> est née d'une passion pour l'agriculture
                     durable et le respect de l'environnement. Depuis plus de 15 ans, nous
                     accompagnons les agriculteurs dans leur transition vers des pratiques
                     plus respectueuses et rentables.

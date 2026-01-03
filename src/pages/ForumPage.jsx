@@ -16,7 +16,7 @@ function ForumPage() {
     const userData = localStorage.getItem('userData');
     if (userData) {
       const user = JSON.parse(userData);
-      setIsAdmin(user.role === 'Admin' || user.email === 'admin@agripulse.com');
+      setIsAdmin(user.role === 'Admin' || user.email === 'admin@agriplus.com');
     }
   }, []);
 

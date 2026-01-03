@@ -35,8 +35,8 @@ function LandingPage() {
             <div className="landing-content">
                 <div className="landing-branding">
                     <div className="landing-logo-wrapper">
-                        <img src={logoImg} alt="AgriPulse Logo" className="landing-logo-img" />
-                        <span className="landing-logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
+                        <img src={logoImg} alt="AgriPlus Logo" className="landing-logo-img" />
+                        <span className="landing-logo-text">AgriPlus <span className="logo-subtext">- Agriculture</span></span>
                     </div>
                     <div className="landing-divider"></div>
                     <h1 className="landing-title">
@@ -64,7 +64,7 @@ function LandingPage() {
 
             <div className="landing-footer-minimal">
                 <span className="version">V1.0 PREMIUM</span>
-                <span className="copyright">© 2024 AGRIPULSE ELITE</span>
+                <span className="copyright">© 2024 AGRIPLUS ELITE</span>
             </div>
         </div>
     );

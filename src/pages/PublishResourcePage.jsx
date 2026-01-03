@@ -75,7 +75,7 @@ function PublishResourcePage() {
         // Simuler la soumission
         setTimeout(() => {
             setIsSubmitting(false);
-            alert('Votre ressource a été publiée avec succès ! Merci de contribuer à la communauté AgriPulse.');
+            alert('Votre ressource a été publiée avec succès ! Merci de contribuer à la communauté AgriPlus.');
             navigate('/ressources');
         }, 2000);
     };

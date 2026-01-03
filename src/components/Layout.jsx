@@ -190,9 +190,9 @@ function Layout() {
         <header className="header">
           <div className="container">
             <Link to="/accueil" className="logo" onClick={closeMobileMenu}>
-              <img src={logoImg} alt="AgriPulse Logo" className="logo-img-nav" />
-              <div className="logo-text-wrapper">
-                <span className="logo-title">AgriPulse</span>
+              <img src={logoImg} alt="AgriPlus Logo" className="logo-img-nav" />
+              <div className="brand-text">
+                <span className="logo-title">AgriPlus</span>
                 <span className="logo-tagline">DATA & AGRONOMIE AU SERVICE DU TERRAIN</span>
               </div>
             </Link>
@@ -391,8 +391,8 @@ function Layout() {
             <div className="footer-content">
               <div className="footer-section footer-about">
                 <div className="footer-logo">
-                  <img src={logoImg} alt="AgriPulse Logo" className="logo-img-footer" />
-                  <span className="logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
+                  <img src={logoImg} alt="AgriPlus Logo" className="logo-img-footer" />
+                  <span className="logo-text">AgriPlus <span className="logo-subtext">- Agriculture</span></span>
                 </div>
                 <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>
                 <div className="footer-social">
@@ -442,7 +442,7 @@ function Layout() {
             </div>
             <div className="footer-bottom">
               <div className="footer-bottom-content">
-                <p>&copy; 2025 AgriPulse. Tous droits réservés.</p>
+                <p>&copy; 2025 AgriPlus. Tous droits réservés.</p>
                 <div className="footer-links">
                   <Link to="/accueil">Mentions légales</Link>
                   <Link to="/accueil">Politique de confidentialité</Link>

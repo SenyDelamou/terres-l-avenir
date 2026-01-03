@@ -73,17 +73,21 @@ function RegisterPage() {
                 <div className="auth-visual-side">
                     <div className="auth-visual-content">
                         <h2>Déployez Votre <br />Potentiel Agricole</h2>
-                        <p>Rejoignez la communauté AgriPulse et accédez à des outils de financement, de vente et d'intelligence artificielle.</p>
+                        <p>Rejoignez la communauté AgriPlus et accédez à des outils de financement, de vente et d'intelligence artificielle.</p>
                     </div>
                 </div>
 
                 {/* Panneau Formulaire */}
                 <div className="auth-form-side">
+                    <div className="top-auth-nav">
+                        <span>Déjà membre ?</span>
+                        <Link to="/connexion">Se connecter</Link>
+                    </div>
                     <div className="auth-card">
                         <div className="auth-header">
                             <Link to="/" className="auth-logo">
-                                <img src={logoImg} alt="AgriPulse Logo" className="auth-logo-img" />
-                                <span className="logo-text">AgriPulse</span>
+                                <img src={logoImg} alt="AgriPlus Logo" className="auth-logo-img" />
+                                <span className="logo-text">AgriPlus</span>
                             </Link>
                             <h1>Création de Profil</h1>
                             <p>Initialisez votre espace professionnel.</p>
@@ -210,7 +214,7 @@ function RegisterPage() {
                                         checked={formData.terms}
                                         onChange={handleChange}
                                     />
-                                    <span>J'accepte les <Link to="/terms">conditions de protocole</Link> AgriPulse.</span>
+                                    <span>J'accepte les <Link to="/terms">conditions de protocole</Link> AgriPlus.</span>
                                 </label>
                                 {errors.terms && <span className="error-message">{errors.terms}</span>}
                             </div>

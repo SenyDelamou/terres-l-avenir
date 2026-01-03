@@ -62,17 +62,21 @@ function LoginPage() {
         <div className="auth-visual-side">
           <div className="auth-visual-content">
             <h2>L'Agro-Intelligence <br />à Portée de Main</h2>
-            <p>Accédez à votre écosystème AgriPulse et pilotez votre exploitation avec des données de précision en temps réel.</p>
+            <p>Accédez à votre écosystème AgriPlus et pilotez votre exploitation avec des données de précision en temps réel.</p>
           </div>
         </div>
 
         {/* Panneau Formulaire */}
         <div className="auth-form-side">
+          <div className="top-auth-nav">
+            <span>Pas encore de compte ?</span>
+            <Link to="/inscription">S'inscrire</Link>
+          </div>
           <div className="auth-card">
             <div className="auth-header">
               <Link to="/" className="auth-logo">
-                <img src={logoImg} alt="AgriPulse Logo" className="auth-logo-img" />
-                <span className="logo-text">AgriPulse</span>
+                <img src={logoImg} alt="AgriPlus Logo" className="auth-logo-img" />
+                <span className="logo-text">AgriPlus</span>
               </Link>
               <h1>Connexion</h1>
               <p>Récupérez vos accès sécurisés.</p>

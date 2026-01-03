@@ -99,7 +99,7 @@ function InvestmentModal({ project, isOpen, onClose }) {
                                     <div className="checkbox-group">
                                         <label>
                                             <input type="checkbox" required />
-                                            J'accepte les conditions générales d'utilisation d'AgriPulse.
+                                            J'accepte les conditions générales d'utilisation d'AgriPlus.
                                         </label>
                                         <label>
                                             <input type="checkbox" required />

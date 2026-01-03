@@ -51,7 +51,7 @@ function HomePage() {
         <div className="hero-overlay"></div>
         <div className="container">
           <div className="hero-content">
-            <h1 className="hero-title">Bienvenue sur AgriPulse</h1>
+            <h1 className="hero-title">Bienvenue sur AgriPlus</h1>
             <p className="hero-subtitle">La plateforme complète pour agriculteurs novices</p>
             <p className="hero-description">
               Apprenez, partagez, vendez, financez vos projets et obtenez de l'aide IA pour diagnostiquer les maladies de vos plantes
@@ -149,7 +149,7 @@ function HomePage() {
       {/* Statistics */}
       <section className="statistics">
         <div className="container">
-          <h2 className="section-title">AgriPulse en chiffres</h2>
+          <h2 className="section-title">AgriPlus en chiffres</h2>
           <div className="stats-grid">
             <div className="stat-card">
               <div className="stat-icon">👥</div>
@@ -211,7 +211,7 @@ function HomePage() {
             <div className="testimonial-card">
               <div className="testimonial-avatar">IB</div>
               <p className="testimonial-text">
-                "Mon projet d'irrigation a été financé en 2 semaines grâce à AgriPulse. Merci à la communauté !"
+                "Mon projet d'irrigation a été financé en 2 semaines grâce à AgriPlus. Merci à la communauté !"
               </p>
               <div className="testimonial-author">
                 <strong>Ibrahima B.</strong>
@@ -228,7 +228,7 @@ function HomePage() {
         <div className="container">
           <div className="cta-content">
             <h2>Prêt à transformer votre agriculture ?</h2>
-            <p>Rejoignez des milliers d'agriculteurs qui utilisent AgriPulse pour réussir</p>
+            <p>Rejoignez des milliers d'agriculteurs qui utilisent AgriPlus pour réussir</p>
             <Link to="/inscription" className="btn-cta-large">
               <span>Créer mon compte gratuit</span>
               <span>→</span>

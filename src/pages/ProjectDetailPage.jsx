@@ -348,7 +348,7 @@ function ProjectDetailPage() {
         <div className="container">
           <h1>
             {project.title}
-            {project.isVerified && <span className="verified-badge-inline" title="Projet vérifié par AgriPulse">✓</span>}
+            {project.isVerified && <span className="verified-badge-inline" title="Projet vérifié par AgriPlus">✓</span>}
           </h1>
           <p>
             Un projet de <strong>{project.entrepreneur}</strong> – {project.location}
