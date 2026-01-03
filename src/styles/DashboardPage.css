@@ -1,6 +1,8 @@
 .dashboard-page-modern {
   display: flex;
   height: 100vh;
+  height: 100dvh;
+  /* Dynamic viewport height for modern browsers */
   background: var(--color-bg);
   overflow: hidden;
   color: var(--color-text-main);

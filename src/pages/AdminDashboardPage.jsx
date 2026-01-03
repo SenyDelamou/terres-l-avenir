@@ -39,6 +39,19 @@ function AdminDashboardPage() {
     const [rejectionMode, setRejectionMode] = useState(false);
     const [rejectionReason, setRejectionReason] = useState('');
 
+    // Forum State
+    const [showTopicModal, setShowTopicModal] = useState(false);
+    const [newTopic, setNewTopic] = useState({ title: '', category: 'General', content: '' });
+    const [topics, setTopics] = useState([
+        { id: 1, title: 'Bienvenue sur la plateforme AgriPlus', author: 'Admin Principal', date: '2024-05-01', category: 'Annonce', pinned: true, replies: 45 },
+        { id: 2, title: 'Conseils pour la saison des pluies', author: 'Expert Agronome', date: '2024-06-12', category: 'Conseils', pinned: false, replies: 12 },
+        { id: 3, title: 'Prix des engrais en baisse', author: 'Coopérative Centrale', date: '2024-06-15', category: 'Marché', pinned: false, replies: 8 },
+    ]);
+
+    // Admin Creation State
+    const [showAdminModal, setShowAdminModal] = useState(false);
+    const [newAdmin, setNewAdmin] = useState({ name: '', email: '', password: '', role: 'Modérateur' });
+
     // Operational State
     const [users, setUsers] = useState([
         { id: 1, name: 'Jean Dupont', email: 'jean@agri.com', role: 'Agriculteur', status: 'Actif', joined: '2024-03-15' },
@@ -78,6 +91,22 @@ function AdminDashboardPage() {
         setUsers(users.map(u => u.id === userId ? { ...u, status: newStatus } : u));
     };
 
+    const handleCreateAdmin = () => {
+        if (!newAdmin.name || !newAdmin.email || !newAdmin.password) return;
+        const adminUser = {
+            id: users.length + 1,
+            name: newAdmin.name,
+            email: newAdmin.email,
+            role: newAdmin.role,
+            status: 'Actif',
+            joined: new Date().toISOString().split('T')[0]
+        };
+        setUsers([adminUser, ...users]);
+        setNewAdmin({ name: '', email: '', password: '', role: 'Modérateur' });
+        setShowAdminModal(false);
+        alert(`Nouvel administrateur ${adminUser.name} créé avec succès !`);
+    };
+
     const handleProjectAction = (projectId, newStatus) => {
         if (newStatus === 'Rejeté') {
             // Just update status for quick actions outside modal if needed,
@@ -85,6 +114,31 @@ function AdminDashboardPage() {
             setProjects(projects.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
         } else {
             setProjects(projects.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
+        }
+    };
+
+    const handlePublishTopic = () => {
+        if (!newTopic.title || !newTopic.content) return;
+        const topic = {
+            id: topics.length + 1,
+            ...newTopic,
+            author: 'Admin Principal',
+            date: new Date().toISOString().split('T')[0],
+            pinned: false,
+            replies: 0
+        };
+        setTopics([topic, ...topics]);
+        setNewTopic({ title: '', category: 'General', content: '' });
+        setShowTopicModal(false);
+    };
+
+    const togglePinTopic = (id) => {
+        setTopics(topics.map(t => t.id === id ? { ...t, pinned: !t.pinned } : t));
+    };
+
+    const deleteTopic = (id) => {
+        if (confirm('Voulez-vous vraiment supprimer ce sujet ?')) {
+            setTopics(topics.filter(t => t.id !== id));
         }
     };
 
@@ -292,6 +346,41 @@ function AdminDashboardPage() {
         </div>
     );
 
+    const renderForum = () => (
+        <div className="admin-module">
+            <div className="module-header">
+                <h2>Gestion de la Communauté</h2>
+                <button className="btn-primary-elite" onClick={() => setShowTopicModal(true)}>
+                    <Plus size={18} /> Publier un Sujet
+                </button>
+            </div>
+            <div className="forum-admin-list">
+                {topics.map(topic => (
+                    <div key={topic.id} className={`forum-topic-row ${topic.pinned ? 'pinned' : ''}`}>
+                        <div className="topic-icon">
+                            <MessageSquare size={20} />
+                        </div>
+                        <div className="topic-main">
+                            <h4>{topic.title} {topic.pinned && <span className="pin-badge">Épinglé</span>}</h4>
+                            <p>Par {topic.author} • {topic.date} • {topic.category}</p>
+                        </div>
+                        <div className="topic-stats">
+                            <span>{topic.replies} réponses</span>
+                        </div>
+                        <div className="topic-actions">
+                            <button onClick={() => togglePinTopic(topic.id)} className={`action-btn ${topic.pinned ? 'active' : ''}`} title="Épingler">
+                                <Activity size={18} />
+                            </button>
+                            <button onClick={() => deleteTopic(topic.id)} className="action-btn delete" title="Supprimer">
+                                <Trash2 size={18} />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+
     return (
         <div className="dashboard-page-modern admin-mode">
             <div className="dashboard-sidebar-elite">
@@ -309,6 +398,9 @@ function AdminDashboardPage() {
                     </button>
                     <button className={activeTab === 'projects' ? 'active' : ''} onClick={() => setActiveTab('projects')}>
                         <Sprout size={20} /> <span className="nav-label">Projets</span>
+                    </button>
+                    <button className={activeTab === 'forum' ? 'active' : ''} onClick={() => setActiveTab('forum')}>
+                        <MessageSquare size={20} /> <span className="nav-label">Communauté</span>
                     </button>
                     <button className={activeTab === 'marketplace' ? 'active' : ''} onClick={() => setActiveTab('marketplace')}>
                         <ShoppingCart size={20} /> <span className="nav-label">Marché</span>
@@ -339,7 +431,7 @@ function AdminDashboardPage() {
                     <div className="top-bar-actions">
                         <button className="icon-btn" onClick={() => window.location.reload()}><RefreshCw size={20} /></button>
                         <button className="icon-btn"><Bell size={20} /></button>
-                        <button className="btn-create-header">
+                        <button className="btn-create-header" onClick={() => setShowAdminModal(true)}>
                             <Plus size={18} /> <span>Nouvel Admin</span>
                         </button>
                     </div>
@@ -349,6 +441,7 @@ function AdminDashboardPage() {
                     {activeTab === 'overview' && renderOverview()}
                     {activeTab === 'users' && renderUsers()}
                     {activeTab === 'projects' && renderProjects()}
+                    {activeTab === 'forum' && renderForum()}
 
                     {(activeTab === 'marketplace' || activeTab === 'settings') && (
                         <div className="placeholder-tab">
@@ -365,6 +458,126 @@ function AdminDashboardPage() {
                     )}
                 </div>
             </div>
+
+            {/* Admin Creation Modal */}
+            {showAdminModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content-verification">
+                        <button className="modal-close-btn" onClick={() => setShowAdminModal(false)}><X size={20} /></button>
+                        <div className="modal-header">
+                            <h2>Ajouter un Administrateur</h2>
+                        </div>
+                        <div className="verification-body">
+                            <div className="rejection-form" style={{ background: 'white', border: 'none', padding: 0 }}>
+                                <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Nom Complet</label>
+                                    <input
+                                        type="text"
+                                        className="modern-input"
+                                        placeholder="Ex: Amadou Diallo"
+                                        value={newAdmin.name}
+                                        onChange={(e) => setNewAdmin({ ...newAdmin, name: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Email Professionnel</label>
+                                    <input
+                                        type="email"
+                                        className="modern-input"
+                                        placeholder="admin@agripulse.com"
+                                        value={newAdmin.email}
+                                        onChange={(e) => setNewAdmin({ ...newAdmin, email: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Mot de passe provisoire</label>
+                                    <input
+                                        type="password"
+                                        className="modern-input"
+                                        placeholder="••••••••"
+                                        value={newAdmin.password}
+                                        onChange={(e) => setNewAdmin({ ...newAdmin, password: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Rôle</label>
+                                    <select
+                                        className="modern-select"
+                                        value={newAdmin.role}
+                                        onChange={(e) => setNewAdmin({ ...newAdmin, role: e.target.value })}
+                                    >
+                                        <option value="Modérateur">Modérateur</option>
+                                        <option value="Super Admin">Super Admin</option>
+                                        <option value="Support">Support Technique</option>
+                                    </select>
+                                </div>
+                                <div className="form-actions">
+                                    <button className="btn-cancel" onClick={() => setShowAdminModal(false)}>Annuler</button>
+                                    <button className="btn-validate" onClick={handleCreateAdmin} style={{ flex: 'initial', padding: '0.8rem 2rem' }}>
+                                        <ShieldCheck size={18} /> Créer Compte
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Forum Publication Modal */}
+            {showTopicModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content-verification">
+                        <button className="modal-close-btn" onClick={() => setShowTopicModal(false)}><X size={20} /></button>
+                        <div className="modal-header">
+                            <h2>Publier un Sujet Officiel</h2>
+                        </div>
+                        <div className="verification-body">
+                            <div className="rejection-form" style={{ background: 'white', border: 'none', padding: 0 }}>
+                                <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Titre du sujet</label>
+                                    <input
+                                        type="text"
+                                        className="modern-input"
+                                        placeholder="Ex: Lancement de la campagne 2024"
+                                        value={newTopic.title}
+                                        onChange={(e) => setNewTopic({ ...newTopic, title: e.target.value })}
+                                        style={{ width: '100%', padding: '0.8rem', borderRadius: '10px', border: '1px solid var(--color-border)' }}
+                                    />
+                                </div>
+                                <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Catégorie</label>
+                                    <select
+                                        className="modern-select"
+                                        value={newTopic.category}
+                                        onChange={(e) => setNewTopic({ ...newTopic, category: e.target.value })}
+                                        style={{ width: '100%', padding: '0.8rem', borderRadius: '10px', border: '1px solid var(--color-border)' }}
+                                    >
+                                        <option value="Annonce">Annonce Officielle</option>
+                                        <option value="Conseils">Conseils & Astuces</option>
+                                        <option value="Marché">Info Marché</option>
+                                        <option value="Événement">Événement</option>
+                                    </select>
+                                </div>
+                                <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Contenu</label>
+                                    <textarea
+                                        placeholder="Le contenu de votre message..."
+                                        value={newTopic.content}
+                                        onChange={(e) => setNewTopic({ ...newTopic, content: e.target.value })}
+                                        style={{ height: '150px' }}
+                                    ></textarea>
+                                </div>
+                                <div className="form-actions">
+                                    <button className="btn-cancel" onClick={() => setShowTopicModal(false)}>Annuler</button>
+                                    <button className="btn-validate" onClick={handlePublishTopic} style={{ flex: 'initial', padding: '0.8rem 2rem' }}>
+                                        <Send size={18} /> Publier
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Verification Modal */}
             {selectedProject && (

@@ -1,4 +1,13 @@
-/* Admin specific overrides and additional components for the Elite Dashboard layout */
+/* Admin specific overrides */
+.admin-mode .dashboard-sidebar-elite {
+    background: #0f172a;
+    /* Darker sidebar for admin */
+    border-right-color: #1e293b;
+}
+
+.admin-mode .dashboard-sidebar-elite .sidebar-brand span {
+    color: #fff;
+}
 
 .admin-overview {
     display: flex;
@@ -597,4 +606,161 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Forum Module Styles */
+.forum-admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.forum-topic-row {
+    background: var(--color-bg);
+    border-radius: 16px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s;
+}
+
+.forum-topic-row:hover {
+    border-color: var(--color-primary-light);
+    transform: translateX(4px);
+}
+
+.forum-topic-row.pinned {
+    background: rgba(var(--color-primary-rgb), 0.03);
+    border-color: var(--color-primary-light);
+}
+
+.topic-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--color-surface);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+}
+
+.forum-topic-row.pinned .topic-icon {
+    color: var(--color-primary);
+    background: #dcfce7;
+    border-color: transparent;
+}
+
+.topic-main {
+    flex: 1;
+}
+
+.topic-main h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pin-badge {
+    font-size: 0.7rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.topic-main p {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.topic-stats {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-right: 1rem;
+}
+
+.topic-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn.active {
+    background: var(--color-primary) !important;
+    color: white !important;
+}
+
+/* Modal Form Elements Enhanced */
+.rejection-form .form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.modern-input,
+.modern-select,
+.rejection-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    background: #f9fafb;
+    color: var(--color-text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modern-input:hover,
+.modern-select:hover,
+.rejection-form textarea:hover {
+    background: white;
+    border-color: #d1d5db;
+}
+
+.modern-input:focus,
+.modern-select:focus,
+.rejection-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+}
+
+.modern-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.btn-validate {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #15803d 100%);
+    box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2), 0 2px 4px -1px rgba(22, 163, 74, 0.1);
+}
+
+.btn-validate:hover {
+    box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.3), 0 4px 6px -2px rgba(22, 163, 74, 0.15);
+    transform: translateY(-1px);
 }
