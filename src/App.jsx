@@ -8,7 +8,6 @@ import ResourcesPage from './pages/ResourcesPage';
 import NewsPage from './pages/NewsPage';
 import ContactPage from './pages/ContactPage';
 import ForumPage from './pages/ForumPage';
-import AIPage from './pages/AIPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -33,7 +32,6 @@ function App() {
         <Route path="/ressources" element={<ResourcesPage />} />
         <Route path="/actualites" element={<NewsPage />} />
         <Route path="/forum" element={<ForumPage />} />
-        <Route path="/assistant-ia" element={<AIPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/profil" element={<ProfilePage />} />

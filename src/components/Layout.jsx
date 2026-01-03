@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import AIChatModal from './AIChatModal';
 import '../styles/Layout.css';
 
 function Layout() {
@@ -106,8 +107,7 @@ function Layout() {
     { path: '/ressources', label: 'Ressources', icon: '📚' },
     { path: '/forum', label: 'Forum', icon: '💬' },
     { path: '/marketplace', label: 'Marketplace', icon: '🛒' },
-    { path: '/projets-financement', label: 'Projets', icon: '💰' },
-    { path: '/assistant-ia', label: 'Assistant IA', icon: '🤖' }
+    { path: '/projets-financement', label: 'Projets', icon: '💰' }
   ];
 
   const moreNavLinks = [
@@ -282,6 +282,7 @@ function Layout() {
             ></div>
           )}
 
+
           <button
             className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
             onClick={toggleMobileMenu}
@@ -372,6 +373,7 @@ function Layout() {
           </div>
         </div>
       </footer>
+      <AIChatModal />
     </div>
   );
 }
