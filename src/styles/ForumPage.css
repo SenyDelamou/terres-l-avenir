@@ -40,7 +40,7 @@
 
 .forum-content {
   padding: 3rem 0;
-  background: white;
+  background: var(--color-bg);
   min-height: 70vh;
 }
 
@@ -55,7 +55,7 @@
 
 .forum-header h2 {
   font-size: 2rem;
-  color: #2d5016;
+  color: var(--color-primary);
 }
 
 .btn-new-topic {
@@ -77,11 +77,11 @@
 }
 
 .new-topic-form {
-  background: white;
+  background: var(--color-surface);
   padding: 2rem;
   border-radius: 15px;
   margin-bottom: 2rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .new-topic-form h3 {
@@ -168,10 +168,10 @@
 }
 
 .forum-sidebar {
-  background: white;
+  background: var(--color-surface);
   padding: 1.5rem;
   border-radius: 15px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   height: fit-content;
   position: sticky;
   top: 100px;
@@ -218,10 +218,10 @@
 }
 
 .forum-main {
-  background: white;
+  background: var(--color-surface);
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .topics-list {
@@ -235,11 +235,11 @@
   grid-template-columns: 120px 1fr auto;
   gap: 1.5rem;
   padding: 1.5rem;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--color-border);
   border-radius: 16px;
   transition: all 0.3s;
   align-items: center;
-  background: white;
+  background: var(--color-surface);
 }
 
 .topic-card:hover {

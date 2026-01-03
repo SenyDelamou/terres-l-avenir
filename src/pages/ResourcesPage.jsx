@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import '../styles/ResourcesPage.css';
 
 function ResourcesPage() {
+    const navigate = useNavigate();
     const [isAdmin, setIsAdmin] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
     const [resources, setResources] = useState([
         {
@@ -68,12 +71,11 @@ function ResourcesPage() {
     });
 
     useEffect(() => {
-        const userData = localStorage.getItem('userData');
-        if (userData) {
-            const user = JSON.parse(userData);
-            // Pour la démo, on considère 'Admin' ou tout rôle contenant 'Admin' comme administrateur
-            // Dans une vraie app, cela viendrait d'un champ role spécifique
-            setIsAdmin(user.role === 'Admin' || user.email === 'admin@agripulse.com');
+        const userDataStr = localStorage.getItem('userData');
+        if (userDataStr) {
+            const user = JSON.parse(userDataStr);
+            setIsAuthenticated(true);
+            setIsAdmin(user.role === 'Admin' || user.email === 'admin@agripulse.com' || user.role === 'admin');
         }
     }, []);
 
@@ -113,15 +115,26 @@ function ResourcesPage() {
 
             <section className="resources-content">
                 <div className="container">
-                    {isAdmin && (
-                        <div className="admin-header">
-                            <div>
-                                <h2>Gestion des Ressources</h2>
-                                <p>En tant qu'administrateur, vous pouvez enrichir la base documentaire.</p>
+                    {isAuthenticated && (
+                        <div className="resources-action-header">
+                            <div className="action-text">
+                                <h2>{isAdmin ? 'Gestion des Ressources' : 'Contribuer à la Bibliothèque'}</h2>
+                                <p>
+                                    {isAdmin
+                                        ? 'En tant qu\'administrateur, vous pouvez enrichir ou gérer la base documentaire.'
+                                        : 'Partagez vos connaissances et techniques avec le reste de la communauté.'}
+                                </p>
                             </div>
-                            <button className="btn-add-resource" onClick={() => setShowAddModal(true)}>
-                                <span>➕</span> Ajouter une ressource
-                            </button>
+                            <div className="action-buttons">
+                                <button className="btn-publish-resource" onClick={() => navigate('/publier-ressource')}>
+                                    <span>🚀</span> Publier une ressource
+                                </button>
+                                {isAdmin && (
+                                    <button className="btn-add-quick" onClick={() => setShowAddModal(true)}>
+                                        <span>⚡</span> Ajout Rapide
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     )}
 

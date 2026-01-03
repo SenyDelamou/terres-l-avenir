@@ -19,6 +19,7 @@ import ProfilePage from './pages/ProfilePage';
 import FundingProjectsPage from './pages/FundingProjectsPage';
 import MarketplacePage from './pages/MarketplacePage';
 import SellProductPage from './pages/SellProductPage';
+import PublishResourcePage from './pages/PublishResourcePage';
 import './styles/App.css';
 
 function App() {
@@ -41,10 +42,12 @@ function App() {
         <Route path="/publier-projet" element={<PublishProjectPage />} />
         <Route path="/marketplace" element={<MarketplacePage />} />
         <Route path="/vendre-produit" element={<SellProductPage />} />
+        <Route path="/publier-ressource" element={<PublishResourcePage />} />
       </Route>
       <Route path="/connexion" element={<LoginPage />} />
       <Route path="/inscription" element={<RegisterPage />} />
       <Route path="/mot-de-passe-oublie" element={<ForgotPasswordPage />} />
+      <Route path="*" element={<div style={{ color: 'white', padding: '50px' }}>404 - Page non trouvée (Route inconnue)</div>} />
     </Routes>
   );
 }

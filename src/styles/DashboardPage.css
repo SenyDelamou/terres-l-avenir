@@ -1,7 +1,7 @@
 .dashboard-page {
   width: 100%;
   min-height: 100vh;
-  background: #f8f9fa;
+  background: var(--bg-color);
 }
 
 .dashboard-content {
@@ -21,10 +21,10 @@
 }
 
 .user-profile-card {
-  background: white;
+  background: var(--color-card);
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   text-align: center;
 }
 
@@ -44,12 +44,12 @@
 }
 
 .user-profile-card h3 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
 
 .user-role {
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
 }
 
@@ -70,9 +70,9 @@
 }
 
 .dashboard-nav {
-  background: white;
+  background: var(--color-card);
   border-radius: 15px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -90,13 +90,13 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  color: #666;
+  color: var(--text-secondary);
   font-size: 1rem;
 }
 
 .dashboard-nav button:hover {
-  background: #f8f9fa;
-  color: #2d5016;
+  background: var(--bg-color);
+  color: var(--color-primary);
 }
 
 .dashboard-nav button.active {
@@ -109,14 +109,14 @@
 }
 
 .dashboard-main {
-  background: white;
+  background: var(--card-bg);
   border-radius: 15px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   padding: 2.5rem;
 }
 
 .dashboard-tab h2 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 2rem;
   font-size: 2rem;
 }
@@ -159,7 +159,7 @@
 }
 
 .dashboard-section h2 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
 }
@@ -172,7 +172,7 @@
 }
 
 .project-item {
-  background: #f8f9fa;
+  background: var(--bg-color);
   padding: 1.5rem;
   border-radius: 10px;
   display: flex;
@@ -196,17 +196,17 @@
 }
 
 .project-item:hover {
-  background: #e9ecef;
+  background: var(--bg-color);
   transform: translateX(5px);
 }
 
 .project-info h4 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
 
 .project-date {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -269,20 +269,20 @@
 }
 
 .activity-item {
-  background: #f8f9fa;
+  background: var(--bg-color);
   padding: 1.5rem;
   border-radius: 10px;
 }
 
 .activity-item h4 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
 
 .activity-meta {
   display: flex;
   gap: 1.5rem;
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -318,7 +318,7 @@
 
 .new-project-form-card {
   margin-top: 2.5rem;
-  background: white;
+  background: var(--card-bg);
   border-radius: 15px;
   padding: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -326,12 +326,12 @@
 
 .new-project-form-card h3 {
   font-size: 1.5rem;
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
 
 .new-project-text {
-  color: #555;
+  color: var(--text-secondary);
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
@@ -352,7 +352,7 @@
 .new-project-form label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #2d5016;
+  color: var(--color-primary);
 }
 
 .new-project-form input,
@@ -360,7 +360,7 @@
 .new-project-form textarea {
   padding: 0.7rem 0.9rem;
   border-radius: 8px;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-color);
   font-size: 0.95rem;
   font-family: inherit;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -388,7 +388,7 @@
 }
 
 .project-card {
-  background: #f8f9fa;
+  background: var(--bg-color);
   border-radius: 15px;
   overflow: hidden;
   transition: all 0.3s;
@@ -428,9 +428,9 @@
 }
 
 .btn-secondary {
-  background: white;
-  color: #4a7c2a;
-  border: 2px solid #4a7c2a;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
@@ -466,7 +466,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
   margin-top: 0.5rem;
 }
 
@@ -513,7 +513,7 @@
 
 .empty-state {
   text-align: center;
-  color: #666;
+  color: var(--text-secondary);
   margin: 2rem 0;
   font-size: 1.1rem;
 }
@@ -540,7 +540,7 @@
 }
 
 .settings-section h3 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
 }
 
@@ -557,21 +557,21 @@
 }
 
 .form-group label {
-  color: #2d5016;
+  color: var(--color-primary);
   font-weight: 600;
 }
 
 .form-group input {
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #4a7c2a;
-  box-shadow: 0 0 0 3px rgba(74, 124, 42, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-extra-light);
 }
 
 @media (max-width: 968px) {
@@ -639,5 +639,66 @@
 
   .info-card-image {
     height: 200px;
+  }
+}
+
+/* Resource Contribution Section */
+.resource-contribution-section {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+}
+
+.contribution-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: var(--color-card);
+  padding: 2.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(26, 71, 42, 0.1);
+  box-shadow: var(--shadow-md);
+}
+
+.contribution-icon {
+  font-size: 3rem;
+  background: rgba(26, 71, 42, 0.05);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.contribution-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+.btn-publish-quick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-publish-quick:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(26, 71, 42, 0.2);
+}
+
+@media (max-width: 768px) {
+  .contribution-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
   }
 }

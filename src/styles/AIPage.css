@@ -17,13 +17,12 @@
 }
 
 .ai-chat-container {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-surface);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   height: 700px;
@@ -218,10 +217,11 @@
 
 .message-content {
   max-width: 75%;
-  background: white;
+  background: var(--color-card);
   padding: 1.2rem 1.5rem;
   border-radius: 20px 20px 20px 5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-main);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -295,8 +295,8 @@
   display: flex;
   gap: 1rem;
   padding: 1.5rem;
-  background: white;
-  border-top: 1px solid #eee;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
   align-items: center;
 }
 
@@ -397,14 +397,13 @@
 }
 
 .ai-info-panel {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-surface);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 2.5rem;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
   height: fit-content;
   position: sticky;
   top: 100px;

@@ -1,6 +1,6 @@
 .marketplace-page {
     width: 100%;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+    background: var(--color-bg);
     min-height: 100vh;
 }
 
@@ -103,12 +103,11 @@
 }
 
 .filter-section {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    background: var(--color-card);
     border-radius: 15px;
     padding: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
 }
 
 .filter-section h3 {
@@ -200,12 +199,11 @@
 }
 
 .product-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    background: var(--color-card);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
     transition: all 0.3s;
     text-decoration: none;
     color: inherit;

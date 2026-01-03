@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 import '../styles/Layout.css';
 
 function Layout() {
@@ -78,6 +79,28 @@ function Layout() {
     setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
   };
 
+  const { theme, toggleTheme } = useTheme();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [revealCoords, setRevealCoords] = useState({ x: 0, y: 0 });
+
+  const handleThemeToggle = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX ?? (rect.left + rect.width / 2);
+    const y = e.clientY ?? (rect.top + rect.height / 2);
+
+    setRevealCoords({ x, y });
+    setIsTransitioning(true);
+
+    // On change le thème au milieu de l'animation pour un effet fluide
+    setTimeout(() => {
+      toggleTheme();
+    }, 400);
+
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 1000);
+  };
+
   const mainNavLinks = [
     { path: '/accueil', label: 'Accueil', icon: '🏠' },
     { path: '/ressources', label: 'Ressources', icon: '📚' },
@@ -96,8 +119,15 @@ function Layout() {
       <header className="header">
         <div className="container">
           <Link to="/accueil" className="logo" onClick={closeMobileMenu}>
-            <span className="logo-icon">🌱</span>
-            <span className="logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
+            <span className="logo-icon-simple">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </span>
+            <div className="logo-text-wrapper">
+              <span className="logo-title">AgriPulse</span>
+              <span className="logo-tagline">DATA & AGRONOMIE AU SERVICE DU TERRAIN</span>
+            </div>
           </Link>
 
           {isMobileMenuOpen && (
@@ -115,23 +145,24 @@ function Layout() {
 
             {/* Center Pill for Navigation */}
             <div className="nav-center-pill">
-              <Link to="/accueil" className={`nav-pill-link ${location.pathname === '/accueil' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Accueil
-              </Link>
-              <Link to="/ressources" className={`nav-pill-link ${location.pathname === '/ressources' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Ressources
-              </Link>
-              <Link to="/forum" className={`nav-pill-link ${location.pathname === '/forum' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Forum
-              </Link>
-              <Link to="/marketplace" className={`nav-pill-link ${location.pathname === '/marketplace' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Marketplace
-              </Link>
-              <Link to="/projets-financement" className={`nav-pill-link ${location.pathname === '/projets-financement' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Projets
-              </Link>
-              <Link to="/assistant-ia" className={`nav-pill-link ${location.pathname === '/assistant-ia' ? 'active' : ''}`} onClick={closeMobileMenu}>
-                Assistant IA
+              {mainNavLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`nav-pill-link ${location.pathname === link.path ? 'active' : ''}`}
+                  onClick={closeMobileMenu}
+                >
+                  <span className="nav-icon">{link.icon}</span>
+                  {link.label}
+                </Link>
+              ))}
+              <Link
+                to="/contact"
+                className={`nav-pill-link nav-item-contact ${location.pathname === '/contact' ? 'active' : ''}`}
+                onClick={closeMobileMenu}
+              >
+                <span className="nav-icon">📞</span>
+                Contact
               </Link>
             </div>
 
@@ -144,10 +175,6 @@ function Layout() {
                     <button className="btn-icon-bell" title="Notifications">
                       <span className="bell-icon">🔔</span>
                       {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
-                    </button>
-                    <button className="btn-icon-messages" title="Messages">
-                      <span className="message-icon">💬</span>
-                      {unreadMessages > 0 && <span className="notification-badge">{unreadMessages}</span>}
                     </button>
                     <div className="notification-dropdown">
                       <div className="dropdown-header">
@@ -223,13 +250,37 @@ function Layout() {
                   </div>
                 </>
               ) : (
-                <Link to="/connexion" className="btn-login-nav" onClick={closeMobileMenu}>
+                <Link to="/connexion" className="btn-login-dark" onClick={closeMobileMenu}>
                   <span>🔐</span>
                   <span>Connexion</span>
                 </Link>
               )}
+
+              {/* Theme Toggle Redesign */}
+              <button
+                className={`premium-theme-toggle ${theme}`}
+                onClick={handleThemeToggle}
+                title={theme === 'light' ? 'Passer en mode sombre' : 'Passer en mode clair'}
+              >
+                <div className="toggle-glow"></div>
+                <div className="toggle-icons">
+                  <span className="sun-icon">☀️</span>
+                  <span className="moon-icon">🌙</span>
+                </div>
+                <div className={`toggle-thumb ${theme}`}></div>
+              </button>
             </div>
           </nav>
+
+          {isTransitioning && (
+            <div
+              className={`theme-reveal-overlay ${theme}`}
+              style={{
+                '--x': `${revealCoords.x}px`,
+                '--y': `${revealCoords.y}px`
+              }}
+            ></div>
+          )}
 
           <button
             className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
@@ -253,7 +304,13 @@ function Layout() {
           <div className="footer-content">
             <div className="footer-section footer-about">
               <div className="footer-logo">
-                <span className="logo-icon">🌱</span>
+                <span className="logo-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </span>
                 <span className="logo-text">AgriPulse <span className="logo-subtext">- Agriculture</span></span>
               </div>
               <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>

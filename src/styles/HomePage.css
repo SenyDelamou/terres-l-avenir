@@ -10,7 +10,7 @@
   align-items: center;
   color: white;
   overflow: hidden;
-  background: #000;
+  background: var(--color-bg);
 }
 
 .hero-slider {
@@ -147,7 +147,7 @@
 .section-subtitle {
   text-align: center;
   font-size: 1.2rem;
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 3rem;
 }
 
@@ -160,14 +160,14 @@
 
 .feature-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--color-card);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 2.5rem;
   text-decoration: none;
-  color: inherit;
-  border: 2px solid transparent;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
   transition: all 0.4s ease;
   overflow: hidden;
   animation: fadeInScale 0.6s ease;
@@ -215,13 +215,13 @@
 
 .feature-card h3 {
   font-size: 1.6rem;
-  color: var(--color-primary);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
 .feature-card p {
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
@@ -255,7 +255,7 @@
 /* How It Works */
 .how-it-works {
   padding: 5rem 0;
-  background: white;
+  background: var(--card-bg);
 }
 
 .steps-grid {
@@ -298,13 +298,13 @@
 }
 
 .step-card h3 {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
 }
 
 .step-card p {
-  color: #666;
+  color: var(--text-secondary);
 }
 
 /* Statistics */
@@ -354,7 +354,7 @@
 /* Testimonials */
 .testimonials {
   padding: 5rem 0;
-  background: #f5f7fa;
+  background: var(--bg-color);
   position: relative;
 }
 
@@ -386,7 +386,7 @@
 }
 
 .testimonial-card {
-  background: white;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -415,7 +415,7 @@
 
 .testimonial-text {
   font-style: italic;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
@@ -427,12 +427,12 @@
 }
 
 .testimonial-author strong {
-  color: #2d5016;
+  color: var(--color-primary);
   margin-bottom: 0.3rem;
 }
 
 .testimonial-author span {
-  color: #888;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 

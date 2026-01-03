@@ -13,11 +13,11 @@
 }
 
 .resource-item-card {
-    background: white;
-    border: 1px solid #e0e0e0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: 15px;
     padding: 0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     transition: transform 0.3s, box-shadow 0.3s;
     overflow: hidden;
     display: flex;
@@ -100,7 +100,7 @@
 }
 
 .resource-item-card>p {
-    color: #666;
+    color: var(--color-text-muted);
     line-height: 1.5;
     margin-bottom: 1rem;
     flex-grow: 1;
@@ -178,38 +178,71 @@
     background-color: #cc0000;
 }
 
-.admin-header {
+.resources-action-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
-    padding: 2rem;
-    background: rgba(26, 71, 42, 0.05);
-    border-radius: 15px;
-    border: 1px dashed var(--color-primary);
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(26, 71, 42, 0.08), rgba(26, 71, 42, 0.02));
+    border-radius: 20px;
+    border: 1px solid rgba(26, 71, 42, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
 }
 
-.admin-header h2 {
+.resources-action-header h2 {
     margin: 0;
     color: var(--color-primary);
+    font-size: 1.8rem;
 }
 
-.btn-add-resource {
+.action-text p {
+    margin: 0.5rem 0 0;
+    color: #555;
+    font-size: 1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-publish-resource {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.9rem 1.8rem;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(26, 71, 42, 0.2);
+}
+
+.btn-publish-resource:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(26, 71, 42, 0.3);
+}
+
+.btn-add-quick {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: var(--color-accent, #e67e22);
-    color: white;
-    border: none;
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
     padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: background 0.2s;
 }
 
-.btn-add-resource:hover {
-    transform: scale(1.05);
+.btn-add-quick:hover {
+    background-color: rgba(26, 71, 42, 0.05);
 }
 
 /* Modal Styles */
@@ -228,12 +261,12 @@
 }
 
 .resource-modal {
-    background: white;
+    background: var(--color-surface);
     padding: 2.5rem;
     border-radius: 20px;
     width: 100%;
     max-width: 600px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-lg);
 }
 
 .resource-modal h2 {

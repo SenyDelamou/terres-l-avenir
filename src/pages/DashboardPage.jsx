@@ -17,7 +17,8 @@ function DashboardPage() {
     projects: 3,
     forumPosts: 12,
     messages: 5,
-    consultations: 8
+    consultations: 8,
+    resources: 2
   };
 
   const recentProjects = [
@@ -148,10 +149,10 @@ function DashboardPage() {
                       </div>
                     </div>
                     <div className="stat-card">
-                      <div className="stat-icon">📅</div>
+                      <div className="stat-icon">📚</div>
                       <div className="stat-info">
-                        <h3>{stats.consultations}</h3>
-                        <p>Consultations</p>
+                        <h3>{stats.resources}</h3>
+                        <p>Ressources</p>
                       </div>
                     </div>
                   </div>
@@ -202,6 +203,19 @@ function DashboardPage() {
                         ))}
                       </div>
                       <Link to="/forum" className="btn-view-all">Voir le forum</Link>
+                    </div>
+
+                    <div className="dashboard-section resource-contribution-section">
+                      <h2>Partage de Connaissances</h2>
+                      <div className="contribution-card">
+                        <div className="contribution-icon">💡</div>
+                        <div className="contribution-info">
+                          <p>Vous avez une expertise à partager ? Aidez la communauté en publiant un guide ou un tutoriel vidéo.</p>
+                          <Link to="/publier-ressource" className="btn-publish-quick">
+                            <span>🚀</span> Publier une ressource
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
