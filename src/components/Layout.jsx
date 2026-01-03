@@ -297,6 +297,8 @@ function Layout() {
         <Outlet />
       </main>
 
+      <AIChatModal />
+
       <footer className="footer">
         <div className="container">
           <div className="footer-content">

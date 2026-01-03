@@ -525,6 +525,171 @@
   margin-top: 1.5rem;
 }
 
+/* New Investor Sections Styles */
+.verified-badge-inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  vertical-align: middle;
+  box-shadow: 0 4px 10px rgba(26, 71, 42, 0.2);
+}
+
+.financial-breakdown-section .breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.breakdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.breakdown-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.breakdown-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.breakdown-bar-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+.risks-section .risks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.risk-item {
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #eee;
+}
+
+.risk-item:last-child {
+  border-bottom: none;
+}
+
+.risk-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.risk-level {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.risk-level.faible {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.risk-level.modéré {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.risk-level.élevé {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.risk-mitigation {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.documents-section .documents-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f8faf9;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #edf2f0;
+  transition: all 0.3s;
+}
+
+.document-item:hover {
+  border-color: var(--color-primary);
+  background: white;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.document-icon {
+  font-size: 1.5rem;
+}
+
+.document-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.document-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.document-size {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.btn-download-doc {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.btn-download-doc:hover {
+  background: #f0f4f1;
+}
+
+
 @media (max-width: 992px) {
   .project-detail-layout {
     grid-template-columns: 1.5fr 1fr;

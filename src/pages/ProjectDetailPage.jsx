@@ -20,6 +20,7 @@ function ProjectDetailPage() {
       investors: 12,
       daysLeft: 25,
       location: 'Kindia, Guinée',
+      isVerified: true,
       image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&h=600&fit=crop',
       description: 'Installation d\'une serre solaire de 500m² pour la production de légumes bio toute l\'année.',
       highlights: [
@@ -32,6 +33,21 @@ function ProjectDetailPage() {
         { date: 'Juin 2024', label: 'Acquisition du terrain' },
         { date: 'Septembre 2024', label: 'Installation de la structure' },
         { date: 'Janvier 2025', label: 'Première récolte' }
+      ],
+      financialBreakdown: [
+        { label: 'Équipement Solaire', value: 45 },
+        { label: 'Infrastructures Serre', value: 30 },
+        { label: 'Systèmes d\'Irrigation', value: 15 },
+        { label: 'Main d\'œuvre & Formation', value: 10 }
+      ],
+      risks: [
+        { level: 'Modéré', factor: 'Conditions climatiques extrêmes', mitigation: 'Structure renforcée et systèmes de régulation thermique.' },
+        { level: 'Faible', factor: 'Fluctuation du prix des semences', mitigation: 'Contrats d\'approvisionnement à long terme avec prix fixes.' }
+      ],
+      documents: [
+        { name: 'Business Plan 2024.pdf', size: '2.4 MB' },
+        { name: 'Audit Technique Solaire.pdf', size: '1.8 MB' },
+        { name: 'Certificat de Titre Foncier.pdf', size: '1.2 MB' }
       ],
       roi: 'Retour sur investissement prévu en 3 ans.',
       impact: 'Alimentation saine pour 200 familles locales.'
@@ -46,6 +62,7 @@ function ProjectDetailPage() {
       investors: 18,
       daysLeft: 42,
       location: 'Mamou, Guinée',
+      isVerified: true,
       image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1200&h=600&fit=crop',
       description: 'Création d\'un élevage de 50 chèvres laitières avec fromagerie artisanale.',
       highlights: [
@@ -58,6 +75,20 @@ function ProjectDetailPage() {
         { date: 'Août 2024', label: 'Construction du bâtiment' },
         { date: 'Octobre 2024', label: 'Arrivée du cheptel' },
         { date: 'Mars 2025', label: 'Lancement des fromages' }
+      ],
+      financialBreakdown: [
+        { label: 'Achat du Cheptel', value: 40 },
+        { label: 'Construction Fromagerie', value: 35 },
+        { label: 'Matériel de Transformation', value: 15 },
+        { label: 'Marketing & Distribution', value: 10 }
+      ],
+      risks: [
+        { level: 'Élevé', factor: 'Épidémies sanitaires', mitigation: 'Suivi vétérinaire hebdomadaire et protocoles d\'hygiène stricts.' },
+        { level: 'Modéré', factor: 'Hausse du coût du fourrage', mitigation: 'Culture d\'autonomie fourragère sur 30% du terrain.' }
+      ],
+      documents: [
+        { name: 'Dossier Sanitaire Vétérinaire.pdf', size: '1.5 MB' },
+        { name: 'Plan d\'Aménagement Fromagerie.pdf', size: '3.1 MB' }
       ],
       roi: 'Dividendes prévus dès la 2ème année.',
       impact: 'Préservation du patrimoine fromager local.'
@@ -72,6 +103,7 @@ function ProjectDetailPage() {
       investors: 8,
       daysLeft: 18,
       location: 'Labé, Guinée',
+      isVerified: false,
       image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=600&fit=crop',
       description: 'Plantation d\'arbres fruitiers et installation de ruches pour production de miel.',
       highlights: [
@@ -84,6 +116,20 @@ function ProjectDetailPage() {
         { date: 'Novembre 2024', label: 'Plantation des fruitiers' },
         { date: 'Printemps 2025', label: 'Installation des ruches' },
         { date: 'Eté 2025', label: 'Première miellée' }
+      ],
+      financialBreakdown: [
+        { label: 'Plants & Semences', value: 50 },
+        { label: 'Matériel Apicole', value: 30 },
+        { label: 'Système d\'Arrosage', value: 10 },
+        { label: 'Clôture de Sécurité', value: 10 }
+      ],
+      risks: [
+        { level: 'Modéré', factor: 'Mortalité des abeilles', mitigation: 'Diversification des essences mellifères et suivi expert.' },
+        { level: 'Faible', factor: 'Périodes de gel tardif', mitigation: 'Sélection de variétés fruitières résistantes.' }
+      ],
+      documents: [
+        { name: 'Étude d\'Impact Écologique.pdf', size: '2.1 MB' },
+        { name: 'Inventaire des Essences.pdf', size: '1.4 MB' }
       ],
       roi: 'Croissance de valeur des terres de 15%.',
       impact: 'Restauration des écosystèmes et pollinisation.'
@@ -111,6 +157,20 @@ function ProjectDetailPage() {
         { date: 'Décembre 2024', label: 'Déploiement généralisé' },
         { date: 'Avril 2025', label: 'Optimisation data IA' }
       ],
+      financialBreakdown: [
+        { label: 'Matériel IoT', value: 45 },
+        { label: 'Logiciel & Data', value: 30 },
+        { label: 'Installation Terrain', value: 15 },
+        { label: 'Service Client', value: 10 }
+      ],
+      risks: [
+        { level: 'Modéré', factor: 'Connectivité réseau', mitigation: 'Utilisation de routeurs de secours et stockage local des données.' },
+        { level: 'Faible', factor: 'Maintenance technique', mitigation: 'Équipes locales formées et système d\'auto-diagnostic.' }
+      ],
+      documents: [
+        { name: 'Architecture IoT.pdf', size: '3.4 MB' },
+        { name: 'Spécifications Capteurs.pdf', size: '1.2 MB' }
+      ],
       roi: 'Economies opérationnelles immédiates.',
       impact: 'Préservation des ressources en eau potable.'
     },
@@ -137,6 +197,20 @@ function ProjectDetailPage() {
         { date: 'Novembre 2024', label: 'Certification hygiène' },
         { date: 'Décembre 2024', label: 'Première gamme en vente' }
       ],
+      financialBreakdown: [
+        { label: 'Laboratoire Transformation', value: 50 },
+        { label: 'Conditionnement', value: 25 },
+        { label: 'Stockage Froid', value: 15 },
+        { label: 'Certification Qualité', value: 10 }
+      ],
+      risks: [
+        { level: 'Modéré', factor: 'Dépassement des coûts d\'énergie', mitigation: 'Passage partiel à l\'énergie solaire pour l\'atelier.' },
+        { level: 'Faible', factor: 'Concurrence locale', mitigation: 'Accentuation sur le label Artisanal et circuits ultra-courts.' }
+      ],
+      documents: [
+        { name: 'Plan Hygiène HACCP.pdf', size: '2.8 MB' },
+        { name: 'Catalogue Produits.pdf', size: '4.5 MB' }
+      ],
       roi: 'Marché B2B déjà sécurisé.',
       impact: 'Soutien aux producteurs de fruits régionaux.'
     },
@@ -162,6 +236,20 @@ function ProjectDetailPage() {
         { date: 'Octobre 2024', label: 'Bail commercial signé' },
         { date: 'Décembre 2024', label: 'Travaux d\'aménagement' },
         { date: 'Février 2025', label: 'Inauguration' }
+      ],
+      financialBreakdown: [
+        { label: 'Aménagement Local', value: 40 },
+        { label: 'Premier Stock Bio', value: 30 },
+        { label: 'Marketing de Lancement', value: 20 },
+        { label: 'Fonds de Roulement', value: 10 }
+      ],
+      risks: [
+        { level: 'Modéré', factor: 'Variation saisonnière', mitigation: 'Contrats avec des producteurs sur différentes zones climatiques.' },
+        { level: 'Faible', factor: 'Gestion des périssables', mitigation: 'Logiciel de gestion de stock temps réel et dons solidaires.' }
+      ],
+      documents: [
+        { name: 'Business Plan Marché.pdf', size: '2.9 MB' },
+        { name: 'Accord Producteurs locaux.pdf', size: '1.7 MB' }
       ],
       roi: 'Point mort atteint après 18 mois.',
       impact: 'Accès facilité au bio pour tout un quartier.'
@@ -258,7 +346,10 @@ function ProjectDetailPage() {
       >
         <div className="page-header-overlay"></div>
         <div className="container">
-          <h1>{project.title}</h1>
+          <h1>
+            {project.title}
+            {project.isVerified && <span className="verified-badge-inline" title="Projet vérifié par AgriPulse">✓</span>}
+          </h1>
           <p>
             Un projet de <strong>{project.entrepreneur}</strong> – {project.location}
           </p>
@@ -298,6 +389,25 @@ function ProjectDetailPage() {
                   </div>
                 </div>
 
+                {project.financialBreakdown && (
+                  <div className="detail-section financial-breakdown-section">
+                    <h3>📊 Répartition du Financement</h3>
+                    <div className="breakdown-list">
+                      {project.financialBreakdown.map((item, i) => (
+                        <div key={i} className="breakdown-item">
+                          <div className="breakdown-info">
+                            <span className="breakdown-label">{item.label}</span>
+                            <span className="breakdown-value">{item.value}%</span>
+                          </div>
+                          <div className="breakdown-bar-bg">
+                            <div className="breakdown-bar-fill" style={{ width: `${item.value}%` }}></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="detail-section">
                   <h3>💰 Rentabilité (ROI)</h3>
                   <p className="roi-text">{project.roi}</p>
@@ -307,6 +417,41 @@ function ProjectDetailPage() {
                   <h3>🌍 Impact Social & Écolo</h3>
                   <p className="impact-text">{project.impact}</p>
                 </div>
+
+                {project.risks && (
+                  <div className="detail-section risks-section">
+                    <h3>⚠️ Facteurs de Risques</h3>
+                    <div className="risks-list">
+                      {project.risks.map((risk, i) => (
+                        <div key={i} className="risk-item">
+                          <div className="risk-header">
+                            <span className={`risk-level ${risk.level.toLowerCase()}`}>{risk.level}</span>
+                            <strong>{risk.factor}</strong>
+                          </div>
+                          <p className="risk-mitigation"><em>Atténuation:</em> {risk.mitigation}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {project.documents && (
+                  <div className="detail-section documents-section">
+                    <h3>📁 Dossier Investisseur</h3>
+                    <div className="documents-list">
+                      {project.documents.map((doc, i) => (
+                        <div key={i} className="document-item">
+                          <div className="document-icon">📄</div>
+                          <div className="document-info">
+                            <span className="document-name">{doc.name}</span>
+                            <span className="document-size">{doc.size}</span>
+                          </div>
+                          <button className="btn-download-doc" title="Télécharger">⬇️</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="project-funding-summary">
