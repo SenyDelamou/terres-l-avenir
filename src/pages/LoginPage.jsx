@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logoImg from '../assets/logo.png';
-import '../styles/Auth.css';
+import { Leaf, Mail, Lock, Eye, EyeOff, CheckCircle, Loader2 } from 'lucide-react';
+import '../styles/LoginPage.css';
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -9,40 +9,10 @@ function LoginPage() {
     password: '',
     rememberMe: false
   });
-  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const navigate = useNavigate();
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.email) {
-      newErrors.email = 'L\'identifiant est requis';
-    } else if (!/\S+@\S+\.\S/.test(formData.email)) {
-      newErrors.email = 'Format d\'identifiant invalide';
-    }
-    if (!formData.password) {
-      newErrors.password = 'La clé d\'accès est requise';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'La clé doit contenir au moins 6 caractères';
-    }
-    return newErrors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    setIsLoading(true);
-    // Simuler un appel API
-    setTimeout(() => {
-      setIsLoading(false);
-      navigate('/dashboard');
-    }, 1500);
-  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -50,109 +20,189 @@ function LoginPage() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Simulation API
+    setTimeout(() => {
+      setIsLoading(false);
+      triggerToast();
+      // Redirection après succès
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1500);
+    }, 1500);
+  };
+
+  const triggerToast = () => {
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
   };
 
   return (
-    <div className="auth-page login-page">
-      <div className="auth-container">
-        {/* Panneau Visuel */}
-        <div className="auth-visual-side">
-          <div className="auth-visual-content">
-            <h2>L'Agro-Intelligence <br />à Portée de Main</h2>
-            <p>Accédez à votre écosystème AgriPlus et pilotez votre exploitation avec des données de précision en temps réel.</p>
-          </div>
-        </div>
+    <div className="login-body">
+      {/* Décoration d'arrière-plan */}
+      <div className="blob blob-top-right"></div>
+      <div className="blob blob-bottom-left"></div>
 
-        {/* Panneau Formulaire */}
-        <div className="auth-form-side">
-          <div className="top-auth-nav">
-            <span>Pas encore de compte ?</span>
-            <Link to="/inscription">S'inscrire</Link>
+      <div className="container mx-auto px-4 h-full flex items-center justify-center relative z-10">
+        <div className="login-card">
+
+          {/* Section Image (Gauche) */}
+          <div className="login-image-side">
+            <img
+              src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1742&auto=format&fit=crop"
+              alt="Agriculteur utilisant une tablette"
+              className="login-bg-image"
+            />
+            <div className="login-image-overlay">
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                  <span className="badge-new">Nouveau</span>
+                  <span className="version-text">Version 3.0 disponible</span>
+                </div>
+                <div className="login-overlay-content">
+                  <h3>Gérez votre exploitation</h3>
+                  <p>Accédez à vos tableaux de bord, analysez vos sols et planifiez vos tâches en un clic.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="auth-card">
-            <div className="auth-header">
-              <Link to="/" className="auth-logo">
-                <img src={logoImg} alt="AgriPlus Logo" className="auth-logo-img" />
-                <span className="logo-text">AgriPlus</span>
-              </Link>
-              <h1>Connexion</h1>
-              <p>Récupérez vos accès sécurisés.</p>
+
+          {/* Section Formulaire (Droite) */}
+          <div className="login-form-side">
+
+            <div className="login-logo">
+              <div className="login-logo-icon">
+                <Leaf size={20} />
+              </div>
+              <span className="login-logo-text">AgriPlus</span>
             </div>
 
-            <form onSubmit={handleSubmit} className="auth-form">
-              <div className="form-group">
-                <label htmlFor="email">Identifiant Professionnel</label>
-                <div className="input-wrapper">
-                  <span className="input-icon-svg">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect width="20" height="16" x="2" y="4" rx="2" />
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
-                  </span>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={errors.email ? 'error' : ''}
-                    placeholder="nom@entreprise.com"
-                  />
-                </div>
-                {errors.email && <span className="error-message">{errors.email}</span>}
+            <div id="login-container">
+              <div className="login-header">
+                <h2>Bon retour !</h2>
+                <p>Veuillez entrer vos identifiants pour accéder à votre espace.</p>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="password">Clé d'Accès</label>
-                <div className="input-wrapper">
-                  <span className="input-icon-svg">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                    </svg>
-                  </span>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className={errors.password ? 'error' : ''}
-                    placeholder="••••••••"
-                  />
+              <form onSubmit={handleSubmit}>
+                {/* Email */}
+                <div className="login-input-group">
+                  <label htmlFor="email">Email</label>
+                  <div className="login-relative-input">
+                    <div className="login-input-icon">
+                      <Mail size={16} />
+                    </div>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      className="login-input"
+                      placeholder="jean.dupont@ferme.fr"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-                {errors.password && <span className="error-message">{errors.password}</span>}
-              </div>
 
-              <div className="form-options">
-                <label className="remember-me">
+                {/* Mot de passe */}
+                <div className="login-input-group">
+                  <div className="login-extras">
+                    <label htmlFor="password">Mot de passe</label>
+                    <Link to="/mot-de-passe-oublie" className="login-forgot-link">Mot de passe oublié ?</Link>
+                  </div>
+                  <div className="login-relative-input">
+                    <div className="login-input-icon">
+                      <Lock size={16} />
+                    </div>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      required
+                      className="login-input login-input-password"
+                      placeholder="••••••••"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="login-toggle-password"
+                    >
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Se souvenir de moi */}
+                <div className="login-remember">
                   <input
-                    type="checkbox"
+                    id="remember-me"
                     name="rememberMe"
+                    type="checkbox"
                     checked={formData.rememberMe}
                     onChange={handleChange}
                   />
-                  <span>Mémoriser ma session</span>
-                </label>
-                <Link to="/mot-de-passe-oublie" className="forgot-link">Clé perdue ?</Link>
+                  <label htmlFor="remember-me">Se souvenir de moi</label>
+                </div>
+
+                <button
+                  type="submit"
+                  className={`login-btn-submit ${isLoading ? 'loading' : ''}`}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <> <Loader2 className="animate-spin" size={18} style={{ marginRight: '8px' }} /> Connexion... </>
+                  ) : (
+                    'Se connecter'
+                  )}
+                </button>
+              </form>
+
+              {/* Séparateur */}
+              <div className="login-separator">
+                <div className="login-separator-line"></div>
+                <div className="login-separator-text">
+                  <span>Ou continuer avec</span>
+                </div>
               </div>
 
-              <button
-                type="submit"
-                className="btn-auth"
-                disabled={isLoading}
-              >
-                {isLoading ? 'Synchronisation...' : 'Entrée Sécurisée'}
-              </button>
-
-              <div className="auth-footer">
-                Pas encore de compte ? <Link to="/inscription">Rejoignez-nous</Link>
+              {/* Social Login */}
+              <div className="login-social-grid">
+                <button type="button" className="login-btn-social">
+                  <span style={{ marginRight: '8px', color: '#db4437', fontWeight: 'bold' }}>G</span> Google
+                </button>
+                <button type="button" className="login-btn-social">
+                  <span style={{ marginRight: '8px', color: '#000', fontWeight: 'bold' }}></span> Apple
+                </button>
               </div>
-            </form>
+
+              <div className="login-register-link">
+                <p>
+                  Pas encore de compte ?
+                  <Link to="/inscription"> Créer un compte</Link>
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div className="login-footer">
+          &copy; 2024 AgriPlus. Tous droits réservés.
+        </div>
+      </div>
+
+      {/* Notification Toast */}
+      <div className={`login-toast ${showToast ? 'show' : ''}`}>
+        <div style={{ color: '#22c55e' }}><CheckCircle size={24} /></div>
+        <div>
+          <h4 style={{ fontWeight: '700', color: '#1f2937', fontSize: '0.875rem', margin: 0 }}>Connexion réussie</h4>
+          <p style={{ color: '#4b5563', fontSize: '0.875rem', margin: 0 }}>Redirection vers le tableau de bord...</p>
         </div>
       </div>
     </div>
