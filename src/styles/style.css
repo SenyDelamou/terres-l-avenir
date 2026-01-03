@@ -30,6 +30,8 @@
     --color-surface: #ffffff;
     --color-surface-hover: #fafafa;
     --color-card: #ffffff;
+    --card-bg: var(--color-card);
+    /* Alias for compatibility */
 
     --color-border: #e5e7eb;
     --color-border-gold: #d4af37;
