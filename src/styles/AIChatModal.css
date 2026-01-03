@@ -1,9 +1,12 @@
 .ai-floating-chat {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 10000;
-    /* Above header and every thing else */
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    left: auto !important;
+    top: auto !important;
+    z-index: 2147483647 !important;
+    /* Max safe integer for z-index */
+    transform: none !important;
 }
 
 /* Floating Button Trigger - Circular & Sleek */

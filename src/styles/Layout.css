@@ -2,17 +2,20 @@
   /* Legacy/Layout specific variables mapped to global ones */
   --bg-color: var(--color-bg);
   --card-bg: var(--color-card);
-  --header-bg: #ffffff;
-  --text-primary: var(--color-text-main);
-  --text-secondary: var(--color-text-muted);
-  --border-color: var(--color-border);
-  --nav-pill-bg: #f8fafc;
-  /* Subtle grey for the pill in light mode */
-  /* ... rest of specific vars */
-  --nav-active-bg: var(--color-primary-extra-light);
-  --nav-active-text: var(--color-primary);
-  --logo-text: var(--color-primary-dark);
-  --shadow-header: 0 4px 12px rgba(0, 0, 0, 0.03);
+  --header-bg: #eaeeef;
+  /* Match the light gray/blue-ish background from image */
+  --text-primary: #374151;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --nav-pill-bg: transparent;
+  /* Remove pill background to match image direct row style */
+  --nav-active-bg: #f0fdf4;
+  /* Light green background */
+  --nav-active-text: #1a472a;
+  /* Brand Green for active link */
+  --logo-text: #111827;
+  --shadow-header: none;
+  /* In image, looks very flat or with subtle border */
   --input-bg: var(--color-surface);
   --input-text: var(--color-text-main);
   --input-border: var(--color-border);
@@ -167,63 +170,47 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--nav-pill-bg);
-  /* Use variable */
-  padding: 0.3rem 0.4rem;
-  border-radius: 9999px;
-  /* Full Rounded Pill */
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
   margin: 0 auto;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-  /* Slight inset for depth */
+  box-shadow: none;
 }
 
 .nav-pill-link {
-  color: var(--text-secondary);
-  /* Dark text for readability */
+  color: #4b5563;
+  /* Gray from image */
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
 }
 
-.nav-pill-link .nav-icon {
-  font-size: 1rem;
-  opacity: 0.8;
+.nav-pill-link svg {
+  color: #94a3b8;
+  /* Faded icons from image */
+}
+
+.nav-pill-link.active svg {
+  color: #1a472a;
+  /* Brand Green */
 }
 
 .nav-pill-link:hover {
-  color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.05);
+  color: #111827;
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .nav-pill-link.active {
   background: var(--nav-active-bg);
   color: var(--nav-active-text);
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Contact Button Special Style */
-.nav-pill-link.nav-item-contact {
-  background: white;
-  color: var(--color-primary);
-  /* Dark Green */
-  padding: 0.5rem 1.2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-left: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.nav-pill-link.nav-item-contact:hover {
-  background: #f8fafc;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -329,35 +316,41 @@ body {
   }
 }
 
-/* Dark Connect Button */
-.btn-login-dark {
+/* Dark Premium Login Button */
+.btn-login-premium {
   background: #0f172a;
+  /* Slate 900 (matches image perfectly) */
   color: white;
   text-decoration: none;
-  padding: 0.5rem 1.2rem;
+  padding: 0.7rem 1.8rem;
   border-radius: 9999px;
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s;
-  font-size: 0.9rem;
+  gap: 0.7rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
 }
 
-.btn-login-dark:hover {
+.btn-login-premium:hover {
   background: #1e293b;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.2);
+}
+
+.btn-login-premium svg {
+  opacity: 0.8;
 }
 
 /* Notification Button Updates */
 .btn-icon-bell,
 .btn-icon-messages {
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   width: 38px;
   height: 38px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border: none;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -368,17 +361,18 @@ body {
 
 .btn-icon-bell .bell-icon {
   font-size: 1.1rem;
-  filter: drop-shadow(0 0 5px rgba(255, 193, 7, 0.3));
+  color: #64748b;
+  /* Gray matching nav icons */
 }
 
 .btn-icon-bell:hover {
-  background: rgba(255, 193, 7, 0.1);
-  border-color: rgba(255, 193, 7, 0.3);
-  transform: translateY(-2px) rotate(15deg);
+  background: #f0fdf4;
+  color: #1a472a;
+  transform: translateY(-2px);
 }
 
 .btn-icon-bell:hover .bell-icon {
-  filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.6));
+  color: #1a472a;
 }
 
 .notification-badge {
@@ -681,17 +675,18 @@ body {
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 0.4rem 0.6rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  padding: 0.4rem 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition: all 0.3s ease;
 }
 
 [data-theme="dark"] .nav-user-identity {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .btn-profile-pill {
@@ -711,19 +706,24 @@ body {
   gap: 0.8rem;
 }
 
-.profile-initials {
-  background: linear-gradient(135deg, #22c55e 0%, #1a472a 100%);
-  color: white;
+.profile-image-container {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 800;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-img-val {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .profile-text-meta {
@@ -756,14 +756,16 @@ body {
   transition: transform 0.3s ease;
 }
 
-.btn-profile-pill:hover .profile-initials {
-  transform: scale(1.05) rotate(5deg);
-  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+.btn-profile-pill:hover .profile-image-container {
+  transform: scale(1.05);
+  border-color: #1a472a;
+  /* Brand Green */
 }
 
 .profile-dropdown-wrapper:hover .profile-arrow {
   transform: rotate(180deg);
-  color: var(--color-primary);
+  color: #1a472a;
+  /* Brand Green */
 }
 
 .nav-main-links {

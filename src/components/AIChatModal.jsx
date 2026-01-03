@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import '../styles/AIChatModal.css';
 
 function AIChatModal() {
@@ -103,7 +104,8 @@ function AIChatModal() {
         }
     };
 
-    return (
+    // Use Portal to render outside of any CSS stacking contexts
+    return createPortal(
         <div className={`ai-floating-chat ${isOpen ? 'is-open' : ''}`}>
             {/* Floating Trigger Button */}
             {!isOpen && (
@@ -172,7 +174,8 @@ function AIChatModal() {
                     </button>
                 </form>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
 

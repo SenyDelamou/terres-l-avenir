@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import AIChatModal from './AIChatModal';
 import logoImg from '../assets/logo.png';
+import userAvatar from '../assets/user_avatar.png';
 import '../styles/Layout.css';
 
 function Layout() {
@@ -104,11 +105,47 @@ function Layout() {
   };
 
   const mainNavLinks = [
-    { path: '/accueil', label: 'Accueil', icon: '🏠' },
-    { path: '/ressources', label: 'Ressources', icon: '📚' },
-    { path: '/forum', label: 'Forum', icon: '💬' },
-    { path: '/marketplace', label: 'Marketplace', icon: '🛒' },
-    { path: '/projets-financement', label: 'Projets', icon: '💰' }
+    {
+      path: '/accueil',
+      label: 'Accueil',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      )
+    },
+    {
+      path: '/projets-financement',
+      label: 'Explorateur',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+      )
+    },
+    {
+      path: '/ressources',
+      label: 'Documentation',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+          <path d="M8 2v20"></path>
+        </svg>
+      )
+    },
+    {
+      path: '/a-propos',
+      label: 'À propos',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      )
+    }
   ];
 
   const moreNavLinks = [
@@ -155,10 +192,14 @@ function Layout() {
               ))}
               <Link
                 to="/contact"
-                className={`nav-pill-link nav-item-contact ${location.pathname === '/contact' ? 'active' : ''}`}
+                className={`nav-pill-link ${location.pathname === '/contact' ? 'active' : ''}`}
                 onClick={closeMobileMenu}
               >
-                <span className="nav-icon">📞</span>
+                <span className="nav-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </span>
                 Contact
               </Link>
             </div>
@@ -216,7 +257,9 @@ function Layout() {
                   <div className="profile-dropdown-wrapper">
                     <button className="btn-profile-pill" title="Mon Profil">
                       <div className="profile-info-group">
-                        <span className="profile-initials">GU</span>
+                        <div className="profile-image-container">
+                          <img src={userAvatar} alt="User Avatar" className="profile-img-val" />
+                        </div>
                         <div className="profile-text-meta">
                           <span className="profile-name">Guinée User</span>
                           <span className="profile-role">Investisseur</span>
@@ -253,8 +296,12 @@ function Layout() {
                   </div>
                 </div>
               ) : (
-                <Link to="/connexion" className="btn-login-dark" onClick={closeMobileMenu}>
-                  <span>🔐</span>
+                <Link to="/connexion" className="btn-login-premium" onClick={closeMobileMenu}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                    <polyline points="10 17 15 12 10 7"></polyline>
+                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                  </svg>
                   <span>Connexion</span>
                 </Link>
               )}
