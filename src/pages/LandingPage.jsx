@@ -26,7 +26,7 @@ function LandingPage() {
             <div className="landing-background">
                 <div className="landing-overlay"></div>
                 <img
-                    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop"
+                    src="/src/assets/auth_bg_new.png"
                     alt="Agriculture Majestic"
                     className="bg-image"
                 />

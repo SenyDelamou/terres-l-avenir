@@ -154,7 +154,7 @@ function AIChatModal() {
 
                 <form className="chat-footer-input" onSubmit={handleSendMessage}>
                     <button type="button" className="action-btn camera" onClick={() => fileInputRef.current.click()}>
-                        📸
+                        <i className="fa-solid fa-camera"></i>
                     </button>
                     <input
                         type="file"
@@ -170,7 +170,7 @@ function AIChatModal() {
                         onChange={(e) => setInputMessage(e.target.value)}
                     />
                     <button type="submit" className="action-btn send" disabled={!inputMessage.trim() || isLoading}>
-                        ✈️
+                        <i className="fa-solid fa-paper-plane"></i>
                     </button>
                 </form>
             </div>

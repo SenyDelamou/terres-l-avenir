@@ -1414,13 +1414,65 @@ body {
   }
 
   .nav-right-actions {
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     width: 100%;
-    padding: 1rem;
-    gap: 1rem;
+    padding: 1.5rem;
+    gap: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
   }
+
+  .nav-user-identity {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 1.5rem;
+  }
+
+  .btn-profile-pill,
+  .btn-icon-bell {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .profile-dropdown,
+  .notification-dropdown {
+    position: static;
+    width: 100%;
+    min-width: 100%;
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    transform: none;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .profile-dropdown-wrapper.is-open .profile-dropdown,
+  .notification-dropdown-wrapper.is-open .notification-dropdown {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    animation: expandMobile 0.3s ease;
+  }
+
+  @keyframes expandMobile {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 
   .btn-profile-circle,
   .btn-icon-bell,
@@ -1453,6 +1505,14 @@ body {
 
   .nav-more-menu {
     width: 100%;
+  }
+
+  .theme-toggle-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
   }
 
   .nav-more-toggle {
