@@ -167,7 +167,7 @@ function Layout() {
             {/* Right Actions: Conditional based on auth */}
             <div className="nav-right-actions">
               {isAuthenticated ? (
-                <>
+                <div className="nav-user-identity">
                   <div className="notification-dropdown-wrapper">
                     <button className="btn-icon-bell" title="Notifications">
                       <span className="bell-icon">🔔</span>
@@ -214,14 +214,20 @@ function Layout() {
                   </div>
 
                   <div className="profile-dropdown-wrapper">
-                    <button className="btn-profile-circle" title="Mon Profil">
-                      <span className="profile-initials">GU</span>
+                    <button className="btn-profile-pill" title="Mon Profil">
+                      <div className="profile-info-group">
+                        <span className="profile-initials">GU</span>
+                        <div className="profile-text-meta">
+                          <span className="profile-name">Guinée User</span>
+                          <span className="profile-role">Investisseur</span>
+                        </div>
+                      </div>
                       <span className="profile-arrow">▼</span>
                     </button>
                     <div className="profile-dropdown">
                       <div className="dropdown-header">
                         <strong>Guinée User</strong>
-                        <span>Utilisateur</span>
+                        <span>Mon Espace Premium</span>
                       </div>
                       <div className="dropdown-divider"></div>
                       <Link to="/dashboard" className="dropdown-item" onClick={closeMobileMenu}>
@@ -245,7 +251,7 @@ function Layout() {
                       </button>
                     </div>
                   </div>
-                </>
+                </div>
               ) : (
                 <Link to="/connexion" className="btn-login-dark" onClick={closeMobileMenu}>
                   <span>🔐</span>

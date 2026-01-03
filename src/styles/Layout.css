@@ -353,48 +353,50 @@ body {
 /* Notification Button Updates */
 .btn-icon-bell,
 .btn-icon-messages {
-  background: transparent;
-  width: 40px;
-  height: 40px;
-  border: none;
-  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
 }
 
-
-.btn-icon-bell {
-  color: #ffc107;
-  /* Gold/Yellow bell */
+.btn-icon-bell .bell-icon {
+  font-size: 1.1rem;
+  filter: drop-shadow(0 0 5px rgba(255, 193, 7, 0.3));
 }
 
-.btn-icon-messages {
-  color: #00d2ff;
-  /* Light blue for messages */
+.btn-icon-bell:hover {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: rgba(255, 193, 7, 0.3);
+  transform: translateY(-2px) rotate(15deg);
 }
 
-.btn-icon-bell:hover,
-.btn-icon-messages:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.btn-icon-bell:hover .bell-icon {
+  filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.6));
 }
 
 .notification-badge {
   position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #ff4757;
+  top: -4px;
+  right: -4px;
+  background: linear-gradient(to bottom, #ff5f6d, #ffc371);
   color: white;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 10px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #1a472a;
-  padding: 0 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--header-bg);
+  box-shadow: 0 2px 6px rgba(255, 95, 109, 0.4);
 }
 
 .notification-dropdown {
@@ -675,41 +677,93 @@ body {
   transform: rotate(180deg);
 }
 
-.btn-profile-circle {
+.nav-user-identity {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+  gap: 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.4rem 0.6rem;
   border-radius: 9999px;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s;
-  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.btn-profile-circle:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+[data-theme="dark"] .nav-user-identity {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-info-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .profile-initials {
-  background: var(--color-primary-light);
+  background: linear-gradient(135deg, #22c55e 0%, #1a472a 100%);
   color: white;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  font-weight: bold;
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-text-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.profile-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.profile-role {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
 }
 
 .profile-arrow {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.6);
-  padding-right: 0.5rem;
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  margin-right: 0.4rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-profile-pill:hover .profile-initials {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+}
+
+.profile-dropdown-wrapper:hover .profile-arrow {
+  transform: rotate(180deg);
+  color: var(--color-primary);
 }
 
 .nav-main-links {
