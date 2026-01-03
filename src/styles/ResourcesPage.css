@@ -107,7 +107,7 @@
 }
 
 .benefits {
-    background: #f8f9fa;
+    background: var(--color-bg);
     padding: 1rem;
     border-radius: 10px;
     margin: 0 2rem 1rem;
@@ -126,7 +126,7 @@
 
 .benefits li {
     padding: 0.25rem 0;
-    color: #555;
+    color: var(--color-text-muted);
     font-size: 0.9rem;
 }
 
@@ -198,7 +198,7 @@
 
 .action-text p {
     margin: 0.5rem 0 0;
-    color: #555;
+    color: var(--color-text-muted);
     font-size: 1rem;
 }
 
@@ -282,16 +282,18 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #333;
+    color: var(--color-text-main);
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     font-family: inherit;
+    background: var(--color-bg);
+    color: var(--color-text-main);
 }
 
 .modal-actions {
@@ -303,8 +305,9 @@
 
 .btn-cancel {
     padding: 0.8rem 1.5rem;
-    border: 1px solid #ddd;
-    background: white;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-main);
     border-radius: 8px;
     cursor: pointer;
 }

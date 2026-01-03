@@ -50,7 +50,7 @@
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--color-border);
 }
 
 .forum-header h2 {
@@ -106,10 +106,12 @@
 .new-topic-form textarea {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 5px;
   font-size: 1rem;
   font-family: inherit;
+  background: var(--color-bg);
+  color: var(--color-text-main);
 }
 
 .new-topic-form input:focus,
@@ -201,7 +203,7 @@
 }
 
 .category-list li:hover {
-  background: #f0f0f0;
+  background: var(--color-bg);
 }
 
 .category-list li.active {
@@ -341,7 +343,7 @@
 }
 
 .topic-time {
-  color: #888;
+  color: var(--color-text-light);
 }
 
 .btn-view-topic {
@@ -365,7 +367,7 @@
 
 /* Topic Detail Modal */
 .topic-detail-modal {
-  background: white;
+  background: var(--color-surface);
   width: 90%;
   max-width: 800px;
   max-height: 90vh;
@@ -374,6 +376,7 @@
   overflow-y: auto;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
   animation: modalSlideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  color: var(--color-text-main);
 }
 
 @keyframes modalSlideUp {
@@ -447,7 +450,7 @@
 }
 
 .topic-description p {
-  color: #555;
+  color: var(--color-text-muted);
   line-height: 1.8;
   font-size: 1.1rem;
 }
@@ -474,10 +477,10 @@
 .conferencier-card {
   display: flex;
   gap: 1rem;
-  background: #f8fcf9;
+  background: var(--color-bg);
   padding: 1.2rem;
   border-radius: 12px;
-  border: 1px solid rgba(26, 71, 42, 0.1);
+  border: 1px solid var(--color-border);
   align-items: center;
 }
 

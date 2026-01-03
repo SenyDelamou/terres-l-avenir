@@ -1,7 +1,7 @@
 .profile-page {
   width: 100%;
   min-height: 100vh;
-  background: #f8f9fa;
+  background: var(--color-bg);
 }
 
 .page-header {
@@ -59,7 +59,7 @@
 }
 
 .profile-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 15px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -121,7 +121,7 @@
 }
 
 .profile-role {
-  color: #666;
+  color: var(--color-text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .profile-menu {
-  background: white;
+  background: var(--color-surface);
   border-radius: 15px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   padding: 1rem;
@@ -176,8 +176,8 @@
 }
 
 .profile-menu button:hover {
-  background: #f8f9fa;
-  color: #2d5016;
+  background: var(--color-bg);
+  color: var(--color-primary);
 }
 
 .profile-menu button.active {
@@ -190,7 +190,7 @@
 }
 
 .profile-main {
-  background: white;
+  background: var(--color-surface);
   border-radius: 15px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   padding: 2.5rem;
@@ -235,7 +235,7 @@
 }
 
 .info-value {
-  color: #333;
+  color: var(--color-text-main);
   font-size: 1rem;
 }
 
@@ -307,11 +307,13 @@
 .form-group select,
 .form-group textarea {
   padding: 0.9rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--color-border);
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.3s;
+  background: var(--color-bg);
+  color: var(--color-text-main);
 }
 
 .form-group input:focus,

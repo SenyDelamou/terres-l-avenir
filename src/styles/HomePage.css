@@ -147,7 +147,7 @@
 .section-subtitle {
   text-align: center;
   font-size: 1.2rem;
-  color: var(--text-secondary);
+  color: var(--color-text-muted);
   margin-bottom: 3rem;
 }
 
@@ -160,7 +160,7 @@
 
 .feature-card {
   position: relative;
-  background: var(--color-card);
+  background: var(--color-surface);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 2.5rem;

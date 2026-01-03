@@ -26,6 +26,8 @@
 
     /* Surfaces */
     --color-bg: #f9f9f7;
+    --bg-color: var(--color-bg);
+    /* Alias for compatibility */
     /* Very light Stone/Grey - Not pure white, sophisticated */
     --color-surface: #ffffff;
     --color-surface-hover: #fafafa;
@@ -81,6 +83,7 @@
     /* Slate 800 */
     --color-surface-hover: #334155;
     --color-card: #1e293b;
+    --card-bg: var(--color-card);
 
     --color-border: #334155;
     --color-text-main: #f8fafc;
@@ -583,19 +586,21 @@ header {
     color: rgba(255, 255, 255, 0.8);
 }
 
+
 /* Inputs & Forms (Minimalist) */
 input,
 textarea,
 select {
     width: 100%;
     padding: 1rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--color-border);
     border-radius: 0;
     /* Sharp edges */
     font-family: var(--font-sans);
     font-size: 1rem;
     transition: all 0.3s;
-    background: #f9fafb;
+    background: var(--color-bg);
+    color: var(--color-text-main);
 }
 
 input:focus,
@@ -603,7 +608,7 @@ textarea:focus,
 select:focus {
     outline: none;
     border-color: var(--color-primary);
-    background: white;
+    background: var(--color-surface);
     box-shadow: 0 0 0 1px var(--color-primary);
 }
 
