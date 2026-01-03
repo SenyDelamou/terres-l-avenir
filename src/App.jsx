@@ -19,6 +19,7 @@ import FundingProjectsPage from './pages/FundingProjectsPage';
 import MarketplacePage from './pages/MarketplacePage';
 import SellProductPage from './pages/SellProductPage';
 import PublishResourcePage from './pages/PublishResourcePage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 import './styles/App.css';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/marketplace" element={<MarketplacePage />} />
         <Route path="/vendre-produit" element={<SellProductPage />} />
         <Route path="/publier-ressource" element={<PublishResourcePage />} />
+        <Route path="/admin" element={<AdminDashboardPage />} />
       </Route>
       <Route path="/connexion" element={<LoginPage />} />
       <Route path="/inscription" element={<RegisterPage />} />

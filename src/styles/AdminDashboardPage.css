@@ -1,0 +1,193 @@
+/* Admin specific overrides and additional components for the Elite Dashboard layout */
+
+.admin-overview {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Approval Rows */
+.approvals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.approval-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-bg);
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s;
+}
+
+.approval-row:hover {
+    border-color: var(--color-primary-light);
+}
+
+.approval-type-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.approval-type-icon.projet {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.approval-type-icon.marché {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}
+
+.approval-type-icon.utilisateur {
+    background: rgba(168, 85, 247, 0.1);
+    color: #a855f7;
+}
+
+.approval-info {
+    flex: 1;
+}
+
+.approval-info h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.approval-info span {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.approval-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    transition: all 0.2s;
+    border: 1px solid var(--color-border);
+}
+
+.action-btn.approve:hover {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #166534;
+}
+
+.action-btn.reject:hover {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #991b1b;
+}
+
+/* System Health Card */
+.system-health-card {
+    background: var(--color-surface);
+    padding: 1.75rem;
+    border-radius: 24px;
+    border: 1px solid var(--color-border);
+}
+
+.status-badge.live {
+    background: #dcfce7;
+    color: #166534;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.health-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+}
+
+.metric-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.metric-indicator.active {
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.metric-indicator.warning {
+    background: #f59e0b;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+.metric-indicator.error {
+    background: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+.uptime-graph {
+    display: flex;
+    gap: 3px;
+    height: 30px;
+    align-items: flex-end;
+    padding-top: 1rem;
+}
+
+.uptime-bar {
+    flex: 1;
+    height: 20px;
+    border-radius: 2px;
+}
+
+.uptime-bar.active {
+    background: #dcfce7;
+}
+
+.uptime-bar.warning {
+    background: #fef3c7;
+}
+
+/* Admin Sidebar Brand customization */
+.admin-mode .dashboard-sidebar-elite {
+    border-right: 1px solid var(--color-border);
+}
+
+.admin-mode .sidebar-brand span {
+    color: var(--color-primary);
+}
+
+/* Placeholder fix for admin tabs */
+.placeholder-tab .empty-icon-box {
+    background: var(--color-bg);
+    color: var(--color-primary);
+}
