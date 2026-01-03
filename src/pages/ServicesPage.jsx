@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import '../styles/ServicesPage.css';
@@ -38,9 +39,20 @@ function ServicesPage() {
       icon: '🤝',
       title: 'Accompagnement Personnalisé',
       description: 'Un conseiller dédié pour vous accompagner dans tous vos projets agricoles.',
-      features: ['Visites régulières', 'Conseil stratégique', 'Support continu']
+      features: ['Visites régulières', 'Conseil stratégique', 'Support continu'],
+      details: 'Notre service d\'accompagnement personnalisé vous assigne un expert agronome dédié. Il connaît votre terrain, votre historique et vos objectifs. Ensemble, vous définissez une stratégie à long terme, ajustée saison après saison pour garantir la pérennité et la rentabilité de votre exploitation.'
     }
   ];
+
+  const [selectedService, setSelectedService] = useState(null);
+
+  const openServiceDetails = (service) => {
+    setSelectedService(service);
+  };
+
+  const closeServiceDetails = () => {
+    setSelectedService(null);
+  };
 
   return (
     <div className="services-page">
@@ -71,12 +83,41 @@ function ServicesPage() {
                     <li key={idx}>{feature}</li>
                   ))}
                 </ul>
-                <button className="service-button">En savoir plus</button>
+                <button className="service-button" onClick={() => openServiceDetails(service)}>En savoir plus</button>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Service Detail Modal */}
+      {selectedService && (
+        <div className="service-modal-overlay" onClick={closeServiceDetails}>
+          <div className="service-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="service-modal-close" onClick={closeServiceDetails}>&times;</button>
+            <div className="service-modal-header">
+              <span className="service-modal-icon">{selectedService.icon}</span>
+              <h2>{selectedService.title}</h2>
+            </div>
+            <div className="service-modal-body">
+              <p className="service-modal-description">{selectedService.description}</p>
+
+              <h4>Ce que nous offrons :</h4>
+              <p className="service-modal-details">{selectedService.details || "Nos experts sont à votre disposition pour détailler ce service selon vos besoins spécifiques."}</p>
+
+              <ul className="service-modal-features">
+                {selectedService.features.map((feature, idx) => (
+                  <li key={idx}>{feature}</li>
+                ))}
+              </ul>
+
+              <div className="service-modal-actions">
+                <Link to="/contact" className="btn btn-primary">Demander un devis</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <section className="cta-section">
         <div className="container">
