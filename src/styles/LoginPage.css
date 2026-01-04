@@ -29,12 +29,7 @@
 
 /* Blobs */
 .blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0.3;
-    mix-blend-mode: multiply;
-    animation: blobFloat 7s infinite;
+    display: none;
 }
 
 .blob-top-right {
@@ -73,14 +68,14 @@
 /* Card Container */
 .login-card {
     background: white;
-    border-radius: 1.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 0;
+    box-shadow: none;
     overflow: hidden;
     width: 100%;
-    max-width: 56rem;
+    max-width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 550px;
     z-index: 10;
 }
 

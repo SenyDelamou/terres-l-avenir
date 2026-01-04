@@ -33,11 +33,6 @@ function ForgotPasswordPage() {
 
     return (
         <div className="forgot-password-body">
-            {/* Background Decorative Blobs */}
-            <div className="blob blob-1"></div>
-            <div className="blob blob-2"></div>
-            <div className="blob blob-3"></div>
-
             <div className="fp-container">
                 <div className="fp-card">
 
@@ -69,7 +64,7 @@ function ForgotPasswordPage() {
                         </div>
 
                         {!isSubmitted ? (
-                            <div className="fp-form-content fade-in" style={{ width: '100%' }}>
+                            <div className="fp-form-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
                                 <div className="fp-text-group">
                                     <div className="fp-icon-circle bg-orange">
                                         <Key size={24} />
@@ -115,7 +110,7 @@ function ForgotPasswordPage() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="fp-success-content fade-in" style={{ width: '100%' }}>
+                            <div className="fp-success-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
                                 <div className="fp-icon-circle bg-green large">
                                     <Send size={32} />
                                 </div>
@@ -134,7 +129,6 @@ function ForgotPasswordPage() {
                                 </div>
                             </div>
                         )}
-
                     </div>
                 </div>
 
