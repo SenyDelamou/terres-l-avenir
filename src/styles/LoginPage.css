@@ -1,18 +1,5 @@
-/* Custom styles for Login Page based on "AgriPlus" Tailwind Design */
-
-/* Reuse some variables if possible, but defining specific ones for fidelity */
-:root {
-    --agri-50: #f0fdf4;
-    --agri-100: #dcfce7;
-    --agri-200: #bbf7d0;
-    --agri-300: #86efac;
-    --agri-400: #4ade80;
-    --agri-500: #22c55e;
-    --agri-600: #16a34a;
-    --agri-700: #15803d;
-    --agri-800: #166534;
-    --agri-900: #14532d;
-}
+/* Custom styles for Login Page - Professional Design */
+/* Using global design tokens from style.css for consistency */
 
 .login-body {
     position: relative;
@@ -21,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--agri-50);
+    background-color: var(--color-primary-extra-light);
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2316a34a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     overflow: hidden;
     font-family: 'Outfit', sans-serif;
@@ -175,12 +162,12 @@
 .login-logo-icon {
     width: 2.5rem;
     height: 2.5rem;
-    background-color: var(--agri-100);
+    background-color: var(--color-primary-light);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--agri-700);
+    color: var(--color-primary);
 }
 
 .login-logo-text {
@@ -271,7 +258,7 @@
 .login-input:focus {
     outline: none;
     background-color: white;
-    box-shadow: 0 0 0 2px var(--agri-500);
+    box-shadow: 0 0 0 2px var(--color-primary);
     border-color: transparent;
 }
 
@@ -286,13 +273,13 @@
 .login-forgot-link {
     font-size: 0.75rem;
     font-weight: 500;
-    color: var(--agri-600);
+    color: var(--color-primary);
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .login-forgot-link:hover {
-    color: var(--agri-800);
+    color: var(--color-primary-dark);
 }
 
 .login-remember {
@@ -304,7 +291,7 @@
 .login-remember input {
     width: 1rem;
     height: 1rem;
-    color: var(--agri-600);
+    color: var(--color-primary);
     border-radius: 0.25rem;
     border: 1px solid #d1d5db;
     cursor: pointer;
@@ -324,7 +311,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.75rem 1rem;
-    background-color: var(--agri-600);
+    background-color: var(--color-primary);
     color: white;
     border: none;
     border-radius: 0.75rem;
@@ -337,7 +324,7 @@
 }
 
 .login-btn-submit:hover {
-    background-color: var(--agri-700);
+    background-color: var(--color-primary-dark);
     transform: scale(1.02);
 }
 
@@ -406,12 +393,12 @@
 
 .login-register-link a {
     font-weight: 700;
-    color: var(--agri-700);
+    color: var(--color-primary);
     text-decoration: none;
 }
 
 .login-register-link a:hover {
-    color: var(--agri-800);
+    color: var(--color-primary-dark);
 }
 
 /* Footer */
@@ -420,7 +407,7 @@
     bottom: 1rem;
     text-align: center;
     width: 100%;
-    color: var(--agri-800);
+    color: var(--color-primary-dark);
     font-size: 0.75rem;
     opacity: 0.6;
 }
@@ -431,7 +418,7 @@
     top: 1.25rem;
     right: 1.25rem;
     background: white;
-    border-left: 4px solid var(--agri-500);
+    border-left: 4px solid var(--color-primary);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     padding: 1rem;
     border-radius: 0.5rem;

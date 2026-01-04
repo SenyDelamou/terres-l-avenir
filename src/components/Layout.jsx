@@ -10,6 +10,7 @@ import '../styles/Layout.css';
 function Layout() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const authRoutes = ['/connexion', '/inscription', '/mot-de-passe-oublie'];
   const isAuthPage = authRoutes.includes(location.pathname);
@@ -114,7 +115,6 @@ function Layout() {
     setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
   };
 
-  const { theme, toggleTheme } = useTheme();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [revealCoords, setRevealCoords] = useState({ x: 0, y: 0 });
 
