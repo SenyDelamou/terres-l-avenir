@@ -206,7 +206,6 @@ function Layout() {
               <img src={logoImg} alt="AgriPlus Logo" className="logo-img-nav" />
               <div className="brand-text">
                 <span className="logo-title">AgriPlus</span>
-                <span className="logo-tagline">DATA & AGRONOMIE AU SERVICE DU TERRAIN</span>
               </div>
             </Link>
 
