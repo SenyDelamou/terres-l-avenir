@@ -33,108 +33,107 @@ function ForgotPasswordPage() {
 
     return (
         <div className="forgot-password-body">
-            <div className="fp-container">
-                <div className="fp-card">
+            {/* Full Screen Card Layout - Structure identical to LoginPage */}
+            <div className="fp-card">
 
-                    {/* Section Image (Gauche) - Hidden on mobile */}
-                    <div className="fp-image-side">
-                        <img
-                            src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1740&auto=format&fit=crop"
-                            alt="Champ agricole au soleil"
-                            className="fp-bg-image"
-                        />
-                        <div className="fp-image-overlay">
-                            <div className="fp-quote-box">
-                                <Tractor className="fp-icon-large text-agri-300" size={32} color="#86efac" style={{ marginBottom: '1rem' }} />
-                                <h3>Cultivons l'avenir</h3>
-                                <p>Gérez votre exploitation, suivez vos récoltes et optimisez vos rendements avec AgriPlus.</p>
-                            </div>
+                {/* Section Image (Gauche) - Hidden on mobile */}
+                <div className="fp-image-side">
+                    <img
+                        src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1740&auto=format&fit=crop"
+                        alt="Champ agricole au soleil"
+                        className="fp-bg-image"
+                    />
+                    <div className="fp-image-overlay">
+                        <div className="fp-quote-box">
+                            <Tractor className="fp-icon-large text-agri-300" size={32} color="#86efac" style={{ marginBottom: '1rem' }} />
+                            <h3>Cultivons l'avenir</h3>
+                            <p>Gérez votre exploitation, suivez vos récoltes et optimisez vos rendements avec AgriPlus.</p>
                         </div>
                     </div>
+                </div>
 
-                    {/* Section Formulaire (Droite) */}
-                    <div className="fp-form-side">
+                {/* Section Formulaire (Droite) */}
+                <div className="fp-form-side">
 
-                        {/* Logo Mobile / Desktop Wrapper */}
-                        <div className="fp-logo-header">
-                            <div className="fp-logo-icon">
-                                <Leaf size={24} />
-                            </div>
-                            <span className="fp-logo-text">AgriPlus</span>
+                    {/* Logo Mobile / Desktop Wrapper */}
+                    <div className="fp-logo-header">
+                        <div className="fp-logo-icon">
+                            <Leaf size={24} />
                         </div>
+                        <span className="fp-logo-text">AgriPlus</span>
+                    </div>
 
-                        {!isSubmitted ? (
-                            <div className="fp-form-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
-                                <div className="fp-text-group">
-                                    <div className="fp-icon-circle bg-orange">
-                                        <Key size={24} />
-                                    </div>
-                                    <h2>Mot de passe oublié ?</h2>
-                                    <p>Pas de panique. Entrez l'adresse e-mail associée à votre compte AgriPlus et nous vous enverrons un lien de réinitialisation.</p>
+                    {!isSubmitted ? (
+                        <div className="fp-form-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
+                            <div className="fp-text-group">
+                                <div className="fp-icon-circle bg-orange">
+                                    <Key size={24} />
                                 </div>
+                                <h2>Mot de passe oublié ?</h2>
+                                <p>Pas de panique. Entrez l'adresse e-mail associée à votre compte AgriPlus et nous vous enverrons un lien de réinitialisation.</p>
+                            </div>
 
-                                <form onSubmit={handleSubmit} className="fp-form">
-                                    <div className="fp-input-group">
-                                        <label htmlFor="email">Adresse e-mail</label>
-                                        <div className="relative-input">
-                                            <div className="input-icon-left">
-                                                <Mail size={18} />
-                                            </div>
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                required
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="jean.dupont@ferme.fr"
-                                            />
+                            <form onSubmit={handleSubmit} className="fp-form">
+                                <div className="fp-input-group">
+                                    <label htmlFor="email">Adresse e-mail</label>
+                                    <div className="relative-input">
+                                        <div className="input-icon-left">
+                                            <Mail size={18} />
                                         </div>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            required
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            placeholder="jean.dupont@ferme.fr"
+                                        />
                                     </div>
-
-                                    <button
-                                        type="submit"
-                                        className={`fp-btn-submit ${isLoading ? 'loading' : ''}`}
-                                        disabled={isLoading}
-                                    >
-                                        {isLoading ? 'Envoi en cours...' : (
-                                            <>Envoyer le lien de récupération <ArrowRight size={16} /></>
-                                        )}
-                                    </button>
-                                </form>
-
-                                <div className="fp-footer-link">
-                                    <p>
-                                        Vous vous en souvenez ?
-                                        <Link to="/connexion"> Retour à la connexion</Link>
-                                    </p>
                                 </div>
-                            </div>
-                        ) : (
-                            <div className="fp-success-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
-                                <div className="fp-icon-circle bg-green large">
-                                    <Send size={32} />
-                                </div>
-                                <h2>E-mail envoyé !</h2>
-                                <p className="fp-success-text">
-                                    Nous avons envoyé un lien de réinitialisation à <strong>{email}</strong>. Vérifiez votre boîte de réception (et vos spams).
-                                </p>
-                                <button onClick={resetView} className="fp-btn-retry">
-                                    <ArrowLeft size={16} /> Renvoyer un e-mail
+
+                                <button
+                                    type="submit"
+                                    className={`fp-btn-submit ${isLoading ? 'loading' : ''}`}
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? 'Envoi en cours...' : (
+                                        <>Envoyer le lien de récupération <ArrowRight size={16} /></>
+                                    )}
                                 </button>
+                            </form>
 
-                                <div className="fp-back-btn-wrapper">
-                                    <Link to="/connexion" className="fp-btn-back">
-                                        Retour à la connexion
-                                    </Link>
-                                </div>
+                            <div className="fp-footer-link">
+                                <p>
+                                    Vous vous en souvenez ?
+                                    <Link to="/connexion"> Retour à la connexion</Link>
+                                </p>
                             </div>
-                        )}
-                    </div>
-                </div>
+                        </div>
+                    ) : (
+                        <div className="fp-success-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
+                            <div className="fp-icon-circle bg-green large">
+                                <Send size={32} />
+                            </div>
+                            <h2>E-mail envoyé !</h2>
+                            <p className="fp-success-text">
+                                Nous avons envoyé un lien de réinitialisation à <strong>{email}</strong>. Vérifiez votre boîte de réception (et vos spams).
+                            </p>
+                            <button onClick={resetView} className="fp-btn-retry">
+                                <ArrowLeft size={16} /> Renvoyer un e-mail
+                            </button>
 
-                <div className="fp-page-footer">
-                    &copy; 2024 AgriPlus. Tous droits réservés.
+                            <div className="fp-back-btn-wrapper">
+                                <Link to="/connexion" className="fp-btn-back">
+                                    Retour à la connexion
+                                </Link>
+                            </div>
+                        </div>
+                    )}
                 </div>
+            </div>
+
+            <div className="fp-page-footer">
+                &copy; 2024 AgriPlus. Tous droits réservés.
             </div>
 
             {/* Toast Notification */}
