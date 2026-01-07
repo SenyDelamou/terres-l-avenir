@@ -220,9 +220,27 @@ function Layout() {
             <nav className={`nav ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
               <div className="mobile-menu-header">
                 <span className="mobile-menu-title">Menu</span>
+                <button className="mobile-menu-close" onClick={closeMobileMenu}>×</button>
               </div>
 
-              {/* Center Pill for Navigation */}
+              {/* Account Section for Mobile */}
+              <div className="mobile-user-section">
+                {isAuthenticated ? (
+                  <div className="mobile-user-info">
+                    <img src={userAvatar} alt="Avatar" className="mobile-avatar" />
+                    <div className="mobile-user-text">
+                      <span className="mobile-user-name">Guinée User</span>
+                      <span className="mobile-user-role">Premium</span>
+                    </div>
+                  </div>
+                ) : (
+                  <Link to="/connexion" className="mobile-auth-cta" onClick={closeMobileMenu}>
+                    Se connecter
+                  </Link>
+                )}
+              </div>
+
+              {/* Main Navigation */}
               <div className="nav-center-pill">
                 {mainNavLinks.map((link) => (
                   <Link
@@ -232,7 +250,7 @@ function Layout() {
                     onClick={closeMobileMenu}
                   >
                     <span className="nav-icon">{link.icon}</span>
-                    {link.label}
+                    <span className="nav-label-text">{link.label}</span>
                   </Link>
                 ))}
                 <Link
@@ -245,115 +263,32 @@ function Layout() {
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                     </svg>
                   </span>
-                  Contact
+                  <span className="nav-label-text">Contact</span>
                 </Link>
               </div>
 
-
-              {/* Right Actions: Conditional based on auth */}
+              {/* System and Extra Actions */}
               <div className="nav-right-actions">
-                {isAuthenticated ? (
-                  <div className="nav-user-identity">
-                    <div className={`notification-dropdown-wrapper ${isNotifOpen ? 'is-open' : ''}`}>
-                      <button className="btn-icon-bell" title="Notifications" onClick={toggleNotif}>
-                        <span className="bell-icon">🔔</span>
-                        {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
-                      </button>
-                      <div className="notification-dropdown" onClick={(e) => e.stopPropagation()}>
-                        <div className="dropdown-header">
-                          <div className="header-top">
-                            <strong>Notifications</strong>
-                            {unreadCount > 0 && (
-                              <button className="mark-read-btn" onClick={markAllAsRead}>
-                                Tout marquer comme lu
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                        <div className="notification-list">
-                          {notifications.length > 0 ? (
-                            notifications.map((n) => (
-                              <div key={n.id} className={`notification-item ${n.isRead ? 'read' : 'unread'}`}>
-                                <div className="notification-icon-circle">
-                                  {n.type === 'reply' ? '💬' : n.type === 'project' ? '💰' : '✅'}
-                                </div>
-                                <div className="notification-content">
-                                  <p className="notification-title">{n.title}</p>
-                                  <p className="notification-message">{n.message}</p>
-                                  <span className="notification-time">{n.time}</span>
-                                </div>
-                                {!n.isRead && <div className="unread-dot"></div>}
-                              </div>
-                            ))
-                          ) : (
-                            <div className="empty-notifications">
-                              <p>Aucune notification</p>
-                            </div>
-                          )}
-                        </div>
-                        <div className="dropdown-footer">
-                          <Link to="/notifications" className="view-all-link" onClick={closeMobileMenu}>
-                            Voir toutes les notifications
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={`profile-dropdown-wrapper ${isProfileOpen ? 'is-open' : ''}`}>
-                      <button className="btn-profile-pill" title="Mon Profil" onClick={toggleProfile}>
-                        <div className="profile-info-group">
-                          <div className="profile-image-container">
-                            <img src={userAvatar} alt="User Avatar" className="profile-img-val" />
-                          </div>
-                        </div>
-                      </button>
-                      <div className="profile-dropdown" onClick={(e) => e.stopPropagation()}>
-                        <div className="dropdown-header">
-                          <strong>Guinée User</strong>
-                          <span>Mon Espace Premium</span>
-                        </div>
-                        <div className="dropdown-divider"></div>
-                        <Link to="/dashboard" className="dropdown-item" onClick={closeMobileMenu}>
-                          <span className="dropdown-icon">📊</span>
-                          <span className="dropdown-text">Dashboard</span>
-                        </Link>
-                        <Link to="/profil" className="dropdown-item" onClick={closeMobileMenu}>
-                          <span className="dropdown-icon">👤</span>
-                          <span className="dropdown-text">Mon Profil</span>
-                        </Link>
-                        <div className="dropdown-divider"></div>
-                        <button
-                          className="dropdown-item logout-btn"
-                          onClick={() => {
-                            setIsAuthenticated(false);
-                            closeMobileMenu();
-                          }}
-                        >
-                          <span className="dropdown-icon">🚪</span>
-                          <span className="dropdown-text">Déconnexion</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="nav-guest-actions">
-                    <Link to="/connexion" className="btn-login-premium" onClick={closeMobileMenu}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                        <polyline points="10 17 15 12 10 7"></polyline>
-                        <line x1="15" y1="12" x2="3" y2="12"></line>
-                      </svg>
-                      <span>Connexion</span>
+                {isAuthenticated && (
+                  <>
+                    <Link to="/dashboard" className="mobile-action-item" onClick={closeMobileMenu}>
+                      <span className="action-icon">📊</span>
+                      Dashboard
                     </Link>
-                  </div>
+                    <div className="mobile-action-item" onClick={toggleNotif}>
+                      <span className="action-icon">🔔</span>
+                      Notifications
+                      {unreadCount > 0 && <span className="mobile-badge">{unreadCount}</span>}
+                    </div>
+                  </>
                 )}
 
-                {/* Theme Toggle : Always available and functional */}
                 <div className="theme-toggle-wrapper">
+                  <span className="toggle-label">Apparence</span>
                   <button
                     className={`premium-theme-toggle ${theme}`}
                     onClick={handleThemeToggle}
-                    title={theme === 'light' ? 'Passer en mode sombre' : 'Passer en mode clair'}
+                    title={theme === 'light' ? 'Mode Sombre' : 'Mode Clair'}
                   >
                     <div className="toggle-glow"></div>
                     <div className="toggle-icons">
@@ -363,6 +298,16 @@ function Layout() {
                     <div className={`toggle-thumb ${theme}`}></div>
                   </button>
                 </div>
+
+                {isAuthenticated && (
+                  <button
+                    className="mobile-logout-btn"
+                    onClick={() => { setIsAuthenticated(false); closeMobileMenu(); }}
+                  >
+                    <span className="logout-icon">🚪</span>
+                    Déconnexion
+                  </button>
+                )}
               </div>
             </nav>
 
@@ -389,7 +334,8 @@ function Layout() {
             </button>
           </div>
         </header >
-      )}
+      )
+      }
 
       <main className="main-content">
         <Outlet />
@@ -397,74 +343,76 @@ function Layout() {
 
       {!isAuthPage && <AIChatModal />}
 
-      {!isAuthPage && (
-        <footer className="footer">
-          <div className="container">
-            <div className="footer-content">
-              <div className="footer-section footer-about">
-                <div className="footer-logo">
-                  <img src={logoImg} alt="AgriPlus Logo" className="logo-img-footer" />
-                  <span className="logo-text">AgriPlus <span className="logo-subtext">- Agriculture</span></span>
+      {
+        !isAuthPage && (
+          <footer className="footer">
+            <div className="container">
+              <div className="footer-content">
+                <div className="footer-section footer-about">
+                  <div className="footer-logo">
+                    <img src={logoImg} alt="AgriPlus Logo" className="logo-img-footer" />
+                    <span className="logo-text">AgriPlus <span className="logo-subtext">- Agriculture</span></span>
+                  </div>
+                  <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>
+                  <div className="footer-social">
+                    <a href="#" className="social-link" aria-label="Facebook">📘</a>
+                    <a href="#" className="social-link" aria-label="Twitter">🐦</a>
+                    <a href="#" className="social-link" aria-label="LinkedIn">💼</a>
+                    <a href="#" className="social-link" aria-label="Instagram">📷</a>
+                  </div>
                 </div>
-                <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>
-                <div className="footer-social">
-                  <a href="#" className="social-link" aria-label="Facebook">📘</a>
-                  <a href="#" className="social-link" aria-label="Twitter">🐦</a>
-                  <a href="#" className="social-link" aria-label="LinkedIn">💼</a>
-                  <a href="#" className="social-link" aria-label="Instagram">📷</a>
+                <div className="footer-section">
+                  <h4>Navigation</h4>
+                  <Link to="/accueil">Accueil</Link>
+                  <Link to="/a-propos">À propos</Link>
+                  <Link to="/services">Services</Link>
+                  <Link to="/ressources">Ressources</Link>
+                  <Link to="/actualites">Actualités</Link>
+                  <Link to="/forum">Forum</Link>
+                  <Link to="/contact">Contact</Link>
+                </div>
+                <div className="footer-section">
+                  <h4>SERVICES</h4>
+                  <Link to="/services">Diagnostic Agricole</Link>
+                  <Link to="/services">Formation & Conseil</Link>
+                  <Link to="/services">Gestion de l'Irrigation</Link>
+                  <Link to="/services">Conversion Bio</Link>
+                  <Link to="/services">Analyse de Données</Link>
+                </div>
+                <div className="footer-section footer-contact">
+                  <h4>Contact</h4>
+                  <div className="footer-contact-item">
+                    <span className="footer-icon">📍</span>
+                    <span>Mamou, Guinée</span>
+                  </div>
+                  <div className="footer-contact-item">
+                    <span className="footer-icon">📞</span>
+                    <span>+224 623 59 01 51</span>
+                  </div>
+                  <div className="footer-contact-item">
+                    <span className="footer-icon">✉️</span>
+                    <span>samakedelamou858@gmail.com</span>
+                  </div>
+                  <div className="footer-contact-item">
+                    <span className="footer-icon">🕒</span>
+                    <span>Lun-Ven: 8h-17h<br />Sam: 9h-13h</span>
+                  </div>
                 </div>
               </div>
-              <div className="footer-section">
-                <h4>Navigation</h4>
-                <Link to="/accueil">Accueil</Link>
-                <Link to="/a-propos">À propos</Link>
-                <Link to="/services">Services</Link>
-                <Link to="/ressources">Ressources</Link>
-                <Link to="/actualites">Actualités</Link>
-                <Link to="/forum">Forum</Link>
-                <Link to="/contact">Contact</Link>
-              </div>
-              <div className="footer-section">
-                <h4>SERVICES</h4>
-                <Link to="/services">Diagnostic Agricole</Link>
-                <Link to="/services">Formation & Conseil</Link>
-                <Link to="/services">Gestion de l'Irrigation</Link>
-                <Link to="/services">Conversion Bio</Link>
-                <Link to="/services">Analyse de Données</Link>
-              </div>
-              <div className="footer-section footer-contact">
-                <h4>Contact</h4>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">📍</span>
-                  <span>Mamou, Guinée</span>
-                </div>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">📞</span>
-                  <span>+224 623 59 01 51</span>
-                </div>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">✉️</span>
-                  <span>samakedelamou858@gmail.com</span>
-                </div>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">🕒</span>
-                  <span>Lun-Ven: 8h-17h<br />Sam: 9h-13h</span>
+              <div className="footer-bottom">
+                <div className="footer-bottom-content">
+                  <p>&copy; 2025 AgriPlus. Tous droits réservés.</p>
+                  <div className="footer-links">
+                    <Link to="/accueil">Mentions légales</Link>
+                    <Link to="/accueil">Politique de confidentialité</Link>
+                    <Link to="/accueil">CGV</Link>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="footer-bottom">
-              <div className="footer-bottom-content">
-                <p>&copy; 2025 AgriPlus. Tous droits réservés.</p>
-                <div className="footer-links">
-                  <Link to="/accueil">Mentions légales</Link>
-                  <Link to="/accueil">Politique de confidentialité</Link>
-                  <Link to="/accueil">CGV</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      )}
+          </footer>
+        )
+      }
       {!isAuthPage && <AIChatModal />}
     </div >
   );
