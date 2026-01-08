@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MapPin, Phone, Mail, Clock, Send, Loader2, CheckCircle, MessageSquare } from 'lucide-react';
 import '../styles/ContactPage.css';
 
 function ContactPage() {
@@ -10,6 +11,9 @@ function ContactPage() {
     message: ''
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -19,132 +23,186 @@ function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+    setIsLoading(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSent(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSent(false), 5000);
+    }, 1500);
   };
 
   return (
-    <div className="contact-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>Contactez-Nous</h1>
-          <p>Nous sommes là pour répondre à toutes vos questions</p>
+    <div className="contact-page-premium">
+      {/* Parallax Hero Section */}
+      <section className="contact-hero">
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <div className="hero-badge">
+            <MessageSquare size={16} className="hero-icon" />
+            <span>Support 24/7</span>
+          </div>
+          <h1>Parlons de votre <br /> <span className="highlight-text">Projet Agricole</span></h1>
+          <p>Notre équipe d'experts est prête à vous accompagner dans votre transition vers une agriculture durable.</p>
         </div>
       </section>
 
-      <section className="contact-content">
-        <div className="container">
-          <div className="contact-grid">
-            <div className="contact-info">
-              <div className="contact-image">
-                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=400&fit=crop" alt="Contact agriculture" />
+      {/* Main Content Grid */}
+      <section className="contact-section">
+        <div className="container contact-container">
+
+          {/* Left: Contact Info Cards */}
+          <div className="contact-info-column">
+            <div className="info-glass-card">
+              <div className="icon-box-premium">
+                <MapPin size={24} />
               </div>
-              <h2>Informations de Contact</h2>
-              <div className="info-item">
-                <div className="info-icon">📍</div>
-                <div>
-                  <h3>Adresse</h3>
-                  <p>Mamou, Guinée</p>
-                </div>
-              </div>
-              <div className="info-item">
-                <div className="info-icon">📞</div>
-                <div>
-                  <h3>Téléphone</h3>
-                  <p>+224 623 59 01 51</p>
-                </div>
-              </div>
-              <div className="info-item">
-                <div className="info-icon">✉️</div>
-                <div>
-                  <h3>Email</h3>
-                  <p>samakedelamou858@gmail.com</p>
-                </div>
-              </div>
-              <div className="info-item">
-                <div className="info-icon">🕒</div>
-                <div>
-                  <h3>Horaires</h3>
-                  <p>Lundi - Vendredi: 8h - 17h<br />Samedi: 9h - 13h</p>
-                </div>
+              <div className="info-text">
+                <h3>Notre Siège</h3>
+                <p>Zone Industrielle, Mamou, Guinée</p>
+                <span className="info-sub">Au cœur de l'innovation agricole</span>
               </div>
             </div>
 
-            <div className="contact-form-container">
-              <h2>Envoyez-nous un message</h2>
-              <form onSubmit={handleSubmit} className="contact-form">
-                <div className="form-group">
-                  <label htmlFor="name">Nom complet *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
+            <div className="info-glass-card">
+              <div className="icon-box-premium delay-1">
+                <Phone size={24} />
+              </div>
+              <div className="info-text">
+                <h3>Service Client</h3>
+                <p>+224 623 59 01 51</p>
+                <span className="info-sub">Lun-Ven, 8h à 18h</span>
+              </div>
+            </div>
+
+            <div className="info-glass-card">
+              <div className="icon-box-premium delay-2">
+                <Mail size={24} />
+              </div>
+              <div className="info-text">
+                <h3>Email Pro</h3>
+                <p>contact@agripulse.com</p>
+                <span className="info-sub">Réponse sous 24h</span>
+              </div>
+            </div>
+
+            <div className="info-glass-card">
+              <div className="icon-box-premium delay-3">
+                <Clock size={24} />
+              </div>
+              <div className="info-text">
+                <h3>Horaires</h3>
+                <p>Lundi - Vendredi: 08:00 - 17:00</p>
+                <p>Samedi: 09:00 - 13:00</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Contact Form */}
+          <div className="contact-form-column">
+            <div className="form-glass-panel">
+              <div className="form-header">
+                <h2>Envoyez-nous un message</h2>
+                <p>Remplissez le formulaire ci-dessous et un expert vous recontactera.</p>
+              </div>
+
+              {!isSent ? (
+                <form onSubmit={handleSubmit} className="premium-form">
+                  <div className="form-row">
+                    <div className="form-group-premium">
+                      <label>Nom complet</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Ex: Jean Diallo"
+                        required
+                      />
+                    </div>
+                    <div className="form-group-premium">
+                      <label>Téléphone</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="+224 ..."
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group-premium">
+                    <label>Email professionnel</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="contact@domaine.com"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group-premium">
+                    <label>Sujet</label>
+                    <div className="select-wrapper">
+                      <select
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Sélectionnez un motif...</option>
+                        <option value="partenariat">Demande de Partenariat</option>
+                        <option value="support">Support Technique</option>
+                        <option value="demo">Demande de Démo</option>
+                        <option value="presse">Presse & Médias</option>
+                        <option value="autre">Autre demande</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group-premium">
+                    <label>Votre message</label>
+                    <textarea
+                      name="message"
+                      rows="5"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Détaillez votre demande..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <button type="submit" className="btn-submit-premium" disabled={isLoading}>
+                    {isLoading ? <Loader2 className="spinner" size={20} /> : (
+                      <>
+                        <span>Envoyer le message</span>
+                        <Send size={18} />
+                      </>
+                    )}
+                  </button>
+                </form>
+              ) : (
+                <div className="success-message-panel">
+                  <div className="success-icon">
+                    <CheckCircle size={48} />
+                  </div>
+                  <h3>Message Envoyé !</h3>
+                  <p>Merci de nous avoir contactés. Notre équipe a bien reçu votre demande et reviendra vers vous très rapidement.</p>
+                  <button onClick={() => setIsSent(false)} className="btn-reset">Envoyer un autre message</button>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="phone">Téléphone</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="subject">Sujet *</label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Sélectionnez un sujet</option>
-                    <option value="service">Demande de service</option>
-                    <option value="formation">Formation</option>
-                    <option value="conseil">Conseil</option>
-                    <option value="autre">Autre</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary">Envoyer le message</button>
-              </form>
+              )}
             </div>
           </div>
         </div>
@@ -154,4 +212,3 @@ function ContactPage() {
 }
 
 export default ContactPage;
-
