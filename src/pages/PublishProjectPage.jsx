@@ -1,22 +1,32 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  ArrowRight, ArrowLeft, Upload, Sparkles, MapPin,
+  DollarSign, Clock, FileText, CheckCircle, Image as ImageIcon,
+  AlertCircle, X
+} from 'lucide-react';
 import '../styles/PublishProjectPage.css';
 
 function PublishProjectPage() {
   const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+
   const [formData, setFormData] = useState({
     title: '',
     category: '',
+    location: '',
     description: '',
     amount: '',
     duration: '',
-    location: 'Conakry, Guinée',
+    roi: '',
     images: [],
     businessPlan: null
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const fileInputRef = useRef(null);
 
   const categories = [
     'Agriculture Biologique',
@@ -28,286 +38,414 @@ function PublishProjectPage() {
     'Autre'
   ];
 
+  /* --- Handlers --- */
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+  };
+
+  const generateWithAI = () => {
+    if (!formData.title || !formData.category) {
+      setErrors(prev => ({ ...prev, ai: 'Veuillez d\'abord remplir le titre et la catégorie.' }));
+      return;
     }
+
+    setIsGenerating(true);
+    // Simulation of AI generation
+    setTimeout(() => {
+      const aiText = `Ce projet de ${formData.category} vise à révolutionner la production locale à ${formData.location || 'Guinée'}. \n\nNotre objectif est de mettre en place une structure durable qui respecte l'environnement tout en maximisant le rendement. Grâce à des techniques innovantes, nous prévoyons de créer 15 emplois directs et de fournir des produits de haute qualité au marché local.\n\nL'investissement servira principalement à l'acquisition d'équipements modernes et à la formation du personnel.`;
+      setFormData(prev => ({ ...prev, description: aiText }));
+      setIsGenerating(false);
+      setErrors(prev => ({ ...prev, ai: '' }));
+    }, 2000);
   };
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
-    setFormData({
-      ...formData,
-      images: [...formData.images, ...files]
-    });
-  };
-
-  const handleFileUpload = (e) => {
-    setFormData({
-      ...formData,
-      businessPlan: e.target.files[0]
-    });
-  };
-
-  const validate = () => {
-    const newErrors = {};
-
-    if (!formData.title.trim()) {
-      newErrors.title = 'Le titre est requis';
-    }
-
-    if (!formData.category) {
-      newErrors.category = 'La catégorie est requise';
-    }
-
-    if (!formData.description.trim() || formData.description.length < 100) {
-      newErrors.description = 'La description doit contenir au moins 100 caractères';
-    }
-
-    if (!formData.amount || parseFloat(formData.amount) <= 0) {
-      newErrors.amount = 'Le montant doit être supérieur à 0';
-    }
-
-    if (!formData.duration) {
-      newErrors.duration = 'La durée est requise';
-    }
-
-    if (!formData.location.trim()) {
-      newErrors.location = 'La localisation est requise';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validate()) {
+    if (files.length + formData.images.length > 5) {
+      alert("Maximum 5 images autorisées.");
       return;
     }
+    setFormData(prev => ({ ...prev, images: [...prev.images, ...files] }));
+  };
 
+  const removeImage = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index)
+    }));
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
+    if (files.length > 0) {
+      if (files.length + formData.images.length > 5) {
+        alert("Maximum 5 images autorisées.");
+        return;
+      }
+      setFormData(prev => ({ ...prev, images: [...prev.images, ...files] }));
+    }
+  };
+
+  /* --- Navigation --- */
+
+  const validateStep = (step) => {
+    const newErrors = {};
+    let isValid = true;
+
+    if (step === 1) {
+      if (!formData.title.trim()) newErrors.title = "Le titre est requis.";
+      if (!formData.category) newErrors.category = "La catégorie est requise.";
+      if (!formData.location.trim()) newErrors.location = "La localisation est requise.";
+    }
+
+    if (step === 2) {
+      if (!formData.description.trim() || formData.description.length < 50) {
+        newErrors.description = "La description doit contenir au moins 50 caractères.";
+      }
+    }
+
+    if (step === 3) {
+      if (!formData.amount || formData.amount <= 0) newErrors.amount = "Montant invalide.";
+      if (!formData.duration) newErrors.duration = "Durée requise.";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
+  const nextStep = () => {
+    if (validateStep(currentStep)) {
+      setErrors({});
+      setCurrentStep(prev => prev + 1);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const prevStep = () => {
+    setCurrentStep(prev => prev - 1);
+    window.scrollTo(0, 0);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setIsSubmitting(true);
-
-    // Simuler la soumission
+    // Simulation submission
     setTimeout(() => {
       setIsSubmitting(false);
-      alert('Votre projet a été publié avec succès ! Il sera examiné par notre équipe avant d\'être mis en ligne.');
       navigate('/projets-financement');
     }, 2000);
   };
 
-  return (
-    <div className="publish-project-page">
-      <section className="page-header" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&h=600&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="page-header-overlay"></div>
-        <div className="container">
-          <h1>Publier un Projet de Financement</h1>
-          <p>Partagez votre projet agricole et trouvez des investisseurs</p>
-        </div>
-      </section>
+  /* --- Render Steps --- */
 
-      <section className="publish-content">
-        <div className="container">
-          <div className="publish-guide">
-            <div className="guide-image">
-              <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=300&fit=crop" alt="Guide publication" />
+  const renderStep1 = () => (
+    <div className="wizard-step fade-in">
+      <div className="step-header">
+        <h2>L'Étincelle du Projet</h2>
+        <p>Commençons par les bases de votre vision agricole.</p>
+      </div>
+
+      <div className="form-grid">
+        <div className="form-group glass-input-group">
+          <label><FileText size={18} /> Titre du Projet</label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="Ex: Ferme Aquaponique de Kindia"
+            className={errors.title ? 'error' : ''}
+          />
+          {errors.title && <span className="error-msg">{errors.title}</span>}
+        </div>
+
+        <div className="form-group glass-input-group">
+          <label><Sparkles size={18} /> Catégorie</label>
+          <div className="select-wrapper">
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className={errors.category ? 'error' : ''}
+            >
+              <option value="">Sélectionner une catégorie</option>
+              {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+            </select>
+          </div>
+          {errors.category && <span className="error-msg">{errors.category}</span>}
+        </div>
+
+        <div className="form-group glass-input-group full-width">
+          <label><MapPin size={18} /> Localisation</label>
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            placeholder="Ville, Région"
+            className={errors.location ? 'error' : ''}
+          />
+          {errors.location && <span className="error-msg">{errors.location}</span>}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep2 = () => (
+    <div className="wizard-step fade-in">
+      <div className="step-header">
+        <h2>Les Détails</h2>
+        <p>Racontez votre histoire et convainquez vos futurs investisseurs.</p>
+      </div>
+
+      <div className="ai-assist-container">
+        <button
+          type="button"
+          className={`btn-ai-generate ${isGenerating ? 'loading' : ''}`}
+          onClick={generateWithAI}
+          disabled={isGenerating}
+        >
+          <Sparkles size={18} />
+          {isGenerating ? 'Rédaction par l\'IA...' : 'Générer une description avec l\'IA'}
+        </button>
+        {errors.ai && <span className="error-msg inline">{errors.ai}</span>}
+      </div>
+
+      <div className="form-group glass-input-group">
+        <label>Description Détaillée</label>
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          rows={12}
+          placeholder="Décrivez votre projet..."
+          className={errors.description ? 'error' : ''}
+        />
+        <div className="char-count">{formData.description.length} caractères</div>
+        {errors.description && <span className="error-msg">{errors.description}</span>}
+      </div>
+    </div>
+  );
+
+  const renderStep3 = () => (
+    <div className="wizard-step fade-in">
+      <div className="step-header">
+        <h2>Le Budget</h2>
+        <p>Quels sont vos besoins financiers pour réaliser ce projet ?</p>
+      </div>
+
+      <div className="form-grid">
+        <div className="form-group glass-input-group">
+          <label><DollarSign size={18} /> Montant Recherché (GNF)</label>
+          <input
+            type="number"
+            name="amount"
+            value={formData.amount}
+            onChange={handleChange}
+            placeholder="50 000 000"
+            className={errors.amount ? 'error' : ''}
+          />
+          {errors.amount && <span className="error-msg">{errors.amount}</span>}
+        </div>
+
+        <div className="form-group glass-input-group">
+          <label><Clock size={18} /> Durée de la Campagne</label>
+          <select
+            name="duration"
+            value={formData.duration}
+            onChange={handleChange}
+            className={errors.duration ? 'error' : ''}
+          >
+            <option value="">Choisir la durée</option>
+            <option value="30">30 Jours</option>
+            <option value="45">45 Jours</option>
+            <option value="60">60 Jours</option>
+            <option value="90">90 Jours</option>
+          </select>
+          {errors.duration && <span className="error-msg">{errors.duration}</span>}
+        </div>
+
+        <div className="form-group glass-input-group full-width">
+          <label>Retour sur Investissement Estimé (%)</label>
+          <input
+            type="text"
+            name="roi"
+            value={formData.roi}
+            onChange={handleChange}
+            placeholder="Ex: 15-20%"
+          />
+          <p className="input-hint">Optionnel : Une estimation attire plus d'investisseurs.</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep4 = () => (
+    <div className="wizard-step fade-in">
+      <div className="step-header">
+        <h2>La Vitrine</h2>
+        <p>Une image vaut mille mots. Ajoutez des visuels de haute qualité.</p>
+      </div>
+
+      <div
+        className="drag-drop-zone"
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={handleDrop}
+        onClick={() => fileInputRef.current.click()}
+      >
+        <div className="upload-icon-wrapper">
+          <Upload size={48} />
+        </div>
+        <h3>Glissez vos images ici ou cliquez pour parcourir</h3>
+        <p>JPG, PNG jusqu'à 5MB (Max 5 images)</p>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleImageUpload}
+          multiple
+          accept="image/*"
+          hidden
+        />
+      </div>
+
+      {formData.images.length > 0 && (
+        <div className="image-preview-grid">
+          {formData.images.map((img, idx) => (
+            <div key={idx} className="image-preview-card">
+              <img src={URL.createObjectURL(img)} alt="Preview" />
+              <button type="button" className="btn-remove-img" onClick={() => removeImage(idx)}>
+                <X size={16} />
+              </button>
             </div>
-            <div className="guide-content">
-              <h2>💡 Guide de Publication</h2>
-              <div className="guide-steps">
-                <div className="guide-step">
-                  <span className="step-number">1</span>
-                  <p>Remplissez tous les champs obligatoires avec des informations détaillées</p>
-                </div>
-                <div className="guide-step">
-                  <span className="step-number">2</span>
-                  <p>Ajoutez des photos de qualité pour illustrer votre projet</p>
-                </div>
-                <div className="guide-step">
-                  <span className="step-number">3</span>
-                  <p>Joignez un business plan si disponible</p>
-                </div>
-                <div className="guide-step">
-                  <span className="step-number">4</span>
-                  <p>Votre projet sera examiné sous 48h avant publication</p>
-                </div>
-              </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
+  const renderStep5 = () => (
+    <div className="wizard-step fade-in">
+      <div className="step-header">
+        <h2>Confirmation</h2>
+        <p>Vérifiez les informations avant de lancer votre campagne.</p>
+      </div>
+
+      <div className="summary-card-glass">
+        <div className="summary-section">
+          <h3>{formData.title}</h3>
+          <span className="summary-category">{formData.category}</span>
+          <p className="summary-location"><MapPin size={14} /> {formData.location}</p>
+        </div>
+
+        <div className="summary-divider"></div>
+
+        <div className="summary-details">
+          <p className="summary-desc">{formData.description.substring(0, 150)}...</p>
+
+          <div className="summary-stats">
+            <div className="stat-item">
+              <span className="label">Objectif</span>
+              <span className="value">{parseInt(formData.amount).toLocaleString()} GNF</span>
+            </div>
+            <div className="stat-item">
+              <span className="label">Durée</span>
+              <span className="value">{formData.duration} jours</span>
             </div>
           </div>
-
-          <form onSubmit={handleSubmit} className="publish-form">
-            <div className="form-section">
-              <h3>Informations Générales</h3>
-
-              <div className="form-group">
-                <label htmlFor="title">Titre du Projet *</label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  placeholder="Ex: Installation d'une serre solaire pour production bio"
-                  className={errors.title ? 'error' : ''}
-                />
-                {errors.title && <span className="error-message">{errors.title}</span>}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="category">Catégorie *</label>
-                <select
-                  id="category"
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                  className={errors.category ? 'error' : ''}
-                >
-                  <option value="">Sélectionnez une catégorie</option>
-                  {categories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-                {errors.category && <span className="error-message">{errors.category}</span>}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="description">Description du Projet *</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  rows="8"
-                  placeholder="Décrivez votre projet en détail : objectifs, méthodes, impact attendu, etc. (minimum 100 caractères)"
-                  className={errors.description ? 'error' : ''}
-                ></textarea>
-                <span className="char-count">{formData.description.length} / 100 caractères minimum</span>
-                {errors.description && <span className="error-message">{errors.description}</span>}
-              </div>
-            </div>
-
-            <div className="form-section">
-              <h3>Financement</h3>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="amount">Montant recherché (GNF) *</label>
-                  <input
-                    type="number"
-                    id="amount"
-                    name="amount"
-                    value={formData.amount}
-                    onChange={handleChange}
-                    placeholder="500,000,000"
-                    min="1000"
-                    step="1000"
-                    className={errors.amount ? 'error' : ''}
-                  />
-                  {errors.amount && <span className="error-message">{errors.amount}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="duration">Durée du projet (mois) *</label>
-                  <input
-                    type="number"
-                    id="duration"
-                    name="duration"
-                    value={formData.duration}
-                    onChange={handleChange}
-                    placeholder="12"
-                    min="1"
-                    className={errors.duration ? 'error' : ''}
-                  />
-                  {errors.duration && <span className="error-message">{errors.duration}</span>}
-                </div>
-              </div>
-            </div>
-
-            <div className="form-section">
-              <h3>Localisation</h3>
-
-              <div className="form-group">
-                <label htmlFor="location">Localisation du projet *</label>
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  placeholder="Ex: Conakry, Guinée"
-                  className={errors.location ? 'error' : ''}
-                />
-                {errors.location && <span className="error-message">{errors.location}</span>}
-              </div>
-            </div>
-
-            <div className="form-section">
-              <h3>Médias</h3>
-
-              <div className="form-group">
-                <label htmlFor="images">Photos du Projet</label>
-                <input
-                  type="file"
-                  id="images"
-                  name="images"
-                  onChange={handleImageUpload}
-                  multiple
-                  accept="image/*"
-                />
-                <p className="help-text">Ajoutez jusqu'à 5 photos (JPG, PNG, max 5MB chacune)</p>
-                {formData.images.length > 0 && (
-                  <div className="uploaded-images">
-                    {formData.images.map((img, index) => (
-                      <span key={index} className="uploaded-file">{img.name}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="businessPlan">Business Plan (optionnel)</label>
-                <input
-                  type="file"
-                  id="businessPlan"
-                  name="businessPlan"
-                  onChange={handleFileUpload}
-                  accept=".pdf,.doc,.docx"
-                />
-                <p className="help-text">Format PDF ou Word (max 10MB)</p>
-                {formData.businessPlan && (
-                  <div className="uploaded-file">{formData.businessPlan.name}</div>
-                )}
-              </div>
-            </div>
-
-            <div className="form-actions">
-              <button type="submit" className="btn-submit" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <>
-                    <span className="spinner"></span>
-                    Publication en cours...
-                  </>
-                ) : (
-                  'Publier le Projet'
-                )}
-              </button>
-              <button type="button" className="btn-cancel" onClick={() => navigate('/dashboard')}>
-                Annuler
-              </button>
-            </div>
-          </form>
         </div>
-      </section>
+
+        {formData.images.length > 0 && (
+          <div className="summary-gallery-mini">
+            <img src={URL.createObjectURL(formData.images[0])} alt="Cover" className="cover-img" />
+            {formData.images.length > 1 && <span className="more-count">+{formData.images.length - 1}</span>}
+          </div>
+        )}
+      </div>
+
+      <div className="final-check">
+        <label className="checkbox-container">
+          <input type="checkbox" required />
+          <span className="checkmark"></span>
+          Je certifie que les informations fournies sont exactes et conforme aux CGU d'AgriPlus.
+        </label>
+      </div>
+    </div>
+  );
+
+  const steps = [
+    { title: "Idée", icon: <Sparkles size={18} /> },
+    { title: "Détails", icon: <FileText size={18} /> },
+    { title: "Budget", icon: <DollarSign size={18} /> },
+    { title: "Vitrine", icon: <ImageIcon size={18} /> },
+    { title: "Validation", icon: <CheckCircle size={18} /> }
+  ];
+
+  return (
+    <div className="publish-wizard-page">
+      <div className="wizard-container-glass">
+
+        {/* Progress Bar */}
+        <div className="wizard-progress">
+          {steps.map((s, idx) => {
+            const stepNum = idx + 1;
+            let status = 'pending';
+            if (stepNum === currentStep) status = 'active';
+            if (stepNum < currentStep) status = 'completed';
+
+            return (
+              <div key={idx} className={`progress-step ${status}`}>
+                <div className="step-icon-bubble">
+                  {status === 'completed' ? <CheckCircle size={20} /> : s.icon}
+                </div>
+                <span className="step-label">{s.title}</span>
+                {idx < steps.length - 1 && <div className="step-line"></div>}
+              </div>
+            );
+          })}
+        </div>
+
+        <form onSubmit={handleSubmit} className="wizard-content">
+          {currentStep === 1 && renderStep1()}
+          {currentStep === 2 && renderStep2()}
+          {currentStep === 3 && renderStep3()}
+          {currentStep === 4 && renderStep4()}
+          {currentStep === 5 && renderStep5()}
+        </form>
+
+        <div className="wizard-actions">
+          {currentStep > 1 && (
+            <button type="button" className="btn-wizard-prev" onClick={prevStep}>
+              <ArrowLeft size={18} /> Retour
+            </button>
+          )}
+
+          <div className="spacer"></div>
+
+          {currentStep < 5 ? (
+            <button type="button" className="btn-wizard-next" onClick={nextStep}>
+              Suivant <ArrowRight size={18} />
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn-wizard-submit"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Publication...' : 'Lancer le Projet 🚀'}
+            </button>
+          )}
+        </div>
+
+      </div>
     </div>
   );
 }

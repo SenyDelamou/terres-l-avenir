@@ -116,8 +116,8 @@ function FundingProjectsPage() {
   return (
     <div className="funding-projects-page">
       <PageHeader
-        title="Soutenez l'Innovation Agricole"
-        subtitle="Participez à l'essor des projets les plus prometteurs et investissez dans l'avenir du sol."
+        title="L'Agriculture de Demain Commence Ici"
+        subtitle="Donnez vie aux projets qui nourrissent le monde. Découvrez des opportunités d'investissement durables et performantes."
         icon="💎"
         buttons={[]}
         images={["https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&h=600&fit=crop"]}
