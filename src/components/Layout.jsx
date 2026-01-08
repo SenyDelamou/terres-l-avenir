@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import AIChatModal from './AIChatModal';
+import Footer from './Footer';
 import logoImg from '../assets/logo.png';
 import userAvatar from '../assets/user_avatar.png';
 import '../styles/Layout.css';
@@ -368,75 +369,12 @@ function Layout() {
       {!isAuthPage && <AIChatModal />}
 
       {!isAuthPage && (
-        <footer className="footer">
-          <div className="container">
-            <div className="footer-content">
-              {/* ... existing footer content ... */}
-              <div className="footer-section footer-about">
-                <div className="footer-logo">
-                  <img src={logoImg} alt="AgriPlus Logo" className="logo-img-footer" />
-                  <span className="logo-text">AgriPlus <span className="logo-subtext">- Agriculture</span></span>
-                </div>
-                <p>Votre partenaire pour une agriculture durable et moderne. Nous accompagnons les agriculteurs dans leur transition vers des pratiques respectueuses de l'environnement.</p>
-                <div className="footer-social">
-                  <a href="#" className="social-link" aria-label="Facebook">📘</a>
-                  <a href="#" className="social-link" aria-label="Twitter">🐦</a>
-                  <a href="#" className="social-link" aria-label="LinkedIn">💼</a>
-                  <a href="#" className="social-link" aria-label="Instagram">📷</a>
-                </div>
-              </div>
-              <div className="footer-section">
-                <h4>Navigation</h4>
-                <Link to="/">Accueil</Link>
-                <Link to="/a-propos">À propos</Link>
-                <Link to="/services">Services</Link>
-                <Link to="/ressources">Ressources</Link>
-                <Link to="/actualites">Actualités</Link>
-                <Link to="/forum">Forum</Link>
-                <Link to="/contact">Contact</Link>
-              </div>
-              <div className="footer-section">
-                <h4>SERVICES</h4>
-                <Link to="/services">Diagnostic Agricole</Link>
-                <Link to="/services">Formation & Conseil</Link>
-                <Link to="/services">Gestion de l'Irrigation</Link>
-                <Link to="/services">Conversion Bio</Link>
-                <Link to="/services">Analyse de Données</Link>
-              </div>
-              <div className="footer-section footer-contact">
-                <h4>Contact</h4>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">📍</span>
-                  <span>Mamou, Guinée</span>
-                </div>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">📞</span>
-                  <span>+224 623 59 01 51</span>
-                </div>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">✉️</span>
-                  <span>samakedelamou858@gmail.com</span>
-                </div>
-                <div className="footer-contact-item">
-                  <span className="footer-icon">🕒</span>
-                  <span>Lun-Ven: 8h-17h<br />Sam: 9h-13h</span>
-                </div>
-              </div>
-            </div>
-            <div className="footer-bottom">
-              <div className="footer-bottom-content">
-                <p>&copy; 2025 AgriPlus. Tous droits réservés.</p>
-                <div className="footer-links">
-                  <Link to="/">Mentions légales</Link>
-                  <Link to="/">Politique de confidentialité</Link>
-                  <Link to="/">CGV</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      )}
+        {!isAuthPage && <Footer />}
     </div>
+  );
+}
+      )}
+    </div >
   );
 }
 

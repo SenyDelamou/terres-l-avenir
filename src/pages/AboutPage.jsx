@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { Target, Lightbulb, Users, Award, TrendingUp, Leaf, Sprout, ArrowRight } from 'lucide-react';
+import { Target, Lightbulb, Users, Award, TrendingUp, Leaf, Sprout, ArrowRight, CheckCircle, ShoppingBag, Coins, Cpu, MessageCircle } from 'lucide-react';
 import '../styles/AboutPage.css';
 
 function AboutPage() {
@@ -100,6 +100,76 @@ function AboutPage() {
               </div>
               <h3>Communauté</h3>
               <p>Créer un réseau solidaire permettant aux agriculteurs de s'entraider et de grandir.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision & Values Split Section */}
+      <section className="vision-section">
+        <div className="container vision-container">
+          <div className="vision-image">
+            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=1000&auto=format&fit=crop" alt="Vision Agricole" />
+            <div className="vision-badge">
+              <Target size={24} />
+              <span>Vision 2030</span>
+            </div>
+          </div>
+          <div className="vision-content">
+            <span className="section-label">Notre Vision</span>
+            <h2>Un Écosystème Agricole <br />Connecté et Intelligent</h2>
+            <p>
+              Chez <strong>AgriPulse</strong>, nous imaginons un futur où chaque agriculteur, quelle que soit sa taille, a accès aux meilleurs outils technologiques pour prospérer.
+            </p>
+            <p>
+              Notre vision est de créer le <strong>premier écosystème digital complet</strong> en Afrique de l'Ouest, intégrant le commerce équitable, le financement participatif et l'intelligence artificielle pour éradiquer la précarité rurale et booster la souveraineté alimentaire.
+            </p>
+            <ul className="vision-points">
+              <li><CheckCircle size={20} className="check-icon" /> Digitalisation des zones rurales</li>
+              <li><CheckCircle size={20} className="check-icon" /> Financement accessible à tous</li>
+              <li><CheckCircle size={20} className="check-icon" /> Agriculture de précision pour tous</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* The Ecosystem (Presentation of the site) */}
+      <section className="ecosystem-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>L'Écosystème AgriPulse</h2>
+            <div className="header-line"></div>
+            <p>Une plateforme tout-en-un conçue pour répondre à tous les besoins du secteur agricole.</p>
+          </div>
+
+          <div className="ecosystem-grid">
+            <div className="eco-card">
+              <div className="eco-icon-wrapper market">
+                <ShoppingBag size={28} />
+              </div>
+              <h3>Marketplace</h3>
+              <p>Une place de marché directe pour vendre vos récoltes au meilleur prix, sans intermédiaires abusifs.</p>
+            </div>
+            <div className="eco-card">
+              <div className="eco-icon-wrapper fund">
+                <Coins size={28} />
+              </div>
+              <h3>Financement Participatif</h3>
+              <p>Levez des fonds pour vos projets agricoles ou investissez dans l'agriculture de demain.</p>
+            </div>
+            <div className="eco-card">
+              <div className="eco-icon-wrapper ai">
+                <Cpu size={28} />
+              </div>
+              <h3>Assistant IA</h3>
+              <p>Un expert agronome virtuel disponible 24/7 pour diagnostiquer les maladies et optimiser vos cultures.</p>
+            </div>
+            <div className="eco-card">
+              <div className="eco-icon-wrapper forum">
+                <MessageCircle size={28} />
+              </div>
+              <h3>Forum Communautaire</h3>
+              <p>Un espace d'échange pour partager des connaissances, résoudre des problèmes et réseauter.</p>
             </div>
           </div>
         </div>

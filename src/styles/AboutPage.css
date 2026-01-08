@@ -254,6 +254,167 @@
   line-height: 1.6;
 }
 
+/* --- Vision Section --- */
+.vision-section {
+  padding: 8rem 0;
+  background: white;
+}
+
+.vision-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.vision-image {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+}
+
+.vision-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+.vision-image:hover img {
+  transform: scale(1.05);
+}
+
+.vision-badge {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: #059669;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #059669;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.vision-content h2 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+.vision-content p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.vision-points {
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.vision-points li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.check-icon {
+  color: #3dfc8a;
+  fill: #064e3b;
+}
+
+/* --- Ecosystem Section --- */
+.ecosystem-section {
+  padding: 8rem 0;
+  background: #f0fdf4;
+  /* Very light green hint */
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.eco-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.eco-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.eco-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.eco-icon-wrapper.market {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.eco-icon-wrapper.fund {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.eco-icon-wrapper.ai {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+
+.eco-icon-wrapper.forum {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.eco-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+}
+
+.eco-card p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
 /* --- Timeline Section --- */
 .timeline-section {
   background: #111827;
@@ -491,6 +652,15 @@
 @media (max-width: 768px) {
   .about-hero h1 {
     font-size: 2.8rem;
+  }
+
+  .vision-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .vision-image {
+    order: -1;
   }
 
   .stats-grid {
