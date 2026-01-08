@@ -1,155 +1,146 @@
-import PageHeader from '../components/PageHeader';
+import { useRef, useEffect, useState } from 'react';
+import { Target, Lightbulb, Users, Award, TrendingUp, Leaf, Sprout, ArrowRight } from 'lucide-react';
 import '../styles/AboutPage.css';
 
 function AboutPage() {
-  const missions = [
-    {
-      title: '🌍 Durabilité',
-      description: 'Promouvoir des pratiques agricoles qui préservent l\'environnement pour les générations futures.',
-      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=400&fit=crop'
-    },
-    {
-      title: '📈 Innovation',
-      description: 'Intégrer les dernières technologies et techniques pour améliorer la productivité.',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=400&fit=crop'
-    },
-    {
-      title: '🤝 Accompagnement',
-      description: 'Soutenir les agriculteurs dans leur développement et leur transition écologique.',
-      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop'
-    },
-    {
-      title: '🌾 Qualité',
-      description: 'Garantir des produits de qualité tout en respectant les normes environnementales.',
-      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop'
-    }
-  ];
+  const [isVisible, setIsVisible] = useState(false);
 
-  const values = [
+  // Stats Animation Logic could be added here
+
+  const historyEvents = [
     {
-      icon: '🌿',
-      title: 'Respect de l\'environnement',
-      description: 'Nous croyons en une agriculture qui préserve la biodiversité et les ressources naturelles.'
+      year: '2009',
+      title: 'La Genèse',
+      desc: 'Création d\'AgriPlus avec une vision simple : moderniser l\'agriculture guinéenne.'
     },
     {
-      icon: '💡',
-      title: 'Innovation continue',
-      description: 'Nous restons à la pointe des nouvelles techniques pour offrir les meilleures solutions.'
+      year: '2015',
+      title: 'Expansion Régionale',
+      desc: 'Ouverture de nos bureaux à Mamou et lancement du programme de formation.'
     },
     {
-      icon: '🤝',
-      title: 'Solidarité',
-      description: 'Nous soutenons la communauté agricole locale et favorisons l\'entraide.'
+      year: '2020',
+      title: 'Digitalisation',
+      desc: 'Lancement de la plateforme AgriPulse pour connecter les agriculteurs aux marchés.'
     },
     {
-      icon: '✨',
-      title: 'Excellence',
-      description: 'Nous visons l\'excellence dans tous nos services et conseils.'
+      year: '2024',
+      title: 'Intelligence Artificielle',
+      desc: 'Intégration d\'outils prédictifs IA pour optimiser les rendements.'
     }
   ];
 
   return (
-    <div className="about-page">
-      <PageHeader
-        title="Bâtissons l'Agriculture de Demain"
-        subtitle="Notre mission : allier tradition et innovation pour nourrir les générations futures avec excellence."
-        icon="🏛️"
-        images={[
-          'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&h=600&fit=crop',
-          'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=1920&h=600&fit=crop',
-          'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=1920&h=600&fit=crop'
-        ]}
-      />
+    <div className="about-page-premium">
+      {/* Cinematic Hero Section */}
+      <section className="about-hero">
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <div className="hero-badge-premium">
+            <Leaf size={16} />
+            <span>Notre Histoire</span>
+          </div>
+          <h1>Cultiver l'Avenir <br /><span className="text-gradient">Ensemble</span></h1>
+          <p className="hero-subtitle">
+            Depuis plus de 15 ans, nous allions tradition agricole et innovation technologique pour nourrir les générations futures.
+          </p>
+        </div>
+        <div className="hero-scroll-indicator">
+          <div className="mouse"></div>
+        </div>
+      </section>
 
-      <section className="about-content">
+      {/* Stats Section (Floating) */}
+      <div className="stats-container">
+        <div className="stats-grid">
+          <div className="stat-item">
+            <span className="stat-number">15+</span>
+            <span className="stat-label">Années d'Expertise</span>
+          </div>
+          <div className="stat-separator"></div>
+          <div className="stat-item">
+            <span className="stat-number">5000+</span>
+            <span className="stat-label">Agriculteurs Aidés</span>
+          </div>
+          <div className="stat-separator"></div>
+          <div className="stat-item">
+            <span className="stat-number">120</span>
+            <span className="stat-label">Projets Financés</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Mission & Vision Section */}
+      <section className="mission-section">
         <div className="container">
-          <div className="about-section history-section">
-            <div className="about-image-text">
-              <div className="about-text">
-                <span className="section-badge">Depuis 2009</span>
-                <h2>Notre Histoire</h2>
-                <div className="history-box">
-                  <p>
-                    Fondée en 2009, <strong>AgriPlus</strong> est née d'une passion pour l'agriculture
-                    durable et le respect de l'environnement. Depuis plus de 15 ans, nous
-                    accompagnons les agriculteurs dans leur transition vers des pratiques
-                    plus respectueuses et rentables.
-                  </p>
-                  <p>
-                    Notre équipe d'experts agronomes, d'ingénieurs et de conseillers
-                    agricoles travaille chaque jour pour développer et partager les meilleures
-                    pratiques agricoles à travers le monde.
-                  </p>
-                </div>
-                <div className="history-stats">
-                  <div className="h-stat">
-                    <span className="h-number">15+</span>
-                    <span className="h-label">Années d'expertise</span>
-                  </div>
-                  <div className="h-stat">
-                    <span className="h-number">500+</span>
-                    <span className="h-label">Exploitations aidées</span>
-                  </div>
-                </div>
-              </div>
-              <div className="about-image">
-                <div className="image-frame">
-                  <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop" alt="Champ agricole" />
-                  <div className="image-experience-badge">
-                    <span>15 ANS</span>
-                    <small>D'EXPÉRIENCE</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="section-header">
+            <h2>Notre Mission</h2>
+            <div className="header-line"></div>
+            <p>Transformer les défis agricoles en opportunités durables grâce à la technologie.</p>
           </div>
 
-          <div className="about-section mission-section">
-            <div className="section-header-centered">
-              <span className="section-badge">Nos Objectifs</span>
-              <h2>Notre Mission</h2>
-              <p>Nous travaillons chaque jour pour transformer le paysage agricole vers un modèle plus vertueux.</p>
-            </div>
-            <div className="mission-grid">
-              {missions.map((m, i) => (
-                <div key={i} className="mission-card">
-                  <div className="mission-card-image">
-                    <img src={m.image} alt={m.title} />
-                  </div>
-                  <div className="mission-card-content">
-                    <h3>{m.title}</h3>
-                    <p>{m.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="about-section values-section">
-            <div className="section-header-centered">
-              <span className="section-badge">Ce qui nous anime</span>
-              <h2>Nos Valeurs Fondamentales</h2>
-            </div>
-            <div className="values-grid">
-              {values.map((v, i) => (
-                <div key={i} className="value-card">
-                  <div className="value-icon">{v.icon}</div>
-                  <h3>{v.title}</h3>
-                  <p>{v.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="about-section team-section">
-            <div className="team-cta-box">
-              <h2>Prêt à rejoindre l'aventure ?</h2>
-              <p>Découvrez comment nous pouvons vous aider à transformer votre exploitation ou soutenez un projet innovant.</p>
-              <div className="team-cta-actions">
-                <a href="/contact" className="btn btn-primary">Nous contacter</a>
-                <a href="/projets-financement" className="btn btn-secondary">Voir les projets</a>
+          <div className="mission-grid-premium">
+            <div className="mission-card-glass">
+              <div className="mission-icon">
+                <Sprout size={32} />
               </div>
+              <h3>Durabilité</h3>
+              <p>Promouvoir des pratiques respectueuses de l'environnement pour préserver nos terres.</p>
             </div>
+            <div className="mission-card-glass">
+              <div className="mission-icon">
+                <TrendingUp size={32} />
+              </div>
+              <h3>Productivité</h3>
+              <p>Maximiser les rendements grâce à l'analyse de données et l'agriculture de précision.</p>
+            </div>
+            <div className="mission-card-glass">
+              <div className="mission-icon">
+                <Users size={32} />
+              </div>
+              <h3>Communauté</h3>
+              <p>Créer un réseau solidaire permettant aux agriculteurs de s'entraider et de grandir.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="timeline-section">
+        <div className="container">
+          <div className="section-header light">
+            <h2>Notre Parcours</h2>
+            <p>Les étapes clés de notre croissance.</p>
+          </div>
+
+          <div className="timeline-container">
+            <div className="timeline-line"></div>
+            {historyEvents.map((event, index) => (
+              <div key={index} className="timeline-item">
+                <div className="timeline-dot"></div>
+                <div className="timeline-content glass-card-dark">
+                  <span className="timeline-year">{event.year}</span>
+                  <h3>{event.title}</h3>
+                  <p>{event.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="cta-section-premium">
+        <div className="cta-content-glass">
+          <h2>Prêt à innover avec nous ?</h2>
+          <p>Rejoignez la communauté AgriPulse et commencez votre transformation dès aujourd'hui.</p>
+          <div className="cta-buttons">
+            <a href="/inscription" className="btn-primary-glow">
+              Rejoindre AgriPulse <ArrowRight size={18} />
+            </a>
+            <a href="/contact" className="btn-outline-glow">
+              Nous Contacter
+            </a>
           </div>
         </div>
       </section>
