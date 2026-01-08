@@ -48,11 +48,17 @@ function LandingPage() {
                     </p>
                 </div>
 
-                <button className="btn-landing-enter" onClick={handleEnter}>
-                    <span className="btn-text">DÉCOUVRIR L'UNIVERS</span>
-                    <span className="btn-icon">→</span>
-                    <div className="btn-glow"></div>
-                </button>
+                <div className="landing-actions">
+                    <button className="btn-pill-white" onClick={handleEnter}>
+                        <span className="icon-wrapper">🚀</span>
+                        <span className="btn-text">Commencer Gratuitement</span>
+                        <div className="btn-glow"></div>
+                    </button>
+                    <button className="btn-pill-dark" onClick={() => navigate('/ressources')}>
+                        <span className="icon-wrapper">📚</span>
+                        <span className="btn-text">Explorer les Ressources</span>
+                    </button>
+                </div>
 
                 <div className="landing-scroll-indicator">
                     <div className="mouse">

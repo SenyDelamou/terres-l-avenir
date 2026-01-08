@@ -119,14 +119,8 @@ function FundingProjectsPage() {
         title="Soutenez l'Innovation Agricole"
         subtitle="Participez à l'essor des projets les plus prometteurs et investissez dans l'avenir du sol."
         icon="💎"
-        buttons={[
-          {
-            label: "Publier un Projet",
-            icon: "📤",
-            variant: "primary",
-            onClick: () => navigate('/publier-projet')
-          }
-        ]}
+        buttons={[]}
+        images={["https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&h=600&fit=crop"]}
       />
 
       <section className="projects-content">

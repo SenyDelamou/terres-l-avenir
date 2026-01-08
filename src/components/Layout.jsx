@@ -151,7 +151,7 @@ function Layout() {
 
   const mainNavLinks = [
     {
-      path: '/accueil',
+      path: '/',
       label: 'Accueil',
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -223,7 +223,7 @@ function Layout() {
           <div className="navbar-container-screenshot">
             {/* --- Logo & Quick Auth --- */}
             <div className="nav-left-group">
-              <Link to="/accueil" className="logo" onClick={closeMobileMenu}>
+              <Link to="/" className="logo" onClick={closeMobileMenu}>
                 <div className="logo-icon-premium">
                   <img src={logoImg} alt="AgriPlus" />
                 </div>
@@ -387,7 +387,7 @@ function Layout() {
               </div>
               <div className="footer-section">
                 <h4>Navigation</h4>
-                <Link to="/accueil">Accueil</Link>
+                <Link to="/">Accueil</Link>
                 <Link to="/a-propos">À propos</Link>
                 <Link to="/services">Services</Link>
                 <Link to="/ressources">Ressources</Link>
@@ -427,9 +427,9 @@ function Layout() {
               <div className="footer-bottom-content">
                 <p>&copy; 2025 AgriPlus. Tous droits réservés.</p>
                 <div className="footer-links">
-                  <Link to="/accueil">Mentions légales</Link>
-                  <Link to="/accueil">Politique de confidentialité</Link>
-                  <Link to="/accueil">CGV</Link>
+                  <Link to="/">Mentions légales</Link>
+                  <Link to="/">Politique de confidentialité</Link>
+                  <Link to="/">CGV</Link>
                 </div>
               </div>
             </div>

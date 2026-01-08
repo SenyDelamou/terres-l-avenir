@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
-import LandingPage from './pages/LandingPage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import ResourcesPage from './pages/ResourcesPage';
@@ -25,9 +24,8 @@ import './styles/App.css';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
       <Route element={<Layout />}>
-        <Route path="/accueil" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/a-propos" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/ressources" element={<ResourcesPage />} />
