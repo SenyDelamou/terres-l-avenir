@@ -286,21 +286,33 @@ function ForumPage() {
                         </div>
                       </div>
                       <div className="topic-meta">
-                        <span className="topic-author">Par {topic.author}</span>
-                        <span className="topic-stats">
-                          💬 {topic.replies} réponses
+                        <span className="topic-author">
+                          <span className="meta-icon">👤</span>
+                          <span>Par <strong>{topic.author}</strong></span>
                         </span>
                         <span className="topic-stats">
-                          👁️ {topic.views} vues
+                          <span className="meta-icon">💬</span>
+                          <span>{topic.replies} <span className="hide-mobile">réponses</span></span>
                         </span>
-                        <span className="topic-time">{topic.lastActivity}</span>
+                        <span className="topic-stats">
+                          <span className="meta-icon">👁️</span>
+                          <span>{topic.views} <span className="hide-mobile">vues</span></span>
+                        </span>
+                        <span className="topic-time">
+                          <span className="meta-icon">🕒</span>
+                          <span>{topic.lastActivity}</span>
+                        </span>
                       </div>
                     </div>
                     <button
                       className="btn-view-topic"
                       onClick={() => handleViewTopic(topic)}
                     >
-                      Voir le sujet →
+                      <span>Explorer</span>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
                     </button>
                   </div>
                 ))}

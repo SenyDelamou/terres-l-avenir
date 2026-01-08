@@ -28,7 +28,7 @@ function MarketplacePage() {
             quantity: 50,
             location: 'Conakry, Guinée',
             seller: 'Amadou Diallo',
-            image: 'https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop',
+            image: 'https://images.unsplash.com/photo-1582284041078-ff3ad524fa32?w=600&h=450&fit=crop', // Better professional tomato
             rating: 4.8,
             description: 'Tomates fraîches cultivées sans pesticides'
         },
@@ -41,7 +41,7 @@ function MarketplacePage() {
             quantity: 100,
             location: 'Kindia, Guinée',
             seller: 'Fatou Sall',
-            image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&h=300&fit=crop',
+            image: 'https://images.unsplash.com/photo-1591073113125-e46713c829ed?w=600&h=450&fit=crop', // Professional mango
             rating: 5.0,
             description: 'Mangues sucrées de saison'
         },
@@ -54,7 +54,7 @@ function MarketplacePage() {
             quantity: 500,
             location: 'Mamou, Guinée',
             seller: 'Moussa Ba',
-            image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop',
+            image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=600&h=450&fit=crop', // Professional rice grain
             rating: 4.5,
             description: 'Riz blanc de qualité supérieure'
         },
@@ -67,7 +67,7 @@ function MarketplacePage() {
             quantity: 200,
             location: 'Kankan, Guinée',
             seller: 'Aïssatou Ndiaye',
-            image: 'https://images.unsplash.com/photo-1508747703725-719777637510?w=400&h=300&fit=crop',
+            image: 'https://images.unsplash.com/photo-1587049633562-ad3002f02501?w=600&h=450&fit=crop', // Professional onion close up
             rating: 4.2,
             description: 'Oignons rouges de la vallée'
         },
@@ -80,7 +80,7 @@ function MarketplacePage() {
             quantity: 80,
             location: 'Labé, Guinée',
             seller: 'Ibrahima Cissé',
-            image: 'https://images.unsplash.com/photo-1517282009859-f000ec3b26fe?w=400&h=300&fit=crop',
+            image: 'https://images.unsplash.com/photo-1610450949065-1f2842406f03?w=600&h=450&fit=crop', // Professional papaya
             rating: 4.7,
             description: 'Papayes mûres et sucrées'
         },
@@ -93,7 +93,7 @@ function MarketplacePage() {
             quantity: 300,
             location: 'Nzérékoré, Guinée',
             seller: 'Khadija Sarr',
-            image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop',
+            image: 'https://images.unsplash.com/photo-1511516412963-801b050c92aa?w=600&h=450&fit=crop', // Better cereal texture
             rating: 4.6,
             description: 'Mil traditionnel de qualité'
         }

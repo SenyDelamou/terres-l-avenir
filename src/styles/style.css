@@ -20,6 +20,13 @@
     /* Electric Teal - Subtle High-tech Highlights */
     --color-accent-glimmer: linear-gradient(135deg, #00f5ff 0%, #3dfc8a 100%);
 
+    /* Palette Organique "Terroir" */
+    --color-earth-brown: #5d4037;
+    --color-forest-green: #1b5e20;
+    --color-wheat-gold: #fbc02d;
+    --color-clay: #a1887f;
+    --color-mud: #3e2723;
+
     /* Gradients Unifiés */
     --gradient-primary: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
     --gradient-glow: radial-gradient(circle at center, rgba(61, 252, 138, 0.15) 0%, transparent 70%);
@@ -131,6 +138,36 @@ body {
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.5s ease, color 0.5s ease;
+    position: relative;
+}
+
+/* --- Organic Texture Overlays --- */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] body::before {
+    opacity: 0.05;
+}
+
+.organic-texture {
+    position: relative;
+}
+
+.organic-texture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%233dfc8a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Force theme on common page wrappers */

@@ -43,161 +43,126 @@ function LoginPage() {
   };
 
   return (
-    <div className="login-body">
-      {/* Full Screen Layout - No Blobs or Container padding */}
-      <div className="login-card">
-
-        {/* Section Image (Gauche) */}
-        <div className="login-image-side">
-          <img
-            src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1742&auto=format&fit=crop"
-            alt="Agriculteur utilisant une tablette"
-            className="login-bg-image"
-          />
-          <div className="login-image-overlay">
-            <div style={{ marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                <span className="badge-new">Nouveau</span>
-                <span className="version-text">Version 3.0 disponible</span>
-              </div>
-              <div className="login-overlay-content">
-                <h3>Gérez votre exploitation</h3>
-                <p>Accédez à vos tableaux de bord, analysez vos sols et planifiez vos tâches en un clic.</p>
-              </div>
-            </div>
-          </div>
+    <div className="login-body-asymmetric">
+      <div className="login-side-content">
+        <div className="login-branding-pulp">
+          <span className="pulp-tag">Plateforme Intuitive</span>
+          <h2>Cultivez votre <br /><span>Avenir Numérique</span></h2>
+          <p>Rejoignez la plus grande communauté agro-technologique et accédez à des outils de pointe pour votre exploitation.</p>
         </div>
+      </div>
 
-        {/* Section Formulaire (Droite) */}
-        <div className="login-form-side">
-
-          <div className="login-logo">
-            <div className="login-logo-icon">
-              <Leaf size={20} />
+      <div className="login-glass-container-right">
+        <div className="login-card-ordered">
+          {/* Logo Section */}
+          <div className="login-logo-centered">
+            <div className="logo-icon-box">
+              <Leaf size={24} strokeWidth={2.5} />
             </div>
-            <span className="login-logo-text">AgriPlus</span>
+            <h1 className="brand-name">AgriPlus</h1>
           </div>
 
-          <div id="login-container" style={{ width: '100%', maxWidth: '400px' }}>
-            <div className="login-header">
-              <h2>Bon retour !</h2>
-              <p>Veuillez entrer vos identifiants pour accéder à votre espace.</p>
+          <div className="login-header-ordered">
+            <h2>Bon retour !</h2>
+            <p>Accédez à votre espace agricole intelligent</p>
+          </div>
+
+          <form className="login-form-ordered" onSubmit={handleSubmit}>
+            <div className="input-field">
+              <label htmlFor="email">Email professionnel</label>
+              <div className="input-wrapper">
+                <Mail className="field-icon" size={18} />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="nom@ferme.fr"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
 
-            <form onSubmit={handleSubmit}>
-              {/* Email */}
-              <div className="login-input-group">
-                <label htmlFor="email">Email</label>
-                <div className="login-relative-input">
-                  <div className="login-input-icon">
-                    <Mail size={16} />
-                  </div>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="login-input"
-                    placeholder="jean.dupont@ferme.fr"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
+            <div className="input-field">
+              <div className="label-row">
+                <label htmlFor="password">Mot de passe</label>
+                <Link to="/mot-de-passe-oublie" className="forgot-link">Oublié ?</Link>
               </div>
-
-              {/* Mot de passe */}
-              <div className="login-input-group">
-                <div className="login-extras">
-                  <label htmlFor="password">Mot de passe</label>
-                  <Link to="/mot-de-passe-oublie" className="login-forgot-link">Mot de passe oublié ?</Link>
-                </div>
-                <div className="login-relative-input">
-                  <div className="login-input-icon">
-                    <Lock size={16} />
-                  </div>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    name="password"
-                    required
-                    className="login-input login-input-password"
-                    placeholder="••••••••"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="login-toggle-password"
-                  >
-                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                  </button>
-                </div>
-              </div>
-
-              {/* Se souvenir de moi */}
-              <div className="login-remember">
+              <div className="input-wrapper">
+                <Lock className="field-icon" size={18} />
                 <input
-                  id="remember-me"
-                  name="rememberMe"
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  required
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="password-toggle"
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </div>
+
+            <div className="login-options">
+              <label className="checkbox-container">
+                <input
                   type="checkbox"
+                  name="rememberMe"
                   checked={formData.rememberMe}
                   onChange={handleChange}
                 />
-                <label htmlFor="remember-me">Se souvenir de moi</label>
-              </div>
-
-              <button
-                type="submit"
-                className={`login-btn-submit ${isLoading ? 'loading' : ''}`}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <> <Loader2 className="animate-spin" size={18} style={{ marginRight: '8px' }} /> Connexion... </>
-                ) : (
-                  'Se connecter'
-                )}
-              </button>
-            </form>
-
-            {/* Séparateur */}
-            <div className="login-separator">
-              <div className="login-separator-line"></div>
-              <div className="login-separator-text">
-                <span>Ou continuer avec</span>
-              </div>
+                <span className="checkmark"></span>
+                Se souvenir de moi
+              </label>
             </div>
 
-            {/* Social Login */}
-            <div className="login-social-grid">
-              <button type="button" className="login-btn-social">
-                <span style={{ marginRight: '8px', color: '#db4437', fontWeight: 'bold' }}>G</span> Google
-              </button>
-              <button type="button" className="login-btn-social">
-                <span style={{ marginRight: '8px', color: '#000', fontWeight: 'bold' }}></span> Apple
-              </button>
-            </div>
+            <button
+              type="submit"
+              className={`btn-login-submit ${isLoading ? 'is-loading' : ''}`}
+              disabled={isLoading}
+            >
+              {isLoading ? <Loader2 className="spinner" size={20} /> : 'Se connecter'}
+            </button>
+          </form>
 
-            <div className="login-register-link">
-              <p>
-                Pas encore de compte ?
-                <Link to="/inscription"> Créer un compte</Link>
-              </p>
-            </div>
+          <div className="divider-ordered">
+            <span>Ou continuer avec</span>
+          </div>
+
+          <div className="social-auth-grid">
+            <button className="btn-social-outline">
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+              Google
+            </button>
+            <button className="btn-social-outline">
+              <span className="apple-icon"></span>
+              Apple
+            </button>
+          </div>
+
+          <div className="login-footer-ordered">
+            <p>Pas encore de compte ? <Link to="/inscription">Rejoindre AgriPlus</Link></p>
           </div>
         </div>
+      </div>
 
-        <div className="login-footer">
-          &copy; 2024 AgriPlus. Tous droits réservés.
-        </div>
+      <div className="login-footer-asymmetric">
+        &copy; 2024 AgriPlus. Tous droits réservés.
       </div>
 
       {/* Notification Toast */}
       <div className={`login-toast ${showToast ? 'show' : ''}`}>
         <div style={{ color: '#22c55e' }}><CheckCircle size={24} /></div>
         <div>
-          <h4 style={{ fontWeight: '700', color: '#1f2937', fontSize: '0.875rem', margin: 0 }}>Connexion réussie</h4>
-          <p style={{ color: '#4b5563', fontSize: '0.875rem', margin: 0 }}>Redirection vers le tableau de bord...</p>
+          <h4 style={{ fontWeight: '700', color: '#ffffff', fontSize: '0.875rem', margin: 0 }}>Connexion réussie</h4>
+          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.875rem', margin: 0 }}>Redirection vers le tableau de bord...</p>
         </div>
       </div>
     </div>

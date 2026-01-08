@@ -3,26 +3,29 @@ import { Link } from 'react-router-dom';
 import TestimonialModal from '../components/TestimonialModal';
 import '../styles/HomePage.css';
 
+import heroGreenhouse from '../assets/hero-greenhouse.png';
+import heroSensor from '../assets/hero-sensor.png';
+
 function HomePage() {
   const [testimonialModalOpen, setTestimonialModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const heroSlides = [
     {
-      url: 'https://images.unsplash.com/photo-1595841696677-5f80e037466d?q=80&w=2000&auto=format&fit=crop',
-      alt: 'Agriculteur dans un champ'
+      url: heroGreenhouse,
+      alt: 'Serre futuriste durable avec systèmes LED'
     },
     {
-      url: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=2000&auto=format&fit=crop',
-      alt: 'Cultures verdoyantes'
+      url: heroSensor,
+      alt: 'Capteur de sol intelligent haute précision'
     },
     {
-      url: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000&auto=format&fit=crop',
-      alt: 'Récolte'
+      url: 'https://images.unsplash.com/photo-1506484335373-452cf97b446a?q=80&w=2000&auto=format&fit=crop',
+      alt: 'Cultures géométriques vues du ciel'
     },
     {
-      url: 'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?q=80&w=2000&auto=format&fit=crop',
-      alt: 'Champ au coucher du soleil'
+      url: 'https://images.unsplash.com/photo-1623910313364-c7da57b60098?q=80&w=2000&auto=format&fit=crop',
+      alt: 'Détail de plante en serre technologique'
     }
   ];
 
