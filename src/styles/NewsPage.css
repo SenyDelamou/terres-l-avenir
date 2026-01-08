@@ -5,7 +5,7 @@
 .news-page-premium {
   width: 100%;
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--color-bg);
   font-family: 'Inter', sans-serif;
 }
 
@@ -81,13 +81,14 @@
 }
 
 .featured-card-glass {
-  background: white;
+  background: var(--color-surface);
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
   display: flex;
   min-height: 400px;
   transition: transform 0.3s ease;
+  border: 1px solid var(--color-border);
 }
 
 .featured-card-glass:hover {
@@ -217,12 +218,12 @@
 }
 
 .article-card-glass {
-  background: white;
+  background: var(--color-surface);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
 }

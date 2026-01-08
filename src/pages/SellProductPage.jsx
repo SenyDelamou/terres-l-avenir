@@ -1,318 +1,225 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+    ArrowRight, ArrowLeft, Upload, Package, MapPin, Phone, CheckCircle2, DollarSign, Tag
+} from 'lucide-react';
 import '../styles/SellProductPage.css';
 
 function SellProductPage() {
     const navigate = useNavigate();
-    const fileInputRef = useRef(null);
+    const [currentStep, setCurrentStep] = useState(1);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [previewImage, setPreviewImage] = useState(null);
 
     const [formData, setFormData] = useState({
         name: '',
-        description: '',
-        category: '',
+        category: 'Fruits',
         price: '',
         unit: 'kg',
         quantity: '',
-        location: ''
+        description: '',
+        location: '',
+        phone: '',
+        image: null
     });
 
-    const [productImage, setProductImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
-    const [errors, setErrors] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
-
-    const categories = [
-        { value: '', label: 'Sélectionnez une catégorie' },
-        { value: 'legumes', label: 'Légumes' },
-        { value: 'fruits', label: 'Fruits' },
-        { value: 'cereales', label: 'Céréales' },
-        { value: 'tubercules', label: 'Tubercules' },
-        { value: 'epices', label: 'Épices' },
-        { value: 'autres', label: 'Autres' }
-    ];
-
-    const units = [
-        { value: 'kg', label: 'Kilogramme (kg)' },
-        { value: 'tonne', label: 'Tonne' },
-        { value: 'piece', label: 'Pièce' },
-        { value: 'sac', label: 'Sac' }
-    ];
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-
-        if (errors[name]) {
-            setErrors({ ...errors, [name]: '' });
-        }
-    };
-
-    const handleImageSelect = (e) => {
+    const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setProductImage(file);
+            setFormData({ ...formData, image: file });
             const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
+            reader.onloadend = () => setPreviewImage(reader.result);
             reader.readAsDataURL(file);
-
-            if (errors.image) {
-                setErrors({ ...errors, image: '' });
-            }
         }
     };
 
-    const validate = () => {
-        const newErrors = {};
+    const nextStep = () => setCurrentStep(prev => prev + 1);
+    const prevStep = () => setCurrentStep(prev => prev - 1);
 
-        if (!formData.name.trim()) {
-            newErrors.name = 'Le nom du produit est requis';
-        }
-
-        if (!formData.description.trim()) {
-            newErrors.description = 'La description est requise';
-        }
-
-        if (!formData.category) {
-            newErrors.category = 'Veuillez sélectionner une catégorie';
-        }
-
-        if (!formData.price || parseFloat(formData.price) <= 0) {
-            newErrors.price = 'Le prix doit être supérieur à 0';
-        }
-
-        if (!formData.quantity || parseInt(formData.quantity) <= 0) {
-            newErrors.quantity = 'La quantité doit être supérieure à 0';
-        }
-
-        if (!formData.location.trim()) {
-            newErrors.location = 'La localisation est requise';
-        }
-
-        if (!productImage) {
-            newErrors.image = 'Veuillez ajouter une photo du produit';
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
 
-        if (!validate()) {
-            return;
-        }
-
-        setIsLoading(true);
-
-        // Simulation de publication (à remplacer par un appel API)
+        // Simulate API call
         setTimeout(() => {
-            setIsLoading(false);
-            alert('🎉 Votre produit a été publié avec succès !');
+            setIsSubmitting(false);
             navigate('/marketplace');
-        }, 1500);
+        }, 2000);
     };
 
     return (
-        <div className="sell-product-page">
-            <section className="sell-header">
-                <div className="container">
-                    <h1>📦 Vendre un Produit</h1>
-                    <p>Publiez votre produit agricole sur la marketplace</p>
+        <div className="sell-wizard-page">
+            <div className="wizard-glass-panel">
+
+                {/* Header */}
+                <div className="wizard-header-simple">
+                    <div className={`step-badge ${currentStep === 1 ? 'active' : 'completed'}`}>
+                        {currentStep === 1 ? '1' : <CheckCircle2 size={16} />}
+                    </div>
+                    <div className="step-connector"></div>
+                    <div className={`step-badge ${currentStep === 2 ? 'active' : ''}`}>2</div>
                 </div>
-            </section>
 
-            <section className="sell-content">
-                <div className="container">
-                    <form className="sell-form" onSubmit={handleSubmit}>
-                        <div className="form-section">
-                            <h2>📷 Photo du Produit</h2>
+                <h1 className="wizard-title">
+                    {currentStep === 1 ? 'Votre Produit' : 'Logistique & Contact'}
+                </h1>
 
-                            <div className="image-upload-area">
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    accept="image/*"
-                                    onChange={handleImageSelect}
-                                    style={{ display: 'none' }}
-                                />
+                <form onSubmit={handleSubmit} className="wizard-form-content">
 
-                                {imagePreview ? (
-                                    <div className="image-preview">
-                                        <img src={imagePreview} alt="Aperçu produit" />
-                                        <button
-                                            type="button"
-                                            className="btn-change-image"
-                                            onClick={() => fileInputRef.current.click()}
-                                        >
-                                            📷 Changer
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <div
-                                        className="image-dropzone"
-                                        onClick={() => fileInputRef.current.click()}
-                                    >
-                                        <span className="upload-icon">📸</span>
-                                        <p>Cliquez pour ajouter une photo</p>
-                                        <span className="upload-hint">JPG, PNG (Max 5MB)</span>
-                                    </div>
-                                )}
-                            </div>
-
-                            {errors.image && <span className="error-text">{errors.image}</span>}
-                        </div>
-
-                        <div className="form-section">
-                            <h2>ℹ️ Informations du Produit</h2>
-
-                            <div className="form-grid">
-                                <div className="form-group">
-                                    <label htmlFor="name">Nom du Produit *</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        placeholder="Ex: Tomates Bio"
-                                        className={errors.name ? 'error' : ''}
-                                    />
-                                    {errors.name && <span className="error-text">{errors.name}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="category">Catégorie *</label>
-                                    <select
-                                        id="category"
-                                        name="category"
-                                        value={formData.category}
-                                        onChange={handleChange}
-                                        className={errors.category ? 'error' : ''}
-                                    >
-                                        {categories.map(cat => (
-                                            <option key={cat.value} value={cat.value}>
-                                                {cat.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    {errors.category && <span className="error-text">{errors.category}</span>}
-                                </div>
-
-                                <div className="form-group full-width">
-                                    <label htmlFor="description">Description *</label>
-                                    <textarea
-                                        id="description"
-                                        name="description"
-                                        value={formData.description}
-                                        onChange={handleChange}
-                                        placeholder="Décrivez votre produit (qualité, méthode de culture, etc.)"
-                                        rows="4"
-                                        className={errors.description ? 'error' : ''}
-                                    ></textarea>
-                                    {errors.description && <span className="error-text">{errors.description}</span>}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="form-section">
-                            <h2>💰 Prix et Quantité</h2>
-
-                            <div className="form-grid">
-                                <div className="form-group">
-                                    <label htmlFor="price">Prix *</label>
-                                    <div className="input-with-unit">
-                                        <input
-                                            type="number"
-                                            id="price"
-                                            name="price"
-                                            value={formData.price}
-                                            onChange={handleChange}
-                                            placeholder="0.00"
-                                            step="0.01"
-                                            min="0"
-                                            className={errors.price ? 'error' : ''}
-                                        />
-                                        <span className="unit-label">GNF</span>
-                                    </div>
-                                    {errors.price && <span className="error-text">{errors.price}</span>}
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="unit">Unité</label>
-                                    <select
-                                        id="unit"
-                                        name="unit"
-                                        value={formData.unit}
-                                        onChange={handleChange}
-                                    >
-                                        {units.map(unit => (
-                                            <option key={unit.value} value={unit.value}>
-                                                {unit.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="quantity">Quantité Disponible *</label>
-                                    <input
-                                        type="number"
-                                        id="quantity"
-                                        name="quantity"
-                                        value={formData.quantity}
-                                        onChange={handleChange}
-                                        placeholder="0"
-                                        min="1"
-                                        className={errors.quantity ? 'error' : ''}
-                                    />
-                                    {errors.quantity && <span className="error-text">{errors.quantity}</span>}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="form-section">
-                            <h2>📍 Localisation</h2>
-
-                            <div className="form-group">
-                                <label htmlFor="location">Localisation *</label>
+                    {/* STEP 1: Product Info */}
+                    {currentStep === 1 && (
+                        <div className="step-content fade-in">
+                            <div className="form-group-premium">
+                                <label>Nom du Produit</label>
                                 <input
                                     type="text"
-                                    id="location"
-                                    name="location"
-                                    value={formData.location}
-                                    onChange={handleChange}
-                                    placeholder="Ex: Conakry, Guinée"
-                                    className={errors.location ? 'error' : ''}
+                                    placeholder="Ex: Mangues Kent Bio"
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                    autoFocus
                                 />
-                                {errors.location && <span className="error-text">{errors.location}</span>}
+                            </div>
+
+                            <div className="dual-inputs">
+                                <div className="form-group-premium">
+                                    <label>Catégorie</label>
+                                    <div className="select-wrapper">
+                                        <Tag size={16} className="input-icon" />
+                                        <select
+                                            value={formData.category}
+                                            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                                        >
+                                            <option>Fruits</option>
+                                            <option>Légumes</option>
+                                            <option>Céréales</option>
+                                            <option>Tubercules</option>
+                                            <option>Produits Transformés</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="form-group-premium">
+                                    <label>Prix (GNF)</label>
+                                    <div className="input-with-icon">
+                                        <DollarSign size={16} className="input-icon" />
+                                        <input
+                                            type="number"
+                                            placeholder="5000"
+                                            value={formData.price}
+                                            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="dual-inputs">
+                                <div className="form-group-premium">
+                                    <label>Quantité Dispo</label>
+                                    <input
+                                        type="number"
+                                        placeholder="100"
+                                        value={formData.quantity}
+                                        onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group-premium">
+                                    <label>Unité</label>
+                                    <select
+                                        value={formData.unit}
+                                        onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
+                                    >
+                                        <option value="kg">Kg</option>
+                                        <option value="tonnes">Tonnes</option>
+                                        <option value="sacs">Sacs</option>
+                                        <option value="caisses">Caisses</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="upload-section-compact">
+                                <input type="file" id="product-img" onChange={handleImageChange} className="hidden-input" />
+                                <label htmlFor="product-img" className="upload-label-compact">
+                                    {previewImage ? (
+                                        <img src={previewImage} alt="Preview" />
+                                    ) : (
+                                        <>
+                                            <div className="icon-circle"><Upload size={20} /></div>
+                                            <span>Ajouter une photo</span>
+                                        </>
+                                    )}
+                                </label>
                             </div>
                         </div>
+                    )}
 
-                        <div className="form-actions">
-                            <button
-                                type="button"
-                                className="btn-cancel"
-                                onClick={() => navigate('/marketplace')}
-                            >
-                                Annuler
-                            </button>
-                            <button
-                                type="submit"
-                                className="btn-submit"
-                                disabled={isLoading}
-                            >
-                                {isLoading ? '⏳ Publication...' : '✅ Publier le Produit'}
-                            </button>
+                    {/* STEP 2: Logistics */}
+                    {currentStep === 2 && (
+                        <div className="step-content fade-in">
+                            <div className="form-group-premium">
+                                <label>Description du produit</label>
+                                <textarea
+                                    rows="4"
+                                    placeholder="Décrivez la qualité, la variété, date de récolte..."
+                                    value={formData.description}
+                                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                ></textarea>
+                            </div>
+
+                            <div className="form-group-premium">
+                                <label>Lieu de retrait / Localisation</label>
+                                <div className="input-with-icon">
+                                    <MapPin size={18} className="input-icon" />
+                                    <input
+                                        type="text"
+                                        placeholder="Ex: Marché Central, Kindia"
+                                        value={formData.location}
+                                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-group-premium">
+                                <label>Numéro de Contact</label>
+                                <div className="input-with-icon">
+                                    <Phone size={18} className="input-icon" />
+                                    <input
+                                        type="tel"
+                                        placeholder="+224 ..."
+                                        value={formData.phone}
+                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="summary-box">
+                                <Package size={20} />
+                                <div>
+                                    <strong>{formData.name || 'Produit'}</strong>
+                                    <span>{formData.quantity} {formData.unit} à {formData.price} GNF/{formData.unit}</span>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </section>
+                    )}
+
+                    {/* Actions */}
+                    <div className="wizard-actions">
+                        {currentStep > 1 && (
+                            <button type="button" className="btn-back" onClick={prevStep}>
+                                <ArrowLeft size={18} />
+                            </button>
+                        )}
+
+                        {currentStep < 2 ? (
+                            <button type="button" className="btn-next full-width" onClick={nextStep}>
+                                Suivant <ArrowRight size={18} />
+                            </button>
+                        ) : (
+                            <button type="submit" className="btn-submit full-width" disabled={isSubmitting}>
+                                {isSubmitting ? 'Mise en vente...' : 'Vendre maintenant'}
+                            </button>
+                        )}
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
