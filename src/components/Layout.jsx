@@ -368,13 +368,8 @@ function Layout() {
 
       {!isAuthPage && <AIChatModal />}
 
-      {!isAuthPage && (
-        {!isAuthPage && <Footer />}
+      {!isAuthPage && <Footer />}
     </div>
-  );
-}
-      )}
-    </div >
   );
 }
 
