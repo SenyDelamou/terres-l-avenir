@@ -1,147 +1,100 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Tractor, Leaf, Key, Mail, ArrowRight, ArrowLeft, Send, CheckCircle } from 'lucide-react';
-import '../styles/ForgotPasswordPage.css';
+import { Leaf, Mail, Loader2, ArrowRight, CheckCircle, ArrowLeft } from 'lucide-react';
+import '../styles/LoginPage.css';
 
 function ForgotPasswordPage() {
     const [email, setEmail] = useState('');
-    const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [showToast, setShowToast] = useState(false);
+    const [isSent, setIsSent] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
 
-        // Simulation d'envoi
+        // Simulation API
         setTimeout(() => {
             setIsLoading(false);
-            setIsSubmitted(true);
-            triggerToast();
+            setIsSent(true);
         }, 1500);
     };
 
-    const triggerToast = () => {
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 4000);
-    };
-
-    const resetView = () => {
-        setIsSubmitted(false);
-        setEmail('');
-    };
-
     return (
-        <div className="forgot-password-body">
-            {/* Full Screen Card Layout - Structure identical to LoginPage */}
-            <div className="fp-card">
+        <div className="auth-glass-container">
+            <div className="auth-bg-overlay"></div>
 
-                {/* Section Image (Gauche) - Hidden on mobile */}
-                <div className="fp-image-side">
-                    <img
-                        src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1740&auto=format&fit=crop"
-                        alt="Champ agricole au soleil"
-                        className="fp-bg-image"
-                    />
-                    <div className="fp-image-overlay">
-                        <div className="fp-quote-box">
-                            <Tractor className="fp-icon-large text-agri-300" size={32} color="#86efac" style={{ marginBottom: '1rem' }} />
-                            <h3>Cultivons l'avenir</h3>
-                            <p>Gérez votre exploitation, suivez vos récoltes et optimisez vos rendements avec AgriPlus.</p>
-                        </div>
+            <div className="auth-glass-card">
+                <div className="glass-header">
+                    <div className="brand-glow-container">
+                        <Leaf size={32} className="brand-icon-glow" />
                     </div>
+                    <h1>Récupération</h1>
+                    <p className="premium-subtitle">
+                        {!isSent ? "Nous allons vous aider à revenir." : "Vérifiez votre boîte mail."}
+                    </p>
                 </div>
 
-                {/* Section Formulaire (Droite) */}
-                <div className="fp-form-side">
+                {!isSent ? (
+                    <form className="glass-form" onSubmit={handleSubmit}>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', textAlign: 'center', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                            Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                        </p>
 
-                    {/* Logo Mobile / Desktop Wrapper */}
-                    <div className="fp-logo-header">
-                        <div className="fp-logo-icon">
-                            <Leaf size={24} />
-                        </div>
-                        <span className="fp-logo-text">AgriPlus</span>
-                    </div>
-
-                    {!isSubmitted ? (
-                        <div className="fp-form-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
-                            <div className="fp-text-group">
-                                <div className="fp-icon-circle bg-orange">
-                                    <Key size={24} />
-                                </div>
-                                <h2>Mot de passe oublié ?</h2>
-                                <p>Pas de panique. Entrez l'adresse e-mail associée à votre compte AgriPlus et nous vous enverrons un lien de réinitialisation.</p>
-                            </div>
-
-                            <form onSubmit={handleSubmit} className="fp-form">
-                                <div className="fp-input-group">
-                                    <label htmlFor="email">Adresse e-mail</label>
-                                    <div className="relative-input">
-                                        <div className="input-icon-left">
-                                            <Mail size={18} />
-                                        </div>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            required
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="jean.dupont@ferme.fr"
-                                        />
-                                    </div>
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    className={`fp-btn-submit ${isLoading ? 'loading' : ''}`}
-                                    disabled={isLoading}
-                                >
-                                    {isLoading ? 'Envoi en cours...' : (
-                                        <>Envoyer le lien de récupération <ArrowRight size={16} /></>
-                                    )}
-                                </button>
-                            </form>
-
-                            <div className="fp-footer-link">
-                                <p>
-                                    Vous vous en souvenez ?
-                                    <Link to="/connexion"> Retour à la connexion</Link>
-                                </p>
+                        <div className="glass-input-group">
+                            <label>Email du compte</label>
+                            <div className="input-glass-wrapper">
+                                <Mail className="input-icon-glass" size={18} />
+                                <input
+                                    type="email"
+                                    placeholder="nom@exemple.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
                             </div>
                         </div>
-                    ) : (
-                        <div className="fp-success-content fade-in" style={{ width: '100%', maxWidth: '440px' }}>
-                            <div className="fp-icon-circle bg-green large">
-                                <Send size={32} />
-                            </div>
-                            <h2>E-mail envoyé !</h2>
-                            <p className="fp-success-text">
-                                Nous avons envoyé un lien de réinitialisation à <strong>{email}</strong>. Vérifiez votre boîte de réception (et vos spams).
+
+                        <button type="submit" className="btn-glass-primary" disabled={isLoading}>
+                            {isLoading ? <Loader2 className="spinner" size={20} /> : (
+                                <>
+                                    <span>Envoyer le lien</span>
+                                    <ArrowRight size={18} />
+                                </>
+                            )}
+                        </button>
+                    </form>
+                ) : (
+                    <div className="glass-form" style={{ textAlign: 'center', gap: '2rem' }}>
+                        <div style={{
+                            background: 'rgba(61, 252, 138, 0.1)',
+                            width: '80px',
+                            height: '80px',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            margin: '0 auto',
+                            border: '1px solid #3dfc8a'
+                        }}>
+                            <CheckCircle size={40} color="#3dfc8a" />
+                        </div>
+                        <div style={{ color: 'white' }}>
+                            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Email envoyé !</h3>
+                            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem' }}>
+                                Si un compte existe avec l'adresse <strong>{email}</strong>, vous recevrez un lien de réinitialisation dans quelques instants.
                             </p>
-                            <button onClick={resetView} className="fp-btn-retry">
-                                <ArrowLeft size={16} /> Renvoyer un e-mail
-                            </button>
-
-                            <div className="fp-back-btn-wrapper">
-                                <Link to="/connexion" className="fp-btn-back">
-                                    Retour à la connexion
-                                </Link>
-                            </div>
                         </div>
-                    )}
-                </div>
-            </div>
+                        <button onClick={() => setIsSent(false)} className="btn-social-glass" style={{ width: '100%' }}>
+                            Renvoyer l'email
+                        </button>
+                    </div>
+                )}
 
-            <div className="fp-page-footer">
-                &copy; 2024 AgriPlus. Tous droits réservés.
-            </div>
-
-            {/* Toast Notification */}
-            <div className={`fp-toast ${showToast ? 'show' : ''}`}>
-                <div className="toast-icon"><CheckCircle size={24} /></div>
-                <div className="toast-content">
-                    <h4>Succès</h4>
-                    <p>Le lien a été envoyé.</p>
+                <div className="glass-footer">
+                    <Link to="/connexion" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
+                        <ArrowLeft size={16} />
+                        Retour à la connexion
+                    </Link>
                 </div>
             </div>
         </div>

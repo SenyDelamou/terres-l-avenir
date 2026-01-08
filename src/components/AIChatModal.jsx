@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { Bot, X, Send, Image as ImageIcon, Camera, Paperclip, ChevronDown, Sparkles } from 'lucide-react';
 import '../styles/AIChatModal.css';
 
 function AIChatModal() {
@@ -8,7 +9,7 @@ function AIChatModal() {
         {
             id: 1,
             type: 'ai',
-            content: 'Bonjour ! Je suis votre assistant IA agricole. Je peux vous aider avec des questions sur les techniques agricoles, la gestion des cultures, l\'irrigation, l\'élevage et bien plus encore. Posez-moi une question !',
+            content: 'Bonjour ! Je suis l\'Assistant Expert AgriPulse. \n\nJe peux analyser vos cultures par photo, vous conseiller sur les traitements ou optimiser vos rendements. \n\nComment puis-je vous aider aujourd\'hui ?',
             timestamp: new Date()
         }
     ]);
@@ -32,28 +33,24 @@ function AIChatModal() {
 
     const generateAIResponse = (userMessage, hasImage) => {
         if (hasImage) {
-            return '🔬 **Analyse Terminée**\n\nJ\'ai détecté des signes potentiels de Mildiou. \n\n✅ **Recommandation** : Supprimez les zones atteintes et appliquez un traitement à base de cuivre.';
+            return '🔬 **Analyse Visuelle Terminée**\n\nJ\'ai détecté une possible **carence en Azote** sur ce feuillage.\n\n✅ **Action recommandée** :\nApportez un engrais riche en azote ou utilisez du purin d\'ortie pour un traitement naturel rapide.';
         }
 
         const lowerMessage = userMessage.toLowerCase();
 
         if (lowerMessage.includes('fertilité') || lowerMessage.includes('sol')) {
-            return 'Pour améliorer la fertilité du sol, je recommande :\n\n1. Utiliser du compost naturel\n2. Pratiquer la rotation des cultures\n3. Utiliser des engrais verts\n4. Faire des analyses de sol régulières.';
+            return 'Pour améliorer la fertilité du sol, voici mon protocole :\n\n1. **Amendement organique** (compost/fumier) à l\'automne.\n2. **Rotation des cultures** sur 4 ans.\n3. **Cultures de couverture** (trèfle, moutarde) en intersaison.';
         }
 
         if (lowerMessage.includes('planter') || lowerMessage.includes('plantation')) {
-            return 'Le moment de plantation dépend de :\n\n• **Type de culture**\n• **Climat local**\n• **Température du sol** (visez 10-12°C).';
+            return '📅 **Conseil Plantation** :\n\nCela dépend de votre zone climatique. Pour les semis de printemps, attendez que le sol atteigne **10-12°C** constant. \n\nVoulez-vous les dates pour une culture spécifique ?';
         }
 
         if (lowerMessage.includes('irrigation') || lowerMessage.includes('eau')) {
-            return '💧 **Gestion de l\'eau** :\n- Privilégiez le goutte à goutte pour l\'économie.\n- Arrosez tôt le matin ou tard le soir.\n- Utilisez des capteurs d\'humidité.';
+            return '💧 **Optimisation Hydrique** :\n\n- Installez un **goutte-à-goutte** pour réduire la consommation de 40%.\n- Arrosez **avant 8h** ou **après 18h**.\n- Paillez le sol pour limiter l\'évaporation.';
         }
 
-        if (lowerMessage.includes('bio') || lowerMessage.includes('biologique')) {
-            return '🌱 **Principes Bio** :\n- Fertilisation naturelle uniquement.\n- Prévention par association de cultures.\n- Période de conversion de 2-3 ans.';
-        }
-
-        return 'Merci pour votre question ! Je suis là pour vous aider avec vos défis agricoles. N\'hésitez pas à être plus spécifique !';
+        return 'Je prends note de votre demande. Pourriez-vous préciser le type de culture concerné ? Cela m\'aidera à vous donner un conseil expert personnalisé.';
     };
 
     const handleSendMessage = (e) => {
@@ -73,6 +70,7 @@ function AIChatModal() {
         setSelectedImage(null);
         setIsLoading(true);
 
+        // Simulation de délai réseau
         setTimeout(() => {
             const aiResp = {
                 id: Date.now() + 1,
@@ -82,7 +80,7 @@ function AIChatModal() {
             };
             setMessages(prev => [...prev, aiResp]);
             setIsLoading(false);
-        }, 2000);
+        }, 1500);
     };
 
     const handleImageUpload = (e) => {
@@ -90,7 +88,6 @@ function AIChatModal() {
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             setSelectedImage(imageUrl);
-            // Reset file input to allow re-selecting same file if cleared
             e.target.value = null;
         }
     };
@@ -99,28 +96,24 @@ function AIChatModal() {
         setSelectedImage(null);
     };
 
-    // Use Portal to render outside of any CSS stacking contexts
     return createPortal(
-        <div className={`ai-floating-chat ${isOpen ? 'is-open' : ''}`}>
-            {/* Floating Trigger Button */}
-            {!isOpen && (
-                <button className="chat-trigger" onClick={() => setIsOpen(true)}>
-                    <div className="trigger-icon">🧠</div>
-                    <div className="trigger-badge">Pro</div>
-                </button>
-            )}
+        <div className={`ai-floating-chat ${isOpen ? 'is-open' : ''}`} style={{ zIndex: 9999 }}>
 
             {/* Chat Window */}
             <div className="chat-window">
                 <div className="chat-top-header">
                     <div className="ai-info">
-                        <span className="ai-avatar-mini">🤖</span>
+                        <div className="ai-avatar-mini">
+                            <Bot size={24} />
+                        </div>
                         <div className="ai-status-text">
-                            <h4>AgriBot IA</h4>
-                            <p><span></span> En ligne</p>
+                            <h4>AgriPulse IA</h4>
+                            <p><span></span> Expert connecté</p>
                         </div>
                     </div>
-                    <button className="chat-close" onClick={() => setIsOpen(false)}>×</button>
+                    <button className="chat-close" onClick={() => setIsOpen(false)}>
+                        <ChevronDown size={24} />
+                    </button>
                 </div>
 
                 <div className="chat-body-messages">
@@ -129,7 +122,7 @@ function AIChatModal() {
                             {m.image && <img src={m.image} alt="upload" className="msg-preview-image" />}
                             <div className="chat-message-text">
                                 {m.content && m.content.split('\n').map((line, i) => (
-                                    <p key={i}>{line}</p>
+                                    <p key={i} style={{ margin: line ? '0.4rem 0' : '0' }}>{line}</p>
                                 ))}
                             </div>
                             <span className="msg-time">
@@ -153,23 +146,18 @@ function AIChatModal() {
                         <div className="preview-container">
                             <img src={selectedImage} alt="Preview" />
                             <button type="button" className="btn-remove-preview" onClick={clearSelectedImage}>
-                                <i className="fa-solid fa-times"></i>
+                                <X size={12} />
                             </button>
                         </div>
                     </div>
                 )}
 
                 <form className="chat-footer-input" onSubmit={handleSendMessage}>
-                    {/* Gallery Button */}
-                    <button type="button" className="action-btn gallery" onClick={() => fileInputRef.current.click()} title="Galerie">
-                        <i className="fa-solid fa-image"></i>
-                    </button>
-                    {/* Camera Button */}
-                    <button type="button" className="action-btn camera" onClick={() => cameraInputRef.current.click()} title="Prendre une photo">
-                        <i className="fa-solid fa-camera"></i>
+                    <button type="button" className="action-btn gallery" onClick={() => fileInputRef.current.click()} title="Joindre une image">
+                        <ImageIcon size={20} />
                     </button>
 
-                    {/* Hidden Standard File Input (Gallery) */}
+                    {/* Hidden Standard File Input */}
                     <input
                         type="file"
                         ref={fileInputRef}
@@ -177,26 +165,28 @@ function AIChatModal() {
                         accept="image/*"
                         style={{ display: 'none' }}
                     />
-                    {/* Hidden Camera Input (Direct Capture) */}
-                    <input
-                        type="file"
-                        ref={cameraInputRef}
-                        onChange={handleImageUpload}
-                        accept="image/*"
-                        capture="environment"
-                        style={{ display: 'none' }}
-                    />
+
                     <input
                         type="text"
-                        placeholder={selectedImage ? "Ajouter une légende..." : "Écrivez votre message..."}
+                        placeholder={selectedImage ? "Ajouter une note..." : "Posez une question à l'IA..."}
                         value={inputMessage}
                         onChange={(e) => setInputMessage(e.target.value)}
                     />
                     <button type="submit" className="action-btn send" disabled={(!inputMessage.trim() && !selectedImage) || isLoading}>
-                        <i className="fa-solid fa-paper-plane"></i>
+                        <Send size={18} />
                     </button>
                 </form>
             </div>
+
+            {/* Floating Trigger Button (Orb) */}
+            {!isOpen && (
+                <button className="chat-trigger" onClick={() => setIsOpen(true)}>
+                    <div className="trigger-icon">
+                        <Sparkles size={28} />
+                    </div>
+                    {/* <div className="trigger-badge">1</div> */}
+                </button>
+            )}
         </div>,
         document.body
     );
