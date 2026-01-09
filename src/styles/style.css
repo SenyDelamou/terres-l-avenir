@@ -531,7 +531,8 @@ header {
 /* Hero Section (Cinematic) */
 .hero {
     position: relative;
-    height: 90vh;
+    height: 70vh;
+    min-height: 600px;
     /* Full height impact */
     display: flex;
     align-items: center;

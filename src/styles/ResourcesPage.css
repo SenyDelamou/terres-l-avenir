@@ -12,8 +12,8 @@
 /* --- Hero --- */
 .resources-hero {
     position: relative;
-    height: 50vh;
-    min-height: 400px;
+    height: 70vh;
+    min-height: 600px;
     background-image: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000&auto=format&fit=crop');
     background-size: cover;
     background-position: center;

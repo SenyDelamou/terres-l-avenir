@@ -12,8 +12,8 @@
 /* --- Hero --- */
 .news-hero {
   position: relative;
-  height: 45vh;
-  min-height: 350px;
+  height: 70vh;
+  min-height: 600px;
   background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=2000&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
