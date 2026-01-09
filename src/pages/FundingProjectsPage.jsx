@@ -24,7 +24,7 @@ function FundingProjectsPage() {
       investors: 12,
       daysLeft: 25,
       location: 'Kindia, Guinée',
-      image: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&h=500&fit=crop', // Better greenhouse
+      image: 'https://images.unsplash.com/photo-1623910313364-c7da57b60098?q=80&w=800&auto=format&fit=crop',
       description: 'Installation d\'une serre solaire de 500m² pour la production de légumes bio toute l\'année.',
       verified: true
     },
@@ -38,7 +38,7 @@ function FundingProjectsPage() {
       investors: 18,
       daysLeft: 42,
       location: 'Mamou, Guinée',
-      image: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?w=800&h=500&fit=crop', // Better goats
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=800&auto=format&fit=crop',
       description: 'Création d\'un élevage de 50 chèvres laitières avec fromagerie artisanale.',
       verified: true
     },
@@ -52,7 +52,7 @@ function FundingProjectsPage() {
       investors: 8,
       daysLeft: 18,
       location: 'Labé, Guinée',
-      image: 'https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?w=800&h=500&fit=crop', // Better honey/agroforestry
+      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop',
       description: 'Plantation d\'arbres fruitiers et installation de 30 ruches pour production de miel.',
       verified: false
     },
@@ -66,7 +66,7 @@ function FundingProjectsPage() {
       investors: 25,
       daysLeft: 30,
       location: 'Kankan, Guinée',
-      image: 'https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0?w=800&h=500&fit=crop', // Better irrigation
+      image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=800&auto=format&fit=crop',
       description: 'Installation d\'un système d\'irrigation connecté avec capteurs IoT pour optimiser la consommation d\'eau.',
       verified: true
     },

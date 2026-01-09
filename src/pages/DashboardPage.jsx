@@ -52,8 +52,8 @@ function DashboardPage() {
   const [userProjects, setUserProjects] = useState(() => {
     const saved = localStorage.getItem('agriPulse_projects');
     return saved ? JSON.parse(saved) : [
-      { id: 1, title: 'Extension Bananeraie Coyah', status: 'En cours', progress: 65, lastUpdate: '20 Mai', image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=400&h=250&fit=crop', description: 'Extension de 5 hectares.', amount: '50M GNF', location: 'Coyah' },
-      { id: 2, title: 'Système Irrigation Solaire', status: 'Planifié', progress: 10, lastUpdate: '01 Juin', image: 'https://images.unsplash.com/photo-1589333550884-699736bb6978?w=400&h=250&fit=crop', description: 'Installation de pompes solaires.', amount: '120M GNF', location: 'Kindia' },
+      { id: 1, title: 'Extension Bananeraie Coyah', status: 'En cours', progress: 65, lastUpdate: '20 Mai', image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=400&auto=format&fit=crop', description: 'Extension de 5 hectares.', amount: '50M GNF', location: 'Coyah' },
+      { id: 2, title: 'Système Irrigation Solaire', status: 'Planifié', progress: 10, lastUpdate: '01 Juin', image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad576?q=80&w=400&auto=format&fit=crop', description: 'Installation de pompes solaires.', amount: '120M GNF', location: 'Kindia' },
     ];
   });
 

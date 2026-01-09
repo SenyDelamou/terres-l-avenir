@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, Loader2, CheckCircle, MessageSquare } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Mail, Clock, Send, Loader2, CheckCircle, MessageSquare, FileText } from 'lucide-react';
 import '../styles/ContactPage.css';
 
 function ContactPage() {
@@ -44,7 +45,12 @@ function ContactPage() {
   return (
     <div className="contact-page-premium">
       {/* Parallax Hero Section */}
-      <section className="contact-hero">
+      <section className="contact-hero" style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1500382017468-7049fae79d2f?q=80&w=2000&auto=format&fit=crop")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <div className="hero-badge">
@@ -103,6 +109,19 @@ function ContactPage() {
                 <h3>Horaires</h3>
                 <p>Lundi - Vendredi: 08:00 - 17:00</p>
                 <p>Samedi: 09:00 - 13:00</p>
+              </div>
+            </div>
+
+            <div className="info-glass-card">
+              <div className="icon-box-premium delay-4">
+                <FileText size={24} />
+              </div>
+              <div className="info-text">
+                <h3>Fiches Techniques</h3>
+                <p>Accédez à nos guides détaillés et protocoles premium.</p>
+                <Link to="/fiches-techniques" className="info-link-button">
+                  Consulter les fiches
+                </Link>
               </div>
             </div>
           </div>

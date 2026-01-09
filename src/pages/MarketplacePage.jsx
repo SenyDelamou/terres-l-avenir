@@ -28,7 +28,7 @@ function MarketplacePage() {
             quantity: 50,
             location: 'Conakry, Guinée',
             seller: 'Amadou Diallo',
-            image: 'https://images.unsplash.com/photo-1582284041078-ff3ad524fa32?w=600&h=450&fit=crop', // Better professional tomato
+            image: 'https://images.unsplash.com/photo-1587049633562-ad3002f02501?q=80&w=600&auto=format&fit=crop',
             rating: 4.8,
             description: 'Tomates fraîches cultivées sans pesticides'
         },
@@ -41,7 +41,7 @@ function MarketplacePage() {
             quantity: 100,
             location: 'Kindia, Guinée',
             seller: 'Fatou Sall',
-            image: 'https://images.unsplash.com/photo-1591073113125-e46713c829ed?w=600&h=450&fit=crop', // Professional mango
+            image: 'https://images.unsplash.com/photo-1591073113125-e46713c829ed?q=80&w=600&auto=format&fit=crop',
             rating: 5.0,
             description: 'Mangues sucrées de saison'
         },
@@ -54,7 +54,7 @@ function MarketplacePage() {
             quantity: 500,
             location: 'Mamou, Guinée',
             seller: 'Moussa Ba',
-            image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=600&h=450&fit=crop', // Professional rice grain
+            image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?q=80&w=600&auto=format&fit=crop',
             rating: 4.5,
             description: 'Riz blanc de qualité supérieure'
         },
@@ -67,7 +67,7 @@ function MarketplacePage() {
             quantity: 200,
             location: 'Kankan, Guinée',
             seller: 'Aïssatou Ndiaye',
-            image: 'https://images.unsplash.com/photo-1587049633562-ad3002f02501?w=600&h=450&fit=crop', // Professional onion close up
+            image: 'https://images.unsplash.com/photo-1585647346381-e2a5ad90b131?q=80&w=600&auto=format&fit=crop',
             rating: 4.2,
             description: 'Oignons rouges de la vallée'
         },

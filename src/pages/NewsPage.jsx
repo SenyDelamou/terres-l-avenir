@@ -11,7 +11,7 @@ function NewsPage() {
     date: '15 Mars 2024',
     readTime: '5 min',
     category: 'Innovation',
-    image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1200&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1605000797499-95a51c59a635?q=80&w=1200&h=600&auto=format&fit=crop',
     excerpt: 'Comment l\'IoT et l\'intelligence artificielle transforment le quotidien des petits exploitants agricoles en Guinée et au-delà.'
   };
 
@@ -22,7 +22,7 @@ function NewsPage() {
       date: '10 Mars 2024',
       readTime: '8 min',
       category: 'Technique',
-      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=600&auto=format&fit=crop',
       excerpt: 'Optimisez la fertilité de vos sols grâce à ces nouvelles séquences de culture testées par nos agronomes.'
     },
     {
@@ -31,7 +31,7 @@ function NewsPage() {
       date: '05 Mars 2024',
       readTime: '4 min',
       category: 'Témoignage',
-      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop',
       excerpt: 'Rencontre avec Mamadou, qui a su tirer parti du financement participatif AgriPulse pour changer d\'échelle.'
     },
     {
@@ -40,7 +40,7 @@ function NewsPage() {
       date: '28 Fév 2024',
       readTime: '6 min',
       category: 'Énergie',
-      image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad576?q=80&w=600&auto=format&fit=crop',
       excerpt: 'Analyse coûts-bénéfices de l\'installation de pompes solaires face aux générateurs diesel.'
     },
     {
@@ -49,7 +49,7 @@ function NewsPage() {
       date: '20 Fév 2024',
       readTime: '3 min',
       category: 'Marché',
-      image: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=600&auto=format&fit=crop',
       excerpt: 'La demande pour les produits sains explose. Voici comment positionner votre production.'
     },
     {
@@ -58,7 +58,7 @@ function NewsPage() {
       date: '15 Fév 2024',
       readTime: '2 min',
       category: 'Formation',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop',
       excerpt: 'Retour en images sur notre dernier atelier pratique à Kindia.'
     }
   ];

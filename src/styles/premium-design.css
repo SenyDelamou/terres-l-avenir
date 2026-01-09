@@ -1,0 +1,458 @@
+/* ===================================================
+   PREMIUM DESIGN SYSTEM - AgriPulse
+   Design cohérent, animations fluides, expérience premium
+   =================================================== */
+
+/* Fondation des Couleurs Premium */
+:root {
+  /* Palette Agricole Authentique */
+  --leaf-green: #2d7a4a;
+  --harvest-gold: #d4a574;
+  --deep-green: #1a4d2e;
+  --sage-green: #6b9d8a;
+  --soil-brown: #8b6f47;
+  
+  /* Backgrounds Riches */
+  --bg-rich-dark: #0d0b09;
+  --bg-charcoal: #1a1a1a;
+  --bg-smoke: #2d2d2d;
+  
+  /* Accents et Contrastes */
+  --accent-warm: #e8c5a5;
+  --accent-cool: #4a9d6f;
+  
+  /* Typo Premium */
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* ===================================================
+   TYPOGRAPHIE PREMIUM
+   =================================================== */
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+/* ===================================================
+   CARTES & CONTENEURS PREMIUM
+   =================================================== */
+
+.premium-card {
+  background: linear-gradient(135deg, 
+    rgba(45, 122, 74, 0.08) 0%,
+    rgba(212, 165, 116, 0.05) 100%
+  );
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 16px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(212, 165, 116, 0.5) 50%,
+    transparent 100%
+  );
+}
+
+.premium-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(45, 122, 74, 0.2);
+  border-color: rgba(212, 165, 116, 0.4);
+  background: linear-gradient(135deg,
+    rgba(45, 122, 74, 0.12) 0%,
+    rgba(212, 165, 116, 0.08) 100%
+  );
+}
+
+/* ===================================================
+   BOUTONS & CTA PREMIUM
+   =================================================== */
+
+.btn-premium {
+  position: relative;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+.btn-premium-primary {
+  background: linear-gradient(135deg, #2d7a4a 0%, #45a362 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(45, 122, 74, 0.3);
+}
+
+.btn-premium-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(45, 122, 74, 0.5);
+}
+
+.btn-premium-secondary {
+  background: transparent;
+  color: #d4a574;
+  border: 2px solid #d4a574;
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.15);
+}
+
+.btn-premium-secondary:hover {
+  background: rgba(212, 165, 116, 0.1);
+  box-shadow: 0 0 25px rgba(212, 165, 116, 0.3);
+}
+
+.btn-premium-ghost {
+  background: rgba(212, 165, 116, 0.05);
+  color: #d4a574;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.btn-premium-ghost:hover {
+  background: rgba(212, 165, 116, 0.15);
+  border-color: rgba(212, 165, 116, 0.5);
+}
+
+/* ===================================================
+   BADGES & ETIQUETTES PREMIUM
+   =================================================== */
+
+.badge-premium {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: rgba(212, 165, 116, 0.15);
+  color: #d4a574;
+  border: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+.badge-success {
+  background: rgba(69, 163, 98, 0.15);
+  color: #45a362;
+  border-color: rgba(69, 163, 98, 0.3);
+}
+
+.badge-accent {
+  background: rgba(45, 122, 74, 0.15);
+  color: #2d7a4a;
+  border-color: rgba(45, 122, 74, 0.3);
+}
+
+/* ===================================================
+   SECTIONS PREMIUM
+   =================================================== */
+
+.section-hero {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(135deg, #0d0b09 0%, #1a1a1a 100%);
+  overflow: hidden;
+}
+
+.section-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(45, 122, 74, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.section-premium {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #0d0b09 0%, #1a1a1a 50%, #0d0b09 100%);
+  position: relative;
+}
+
+.section-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    transparent 0%,
+    rgba(212, 165, 116, 0.2) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ===================================================
+   LISTES PREMIUM
+   =================================================== */
+
+.list-premium {
+  list-style: none;
+}
+
+.list-premium li {
+  padding: 12px 0;
+  padding-left: 32px;
+  position: relative;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease;
+}
+
+.list-premium li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4a574 0%, #45a362 100%);
+  opacity: 0.7;
+}
+
+.list-premium li:hover {
+  padding-left: 40px;
+  color: var(--color-text-primary);
+}
+
+.list-premium li:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.3);
+}
+
+/* ===================================================
+   DIVIDERS PREMIUM
+   =================================================== */
+
+.divider-premium {
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212, 165, 116, 0.3) 25%,
+    rgba(212, 165, 116, 0.5) 50%,
+    rgba(212, 165, 116, 0.3) 75%,
+    transparent 100%
+  );
+  margin: 60px 0;
+  position: relative;
+}
+
+.divider-premium::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #d4a574;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(212, 165, 116, 0.4);
+}
+
+/* ===================================================
+   ANIMATIONS PREMIUM
+   =================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 165, 116, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
+  }
+}
+
+@keyframes shimmerGold {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* ===================================================
+   GRILLES & LAYOUTS
+   =================================================== */
+
+.grid-premium {
+  display: grid;
+  gap: 24px;
+  grid-auto-flow: dense;
+}
+
+.grid-premium-2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.grid-premium-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-premium-4 {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+
+@media (max-width: 768px) {
+  .section-premium {
+    padding: 60px 0;
+  }
+  
+  .premium-card {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* ===================================================
+   UTILITÉS
+   =================================================== */
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.py-40 {
+  padding: 40px 0;
+}
+
+.px-20 {
+  padding: 0 20px;
+}

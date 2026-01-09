@@ -18,7 +18,7 @@ function Layout() {
   const isAuthPage = authRoutes.includes(location.pathname);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   const closeMobileMenu = () => {
@@ -220,7 +220,7 @@ function Layout() {
   return (
     <div className="layout">
       {!isAuthPage && (
-        <header className={`header-screenshot ${isScrolled ? 'scrolled' : ''}`}>
+        <header className={`header-screenshot ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
           <div className="navbar-container-screenshot">
             {/* --- Logo & Quick Auth --- */}
             <div className="nav-left-group">
@@ -239,12 +239,13 @@ function Layout() {
             </div>
 
             {/* --- Central Navigation Pill --- */}
-            <nav className="nav-center-pill-screenshot">
+            <nav className={`nav-center-pill-screenshot ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
               {[...mainNavLinks, ...moreNavLinks].map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   className={`nav-item-screenshot ${location.pathname === link.path ? 'active' : ''}`}
+                  onClick={closeMobileMenu}
                 >
                   <span className="nav-icon-screenshot">{link.icon}</span>
                   <span className="nav-label-screenshot">{link.label}</span>
@@ -327,11 +328,16 @@ function Layout() {
               )}
 
               {/* Mobile Toggle */}
-              <button className="mobile-toggle-nav" onClick={toggleMobileMenu}>
-                <div className="burger-simple">
-                  <span></span>
-                  <span></span>
-                </div>
+              <button
+                className={`mobile-toggle-nav ${isMobileMenuOpen ? 'active' : ''}`}
+                onClick={toggleMobileMenu}
+                aria-label="Ouvrir le menu principal"
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
               </button>
             </div>
           </div>
@@ -349,15 +355,55 @@ function Layout() {
       )}
 
       {/* --- Simple Mobile Menu --- */}
-      <nav className={`mobile-nav-simple ${isMobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-nav-inner">
-          <button className="close-simple-nav" onClick={closeMobileMenu}>×</button>
+      <nav
+        id="mobile-navigation"
+        className={`mobile-nav-simple ${isMobileMenuOpen ? 'open' : ''}`}
+        aria-hidden={!isMobileMenuOpen}
+      >
+        <div className="mobile-nav-inner" role="dialog" aria-modal="true">
+          <div className="mobile-nav-header">
+            <Link to="/" className="mobile-nav-logo" onClick={closeMobileMenu}>
+              <span>AgriPlus</span>
+            </Link>
+            <button className="close-simple-nav" onClick={closeMobileMenu} aria-label="Fermer le menu">×</button>
+          </div>
+
           <div className="mobile-link-list">
             {[...mainNavLinks, ...moreNavLinks].map((link) => (
-              <Link key={link.path} to={link.path} onClick={closeMobileMenu}>
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={closeMobileMenu}
+                className={location.pathname === link.path ? 'active' : ''}
+              >
                 {link.label}
               </Link>
             ))}
+          </div>
+
+          {isAuthenticated && (
+            <div className="mobile-nav-meta">
+              <Link to="/dashboard" onClick={closeMobileMenu}>
+                📊 Tableau de bord
+              </Link>
+              <Link to="/profil" onClick={closeMobileMenu}>
+                👤 Mon profil
+              </Link>
+              <button type="button" onClick={() => { setIsAuthenticated(false); closeMobileMenu(); }}>
+                🚪 Déconnexion
+              </button>
+            </div>
+          )}
+
+          <div className="mobile-nav-footer">
+            <span>Thème</span>
+            <button
+              type="button"
+              className="mobile-theme-toggle-btn"
+              onClick={handleThemeToggle}
+            >
+              {theme === 'light' ? '🌙 Mode sombre' : '☀️ Mode clair'}
+            </button>
           </div>
         </div>
       </nav>

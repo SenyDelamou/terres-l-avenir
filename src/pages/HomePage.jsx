@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/HomePage.css';
+import '../styles/HomePage-premium.css';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    'https://images.unsplash.com/photo-1506484335373-452cf97b446a?q=80&w=2000&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1623910313364-c7da57b60098?q=80&w=2000&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=2000&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1516637090014-cb1ab0d08fc7?q=80&w=2400&auto=format&fit=crop', // vignoble premium au coucher du soleil
+    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2400&auto=format&fit=crop', // drone sur cultures modernes
+    'https://images.unsplash.com/photo-1542838686-73e53703b9ba?q=80&w=2400&auto=format&fit=crop', // serres high-tech verdoyantes
+    'https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?q=80&w=2400&auto=format&fit=crop', // champs de blé baignés de lumière dorée
+    'https://images.unsplash.com/photo-1524593451224-1d4a26271134?q=80&w=2400&auto=format&fit=crop', // récolte dorée au lever du soleil
   ];
 
   useEffect(() => {
@@ -85,35 +87,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="stats">
-        <div className="container">
-          <h2>AgriPulse en Chiffres</h2>
-          <div className="stats-grid">
-            <div className="stat">
-              <strong>5,000+</strong>
-              <span>Agriculteurs</span>
+      <section className="stats-showcase-section">
+        <div className="stats-showcase-container">
+          {/* Header */}
+          <div className="stats-header">
+            <div className="trust-badge">📊 Nos Résultats</div>
+            <h2 className="stats-title">
+              AgriPulse en <span>Chiffres</span>
+            </h2>
+            <p className="stats-subtitle">Impact mesurable sur l'agriculture africaine</p>
+          </div>
+
+          {/* Stats Grid */}
+          <div className="stats-grid-container">
+            <div className="stat-item">
+              <span className="stat-number">5K+</span>
+              <span className="stat-label">Agriculteurs</span>
             </div>
-            <div className="stat">
-              <strong>150+</strong>
-              <span>Projets Financés</span>
+            <div className="stat-item">
+              <span className="stat-number">150+</span>
+              <span className="stat-label">Projets Financés</span>
             </div>
-            <div className="stat">
-              <strong>500+</strong>
-              <span>Produits Vendus</span>
+            <div className="stat-item">
+              <span className="stat-number">500+</span>
+              <span className="stat-label">Produits Vendus</span>
             </div>
-            <div className="stat">
-              <strong>1,200+</strong>
-              <span>Maladies Diagnostiquées</span>
+            <div className="stat-item">
+              <span className="stat-number">1.2K+</span>
+              <span className="stat-label">Maladies Diagnostiquées</span>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="cta-final">
-        <div className="container">
-          <h2>Prêt à Transformer Votre Agriculture?</h2>
-          <p>Rejoignez des milliers d'agriculteurs qui utilisent AgriPulse</p>
-          <Link to="/inscription" className="btn btn-primary btn-large">Rejoindre Maintenant</Link>
+          {/* CTA Section */}
+          <div className="stats-cta-section">
+            <div className="stats-cta-content">
+              <h3 className="stats-cta-title">
+                Prêt à Transformer Votre Agriculture?
+              </h3>
+              <p className="stats-cta-description">
+                Rejoignez des milliers d'agriculteurs qui utilisent AgriPulse
+              </p>
+              <Link to="/inscription" className="stats-cta-button">
+                🚀 Rejoindre Maintenant
+              </Link>
+              <Link to="/ressources" className="stats-cta-button-secondary">
+                📚 Découvrir Plus
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>

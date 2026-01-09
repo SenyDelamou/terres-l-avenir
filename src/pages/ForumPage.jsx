@@ -40,12 +40,12 @@ function ForumPage() {
       replies: 12,
       views: 245,
       lastActivity: 'Il y a 2 heures',
-      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=400&auto=format&fit=crop',
       price: 0,
       fullContent: 'La fertilité des sols est le pilier d\'une production agricole durable. Cette discussion explore les méthodes organiques pour restaurer la vie microbienne du sol, l\'utilisation du compostage aérobie et l\'intégration des légumineuses fixatrices d\'azote. Idéal pour les petits exploitants cherchant à réduire leur dépendance aux engrais chimiques.',
       conferenciers: [
-        { name: 'Dr. Thierno Diallo', role: 'Agronome', expertise: 'Santé des sols', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
-        { name: 'Mme. Fatoumata Condé', role: 'Experte Bio', expertise: 'Compostage', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' }
+        { name: 'Dr. Thierno Diallo', role: 'Agronome', expertise: 'Santé des sols', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop' },
+        { name: 'Mme. Fatoumata Condé', role: 'Experte Bio', expertise: 'Compostage', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop' }
       ]
     },
     {
@@ -56,11 +56,11 @@ function ForumPage() {
       replies: 8,
       views: 189,
       lastActivity: 'Il y a 5 heures',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=400&auto=format&fit=crop',
       price: 25000,
       fullContent: 'Découvrez comment planifier vos cycles de culture pour briser le cycle des ravageurs et optimiser l\'utilisation des nutriments. Nous aborderons les associations céréales-légumineuses et les cultures de couverture.',
       conferenciers: [
-        { name: 'Ibrahima Sory Camara', role: 'Ingénieur Rural', expertise: 'Planification', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' }
+        { name: 'Ibrahima Sory Camara', role: 'Ingénieur Rural', expertise: 'Planification', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop' }
       ]
     },
     {
@@ -71,12 +71,12 @@ function ForumPage() {
       replies: 15,
       views: 312,
       lastActivity: 'Il y a 1 jour',
-      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=400&auto=format&fit=crop',
       price: 50000,
       fullContent: 'La transition vers l\'agriculture biologique est un défi technique et administratif. Ce sujet traite des normes de certification en vigueur en Guinée, des techniques de lutte biologique et de la valorisation commerciale des produits certifiés.',
       conferenciers: [
-        { name: 'Saran Kéita', role: 'Certificatrice', expertise: 'Normes Bio', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop' },
-        { name: 'Moussa Sylla', role: 'Agriculteur Pilote', expertise: 'Transition terrain', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' }
+        { name: 'Saran Kéita', role: 'Certificatrice', expertise: 'Normes Bio', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop' },
+        { name: 'Moussa Sylla', role: 'Agriculteur Pilote', expertise: 'Transition terrain', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop' }
       ]
     },
     {
@@ -87,11 +87,11 @@ function ForumPage() {
       replies: 6,
       views: 156,
       lastActivity: 'Il y a 2 jours',
-      image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad576?q=80&w=400&auto=format&fit=crop',
       price: 0,
       fullContent: 'L\'irrigation de précision est la clé face au changement climatique. Nous discutons de l\'installation de kits solaires, de la maintenance des tuyaux et de l\'économie d\'eau réalisée sur une saison maraîchère.',
       conferenciers: [
-        { name: 'Ansoumane Bangoura', role: 'Hydrologue', expertise: 'Énergie Solaire', image: 'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=100&h=100&fit=crop' }
+        { name: 'Ansoumane Bangoura', role: 'Hydrologue', expertise: 'Énergie Solaire', image: 'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?q=80&w=100&auto=format&fit=crop' }
       ]
     },
     {

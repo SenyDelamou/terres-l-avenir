@@ -21,7 +21,7 @@ function ProjectDetailPage() {
       daysLeft: 25,
       location: 'Kindia, Guinée',
       isVerified: true,
-      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&h=600&fit=crop',
+      image: 'https://images.unsplash.com/photo-1623910313364-c7da57b60098?q=80&w=1200&auto=format&fit=crop',
       description: 'Installation d\'une serre solaire de 500m² pour la production de légumes bio toute l\'année.',
       highlights: [
         'Production locale et durable',

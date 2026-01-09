@@ -33,7 +33,12 @@ function AboutPage() {
   return (
     <div className="about-page-premium">
       {/* Cinematic Hero Section */}
-      <section className="about-hero">
+      <section className="about-hero" style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=2000&auto=format&fit=crop")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}>
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <div className="hero-badge-premium">
@@ -109,7 +114,7 @@ function AboutPage() {
       <section className="vision-section">
         <div className="container vision-container">
           <div className="vision-image">
-            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=1000&auto=format&fit=crop" alt="Vision Agricole" />
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1000&auto=format&fit=crop" alt="Vision Agricole" />
             <div className="vision-badge">
               <Target size={24} />
               <span>Vision 2030</span>

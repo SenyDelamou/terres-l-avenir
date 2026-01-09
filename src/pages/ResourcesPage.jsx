@@ -19,7 +19,7 @@ function ResourcesPage() {
             category: 'Technique',
             description: 'Les principes fondamentaux pour préserver la structure de vos sols et réduire l\'érosion durablement.',
             benefits: ['Santé du sol', 'Économie d\'eau', 'Biodiversité'],
-            image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop'
+            image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=600&auto=format&fit=crop'
         },
         {
             id: 2,
@@ -29,7 +29,7 @@ function ResourcesPage() {
             youtubeUrl: 'https://www.youtube.com/watch?v=item',
             description: 'Installation pas-à-pas d\'un système de pompage solaire autonome pour petites exploitations.',
             benefits: ['Autonomie', 'Rentabilité', 'Écologie'],
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop'
+            image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad576?q=80&w=600&auto=format&fit=crop'
         },
         {
             id: 3,
@@ -38,7 +38,7 @@ function ResourcesPage() {
             category: 'Agronomie',
             description: 'Planifier ses rotations pour briser le cycle des maladies et optimiser les nutriments.',
             benefits: ['Lutte bio', 'Fertilité', 'Rendement'],
-            image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=400&fit=crop'
+            image: 'https://images.unsplash.com/photo-1500582191375-89f4ee569ffa?q=80&w=600&auto=format&fit=crop'
         },
         {
             id: 4,
@@ -48,7 +48,7 @@ function ResourcesPage() {
             youtubeUrl: 'https://www.youtube.com/watch?v=item',
             description: 'Les meilleures pratiques pour réussir sa saison sèche : choix des variétés et calendriers.',
             benefits: ['Climat local', 'Variétés', 'Calendrier'],
-            image: 'https://images.unsplash.com/photo-1595841696677-5f80e037466d?w=600&h=400&fit=crop'
+            image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=600&auto=format&fit=crop'
         },
         // ... more resources
     ]);

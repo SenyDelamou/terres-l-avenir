@@ -19,6 +19,8 @@ import MarketplacePage from './pages/MarketplacePage';
 import SellProductPage from './pages/SellProductPage';
 import PublishResourcePage from './pages/PublishResourcePage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
+import LegalNoticePage from './pages/LegalNoticePage';
+import FichesPage from './pages/FichesPage';
 import './styles/App.css';
 
 function App() {
@@ -29,9 +31,11 @@ function App() {
         <Route path="/a-propos" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/ressources" element={<ResourcesPage />} />
+        <Route path="/fiches-techniques" element={<FichesPage />} />
         <Route path="/actualites" element={<NewsPage />} />
         <Route path="/forum" element={<ForumPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/mentions-legales" element={<LegalNoticePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/profil" element={<ProfilePage />} />
         <Route path="/projets-financement" element={<FundingProjectsPage />} />

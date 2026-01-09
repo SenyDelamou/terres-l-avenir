@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, MapPin, Phone, Mail, Clock, ArrowRight } from 'lucide-react';
-import '../styles/Footer.css';
+import '../styles/Footer-premium.css';
 import logoImg from '../assets/logo.png';
 
 function Footer() {
@@ -102,7 +102,7 @@ function Footer() {
                         &copy; {new Date().getFullYear()} AgriPulse Inc. Tous droits réservés.
                     </div>
                     <div className="legal-links">
-                        <Link to="/legal">Mentions Légales</Link>
+                        <Link to="/mentions-legales">Mentions Légales</Link>
                         <Link to="/privacy">Confidentialité</Link>
                         <Link to="/terms">CGU</Link>
                     </div>
