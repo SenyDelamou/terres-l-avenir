@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Leaf, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, CheckCircle } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, CheckCircle } from 'lucide-react';
 import '../styles/LoginPage.css';
 
 function LoginPage() {
@@ -22,6 +22,13 @@ function LoginPage() {
     }));
   };
 
+  useEffect(() => {
+    document.body.classList.add('auth-no-scroll');
+    return () => {
+      document.body.classList.remove('auth-no-scroll');
+    };
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -38,142 +45,93 @@ function LoginPage() {
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-background">
-        <span className="auth-orb orb-1"></span>
-        <span className="auth-orb orb-2"></span>
-        <span className="auth-orb orb-3"></span>
-        <div className="auth-gradient"></div>
+    <div className="login-shell">
+      <div className="login-visual">
+        <img
+          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400&auto=format&fit=crop"
+          alt="Professionnel de la santé"
+        />
       </div>
 
-      <div className="auth-layout">
-        <section className="auth-showcase">
-          <div className="showcase-badge">
-            <span className="badge-dot"></span>
-            <span>Hub Agritech nouvelle génération</span>
-          </div>
-          <h1>
-            Propulsez votre exploitation
-            <span> avec AgriPulse</span>
-          </h1>
-          <p>
-            Connectez-vous pour suivre vos projets, piloter vos cultures et accéder à un réseau exclusif
-            d'experts agricoles et d’investisseurs premium.
-          </p>
-
-          <div className="showcase-metrics">
-            <div className="metric-card">
-              <strong>5K+</strong>
-              <span>Exploitants actifs</span>
-            </div>
-            <div className="metric-card">
-              <strong>320</strong>
-              <span>Projets financés</span>
-            </div>
-            <div className="metric-card">
-              <strong>98%</strong>
-              <span>Satisfaction clients</span>
-            </div>
+      <div className="login-panel">
+        <div className="login-card">
+          <div className="login-header">
+            <h1>Connexion</h1>
+            <p>Authentification sécurisée</p>
           </div>
 
-          <ul className="showcase-list">
-            <li>Monitoring en temps réel de vos parcelles et ressources</li>
-            <li>Financements alignés sur vos objectifs de transition durable</li>
-            <li>Support prioritaire 7j/7 avec nos agronomes partenaires</li>
-          </ul>
-        </section>
-
-        <div className="auth-panel">
-          <div className="panel-brand">
-            <div className="brand-sigil">
-              <Leaf size={26} />
-            </div>
-            <div className="panel-heading">
-              <span className="panel-pill">Espace sécurisé</span>
-              <h2>Connectez votre équipe AgriPulse</h2>
-              <p>Authentifiez-vous avec vos identifiants professionnels pour accéder au cockpit premium.</p>
-            </div>
-          </div>
-
-          <form className="panel-form" onSubmit={handleSubmit}>
-            <div className={`input-field ${formData.email ? 'filled' : ''}`}>
-              <div className="input-shell">
-                <Mail size={18} className="input-icon" />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  autoComplete="email"
-                />
-                <span className="input-label">Email professionnel</span>
-              </div>
-            </div>
-
-            <div className={`input-field ${formData.password ? 'filled' : ''}`}>
-              <div className="input-shell">
-                <Lock size={18} className="input-icon" />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  autoComplete="current-password"
-                />
-                <button
-                  type="button"
-                  className="toggle-visibility"
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-                <span className="input-label">Mot de passe</span>
-              </div>
-            </div>
-
-            <div className="remember-line">
-              <label className="remember-checkbox">
-                <input
-                  type="checkbox"
-                  name="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleChange}
-                />
-                <span className="checkbox-visual"></span>
-                <span>Se souvenir de moi</span>
+            <form className="login-form" onSubmit={handleSubmit}>
+              <label className="login-field">
+                <span>Email</span>
+                <div className="field-control">
+                  <Mail size={18} className="field-icon" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="votre@email.com"
+                    required
+                    autoComplete="email"
+                  />
+                </div>
               </label>
-              <Link to="/mot-de-passe-oublie" className="link-ghost">Mot de passe oublié ?</Link>
-            </div>
 
-            <button type="submit" className="btn-auth-primary" disabled={isLoading}>
-              {isLoading ? <Loader2 className="spinner" size={20} /> : (
-                <>
-                  <span>Se connecter</span>
-                  <ArrowRight size={18} />
-                </>
-              )}
-            </button>
+              <label className="login-field">
+                <span>Mot de passe</span>
+                <div className="field-control">
+                  <Lock size={18} className="field-icon" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    required
+                    autoComplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    className="visibility-toggle"
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </label>
 
-            <div className="panel-divider">
-              <span>Ou continuez avec</span>
-            </div>
+              <div className="login-options">
+                <label className="remember-option">
+                  <input
+                    type="checkbox"
+                    name="rememberMe"
+                    checked={formData.rememberMe}
+                    onChange={handleChange}
+                  />
+                  <span className="remember-mark"></span>
+                  <span>Se souvenir de moi</span>
+                </label>
+                <Link to="/mot-de-passe-oublie" className="forgot-link">Mot de passe oublié ?</Link>
+              </div>
 
-          <div className="social-login">
-            <button type="button" className="btn-social">Google</button>
-            <button type="button" className="btn-social">Apple</button>
-          </div>
-          </form>
+              <button type="submit" className="login-submit" disabled={isLoading}>
+                {isLoading ? <Loader2 className="spinner" size={20} /> : (
+                  <>
+                    <span>Se connecter</span>
+                    <ArrowRight size={18} />
+                  </>
+                )}
+              </button>
+            </form>
 
-          <div className="panel-footer">
+          <div className="login-footer">
             <p>Pas encore membre ? <Link to="/inscription">Créer un compte</Link></p>
           </div>
         </div>
       </div>
 
-      <div className={`auth-toast ${showToast ? 'show' : ''}`}>
+      <div className={`login-toast ${showToast ? 'show' : ''}`}>
         <div className="toast-icon">
           <CheckCircle size={20} />
         </div>

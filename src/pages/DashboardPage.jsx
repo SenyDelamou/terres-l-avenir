@@ -40,13 +40,6 @@ const marketData = [
 function DashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newProject, setNewProject] = useState({
-    title: '',
-    description: '',
-    location: '',
-    amount: ''
-  });
 
   // Load projects from localStorage or use defaults
   const [userProjects, setUserProjects] = useState(() => {
