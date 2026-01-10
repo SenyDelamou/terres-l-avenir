@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, CheckCircle } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, CheckCircle, Sprout } from 'lucide-react';
 import '../styles/LoginPage.css';
 
 function LoginPage() {
@@ -45,26 +45,40 @@ function LoginPage() {
   };
 
   return (
-    <div className="login-shell">
-      <div className="login-visual">
-        <img
-          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400&auto=format&fit=crop"
-          alt="Professionnel de la santé"
-        />
-      </div>
-
-      <div className="login-panel">
-        <div className="login-card">
-          <div className="login-header">
-            <h1>Connexion</h1>
-            <p>Authentification sécurisée</p>
+    <div className="login-premium">
+      <div className="login-container">
+        {/* Left Visual Side */}
+        <div className="login-visual-side">
+          <div className="visual-overlay"></div>
+          <img
+            src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=2400&auto=format&fit=crop"
+            alt="Agriculture moderne"
+            className="visual-image"
+          />
+          <div className="visual-content">
+            <h2>Bienvenue à AgriPulse</h2>
+            <p>Gérez vos projets agricoles avec intelligence et efficacité</p>
           </div>
+        </div>
 
-            <form className="login-form" onSubmit={handleSubmit}>
-              <label className="login-field">
-                <span>Email</span>
-                <div className="field-control">
-                  <Mail size={18} className="field-icon" />
+        {/* Right Form Side */}
+        <div className="login-form-side">
+          <div className="form-wrapper">
+            <div className="brand-header">
+              <Sprout size={32} className="brand-icon" />
+              <h1>AgriPulse</h1>
+            </div>
+
+            <div className="form-header">
+              <h2>Connexion</h2>
+              <p>Accédez à votre espace personnel</p>
+            </div>
+
+            <form className="premium-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Email</label>
+                <div className="input-wrapper">
+                  <Mail size={18} className="input-icon" />
                   <input
                     type="email"
                     name="email"
@@ -75,12 +89,12 @@ function LoginPage() {
                     autoComplete="email"
                   />
                 </div>
-              </label>
+              </div>
 
-              <label className="login-field">
-                <span>Mot de passe</span>
-                <div className="field-control">
-                  <Lock size={18} className="field-icon" />
+              <div className="form-group">
+                <label>Mot de passe</label>
+                <div className="input-wrapper">
+                  <Lock size={18} className="input-icon" />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     name="password"
@@ -92,31 +106,32 @@ function LoginPage() {
                   />
                   <button
                     type="button"
-                    className="visibility-toggle"
+                    className="toggle-password"
                     onClick={() => setShowPassword(!showPassword)}
-                    aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
                   >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
-              </label>
+              </div>
 
-              <div className="login-options">
-                <label className="remember-option">
+              <div className="form-footer">
+                <label className="checkbox-wrapper">
                   <input
                     type="checkbox"
                     name="rememberMe"
                     checked={formData.rememberMe}
                     onChange={handleChange}
                   />
-                  <span className="remember-mark"></span>
+                  <span className="checkbox-mark"></span>
                   <span>Se souvenir de moi</span>
                 </label>
-                <Link to="/mot-de-passe-oublie" className="forgot-link">Mot de passe oublié ?</Link>
+                <Link to="/mot-de-passe-oublie" className="forgot-link">Oublié ?</Link>
               </div>
 
-              <button type="submit" className="login-submit" disabled={isLoading}>
-                {isLoading ? <Loader2 className="spinner" size={20} /> : (
+              <button type="submit" className="btn-submit" disabled={isLoading}>
+                {isLoading ? (
+                  <Loader2 className="spinner" size={18} />
+                ) : (
                   <>
                     <span>Se connecter</span>
                     <ArrowRight size={18} />
@@ -125,19 +140,25 @@ function LoginPage() {
               </button>
             </form>
 
-          <div className="login-footer">
-            <p>Pas encore membre ? <Link to="/inscription">Créer un compte</Link></p>
+            <div className="form-divider">
+              <span>Pas encore membre ?</span>
+            </div>
+
+            <Link to="/inscription" className="btn-signup">
+              Créer un compte
+            </Link>
           </div>
         </div>
       </div>
 
+      {/* Toast Notification */}
       <div className={`login-toast ${showToast ? 'show' : ''}`}>
         <div className="toast-icon">
           <CheckCircle size={20} />
         </div>
-        <div className="toast-copy">
-          <span className="toast-title">Succès</span>
-          <p>Redirection vers le tableau de bord...</p>
+        <div className="toast-content">
+          <strong>Succès !</strong>
+          <p>Redirection en cours...</p>
         </div>
       </div>
     </div>

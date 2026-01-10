@@ -11,16 +11,16 @@
   --deep-green: #1a4d2e;
   --sage-green: #6b9d8a;
   --soil-brown: #8b6f47;
-  
+
   /* Backgrounds Riches */
   --bg-rich-dark: #0d0b09;
   --bg-charcoal: #1a1a1a;
   --bg-smoke: #2d2d2d;
-  
+
   /* Accents et Contrastes */
   --accent-warm: #e8c5a5;
   --accent-cool: #4a9d6f;
-  
+
   /* Typo Premium */
   --font-display: 'DM Serif Display', serif;
   --font-body: 'Poppins', sans-serif;
@@ -30,7 +30,9 @@
    TYPOGRAPHIE PREMIUM
    =================================================== */
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -62,10 +64,9 @@ p {
    =================================================== */
 
 .premium-card {
-  background: linear-gradient(135deg, 
-    rgba(45, 122, 74, 0.08) 0%,
-    rgba(212, 165, 116, 0.05) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(45, 122, 74, 0.08) 0%,
+      rgba(212, 165, 116, 0.05) 100%);
   border: 1px solid rgba(212, 165, 116, 0.2);
   border-radius: 16px;
   padding: 32px;
@@ -83,11 +84,10 @@ p {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    rgba(212, 165, 116, 0.5) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(212, 165, 116, 0.5) 50%,
+      transparent 100%);
 }
 
 .premium-card:hover {
@@ -95,9 +95,8 @@ p {
   box-shadow: 0 20px 60px rgba(45, 122, 74, 0.2);
   border-color: rgba(212, 165, 116, 0.4);
   background: linear-gradient(135deg,
-    rgba(45, 122, 74, 0.12) 0%,
-    rgba(212, 165, 116, 0.08) 100%
-  );
+      rgba(45, 122, 74, 0.12) 0%,
+      rgba(212, 165, 116, 0.08) 100%);
 }
 
 /* ===================================================
@@ -203,7 +202,7 @@ p {
 .section-hero {
   position: relative;
   padding: 100px 0;
-  background: linear-gradient(135deg, #0d0b09 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   overflow: hidden;
 }
 
@@ -214,15 +213,15 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(45, 122, 74, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.05) 0%, transparent 50%);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(45, 122, 74, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
 
 .section-premium {
   padding: 80px 0;
-  background: linear-gradient(180deg, #0d0b09 0%, #1a1a1a 50%, #0d0b09 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
   position: relative;
 }
 
@@ -234,11 +233,10 @@ p {
   transform: translateX(-50%);
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, 
-    transparent 0%,
-    rgba(212, 165, 116, 0.2) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(212, 165, 116, 0.1) 50%,
+      transparent 100%);
   pointer-events: none;
 }
 
@@ -288,12 +286,11 @@ p {
 .divider-premium {
   height: 2px;
   background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(212, 165, 116, 0.3) 25%,
-    rgba(212, 165, 116, 0.5) 50%,
-    rgba(212, 165, 116, 0.3) 75%,
-    transparent 100%
-  );
+      transparent 0%,
+      rgba(212, 165, 116, 0.3) 25%,
+      rgba(212, 165, 116, 0.5) 50%,
+      rgba(212, 165, 116, 0.3) 75%,
+      transparent 100%);
   margin: 60px 0;
   position: relative;
 }
@@ -320,6 +317,7 @@ p {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -331,6 +329,7 @@ p {
     opacity: 0;
     transform: translateX(-40px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -342,6 +341,7 @@ p {
     opacity: 0;
     transform: translateX(40px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -352,9 +352,11 @@ p {
   0% {
     box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(212, 165, 116, 0.4);
   }
+
   100% {
     box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
   }
@@ -364,6 +366,7 @@ p {
   0% {
     background-position: -1000px 0;
   }
+
   100% {
     background-position: 1000px 0;
   }
@@ -411,15 +414,15 @@ p {
   .section-premium {
     padding: 60px 0;
   }
-  
+
   .premium-card {
     padding: 20px;
   }
-  
+
   h1 {
     font-size: 1.8rem;
   }
-  
+
   h2 {
     font-size: 1.4rem;
   }
