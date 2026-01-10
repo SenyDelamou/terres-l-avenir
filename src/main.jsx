@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import App from './App.jsx';
-import './styles/index.css';
-import './styles/App.css';
-import './styles/premium-design.css';
-import './styles/pages-premium.css';
-import './styles/HomePage-premium.css';
-import './styles/Footer-premium.css';
-import './styles/stats-showcase.css';
-import './styles/style.css';
-import './styles/mobile-navbar.css';
-import './styles/FichesTechniques.css';
+// Import CSS dans l'ordre correct - Les styles génériques EN PREMIER, puis les spécifiques
+import './styles/style.css';  // Style de base avec variables génériques
+import './styles/index.css';  // Thème premium agricole (écrase style.css)
+import './styles/App.css';  // Styles de l'application
+import './styles/premium-design.css';  // Design premium global
+import './styles/pages-premium.css';  // Design premium des pages
+import './styles/HomePage-premium.css';  // Home page premium
+import './styles/Footer-premium.css';  // Footer premium
+import './styles/stats-showcase.css';  // Stats showcase
+import './styles/mobile-navbar.css';  // Mobile navbar
+import './styles/FichesTechniques.css';  // Fiches techniques
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
