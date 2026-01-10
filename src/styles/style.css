@@ -32,21 +32,21 @@
     --gradient-glow: radial-gradient(circle at center, rgba(61, 252, 138, 0.15) 0%, transparent 70%);
 
     /* Surfaces */
-    --color-bg: #f8fafc;
-    /* Light Mode: Clean Minty Slate */
+    --color-bg: #ffffff;
+    /* Light Mode: Clean White */
     --bg-color: var(--color-bg);
     --color-surface: #ffffff;
-    --color-surface-hover: #f1f5f9;
+    --color-surface-hover: #f8f9fa;
     --color-card: #ffffff;
     --card-bg: var(--color-card);
 
-    --color-border: #e2e8f0;
-    --color-border-glow: rgba(61, 252, 138, 0.3);
+    --color-border: #e0e0e0;
+    --color-border-glow: rgba(16, 185, 129, 0.3);
 
     /* Text */
-    --color-text-main: #0f172a;
-    --color-text-muted: #475569;
-    --color-text-light: #94a3b8;
+    --color-text-main: #1a1a1a;
+    --color-text-muted: #4a4a4a;
+    --color-text-light: #7a7a7a;
     --color-white: #ffffff;
 
     /* Typography */
@@ -96,8 +96,8 @@
     --color-secondary: #0a0f14;
     --color-secondary-light: #121b21;
 
-    --color-bg: #0a0f14;
-    --color-surface: #121b21;
+    --color-bg: #ffffff;
+    --color-surface: #ffffff;
     --color-surface-hover: #1a252c;
     --color-card: #121b21;
     --card-bg: var(--color-card);

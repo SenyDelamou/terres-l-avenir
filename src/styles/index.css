@@ -34,16 +34,16 @@
   --color-accent-brown: #8b6f47;
   
   /* Background & Surface */
-  --bg-main: #0d0b09;
-  --bg-secondary: #1a1a1a;
-  --bg-tertiary: #2d2d2d;
-  --color-surface: #252525;
-  --color-card: #1f1f1f;
+  --bg-main: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f1f3f5;
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
   
   /* Text */
-  --color-text-primary: #f5f5f5;
-  --color-text-secondary: #b0b0b0;
-  --color-text-muted: #808080;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a4a4a;
+  --color-text-muted: #7a7a7a;
   
   /* Borders & Shadows */
   --color-border: rgba(212, 165, 116, 0.15);
